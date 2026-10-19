@@ -609,17 +609,17 @@ export default function SubChartStockCharts() {
             <div
                 id={dividerId1}
                 className="w-full absolute"
-                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
+                style={{ height: "0.125rem", backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
             >
-                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
+                <div className="w-full" style={{ height: "0.25rem", borderBottom: "2px dashed" }}></div>
             </div>
             <div id={subChartWrapper2} className="absolute" />
             <div
                 id={dividerId2}
                 className="w-full absolute"
-                style={{ height: 2, backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
+                style={{ height: "0.125rem", backgroundColor: "var(--border-color)", cursor: "row-resize", zIndex: 1 }}
             >
-                <div className="w-full" style={{ height: 4, borderBottom: "2px dashed" }}></div>
+                <div className="w-full" style={{ height: "0.25rem", borderBottom: "2px dashed" }}></div>
             </div>
             <div id={subChartWrapper3} className="absolute" />
             <SciChartReact

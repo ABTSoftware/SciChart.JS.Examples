@@ -42,7 +42,7 @@ export const StackblitzEditor: React.FC<StackblitzEditorProps> = ({ id, onBack, 
 
             // Embed the Stackblitz editor with more robust configuration
             sdk.embedProject(container, project, {
-                height: 500,
+                height: "100%",
                 clickToLoad: false,
                 openFile: Object.keys(projectFiles.files)[0], // Open first file by default
                 terminalHeight: 50,

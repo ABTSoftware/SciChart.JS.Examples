@@ -80,10 +80,10 @@ export default function ChartComponent() {
                             <span key={d.state}>
                                 <span
                                     style={{
-                                        width: 10,
-                                        height: 10,
+                                        width: "0.625rem",
+                                        height: "0.625rem",
                                         display: "inline-block",
-                                        marginRight: 6,
+                                        marginRight: "0.375rem",
                                         backgroundColor: color,
                                     }}
                                 />

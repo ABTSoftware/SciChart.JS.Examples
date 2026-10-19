@@ -299,7 +299,7 @@ export default function SmithChartComponent() {
                                 >
                                     <input
                                         className="sc-input"
-                                        style={{ width: 84 }}
+                                        style={{ width: "5.25rem" }}
                                         type="number"
                                         value={chainValue}
                                         onChange={(e) => setChainValue(e.target.value)}
@@ -543,18 +543,18 @@ export default function SmithChartComponent() {
                         <>
                             <span className="sc-smith-explanation-heading">HOW IT WORKS</span>
                             {state.scenarioSteps.map((step, i) => (
-                                <div key={i} className="flex" style={{ gap: 6, marginBottom: 6 }}>
+                                <div key={i} className="flex" style={{ gap: "0.375rem", marginBottom: "0.375rem" }}>
                                     <span
                                         className="shrink-0"
                                         style={{
                                             color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                            minWidth: 14,
+                                            minWidth: "0.875rem",
                                         }}
                                     >{i + 1}.</span>
                                     <span style={{ lineHeight: 1.4 }}>{step}</span>
                                 </div>
                             ))}
-                            <hr className="sc-smith-divider" style={{ margin: "6px 0" }} />
+                            <hr className="sc-smith-divider" style={{ margin: "0.375rem 0" }} />
                         </>
                     )}
                     <span className="sc-smith-explanation-heading">MARKERS</span>
@@ -602,11 +602,11 @@ export default function SmithChartComponent() {
                                     <ExpandMoreIcon className="sc-accordion-chevron" />
                                 </summary>
                                 <div className="sc-accordion-details sc-marker-details">
-                                    <div className="flex items-center gap-2" style={{ marginBottom: 6 }}>
+                                    <div className="flex items-center gap-2" style={{ marginBottom: "0.375rem" }}>
                                         <span
                                             style={{
                                                 color: "color-mix(in srgb, var(--text) 55%, transparent)",
-                                                minWidth: 36,
+                                                minWidth: "2.25rem",
                                             }}
                                         >Drag:</span>
                                         <div className="sc-button-group" role="group">
@@ -645,8 +645,8 @@ export default function SmithChartComponent() {
                                     <div
                                         className="shrink-0"
                                         style={{
-                                            width: 8,
-                                            height: 8,
+                                            width: "0.5rem",
+                                            height: "0.5rem",
                                             borderRadius: "50%",
                                             backgroundColor: CHAIN_COLOURS[i % CHAIN_COLOURS.length],
                                         }}

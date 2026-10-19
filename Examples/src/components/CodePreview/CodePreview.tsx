@@ -1,15 +1,17 @@
-import { FC, useEffect, useState, type JSX } from "react";
+import { FC, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
 import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
+import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { Dialog } from "../Dialog/Dialog";
-import { ETheme } from "../../helpers/types/types";
+import { ETheme, type ExampleSourceFile } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
-import { IconButton } from "../buttons/IconButton";
+import { FileExplorer, FileIcon } from "./FileExplorer";
+import { createProjectZip, getDefaultSourceFile } from "./projectFiles";
 
 const EditorLanguageMap: Record<string, string> = {
     ts: "typescript",
@@ -26,8 +28,9 @@ SyntaxHighlighter.registerLanguage("typescript", ts);
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("css", css);
 SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("html", xml);
 
-const DarkStyles = {
+const DarkStyles: Record<string, CSSProperties> = {
     hljs: {
         display: "block",
         overflowX: "auto",
@@ -164,7 +167,7 @@ const DarkStyles = {
     },
 };
 
-const LightStyles = {
+const LightStyles: Record<string, CSSProperties> = {
     hljs: {
         display: "block",
         overflowX: "auto",
@@ -258,117 +261,15 @@ const LightStyles = {
     },
 };
 
-type CodeEditorProps = {
-    files: { name: string; content: string }[];
-    selectedFile: { name: string; content: string };
+export type CodeEditorProps = {
+    files: ExampleSourceFile[];
+    selectedFile: ExampleSourceFile;
     handleFileClick: (fileName: string) => void;
     desiredFramework: EPageFramework;
     actualFramework: EPageFramework | null;
     examplePath: string;
     isMaxWidth: boolean;
-};
-
-const ICONS: Record<string, JSX.Element> = {
-    html: (
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
-            <path fill="#E65100" d="M41,5H7l3,34l14,4l14-4L41,5L41,5z"></path>
-            <path fill="#FF6D00" d="M24 8L24 39.9 35.2 36.7 37.7 8z"></path>
-            <path
-                fill="#FFF"
-                d="M24,25v-4h8.6l-0.7,11.5L24,35.1v-4.2l4.1-1.4l0.3-4.5H24z M32.9,17l0.3-4H24v4H32.9z"
-            ></path>
-            <path
-                fill="#EEE"
-                d="M24,30.9v4.2l-7.9-2.6L15.7,27h4l0.2,2.5L24,30.9z M19.1,17H24v-4h-9.1l0.7,12H24v-4h-4.6L19.1,17z"
-            ></path>
-        </svg>
-    ),
-    css: (
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
-            <path fill="#0277BD" d="M41,5H7l3,34l14,4l14-4L41,5L41,5z"></path>
-            <path fill="#039BE5" d="M24 8L24 39.9 35.2 36.7 37.7 8z"></path>
-            <path
-                fill="#FFF"
-                d="M33.1 13L24 13 24 17 28.9 17 28.6 21 24 21 24 25 28.4 25 28.1 29.5 24 30.9 24 35.1 31.9 32.5 32.6 21 32.6 21z"
-            ></path>
-            <path
-                fill="#EEE"
-                d="M24,13v4h-8.9l-0.3-4H24z M19.4,21l0.2,4H24v-4H19.4z M19.8,27h-4l0.3,5.5l7.9,2.6v-4.2l-4.1-1.4L19.8,27z"
-            ></path>
-        </svg>
-    ),
-    js: (
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
-            <path fill="#ffd600" d="M6,42V6h36v36H6z"></path>
-            <path
-                fill="#000001"
-                d="M29.538 32.947c.692 1.124 1.444 2.201 3.037 2.201 1.338 0 2.04-.665 2.04-1.585 0-1.101-.726-1.492-2.198-2.133l-.807-.344c-2.329-.988-3.878-2.226-3.878-4.841 0-2.41 1.845-4.244 4.728-4.244 2.053 0 3.528.711 4.592 2.573l-2.514 1.607c-.553-.988-1.151-1.377-2.078-1.377-.946 0-1.545.597-1.545 1.377 0 .964.6 1.354 1.985 1.951l.807.344C36.452 29.645 38 30.839 38 33.523 38 36.415 35.716 38 32.65 38c-2.999 0-4.702-1.505-5.65-3.368L29.538 32.947zM17.952 33.029c.506.906 1.275 1.603 2.381 1.603 1.058 0 1.667-.418 1.667-2.043V22h3.333v11.101c0 3.367-1.953 4.899-4.805 4.899-2.577 0-4.437-1.746-5.195-3.368L17.952 33.029z"
-            ></path>
-        </svg>
-    ),
-    ts: (
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
-            <rect width="36" height="36" x="6" y="6" fill="#1976d2"></rect>
-            <polygon
-                fill="#fff"
-                points="27.49,22 14.227,22 14.227,25.264 18.984,25.264 18.984,40 22.753,40 22.753,25.264 27.49,25.264"
-            ></polygon>
-            <path
-                fill="#fff"
-                d="M39.194,26.084c0,0-1.787-1.192-3.807-1.192s-2.747,0.96-2.747,1.986 c0,2.648,7.381,2.383,7.381,7.712c0,8.209-11.254,4.568-11.254,4.568V35.22c0,0,2.152,1.622,4.733,1.622s2.483-1.688,2.483-1.92 c0-2.449-7.315-2.449-7.315-7.878c0-7.381,10.658-4.469,10.658-4.469L39.194,26.084z"
-            ></path>
-        </svg>
-    ),
-    jsx: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path
-                fill="#00bcd4"
-                d="M16 12c7.444 0 12 2.59 12 4s-4.556 4-12 4-12-2.59-12-4 4.556-4 12-4m0-2c-7.732 0-14 2.686-14 6s6.268 6 14 6 14-2.686 14-6-6.268-6-14-6Z"
-            />
-            <path fill="#00bcd4" d="M16 14a2 2 0 1 0 2 2 2 2 0 0 0-2-2Z" />
-            <path
-                fill="#00bcd4"
-                d="M10.458 5.507c2.017 0 5.937 3.177 9.006 8.493 3.722 6.447 3.757 11.687 2.536 12.392a.9.9 0 0 1-.457.1c-2.017 0-5.938-3.176-9.007-8.492C8.814 11.553 8.779 6.313 10 5.608a.903.903 0 0 1 .458-.1m-.001-2A2.871 2.871 0 0 0 9 3.875C6.13 5.532 6.938 12.304 10.804 19c3.284 5.69 7.72 9.493 10.74 9.493A2.87 2.87 0 0 0 23 28.124c2.87-1.656 2.062-8.428-1.804-15.124-3.284-5.69-7.72-9.493-10.74-9.493Z"
-            />
-            <path
-                fill="#00bcd4"
-                d="M21.543 5.507a.9.9 0 0 1 .457.1c1.221.706 1.186 5.946-2.536 12.393-3.07 5.316-6.99 8.493-9.007 8.493a.9.9 0 0 1-.457-.1C8.779 25.686 8.814 20.446 12.536 14c3.07-5.316 6.99-8.493 9.007-8.493m0-2c-3.02 0-7.455 3.804-10.74 9.493C6.939 19.696 6.13 26.468 9 28.124a2.87 2.87 0 0 0 1.457.369c3.02 0 7.455-3.804 10.74-9.493C25.061 12.304 25.87 5.532 23 3.876a2.87 2.87 0 0 0-1.457-.369Z"
-            />
-        </svg>
-    ),
-    tsx: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <path
-                fill="#0288d1"
-                d="M16 12c7.444 0 12 2.59 12 4s-4.556 4-12 4-12-2.59-12-4 4.556-4 12-4m0-2c-7.732 0-14 2.686-14 6s6.268 6 14 6 14-2.686 14-6-6.268-6-14-6Z"
-            />
-            <path fill="#0288d1" d="M16 14a2 2 0 1 0 2 2 2 2 0 0 0-2-2Z" />
-            <path
-                fill="#0288d1"
-                d="M10.458 5.507c2.017 0 5.937 3.177 9.006 8.493 3.722 6.447 3.757 11.687 2.536 12.392a.9.9 0 0 1-.457.1c-2.017 0-5.938-3.176-9.007-8.492C8.814 11.553 8.779 6.313 10 5.608a.903.903 0 0 1 .458-.1m-.001-2A2.871 2.871 0 0 0 9 3.875C6.13 5.532 6.938 12.304 10.804 19c3.284 5.69 7.72 9.493 10.74 9.493A2.87 2.87 0 0 0 23 28.124c2.87-1.656 2.062-8.428-1.804-15.124-3.284-5.69-7.72-9.493-10.74-9.493Z"
-            />
-            <path
-                fill="#0288d1"
-                d="M21.543 5.507a.9.9 0 0 1 .457.1c1.221.706 1.186 5.946-2.536 12.393-3.07 5.316-6.99 8.493-9.007 8.493a.9.9 0 0 1-.457-.1C8.779 25.686 8.814 20.446 12.536 14c3.07-5.316 6.99-8.493 9.007-8.493m0-2c-3.02 0-7.455 3.804-10.74 9.493C6.939 19.696 6.13 26.468 9 28.124a2.87 2.87 0 0 0 1.457.369c3.02 0 7.455-3.804 10.74-9.493C25.061 12.304 25.87 5.532 23 3.876a2.87 2.87 0 0 0-1.457-.369Z"
-            />
-        </svg>
-    ),
-    json: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-            <path
-                fill="#f9a825"
-                d="M560-160v-80h120q17 0 28.5-11.5T720-280v-80q0-38 22-69t58-44v-14q-36-13-58-44t-22-69v-80q0-17-11.5-28.5T680-720H560v-80h120q50 0 85 35t35 85v80q0 17 11.5 28.5T840-560h40v160h-40q-17 0-28.5 11.5T800-360v80q0 50-35 85t-85 35H560Zm-280 0q-50 0-85-35t-35-85v-80q0-17-11.5-28.5T120-400H80v-160h40q17 0 28.5-11.5T160-600v-80q0-50 35-85t85-35h120v80H280q-17 0-28.5 11.5T240-680v80q0 38-22 69t-58 44v14q36 13 58 44t22 69v80q0 17 11.5 28.5T280-240h120v80H280Z"
-            />
-        </svg>
-    ),
-    csv: (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 17 17" fill="none">
-            <path
-                d="M13.5 3.5H14V3.29289L13.8536 3.14645L13.5 3.5ZM10.5 0.5L10.8536 0.146447L10.7071 0H10.5V0.5ZM6.5 6.5V6H6V6.5H6.5ZM6.5 8.5H6V9H6.5V8.5ZM8.5 8.5H9V8H8.5V8.5ZM8.5 10.5V11H9V10.5H8.5ZM10.5 9.5H10V9.70711L10.1464 9.85355L10.5 9.5ZM11.5 10.5L11.1464 10.8536L11.5 11.2071L11.8536 10.8536L11.5 10.5ZM12.5 9.5L12.8536 9.85355L13 9.70711V9.5H12.5ZM2.5 6.5V6H2V6.5H2.5ZM2.5 10.5H2V11H2.5V10.5ZM2 5V1.5H1V5H2ZM13 3.5V5H14V3.5H13ZM2.5 1H10.5V0H2.5V1ZM10.1464 0.853553L13.1464 3.85355L13.8536 3.14645L10.8536 0.146447L10.1464 0.853553ZM2 1.5C2 1.22386 2.22386 1 2.5 1V0C1.67157 0 1 0.671573 1 1.5H2ZM1 12V13.5H2V12H1ZM2.5 15H12.5V14H2.5V15ZM14 13.5V12H13V13.5H14ZM12.5 15C13.3284 15 14 14.3284 14 13.5H13C13 13.7761 12.7761 14 12.5 14V15ZM1 13.5C1 14.3284 1.67157 15 2.5 15V14C2.22386 14 2 13.7761 2 13.5H1ZM9 6H6.5V7H9V6ZM6 6.5V8.5H7V6.5H6ZM6.5 9H8.5V8H6.5V9ZM8 8.5V10.5H9V8.5H8ZM8.5 10H6V11H8.5V10ZM10 6V9.5H11V6H10ZM10.1464 9.85355L11.1464 10.8536L11.8536 10.1464L10.8536 9.14645L10.1464 9.85355ZM11.8536 10.8536L12.8536 9.85355L12.1464 9.14645L11.1464 10.1464L11.8536 10.8536ZM13 9.5V6H12V9.5H13ZM5 6H2.5V7H5V6ZM2 6.5V10.5H3V6.5H2ZM2.5 11H5V10H2.5V11Z"
-                fill="#000000"
-            />
-        </svg>
-    ),
+    onFilesChange?: (files: ExampleSourceFile[]) => void;
 };
 
 export const CodePreview: FC<CodeEditorProps> = ({
@@ -378,172 +279,326 @@ export const CodePreview: FC<CodeEditorProps> = ({
     desiredFramework,
     actualFramework,
     examplePath,
-    isMaxWidth,
+    onFilesChange,
 }) => {
     const { state } = _useContext();
-    const theme = state.theme;
-    const [hasShownDialog, setHasShownDialog] = useState(false);
+    const [draftFiles, setDraftFiles] = useState(files);
+    const [isEditing, setIsEditing] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const [showExplorer, setShowExplorer] = useState(true);
     const [showDialog, setShowDialog] = useState(false);
-    const [hasCopied, setHasCopied] = useState(false);
+    const [status, setStatus] = useState("");
+    const editorRef = useRef<HTMLElement>(null);
+    const gutterRef = useRef<HTMLPreElement>(null);
+    const fullscreenButtonRef = useRef<HTMLButtonElement>(null);
+    const readButtonRef = useRef<HTMLButtonElement>(null);
+    const activeFile = draftFiles.find((file) => file.name === selectedFile?.name) ?? getDefaultSourceFile(draftFiles);
+    const modifiedNames = useMemo(
+        () =>
+            new Set(
+                draftFiles
+                    .filter((file) => file.content !== files.find((original) => original.name === file.name)?.content)
+                    .map((file) => file.name)
+            ),
+        [draftFiles, files]
+    );
+    const lineCount = activeFile?.content.split("\n").length ?? 1;
+    const lineNumbers = Array.from({ length: lineCount }, (_, index) => index + 1).join("\n");
+    const frameworkName = FRAMEWORK_NAME[actualFramework || desiredFramework];
+    const isLight = state.theme === ETheme.light;
 
-    enum ECodeSizingMode {
-        Minimised,
-        Fullscreen,
-    }
+    useEffect(() => {
+        setDraftFiles(files);
+        setIsEditing(false);
+        setStatus("");
+    }, [files, examplePath]);
 
-    const [codeSizing, setCodeSizing] = useState(isMaxWidth ? ECodeSizingMode.Minimised : ECodeSizingMode.Fullscreen);
-    const isFullscreen = codeSizing == ECodeSizingMode.Fullscreen;
+    useEffect(() => {
+        setShowDialog(!!actualFramework && actualFramework !== desiredFramework);
+    }, [examplePath, actualFramework, desiredFramework]);
 
-    const handleMouseEnter = () => {
-        if (!hasShownDialog && actualFramework && actualFramework !== desiredFramework) {
-            setShowDialog(true);
-            setHasShownDialog(true);
+    useEffect(() => {
+        if (gutterRef.current) gutterRef.current.style.transform = "";
+    }, [activeFile?.name, isEditing]);
+
+    useEffect(() => {
+        if (!isFullscreen) return undefined;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        editorRef.current?.focus();
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isFullscreen]);
+
+    const updateFiles = (next: ExampleSourceFile[]) => {
+        setDraftFiles(next);
+        onFilesChange?.(next);
+    };
+    const updateContent = (content: string) =>
+        updateFiles(draftFiles.map((file) => (file.name === activeFile.name ? { ...file, content } : file)));
+    const handleEditorKeys = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === "Escape") {
+            event.stopPropagation();
+            setIsEditing(false);
+            readButtonRef.current?.focus();
+            return;
+        }
+        if (event.key !== "Tab") return;
+        event.preventDefault();
+        const textarea = event.currentTarget;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const content = activeFile.content;
+        if (event.shiftKey) {
+            const lineStart = content.slice(0, start).lastIndexOf("\n") + 1;
+            const indentation = content.slice(lineStart, start).match(/^( {1,4}|\t)/)?.[0];
+            if (!indentation) return;
+            updateContent(content.slice(0, lineStart) + content.slice(lineStart + indentation.length));
+            requestAnimationFrame(() =>
+                textarea.setSelectionRange(
+                    start - indentation.length,
+                    Math.max(start - indentation.length, end - indentation.length)
+                )
+            );
+        } else {
+            updateContent(content.slice(0, start) + "    " + content.slice(end));
+            requestAnimationFrame(() => textarea.setSelectionRange(start + 4, start + 4));
+        }
+    };
+    const closeFullscreen = () => {
+        setIsFullscreen(false);
+        fullscreenButtonRef.current?.focus();
+    };
+    const handleWorkspaceKeys = (event: KeyboardEvent<HTMLElement>) => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "a") {
+            const textarea = editorRef.current?.querySelector("textarea");
+            if (textarea) {
+                event.preventDefault();
+                textarea.focus({ preventScroll: true });
+                textarea.select();
+            } else {
+                const source = editorRef.current?.querySelector<HTMLElement>(".sc-editor-code-scroll");
+                const code = source?.querySelector("code");
+                const selection = window.getSelection();
+                if (code && selection) {
+                    event.preventDefault();
+                    source.focus({ preventScroll: true });
+                    const range = document.createRange();
+                    range.selectNodeContents(code);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            }
+            return;
+        }
+        if (!isFullscreen) return;
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeFullscreen();
+        }
+        if (event.key === "Tab") {
+            const focusable = Array.from(
+                editorRef.current?.querySelectorAll<HTMLElement>('button:not(:disabled), textarea, [tabindex="0"]') ??
+                    []
+            );
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && (document.activeElement === first || document.activeElement === editorRef.current)) {
+                event.preventDefault();
+                last?.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first?.focus();
+            }
+        }
+    };
+    const download = (blob: Blob, name: string) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = name;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        setStatus(`Downloaded ${name}`);
+    };
+    const downloadProject = () => {
+        try {
+            const zip = createProjectZip(draftFiles);
+            download(
+                new Blob([zip.buffer as ArrayBuffer], { type: "application/zip" }),
+                `${examplePath}-${actualFramework || desiredFramework}.zip`
+            );
+        } catch (error) {
+            setStatus(error instanceof Error ? error.message : "Unable to download the project.");
         }
     };
 
-    function copyCurrentFile() {
-        navigator.clipboard.writeText(selectedFile.content);
-        setHasCopied(true);
-        setTimeout(() => {
-            setHasCopied(false);
-        }, 2000);
-    }
-
-    useEffect(() => {
-        // Reset dialog state when example changes
-        setHasShownDialog(false);
-        setShowDialog(false);
-    }, [examplePath]);
-
-    useEffect(() => {
-        if (isMaxWidth) {
-            setCodeSizing(ECodeSizingMode.Fullscreen);
-        } else {
-            setCodeSizing(ECodeSizingMode.Minimised);
-        }
-    }, [isMaxWidth]);
+    if (!activeFile) return <p role="status">Loading example source…</p>;
 
     return (
-        <div
-            className={`sc-editor-code ${isFullscreen && !isMaxWidth ? "sc-editor-code-fullscreen-editor" : ""}`}
-            onMouseEnter={handleMouseEnter}
-            style={{
-                maxHeight: !isFullscreen && isMaxWidth ? 60 : "100%",
-            }}
+        <section
+            ref={editorRef}
+            className={`sc-editor-code ${isFullscreen ? "sc-editor-code-fullscreen" : ""}`}
+            role={isFullscreen ? "dialog" : undefined}
+            aria-modal={isFullscreen ? true : undefined}
+            aria-label={`${frameworkName} example source editor`}
+            tabIndex={-1}
+            onKeyDown={handleWorkspaceKeys}
         >
-            <div className="sc-editor-code-horizontal-scroller" suppressHydrationWarning={true}>
-                {/* VSCode-like horizontal scrollable tabs */}
-                {[...files]
-                    .sort((a, b) => {
-                        const rank = (name: string) =>
-                            name.includes("drawExample") ? 0 : name.includes("index") ? 1 : 2;
-                        return rank(a.name) - rank(b.name) || (rank(a.name) === 2 ? a.name.localeCompare(b.name) : 0);
-                    })
-                    .map((file) => (
-                        <div
-                            key={file.name}
-                            className={`sc-editor-code-select-tab ${
-                                selectedFile.name === file.name ? "sc-editor-code-active-tab" : ""
-                            }`}
-                            onClick={() => handleFileClick(file.name)}
+            <header className="sc-editor-project-header">
+                <div className="sc-editor-project-title">
+                    <strong>Source</strong>
+                    <span>{frameworkName} project</span>
+                </div>
+                <div className="sc-editor-project-actions">
+                    <button type="button" onClick={downloadProject}>
+                        Download project
+                    </button>
+                    <button
+                        type="button"
+                        disabled={!modifiedNames.size}
+                        onClick={() => {
+                            updateFiles(files);
+                            setStatus("Project edits reset");
+                        }}
+                    >
+                        Reset edits
+                    </button>
+                    <button
+                        ref={fullscreenButtonRef}
+                        type="button"
+                        aria-pressed={isFullscreen}
+                        onClick={() => (isFullscreen ? closeFullscreen() : setIsFullscreen(true))}
+                    >
+                        {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+                    </button>
+                </div>
+            </header>
+            <div className="sc-editor-workspace">
+                {showExplorer && (
+                    <FileExplorer
+                        files={draftFiles}
+                        selectedName={activeFile.name}
+                        modifiedNames={modifiedNames}
+                        onSelect={handleFileClick}
+                    />
+                )}
+                <div className="sc-editor-file-panel">
+                    <div className="sc-editor-file-toolbar">
+                        <button
+                            type="button"
+                            className="sc-editor-explorer-toggle"
+                            aria-label={showExplorer ? "Hide file explorer" : "Show file explorer"}
+                            aria-pressed={showExplorer}
+                            onClick={() => setShowExplorer(!showExplorer)}
                         >
-                            {ICONS[file.name.split(".").pop() as keyof typeof ICONS]}
-                            <p>{file.name}</p>
+                            ☰
+                        </button>
+                        <div className="sc-editor-active-file">
+                            <FileIcon name={activeFile.name} />
+                            <span>{activeFile.name}</span>
+                            {modifiedNames.has(activeFile.name) && (
+                                <span className="sc-editor-modified" aria-label="Modified">
+                                    ●
+                                </span>
+                            )}
                         </div>
-                    ))}
-            </div>
-
-            <div className="sc-editor-code-right-button-group">
-                {/* Copy to clipboard */}
-                <IconButton
-                    icon={
-                        !hasCopied ? (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="1 1 23 23"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
+                        <div className="sc-editor-mode-switch" aria-label="Source mode">
+                            <button
+                                ref={readButtonRef}
+                                type="button"
+                                aria-pressed={!isEditing}
+                                onClick={() => setIsEditing(false)}
                             >
-                                <rect x="5" y="9" width="10" height="10" rx="2" />
-                                <path d="M9 9V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
-                            </svg>
-                        ) : (
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2.5}
-                                stroke="currentColor"
+                                Read
+                            </button>
+                            <button type="button" aria-pressed={isEditing} onClick={() => setIsEditing(true)}>
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+                    {isEditing ? (
+                        <div className="sc-editor-edit-surface">
+                            <div className="sc-editor-edit-gutter" aria-hidden="true">
+                                <pre ref={gutterRef}>{lineNumbers}</pre>
+                            </div>
+                            <textarea
+                                key={activeFile.name}
+                                aria-label={`Edit ${activeFile.name}`}
+                                aria-describedby="example-editor-edit-help"
+                                value={activeFile.content}
+                                spellCheck={false}
+                                autoCapitalize="off"
+                                autoCorrect="off"
+                                wrap="off"
+                                onChange={(event) => updateContent(event.target.value)}
+                                onKeyDown={handleEditorKeys}
+                                onScroll={(event) => {
+                                    if (gutterRef.current)
+                                        gutterRef.current.style.transform = `translateY(${-event.currentTarget
+                                            .scrollTop}px)`;
+                                }}
+                            />
+                        </div>
+                    ) : (
+                        <div
+                            id="EXAMPLE_CODE"
+                            className="sc-editor-code-scroll"
+                            tabIndex={0}
+                            role="region"
+                            aria-label={`${activeFile.name} source, scroll to read`}
+                            onCopy={(event) => {
+                                const selection = window.getSelection();
+                                if (
+                                    selection?.rangeCount &&
+                                    selection.getRangeAt(0).toString() === activeFile.content
+                                ) {
+                                    event.preventDefault();
+                                    event.clipboardData.setData("text/plain", activeFile.content);
+                                }
+                            }}
+                        >
+                            <pre className="sc-editor-read-gutter" aria-hidden="true">
+                                {lineNumbers}
+                            </pre>
+                            <SyntaxHighlighter
+                                language={EditorLanguageMap[activeFile.name.split(".").pop()] || "text"}
+                                style={isLight ? LightStyles : DarkStyles}
+                                customStyle={{
+                                    margin: 0,
+                                    padding: "0.75rem 1rem 1rem 0.75rem",
+                                    background: "transparent",
+                                    overflow: "visible",
+                                }}
+                                codeTagProps={{
+                                    style: { fontFamily: "inherit", fontSize: "inherit", lineHeight: "inherit" },
+                                }}
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                            </svg>
-                        )
-                    }
-                    selected={hasCopied}
-                    onClick={() => copyCurrentFile()}
-                    title={hasCopied ? "Copied!" : "Copy to clipboard"}
-                    noPadding
-                />
-
-                {/* Minimize */}
-                <IconButton
-                    icon={
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="none" stroke="currentColor">
-                            <path strokeWidth="2" d="M 5 9 h4v-4M 19 15 h-4v4M 15 5 v4h4M 5 15 h4v4" />
-                        </svg>
-                    }
-                    selected={!isFullscreen}
-                    onClick={() => setCodeSizing(ECodeSizingMode.Minimised)}
-                    title="Minimise"
-                    noPadding
-                />
-
-                {/* Fullscreen */}
-                <IconButton
-                    icon={
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2 20 20" fill="currentColor">
-                            <path
-                                xmlns="http://www.w3.org/2000/svg"
-                                d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                            ></path>
-                        </svg>
-                    }
-                    selected={isFullscreen}
-                    onClick={() => setCodeSizing(ECodeSizingMode.Fullscreen)}
-                    title="Fullscreen"
-                    noPadding
-                />
+                                {activeFile.content}
+                            </SyntaxHighlighter>
+                        </div>
+                    )}
+                    <footer className="sc-editor-status-bar">
+                        <span id="example-editor-edit-help">
+                            {isEditing
+                                ? "Tab indents · Shift+Tab unindents · Escape exits editing"
+                                : modifiedNames.size
+                                ? `${modifiedNames.size} modified · local edits`
+                                : "Read source · select Edit to make changes"}
+                        </span>
+                        <span>{lineCount} lines · UTF-8</span>
+                    </footer>
+                </div>
             </div>
-
-            {/* Code */}
-            <section
-                id="EXAMPLE_CODE"
-                className="sc-editor-code-body"
-                style={{
-                    maxHeight: !isFullscreen && isMaxWidth ? 0 : "100%",
-                    maxWidth: "100%",
-                }}
-            >
-                <SyntaxHighlighter
-                    language={EditorLanguageMap[selectedFile.name.split(".").pop() as keyof typeof EditorLanguageMap]}
-                    // @ts-ignore
-                    style={theme === ETheme.light ? LightStyles : DarkStyles}
-                    showLineNumbers={true}
-                    lineNumberStyle={{ color: "#888" }}
-                    wrapLines
-                >
-                    {selectedFile.content}
-                </SyntaxHighlighter>
-            </section>
-
+            <div className="sc-editor-status-message" role="status" aria-live="polite">
+                {status || "Download the complete project to run your changes."}
+            </div>
             <Dialog
                 isOpen={showDialog}
                 onClose={() => setShowDialog(false)}
-                text={`This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`}
+                text={`This example is available in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`}
             />
-        </div>
+        </section>
     );
 };

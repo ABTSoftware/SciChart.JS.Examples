@@ -49,7 +49,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/intro/",
+                href: "https://www.scichart.com/documentation/js/v6/intro/",
                 title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "Scichart.js Documentation",
             },

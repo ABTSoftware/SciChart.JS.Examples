@@ -1,158 +1,76 @@
 import type { IFiles } from "./sandboxDependencyUtils";
+import * as fs from "fs";
+import * as path from "path";
+import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkTypes";
+import { moduleReferences } from "./sandboxDependencyUtils";
+import * as ts from "typescript";
 
-const postcss: typeof import("postcss") = require("postcss");
-const selectorParser: typeof import("postcss-selector-parser") = require("postcss-selector-parser");
-
-const classNamesInSelector = (selector: string) => {
-    const classes: string[] = [];
-    selectorParser((root) =>
-        root.walkClasses((node) => {
-            classes.push(node.value);
-        })
-    ).processSync(selector);
-    return classes;
-};
-
-/* Negated classes are not prerequisites; nth-* arguments are positions, not element names. */
-const usedSelector = (selector: string, classes: Set<string>, elements: Set<string>) => {
-    const root = selectorParser().astSync(selector);
-    const prune = (node: any): boolean => {
-        if (node.type === "class") return classes.has(node.value);
-        if (node.type === "tag") return elements.has(node.value.toLowerCase());
-        if (
-            node.type === "pseudo" &&
-            [":not", ":nth-child", ":nth-last-child", ":nth-of-type", ":nth-last-of-type"].includes(node.value)
-        ) {
-            return true;
-        }
-        if (node.type === "pseudo" && [":is", ":where", ":has"].includes(node.value)) {
-            for (const child of [...node.nodes]) {
-                if (!prune(child)) child.remove();
-            }
-            return node.nodes.length > 0;
-        }
-        return !node.nodes || node.nodes.every(prune);
-    };
-    for (const child of [...root.nodes]) {
-        if (!prune(child)) child.remove();
-    }
-    return root.toString();
-};
-
-const isUsedClass = (name: string, source: string) => {
-    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(`(^|[^\\w-])${escapedName}(?=$|[^\\w-])`);
-    // Utility words such as "flex" in style objects are not class names.
-    const classAttributes = Array.from(
-        source.matchAll(/\bclass(?:Name)?\s*[:=]\s*(?:["'`][^"'`]*["'`]|\{[^}]*\})/g),
-        (match) => match[0]
-    ).join("\n");
-    return pattern.test(name.startsWith("sc-") ? source : classAttributes);
-};
-
-const variableReferences = (value: string) => Array.from(value.matchAll(/var\(\s*(--[\w-]+)/gi), (match) => match[1]);
-
-const pruneNode = (node: any, classes: Set<string>, elements: Set<string>): any | undefined => {
-    if (node.type === "comment") return undefined;
-    if (node.type === "decl") return node;
-    if (node.type === "rule") {
-        node.selector = usedSelector(node.selector, classes, elements);
-        if (!node.selector) return undefined;
-    }
-    if (Array.isArray(node.nodes)) {
-        node.nodes = node.nodes.map((child: any) => pruneNode(child, classes, elements)).filter(Boolean);
-        return node.nodes.length ? node : undefined;
-    }
-    return undefined;
-};
-
-/** Keep global rules and component rules referenced by the selected example's exported source. */
-export const createExampleStylesheet = (entrySource: string, uiCss: string, localCss = "") => {
-    const stylesheet = postcss.parse(uiCss);
-    const availableClasses = new Set<string>();
-
-    stylesheet.walkRules((rule: any) => {
-        classNamesInSelector(rule.selector).forEach((name) => availableClasses.add(name));
-    });
-
-    const usedClasses = new Set(Array.from(availableClasses).filter((name) => isUsedClass(name, entrySource)));
-    const usedElements = new Set(
-        Array.from(entrySource.matchAll(/<\s*([a-z][\w-]*)\b/gi), (match) => match[1].toLowerCase())
+export const generatedStylesPath = (folderPath: string, framework: EPageFramework) =>
+    path.join(
+        folderPath.replace(
+            `${path.sep}src${path.sep}components${path.sep}Examples${path.sep}`,
+            `${path.sep}build${path.sep}Examples${path.sep}`
+        ),
+        ".sandbox-styles",
+        framework,
+        "styles.css"
     );
-    ["html", "body"].forEach((name) => usedElements.add(name));
-    stylesheet.nodes = stylesheet.nodes.map((node: any) => pruneNode(node, usedClasses, usedElements)).filter(Boolean);
 
-    const definitions = new Map<string, string[]>();
-    const neededVariables = new Set<string>(variableReferences(entrySource + "\n" + localCss));
-    stylesheet.walkDecls((decl: any) => {
-        if (decl.prop.startsWith("--")) {
-            const values = definitions.get(decl.prop) ?? [];
-            values.push(decl.value);
-            definitions.set(decl.prop, values);
-        } else {
-            variableReferences(decl.value).forEach((name) => neededVariables.add(name));
-        }
-    });
-
-    const pendingVariables = Array.from(neededVariables);
-    while (pendingVariables.length > 0) {
-        const name = pendingVariables.pop()!;
-        for (const value of definitions.get(name) ?? []) {
-            for (const dependency of variableReferences(value)) {
-                if (!neededVariables.has(dependency)) {
-                    neededVariables.add(dependency);
-                    pendingVariables.push(dependency);
-                }
-            }
-        }
-    }
-    stylesheet.walkDecls((decl: any) => {
-        if (decl.prop.startsWith("--") && !neededVariables.has(decl.prop)) decl.remove();
-    });
-
-    // Token pruning can empty theme rules and their containing media queries.
-    const removeEmpty = (node: any) => {
-        if (!node.nodes) return;
-        [...node.nodes].forEach(removeEmpty);
-        if (node.type !== "root" && node.nodes.length === 0) node.remove();
-    };
-    removeEmpty(stylesheet);
-    return stylesheet.toString().trim() + "\n";
+export const readLocalStyles = async (folderPath: string) => {
+    const names = (await fs.promises.readdir(folderPath)).filter((name) => name.endsWith(".css")).sort();
+    return Promise.all(
+        names.map(async (name) => ({ name, content: await fs.promises.readFile(path.join(folderPath, name), "utf8") }))
+    );
 };
 
-/** Add the example-specific UI stylesheet without changing any example-owned stylesheets. */
-export const useSingleExampleStylesheet = (
-    files: IFiles,
+/** Production reads build artifacts. Development can preview unpruned CSS without writing generated files. */
+export const loadExampleStylesheet = async (
+    folderPath: string,
+    framework: EPageFramework,
     uiCss: string,
-    entryFilePath: string,
-    stylesheetImportPath?: string
-): IFiles => {
+    files: IFiles
+) => {
+    try {
+        return await fs.promises.readFile(generatedStylesPath(folderPath, framework), "utf8");
+    } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+        if (
+            process.env.NODE_ENV === "production" &&
+            !folderPath.includes(`${path.sep}src${path.sep}components${path.sep}Examples${path.sep}`)
+        ) {
+            throw new Error(`Example styles are missing for ${folderPath} (${framework}). Run npm run build.`);
+        }
+        const localStyles = await readLocalStyles(folderPath);
+        const importedCss = Object.entries(files)
+            .filter(([name]) => name.endsWith(".css"))
+            .map(([, file]) => file.content);
+        return [uiCss, ...new Set([...localStyles.map((file) => file.content), ...importedCss])].join("\n");
+    }
+};
+
+/** Replace all example CSS imports with one readable stylesheet in the exported project. */
+export const useSingleExampleStylesheet = (files: IFiles, css: string, entryFilePath: string): IFiles => {
     const output = Object.fromEntries(Object.entries(files).map(([name, file]) => [name, { ...file }]));
     const entryFile = output[entryFilePath];
     if (!entryFile) throw new Error(`Sandbox example source not found: ${entryFilePath}`);
 
-    output["src/index.css"] = {
-        content: createExampleStylesheet(
-            Object.entries(output)
-                .filter(([name, file]) => !file.isBinary && /\.(?:tsx?|jsx?|html)$/.test(name))
-                .map(([, file]) => file.content)
-                .join("\n"),
-            uiCss,
-            Object.entries(output)
-                .filter(([name, file]) => name !== "src/index.css" && !file.isBinary && name.endsWith(".css"))
-                .map(([, file]) => file.content)
-                .join("\n")
-        ),
-        isBinary: false,
-    };
-
-    if (stylesheetImportPath) {
-        const doubleQuotedImport = `import "${stylesheetImportPath}";`;
-        const singleQuotedImport = `import '${stylesheetImportPath}';`;
-        if (!entryFile.content.includes(doubleQuotedImport) && !entryFile.content.includes(singleQuotedImport)) {
-            entryFile.content = `${doubleQuotedImport}\n${entryFile.content}`;
+    for (const [name, file] of Object.entries(output)) {
+        if (name.endsWith(".css")) delete output[name];
+        else if (/\.[jt]sx?$/.test(name)) {
+            const cssImports = moduleReferences(file.content, name).filter(
+                (reference) =>
+                    reference.text.startsWith(".") &&
+                    reference.text.endsWith(".css") &&
+                    ts.isImportDeclaration(reference.parent)
+            );
+            for (const reference of cssImports.reverse()) {
+                file.content =
+                    file.content.slice(0, reference.parent.getStart()) + file.content.slice(reference.parent.getEnd());
+            }
         }
     }
-
+    // Angular already loads this stylesheet once through angular.json.
+    if (!output["angular.json"]) entryFile.content = `import "./styles.css";\n${entryFile.content.trimStart()}`;
+    output["src/styles.css"] = { content: css, isBinary: false };
     return output;
 };

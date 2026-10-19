@@ -44,17 +44,17 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/current/CursorModifier.html",
+                href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/",
                 title: "Cursor Modifier Documentation",
                 linkTitle: "CursorModifier API",
             },
             {
-                href: "https://www.scichart.com/documentation/js/current/RolloverModifier.html",
+                href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/rollover-modifier/",
                 title: "Rollover Modifier Documentation",
                 linkTitle: "RolloverModifier API",
             },
             {
-                href: "https://www.scichart.com/documentation/js/current/PaletteProvider%20API.html",
+                href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/palette-provider-api/palette-provider-api-overview/",
                 title: "Palette Provider API Documentation",
                 linkTitle: "Palette Provider API",
             },

@@ -9,8 +9,8 @@ const Icon = ({ children, fontSize = "medium", className }: IconProps & { childr
             aria-hidden="true"
             focusable="false"
             className={className}
-            width={size}
-            height={size}
+            width={`${size / 16}rem`}
+            height={`${size / 16}rem`}
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"

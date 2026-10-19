@@ -9,18 +9,18 @@
 .sc-content-markdown h2 {
     font-size: var(--sc-font-size-lg);
     font-weight: 600;
-    margin-bottom: -6px;
-    margin: 6px 0 -6px 0;
+    margin-bottom: -0.375rem;
+    margin: 0.375rem 0 -0.375rem 0;
 }
 .sc-content-markdown h3 {
     font-size: var(--sc-font-size-lg);
     font-weight: 600;
-    margin: 4px 0 -6px 0;
+    margin: 0.25rem 0 -0.375rem 0;
 }
 .sc-content-markdown h4 {
     font-size: var(--sc-font-size-base);
     font-weight: 600;
-    margin: 3px 0 -4px 0;
+    margin: 0.1875rem 0 -0.25rem 0;
 }
 .sc-content-markdown h5 {
     font-size: var(--sc-font-size-base);
@@ -58,10 +58,10 @@
     font-family: var(--sc-font-mono);
     background-color: var(--markdown-code-background);
     font-weight: 400;
-    padding: 1.5px 8px 1.5px 8px;
-    border-radius: 4px;
+    padding: 0.09375rem 0.5rem 0.09375rem 0.5rem;
+    border-radius: 0.25rem;
     border: 0.01px solid rgba(119, 119, 119, 0.6666666667);
-    margin: 0 2px;
+    margin: 0 0.125rem;
 }
 
 .sc-content-subtitle {
@@ -89,7 +89,7 @@
     border-left: 4px solid var(--light-blue);
     background-color: rgba(62, 136, 205, 0.1);
     padding: 0.7rem 0.75rem;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     margin: 0.25rem 0;
     font-size: var(--sc-font-size-base);
     line-height: 1.5;
@@ -101,5 +101,5 @@
     content: "💡";
     font-size: var(--sc-font-size-base);
     line-height: 1;
-    margin-top: 1px;
+    margin-top: 0.0625rem;
 }

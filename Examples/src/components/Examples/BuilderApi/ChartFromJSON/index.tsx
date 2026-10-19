@@ -30,7 +30,7 @@ export default function ChartFromJSON() {
             <SciChartReact
                 key={currentChartConfig}
                 initChart={(rootElement) => drawExample(rootElement, currentChartConfig, setErrors)}
-                style={{ flexBasis: 400, flexGrow: 1 }}
+                style={{ flexBasis: "25rem", flexGrow: 1 }}
             />
 
             <div className="absolute left-4 top-4">
@@ -45,7 +45,7 @@ export default function ChartFromJSON() {
                         }}
                         role="alert"
                     >
-                        <strong style={{ display: "block", marginBottom: 4 }}>Errors</strong>
+                        <strong style={{ display: "block", marginBottom: "0.25rem" }}>Errors</strong>
                         {errors}
                     </div>
                 )}

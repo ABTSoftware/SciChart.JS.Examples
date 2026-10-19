@@ -3,11 +3,11 @@
     border: 1px solid var(--sc-outline);
     border-radius: var(--radius);
     background: var(--sc-background);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 15%);
 }
 
 .fp-body {
-    padding: 8px;
+    padding: 0.5rem;
 }
 
 .fp-drawer-backdrop {
@@ -24,7 +24,7 @@
     width: 100%;
     max-height: 85vh;
     overflow: auto;
-    padding: 16px 16px 24px;
+    padding: 1rem 1rem 1.5rem;
     border-radius: var(--radius) var(--radius) 0 0;
     background: var(--sc-background);
     color: var(--sc-text);
@@ -33,18 +33,18 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
         user-select: none;
     }
 
     hr {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 }
 
 .fp-floating {
     position: fixed;
-    min-width: 260px;
+    min-width: 16.25rem;
     top: 0;
     left: 0;
 }
@@ -55,10 +55,10 @@
     justify-content: space-between;
 }
 .fp-drawer-heading {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 .fp-floating-heading {
-    padding: 6px 8px;
+    padding: 0.375rem 0.5rem;
     cursor: move;
     background: var(--sc-background);
     user-select: none;

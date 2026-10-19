@@ -41,7 +41,7 @@ export default function DiscontinuousDateAxisComparisonExample() {
                     </button>
                 </div>
             </header>
-            <div className="flex flex-col h-full w-full" style={{ gap: 2, backgroundColor: "black" }}>
+            <div className="flex flex-col h-full w-full" style={{ gap: "0.125rem", backgroundColor: "black" }}>
                 <SciChartGroup onInit={onAllInit} key={customSettings ? "custom" : "default"}>
                     {/* Numeric Chart */}
                     <SciChartReact

@@ -51,7 +51,7 @@ export default function HighPerformanceScatterCursor() {
                         aria-pressed={isCursor === true}
                         onClick={() => handleModifierChange(true)}
                     >
-                        <svg style={{ width: 30, height: 30}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
+                        <svg style={{ width: "1.875rem", height: "1.875rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
                             <path fill="#666" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18M3 14h18" />
                             <path strokeWidth="0.5" fill="#222" d="M8.2 4.7, v8, h8, v-8Z" />
@@ -77,7 +77,7 @@ export default function HighPerformanceScatterCursor() {
                         aria-pressed={isCursor === false}
                         onClick={() => handleModifierChange(false)}
                     >
-                        <svg style={{ width: 30, height: 30}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
+                        <svg style={{ width: "1.875rem", height: "1.875rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FFF">
                             <path fill="#666" strokeWidth="1" d="M3 3 3 21 L21 21L21 3L2.75 3" />
                             <path strokeWidth="0.5" d="M7 3, v18Z" />
                             <path strokeWidth="0.5" fill="#222" d="M9 8, v8, h8, v-8Z" />

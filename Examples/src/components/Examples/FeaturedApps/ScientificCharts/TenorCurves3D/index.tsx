@@ -4,7 +4,7 @@ import { SciChartReact, ChartGroupLoader } from "scichart-react";
 export default function TenorCurves3DChart() {
     return (
         <ChartGroupLoader className="sc-chart-wrapper flex flex-wrap">
-            <div className="relative" style={{ minWidth: 200, flex: "1 1 50%" }}>
+            <div className="relative" style={{ minWidth: "12.5rem", flex: "1 1 50%" }}>
                 <SciChartReact initChart={draw3DChart} className="w-full h-full" />
                 <SciChartReact initChart={drawHeatmapLegend} className="sc-color-legend" />
             </div>

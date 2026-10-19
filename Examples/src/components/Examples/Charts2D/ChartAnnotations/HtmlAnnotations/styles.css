@@ -1,12 +1,12 @@
 .styledTextAnnotation {
-    max-width: 300px;
-    padding: 4px;
+    max-width: 18.75rem;
+    padding: 0.25rem;
     font-size: var(--sc-font-size-base);
     font-weight: bold;
     color: wheat;
-    background: repeating-radial-gradient(circle at center, #14233c, #264b93 10px, #14233c 20px);
+    background: repeating-radial-gradient(circle at center, #14233c, #264b93 0.625rem, #14233c 1.25rem);
     border: 2px dashed teal;
-    border-radius: 15px;
+    border-radius: 0.9375rem;
 }
 
 .inputWrapper input::-webkit-outer-spin-button,

@@ -20,7 +20,7 @@ export default function SyncMultiChart() {
     return (
         <SciChartReact
             className="sc-chart-wrapper flex flex-col h-full"
-            innerContainerProps={{ style: { height: 100, flex: "none" } }}
+            innerContainerProps={{ style: { height: "6.25rem", flex: "none" } }}
             initChart={(root) => createOverview(root, axisSynchroniser)}
             onInit={({ sciChartSurface }) => {
                 verticalGroup.addSurfaceToGroup(sciChartSurface);

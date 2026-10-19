@@ -37,7 +37,7 @@ const Description: FC<TProps> = (props) => {
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "5px",
+                gap: "0.3125rem",
                 color: "var(--text)",
             }}
             className="sc-content-markdown"

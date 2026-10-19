@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 200px;
+    min-width: 12.5rem;
 }
 
 /* Wafer chart container */
@@ -23,7 +23,7 @@
 
 /* Variable selection dropdown container */
 .variable-selection {
-    padding: 5px 5px 0px;
+    padding: 0.3125rem 0.3125rem 0;
     background-color: inherit;
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
@@ -32,7 +32,7 @@
 .variable-selection-content {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 /* Right panel with charts */
@@ -40,7 +40,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    min-width: 200px;
+    min-width: 12.5rem;
 }
 
 /* Scatter plot container */
@@ -74,7 +74,7 @@
 /* Chart title */
 .chart-title {
     color: var(--sc-text);
-    padding-left: 10px;
+    padding-left: 0.625rem;
     margin: 0;
     font-size: var(--sc-font-size-sm);
     font-weight: normal;
@@ -84,7 +84,7 @@
 .chart-with-overview {
     display: flex;
     flex-direction: column;
-    height: 110px;
+    height: 6.875rem;
     flex: 1;
 }
 
@@ -120,6 +120,6 @@
 }
 
 .scichart__legend-item label:nth-child(1) {
-    width: 10px !important;
-    height: 10px !important;
+    width: 0.625rem !important;
+    height: 0.625rem !important;
 }

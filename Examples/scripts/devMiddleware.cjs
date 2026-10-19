@@ -62,21 +62,22 @@ module.exports = function setupMiddleware(app, { withApi = true } = {}) {
                         if (!/exampleInfo\.tsx?$/.test(entry)) continue;
                         const file = path.join(examplesRoot, entry);
                         const info = loadMock(path.relative(root, file), "default");
-                        examples.set(info.path, path.dirname(file));
+                        examples.set(info.path, { folder: path.dirname(file), info });
                     }
                     sourceExamples = examples;
                 }
-                const folder = sourceExamples.get(req.params.example);
-                if (!folder) return res.status(404).json({ error: "Example not found" });
+                const example = sourceExamples.get(req.params.example);
+                if (!example) return res.status(404).json({ error: "Example not found" });
                 const framework = ["angular", "javascript", "react"].includes(req.query.framework)
                     ? req.query.framework
                     : "react";
                 const { readSourceFiles } = loadMock("src/server/services/sandbox/readSourceFiles.ts");
                 const source = await readSourceFiles(
                     framework,
-                    folder,
+                    example.folder,
                     req.protocol + "://" + req.get("host"),
-                    path.join(examplesRoot, "styles")
+                    path.join(examplesRoot, "styles"),
+                    example.info
                 );
                 res.json(source);
             } catch (error) {

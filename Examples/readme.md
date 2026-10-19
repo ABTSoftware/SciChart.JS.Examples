@@ -31,6 +31,18 @@ Some of the demos require client & server to be running. To run the demo app in 
 4. now run the application `npm start`
 5. Now open https://localhost:3000/demo to see the demo! Note that in production mode the app runs with a base path of /demo
 
+## Standalone example projects and styles
+
+The source viewer, StackBlitz and CodeSandbox use the same project generator. React and JavaScript projects include a Vite entry point, HTML, TypeScript configuration and an import-derived `package.json`; Angular projects include their CLI configuration. Shared helpers are copied beside the example with relative imports, without exposing application folder paths.
+
+`npm run build` generates readable, example-specific CSS after copying the server sources. Each registered example gets `build/Examples/<example>/.sandbox-styles/react/styles.css`, with separate `javascript` and `angular` variants when those entries exist. Generation scans the entry and its imported helpers, keeps the shared UI rules and CSS variables they use, and merges CSS files from the example directory and imported components. Exported projects contain one `src/styles.css`, imported by the React/JavaScript entry or referenced by `angular.json`; original example files are left intact.
+
+Development does not write generated stylesheets. Before the first production build, the source API can preview the shared CSS plus local styles; run `npm run build` to refresh the trimmed exports after source or CSS changes.
+
+Run `npm run checkSandboxExports` to verify every available framework's imports, stylesheet and dependency manifest. Downloaded projects run with `npm install`, `npm run start` and `npm run build`. SciChart WASM, hosted image assets and demos using remote datasets or websocket services require an internet connection.
+
+With the production server running, `node scripts/checkSsrSource.cjs http://localhost:3000` verifies source HTML before hydration, trailing-slash/query URL variants, and the StackBlitz/CodeSandbox payloads without creating hosted projects.
+
 ## Adding a new example to the demo app
 
 We've prepared a readme for how to add a new example/demo to the demo app.

@@ -20,10 +20,23 @@ for (const name of [...names, "ui"]) {
     const ast = postcss.parse(css);
     ast.walkDecls((decl) => {
         if (decl.prop.startsWith("--")) definitions.add(decl.prop);
+        if (/\dpx\b/.test(decl.value)) {
+            const isStroke = /^(?:border(?:-(?:top|right|bottom|left))?(?:-width)?|outline(?:-width)?)$/.test(decl.prop);
+            const alignsBorder =
+                ["margin-left", "margin-top", "top", "left"].includes(decl.prop) && /^-?1px$/.test(decl.value);
+            const isTouchMinimum =
+                ["min-height", "min-width"].includes(decl.prop) && decl.value === "max(2.5rem, 44px)";
+            const preventsInputZoom = decl.prop === "font-size" && decl.value === "max(1rem, 16px)";
+            assert(
+                isStroke || alignsBorder || isTouchMinimum || preventsInputZoom,
+                `Use rem for scalable layout in sc-${name}.css: ${decl.prop}: ${decl.value}`
+            );
+        }
         if (decl.prop === "font-size") {
             assert(
                 /^var\(--sc-font-size-(xs|sm|base|lg|xl)\)(?: !important)?$/.test(decl.value) ||
-                    ["inherit", "0", "16px"].includes(decl.value),
+                    ["inherit", "0", "max(1rem, 16px)"].includes(decl.value) ||
+                    (decl.parent.selector === ":root" && ["87.5%", "93.75%", "96.875%", "100%"].includes(decl.value)),
                 `Use the shared typography scale in sc-${name}.css: ${decl.value}`
             );
         }
@@ -31,7 +44,9 @@ for (const name of [...names, "ui"]) {
             assert(
                 ['"Inter"', "inherit", "var(--sc-font-family)", "var(--sc-font-mono)"].includes(decl.value) ||
                     (name === "ui" &&
-                        ["ui-sans-serif, system-ui, sans-serif", "ui-monospace, monospace", "monospace !important"].includes(decl.value)),
+                        ["ui-sans-serif, system-ui, sans-serif", "ui-monospace, monospace", "monospace"].includes(
+                            decl.value
+                        )),
                 `Unexpected font family in sc-${name}.css: ${decl.value}`
             );
         }

@@ -14,7 +14,7 @@ export default function OrderBookHeatmap() {
             <SciChartReact
                 initChart={drawHeatmapLegend}
                 className="absolute top-0 left-0"
-                style={{ height: "90%", width: 65 }}
+                style={{ height: "90%", width: "4.0625rem" }}
             />
         </div>
     );

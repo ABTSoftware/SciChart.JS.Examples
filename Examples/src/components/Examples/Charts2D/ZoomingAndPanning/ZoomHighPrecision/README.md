@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates the [DateTimeNumericAxis](https://www.scichart.com/documentation/js/current/DateTimeNumericAxis.html) with 64-bit precision, handling ranges from Nanoseconds to Billions of Years.
+This example demonstrates the [DateTimeNumericAxis](https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/date-time-numeric-axis/) with 64-bit precision, handling ranges from Nanoseconds to Billions of Years.
 
 It renders a FastLineRenderableSeries with toggleable datasets across four precision levels and provides implementations for React, Angular, and Vanilla JavaScript.
 

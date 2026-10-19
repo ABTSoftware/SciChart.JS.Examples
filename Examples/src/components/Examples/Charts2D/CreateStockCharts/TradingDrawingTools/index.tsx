@@ -8,7 +8,7 @@ import { toolIcons } from "./toolIcons";
 const ToolIcon = ({ name }: { name: string }) => (
     <span
         className="inline-flex flex-none"
-        style={{ width: 28, height: 28 }}
+        style={{ width: "1.75rem", height: "1.75rem" }}
         aria-hidden="true"
         dangerouslySetInnerHTML={{ __html: toolIcons[name].replace("<svg ", '<svg style="width:100%;height:100%" ') }}
     />
@@ -135,7 +135,7 @@ export default function TradingDrawingTools() {
             <dialog
                 ref={dialogRef}
                 className="sc-modal p-0"
-                style={{ width: "min(860px, calc(100% - 32px))", margin: "auto", touchAction: "auto" }}
+                style={{ width: "min(53.75rem, calc(100% - 2rem))", margin: "auto", touchAction: "auto" }}
                 aria-labelledby="trading-tools-title"
                 onClick={(event) => event.target === event.currentTarget && dialogRef.current?.close()}
             >
@@ -169,12 +169,12 @@ export default function TradingDrawingTools() {
                     </p>
                     {groups.map((group) => (
                         <section key={group.label}>
-                            <h3 style={{ margin: "5px 3px", fontSize: "var(--sc-font-size-sm)", fontWeight: 600 }}>{group.label}</h3>
+                            <h3 style={{ margin: "0.3125rem 0.1875rem", fontSize: "var(--sc-font-size-sm)", fontWeight: 600 }}>{group.label}</h3>
                             <div
                                 className="gap-2"
                                 style={{
                                     display: "grid",
-                                    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 230px), 1fr))",
+                                    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 14.375rem), 1fr))",
                                 }}
                             >
                                 {group.tools.map((tool) => (

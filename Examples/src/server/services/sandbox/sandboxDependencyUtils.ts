@@ -41,7 +41,39 @@ const resolveModuleFile = async (basePath: string) => {
     throw new Error(`Example import not found: ${basePath}`);
 };
 
-/** Copy the complete relative import graph, preserving directories to avoid CSS/name collisions. */
+/** Literal module references, including lazy imports and CommonJS helpers. */
+export const moduleReferences = (source: string, filename: string) => {
+    const references: ts.StringLiteralLike[] = [];
+    const visit = (node: ts.Node) => {
+        if (
+            (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) &&
+            node.moduleSpecifier &&
+            ts.isStringLiteral(node.moduleSpecifier)
+        )
+            references.push(node.moduleSpecifier);
+        if (
+            ts.isCallExpression(node) &&
+            node.arguments.length === 1 &&
+            ts.isStringLiteralLike(node.arguments[0]) &&
+            (node.expression.kind === ts.SyntaxKind.ImportKeyword ||
+                (ts.isIdentifier(node.expression) && node.expression.text === "require"))
+        )
+            references.push(node.arguments[0]);
+        if (
+            ts.isImportTypeNode(node) &&
+            ts.isLiteralTypeNode(node.argument) &&
+            ts.isStringLiteral(node.argument.literal)
+        )
+            references.push(node.argument.literal);
+        if (ts.isExternalModuleReference(node) && node.expression && ts.isStringLiteral(node.expression))
+            references.push(node.expression);
+        ts.forEachChild(node, visit);
+    };
+    visit(ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX));
+    return references;
+};
+
+/** Export helpers beside the example; disambiguate duplicate basenames without leaking app paths. */
 export const includeExternalModules = async (
     exampleFolderPath: string,
     folderPath: string,
@@ -49,29 +81,47 @@ export const includeExternalModules = async (
     content: string,
     includeImages: boolean,
     updateImports: boolean,
-    baseUrl = "https://www.scichart.com/demo/images/"
+    baseUrl = "https://www.scichart.com/demo/images/",
+    entryPath = "src/__entry.ts",
+    sourceFilename?: string
 ) => {
-    const outputPath = (filepath: string) =>
-        "src/" +
-        path
-            .relative(exampleFolderPath, filepath)
-            .replace(/\\/g, "/")
-            .replace(/^(?:\.\.\/)+/, "_shared/");
+    const targets = new Map<string, string>();
+    const occupied = new Set([...Object.keys(files), entryPath, "src/main.tsx", "src/main.ts", "src/styles.css"]);
+    if (sourceFilename) targets.set(path.resolve(folderPath, sourceFilename), entryPath);
+    const outputPath = (filepath: string) => {
+        if (targets.has(filepath)) return targets.get(filepath)!;
+        const basename = path.basename(filepath);
+        const name = basename === "theme.ts" && path.dirname(filepath) !== exampleFolderPath ? "appTheme.ts" : basename;
+        let target = "src/" + name;
+        let suffix = 2;
+        while (occupied.has(target)) {
+            const extension = path.extname(name);
+            target = `src/${path.basename(name, extension)}${suffix++}${extension}`;
+        }
+        targets.set(filepath, target);
+        occupied.add(target);
+        return target;
+    };
 
     const visit = async (source: string, directory: string, ownerPath: string): Promise<string> => {
-        const imports = ts
-            .createSourceFile(ownerPath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)
-            .statements.flatMap((statement) => {
-                if (!ts.isImportDeclaration(statement) && !ts.isExportDeclaration(statement)) return [];
-                const specifier = statement.moduleSpecifier;
-                return specifier && ts.isStringLiteral(specifier) && specifier.text.startsWith(".") ? [specifier] : [];
-            });
-        // Rewrite from the end so earlier match positions remain valid.
-        for (const match of imports.reverse()) {
+        const imports = moduleReferences(source, ownerPath).filter((specifier) => specifier.text.startsWith("."));
+        const replacements: { start: number; end: number; text: string }[] = [];
+        for (const match of imports) {
             const specifier = match.text;
             const basePath = path.resolve(directory, specifier);
-            const isImage = /\.(?:png|jpe?g|gif|svg)$/i.test(specifier);
+            const isImage = /\.(?:png|jpe?g|gif|svg|webp|ico)$/i.test(specifier);
             if (isImage && !includeImages) continue;
+            if (isImage && updateImports && ts.isImportDeclaration(match.parent) && match.parent.importClause?.name) {
+                const url = new URL("/demo/images/" + path.basename(basePath), baseUrl || "https://www.scichart.com")
+                    .href;
+                // StackBlitz files are text-only: keep hosted images as URLs instead of counterfeit image files.
+                replacements.push({
+                    start: match.parent.getStart(),
+                    end: match.parent.getEnd(),
+                    text: `const ${match.parent.importClause.name.text} = ${JSON.stringify(url)};`,
+                });
+                continue;
+            }
             const resolved = isImage ? { filepath: basePath, content: "" } : await resolveModuleFile(basePath);
             const targetPath = outputPath(resolved.filepath);
             if (!files[targetPath]) {
@@ -95,83 +145,38 @@ export const includeExternalModules = async (
                 if (/\.[jt]sx?$/.test(relative)) relative = relative.replace(/\.[jt]sx?$/, "");
                 if (!relative.startsWith(".")) relative = "./" + relative;
                 const start = match.getStart() + 1;
-                source = source.slice(0, start) + relative + source.slice(start + specifier.length);
+                replacements.push({ start, end: start + specifier.length, text: relative });
             }
+        }
+        for (const replacement of replacements.sort((a, b) => b.start - a.start)) {
+            source = source.slice(0, replacement.start) + replacement.text + source.slice(replacement.end);
         }
         return source;
     };
 
-    return visit(content, folderPath, "src/__entry.ts");
+    return visit(content, folderPath, entryPath);
 };
 
-export const includeImportedModules = async (
+export const getSourceFilesForPath = async (
     folderPath: string,
-    files: IFiles,
-    code: string,
-    includeImages: boolean,
-    updateImports: boolean,
-    baseUrl: string
+    startFile: string,
+    baseUrl: string,
+    targetName = startFile
 ) => {
-    await includeExternalModules(folderPath, folderPath, files, code, includeImages, updateImports, baseUrl);
-};
-
-export const getSourceFilesForPath = async (folderPath: string, startFile: string, baseUrl: string) => {
     const tsPath = path.join(folderPath, startFile);
     const code = await fs.promises.readFile(tsPath, "utf8");
-    const files: IFiles = { [tsPath]: { content: code, isBinary: false } };
-    await includeImportedModules(folderPath, files, code, false, false, baseUrl);
+    const entryPath = "src/" + targetName;
+    const files: IFiles = { [entryPath]: { content: code, isBinary: false } };
+    files[entryPath].content = await includeExternalModules(
+        folderPath,
+        folderPath,
+        files,
+        code,
+        true,
+        true,
+        baseUrl,
+        entryPath,
+        startFile
+    );
     return files;
-};
-
-export const commonFiles: IFiles = {
-    "tsconfig.json": {
-        content: `{
-"include": [
-  "./src/**/*"
-],
-"compilerOptions": {
-  "strict": false,
-  "strictPropertyInitialization": false,
-  "esModuleInterop": true,
-  "target": "es5",
-  "downlevelIteration": true,
-  "lib": [
-      "dom",
-      "es2015"
-  ],
-  "typeRoots": ["./src/types", "./node_modules/@types"],
-  "jsx": "react-jsx"
-}
-}`,
-        isBinary: false,
-    },
-    "sandbox.config.json": {
-        content: `{
-"infiniteLoopProtection": false,
-"hardReloadOnChange": false,
-"view": "browser"
-}`,
-        isBinary: false,
-    },
-    "src/types/jpg.d.ts": {
-        content: `declare module "*.jpg" {
-        const value: any;
-        export default value;
-    }`,
-        isBinary: false,
-    },
-    "src/types/png.d.ts": {
-        content: `declare module "*.png" {
-        const value: any;
-        export default value;
-    } `,
-        isBinary: false,
-    },
-    "src/types/svg.d.ts": {
-        content: `declare module "*.svg" {
-        const value: any;
-        export default value;
-    }`,
-        isBinary: false,
-    },
 };

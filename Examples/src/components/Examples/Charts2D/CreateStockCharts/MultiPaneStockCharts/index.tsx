@@ -13,15 +13,15 @@ export default function MultiPaneStockCharts() {
                 {/*The panel hosting the price chart*/}
                 <SciChartReact<SciChartSurface>
                     initChart={chartsInitializationAPI.drawPriceChart}
-                    style={{ flex: "1 1 400px" }}
+                    style={{ flex: "1 1 25rem" }}
                     onInit={({ sciChartSurface }) => setMainChart(sciChartSurface)}
                 />
                 {/*Panels hosting the Macd and RSI Indicator charts*/}
-                <SciChartReact initChart={chartsInitializationAPI.drawMacdChart} style={{ flex: "1 1 100px" }} />
-                <SciChartReact initChart={chartsInitializationAPI.drawRsiChart} style={{ flex: "1 1 100px" }} />
+                <SciChartReact initChart={chartsInitializationAPI.drawMacdChart} style={{ flex: "1 1 6.25rem" }} />
+                <SciChartReact initChart={chartsInitializationAPI.drawRsiChart} style={{ flex: "1 1 6.25rem" }} />
 
                 {/*Panel hosting the overview control*/}
-                <div style={{ flexBasis: 70 }}>
+                <div style={{ flexBasis: "4.375rem" }}>
                     {mainChart ? (
                         <SciChartReact
                             initChart={chartsInitializationAPI.drawOverview(mainChart)}

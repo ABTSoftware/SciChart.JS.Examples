@@ -9,13 +9,13 @@ export default function VirtualizedDataOverview() {
     return (
         <div className="sc-chart-wrapper flex flex-col">
             <SciChartReact
-                style={{ flex: "1 1 600px" }}
+                style={{ flex: "1 1 37.5rem" }}
                 initChart={chartInitializationApi.createMainChart}
                 onInit={() => setIsMainChartInitialized(true)}
             />
             {isMainChartInitialized ? (
                 <SciChartReact
-                    style={{ flex: "1 1 100px" }}
+                    style={{ flex: "1 1 6.25rem" }}
                     initChart={chartInitializationApi.createOverview}
                     onInit={chartInitializationApi.afterOverviewInit}
                 />

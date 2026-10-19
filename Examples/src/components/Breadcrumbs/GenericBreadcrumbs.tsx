@@ -176,7 +176,7 @@ export function BreadcrumbsWithMenu(props: {
                                             defaultMapper(item);
 
                                         return (
-                                            <MenuItem key={item.id} onClick={handleClose} sx={{ padding: "0px" }}>
+                                            <MenuItem key={item.id} onClick={handleClose} sx={{ padding: "0" }}>
                                                 {
                                                     <Link
                                                         color="primary"
@@ -184,7 +184,7 @@ export function BreadcrumbsWithMenu(props: {
                                                             textDecoration: "none",
                                                             width: "100%",
                                                             height: "100%",
-                                                            padding: "6px 16px",
+                                                            padding: "0.375rem 1rem",
                                                         }}
                                                         to={link}
                                                         title={item.title}

@@ -68,10 +68,10 @@ html {
     height: 100%;
     overflow-x: hidden;
     font-family: var(--sc-font-family);
-    font-size: 16px;
 }
 
 body {
+    font-size: var(--sc-font-size-base);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
@@ -96,14 +96,14 @@ body {
 
 ::-webkit-scrollbar {
     background-color: var(--bg) !important;
-    width: 8px;
-    height: 8px;
-    border-radius: 10px;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.625rem;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #888 !important;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
 ul li {
@@ -168,6 +168,8 @@ samp {
 }
 
 :root {
+    --sc-app-header-height: 5rem;
+    --sc-app-drawer-top: calc(var(--sc-app-header-height) + 0.625rem);
     --sc-editor-spacing-xxs: 0.0625rem;
     --sc-editor-spacing-xs: 0.125rem;
     --sc-editor-spacing-sm: 0.25rem;

@@ -57,15 +57,15 @@ export default function Search() {
                             autoComplete: "new-password",
                             type: "text",
                             startAdornment: (
-                                <InputAdornment position="start" style={{ marginLeft: 8 }}>
+                                <InputAdornment position="start" style={{ marginLeft: "0.5rem" }}>
                                     <SearchIcon />
                                 </InputAdornment>
                             ),
                         }}
                         sx={{
                             "& .MuiOutlinedInput-root": {
-                                borderRadius: "4px",
-                                height: "44px",
+                                borderRadius: "0.25rem",
+                                height: "2.75rem",
                             },
                             "& fieldset": {
                                 border: "none",

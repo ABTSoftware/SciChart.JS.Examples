@@ -127,7 +127,7 @@ export default function ChartComponent() {
                 </div>
             </header>
             {stateInfo ? (
-                <div className="absolute" style={{ left: 10, bottom: 30, zIndex: 900 }}>
+                <div className="absolute" style={{ left: "0.625rem", bottom: "1.875rem", zIndex: 900 }}>
                     <div>Currently in React state:</div>
                     <div>{stateInfo}</div>
                 </div>

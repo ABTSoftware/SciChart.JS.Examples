@@ -89,7 +89,7 @@ export default function FreehandDrawingTools() {
                             value={thickness}
                             disabled={!isDrawing}
                             onChange={(event) => updateDrawingStyle(color, event.target.valueAsNumber, opacity)}
-                            style={{ width: 50 }}
+                            style={{ width: "3.125rem" }}
                             title="Stroke thickness in pixels"
                         />
                     </label>
@@ -104,7 +104,7 @@ export default function FreehandDrawingTools() {
                             value={opacity}
                             disabled={!isDrawing}
                             onChange={(event) => updateDrawingStyle(color, thickness, event.target.valueAsNumber)}
-                            style={{ width: 58 }}
+                            style={{ width: "3.625rem" }}
                         />
                     </label>
                 </div>

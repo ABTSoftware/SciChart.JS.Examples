@@ -1,11 +1,13 @@
-import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkParametrization";
+import type { TExampleInfo } from "../../../components/AppRouter/examplePages";
+import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkTypes";
 import { getAngularSandBoxConfig } from "./angularConfig";
 import { getVanillaTsSandBoxConfig } from "./vanillaTsConfig";
-import { csStyles, handleInvalidFrameworkValue, SandboxConfig } from "./sandboxDependencyUtils";
+import { csStyles, loadStyles, handleInvalidFrameworkValue, SandboxConfig } from "./sandboxDependencyUtils";
 import { getReactSandBoxConfig } from "./reactConfig";
-import { NotFoundError } from "../../Errors";
-import { useSingleExampleStylesheet } from "./sandboxStyles";
+import * as fs from "fs";
+import * as path from "path";
+import { jsonFile } from "./sandboxPackages";
+import { loadExampleStylesheet, useSingleExampleStylesheet } from "./sandboxStyles";
 
 const getFrameworkSandboxConfig = async (
     folderPath: string,
@@ -13,60 +15,41 @@ const getFrameworkSandboxConfig = async (
     framework: EPageFramework,
     baseUrl: string
 ): Promise<SandboxConfig & { actualFramework: EPageFramework }> => {
-    try {
-        switch (framework) {
-            case EPageFramework.Angular:
-                return {
-                    ...(await getAngularSandBoxConfig(folderPath, currentExample, baseUrl)),
-                    actualFramework: EPageFramework.Angular,
-                };
-            // case EPageFramework.Vue:
-            //     throw new Error("Not Implemented");
-            case EPageFramework.React:
-                return {
-                    ...(await getReactSandBoxConfig(folderPath, currentExample, baseUrl)),
-                    actualFramework: EPageFramework.React,
-                };
-            case EPageFramework.Vanilla:
-                try {
-                    return {
-                        ...(await getVanillaTsSandBoxConfig(folderPath, currentExample, baseUrl)),
-                        actualFramework: EPageFramework.Vanilla,
-                    };
-                } catch (err) {
-                    // If vanilla files not found, fallback to React
-                    if (err instanceof NotFoundError || (err as any).status === 404) {
-                        console.log("Vanilla version not found, falling back to React");
-                        return {
-                            ...(await getReactSandBoxConfig(folderPath, currentExample, baseUrl)),
-                            actualFramework: EPageFramework.React,
-                        };
-                    }
-                    throw err;
-                }
-            default:
-                return handleInvalidFrameworkValue(framework);
+    const entryFiles = { react: "index.tsx", javascript: "vanilla.ts", angular: "angular.ts" };
+    if (!(framework in entryFiles)) return handleInvalidFrameworkValue(framework as never);
+    let actualFramework = framework;
+    if (framework !== EPageFramework.React) {
+        try {
+            await fs.promises.access(path.join(folderPath, entryFiles[framework]));
+        } catch (error) {
+            if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+            actualFramework = EPageFramework.React;
         }
-    } catch (err) {
-        // If any framework fails and it's not React, try React as fallback
-        if (framework !== EPageFramework.React) {
-            console.log(`${framework} version failed, falling back to React`);
-            return {
-                ...(await getReactSandBoxConfig(folderPath, currentExample, baseUrl)),
-                actualFramework: EPageFramework.React,
-            };
-        }
-        throw err;
     }
+    const generators = {
+        react: getReactSandBoxConfig,
+        javascript: getVanillaTsSandBoxConfig,
+        angular: getAngularSandBoxConfig,
+    };
+    return { ...(await generators[actualFramework](folderPath, currentExample, baseUrl)), actualFramework };
 };
 
 export const getSandboxConfig = async (
     folderPath: string,
     currentExample: TExampleInfo,
     framework: EPageFramework,
-    baseUrl: string
+    baseUrl: string,
+    stylesPath?: string
 ): Promise<SandboxConfig & { actualFramework: EPageFramework }> => {
+    await loadStyles(stylesPath);
     const config = await getFrameworkSandboxConfig(folderPath, currentExample, framework, baseUrl);
+    if (currentExample.sandboxConfig) {
+        config.files["sandbox.config.json"] = jsonFile({
+            ...JSON.parse(config.files["sandbox.config.json"].content),
+            ...currentExample.sandboxConfig,
+            template: "node",
+        });
+    }
     const uiCss = csStyles?.["src/index.css"]?.content;
 
     if (uiCss === undefined) {
@@ -76,13 +59,13 @@ export const getSandboxConfig = async (
     const entryFiles = {
         [EPageFramework.React]: "src/App.tsx",
         [EPageFramework.Vanilla]: "src/app.ts",
-        [EPageFramework.Angular]: "src/app/app.component.ts",
+        [EPageFramework.Angular]: "src/app.component.ts",
     };
     const entryFilePath = entryFiles[config.actualFramework];
-    const stylesheetImportPath = config.actualFramework === EPageFramework.Angular ? undefined : "./index.css";
+    const css = await loadExampleStylesheet(folderPath, config.actualFramework, uiCss, config.files);
 
     return {
         ...config,
-        files: useSingleExampleStylesheet(config.files, uiCss, entryFilePath, stylesheetImportPath),
+        files: useSingleExampleStylesheet(config.files, css, entryFilePath),
     };
 };

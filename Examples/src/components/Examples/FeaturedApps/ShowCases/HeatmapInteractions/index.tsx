@@ -75,16 +75,16 @@ export default function HeatmapInteractions() {
                     controlsRef.current = chartsInitializationAPI.onAllChartsInit();
                 }}
             >
-                <div className="flex" style={{ flexBasis: 500 }}>
-                    <SciChartReact initChart={chartsInitializationAPI.initMainChart} style={{ flex: "1 1 500px" }} />
+                <div className="flex" style={{ flexBasis: "31.25rem" }}>
+                    <SciChartReact initChart={chartsInitializationAPI.initMainChart} style={{ flex: "1 1 31.25rem" }} />
                     <SciChartReact
                         initChart={chartsInitializationAPI.initCrossSectionChart}
-                        style={{ flex: "1 1 500px" }}
+                        style={{ flex: "1 1 31.25rem" }}
                     />
                 </div>
-                <div className="flex" style={{ flexBasis: 500 }}>
-                    <SciChartReact initChart={chartsInitializationAPI.inputChart} style={{ flex: "1 1 500px" }} />
-                    <SciChartReact initChart={chartsInitializationAPI.initHistoryChart} style={{ flex: "1 1 500px" }} />
+                <div className="flex" style={{ flexBasis: "31.25rem" }}>
+                    <SciChartReact initChart={chartsInitializationAPI.inputChart} style={{ flex: "1 1 31.25rem" }} />
+                    <SciChartReact initChart={chartsInitializationAPI.initHistoryChart} style={{ flex: "1 1 31.25rem" }} />
                 </div>
             </SciChartGroup>
         </div>

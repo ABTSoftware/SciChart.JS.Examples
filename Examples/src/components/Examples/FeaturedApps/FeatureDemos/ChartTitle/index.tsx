@@ -75,7 +75,7 @@ export default function FeatureChartTitle() {
                         onChange={handleChangeTitleText}
                         className="sc-input w-full"
                         rows={3}
-                        style={{ minHeight: 88 }}
+                        style={{ minHeight: "5.5rem" }}
                     />
                 </label>
 
@@ -90,7 +90,7 @@ export default function FeatureChartTitle() {
                     <span className="flex-none">Position</span>
                     <select
                         className="sc-select"
-                        style={{ width: 104 }}
+                        style={{ width: "6.5rem" }}
                         value={titlePosition}
                         onChange={selectTitleTextPosition}
                     >
@@ -106,7 +106,7 @@ export default function FeatureChartTitle() {
                     <span className="flex-none">Alignment</span>
                     <select
                         className="sc-select"
-                        style={{ width: 104 }}
+                        style={{ width: "6.5rem" }}
                         value={titleAlignment}
                         onChange={selectTitleTextAlignment}
                     >
@@ -122,7 +122,7 @@ export default function FeatureChartTitle() {
                     <span className="flex-none">Multiline alignment</span>
                     <select
                         className="sc-select"
-                        style={{ width: 104 }}
+                        style={{ width: "6.5rem" }}
                         value={multilineAlignment}
                         onChange={selectTitleTextMultilineAlignment}
                     >
@@ -151,7 +151,7 @@ export default function FeatureChartTitle() {
                             controlsRef.current?.updateTitleFontSize(value);
                         }}
                     />
-                    <span className="flex-none" style={{ width: 36 }}>
+                    <span className="flex-none" style={{ width: "2.25rem" }}>
                         {fontSize}px
                     </span>
                 </label>

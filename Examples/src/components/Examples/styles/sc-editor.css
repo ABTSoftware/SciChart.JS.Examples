@@ -1,15 +1,15 @@
 /* Source viewer and sandbox editor controls. Demo controls belong to sc-ui.css. */
 
 .sc-editor-action-content {
-    height: 30px;
+    height: 1.875rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7px;
+    gap: 0.4375rem;
 }
 .sc-editor-action-content svg {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
 }
 @media only screen and (max-width: 768px) {
     .sc-editor-action-content p {
@@ -20,21 +20,21 @@
     display: flex;
     align-items: end;
     justify-content: end;
-    gap: 10px;
+    gap: 0.625rem;
 }
 .sc-editor-actions .sc-editor-action {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
-    gap: 2px;
+    border-radius: 0.5rem;
+    gap: 0.125rem;
     font-size: var(--sc-font-size-sm);
-    line-height: 20px;
-    height: 35px;
-    min-width: 50px;
+    line-height: 1.25rem;
+    height: 2.1875rem;
+    min-width: 3.125rem;
     color: white;
     text-decoration: none;
-    padding: 4px 8px 4px 6px;
+    padding: 0.25rem 0.5rem 0.25rem 0.375rem;
     transition: all 200ms linear;
     cursor: pointer;
 }
@@ -48,8 +48,8 @@
     background: #cb3837;
 }
 .sc-editor-actions .sc-editor-action-npm svg {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
 }
 .sc-editor-actions .sc-editor-action-docs {
     background: var(--light-blue);
@@ -68,122 +68,360 @@
     }
 }
 
-.sc-editor-code {
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 52px 0 12px 0;
-    width: 100%;
+.sc-app-details-content .sc-app-chart-code > .sc-editor-code {
+    min-width: 0;
     max-width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 10;
+    max-height: none;
+    height: auto;
+    aspect-ratio: auto;
+    flex: 1;
 }
-.sc-editor-code .sc-editor-code-body {
-    position: absolute;
+.sc-app-details-content .sc-app-chart-code.sc-app-chart-code-stacked > .sc-editor-code {
+    flex: none;
+}
+.sc-editor-code {
+    --sc-editor-code-bg: var(--bg);
+    --sc-editor-muted: color-mix(in srgb, var(--text) 65%, var(--bg));
+    --sc-editor-gutter-width: 3.5rem;
     width: 100%;
-    height: 100%;
+    min-width: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background: var(--sc-editor-code-bg);
+    color: var(--text);
+    overflow: hidden;
+    position: relative;
+}
+.sc-editor-code button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+.sc-editor-code button:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+.sc-editor-code button:focus-visible,
+.sc-editor-code-scroll:focus-visible,
+.sc-editor-edit-surface textarea:focus-visible {
+    outline: 2px solid var(--light-blue);
+    outline-offset: -0.125rem;
+}
+.sc-editor-project-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-darker);
+}
+.sc-editor-project-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.sc-editor-project-title span {
+    color: var(--sc-editor-muted);
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-project-actions button {
+    padding: 0.375rem 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+}
+.sc-editor-project-actions button:hover:not(:disabled) {
+    background: rgba(136, 136, 136, 0.15);
+}
+.sc-editor-workspace {
+    display: flex;
+    height: clamp(24rem, 58vh, 42rem);
+    min-height: 0;
+    min-width: 0;
+}
+.sc-editor-explorer {
+    width: 13rem;
+    min-width: 9rem;
+    flex-shrink: 0;
     overflow: auto;
-    padding-bottom: 50px;
+    background: var(--bg-darker);
+    border-right: 1px solid var(--border-color);
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-explorer-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.875rem 0.75rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg-darker);
+    z-index: 1;
+    font-weight: 600;
+}
+.sc-editor-explorer-title span {
+    font-weight: 400;
+    color: var(--sc-editor-muted);
+    white-space: nowrap;
+}
+.sc-editor-explorer ul {
+    padding: 0.25rem 0;
+    margin: 0;
+    list-style: none;
+}
+.sc-editor-explorer button {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 2rem;
+    padding: 0.375rem 0.625rem;
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+}
+.sc-editor-explorer button:hover {
+    background: rgba(136, 136, 136, 0.12);
+}
+.sc-editor-explorer button[aria-selected="true"] {
+    background: rgba(51, 150, 255, 0.16);
+    box-shadow: inset 0.125rem 0 var(--light-blue);
+}
+.sc-editor-file-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.sc-editor-folder-icon,
+.sc-editor-file-icon {
+    min-width: 1.25rem;
+    width: 1.25rem;
+    flex-shrink: 0;
+    text-align: center;
+}
+.sc-editor-file-icon {
+    color: var(--sc-editor-muted);
+    font-size: var(--sc-font-size-xs);
+    line-height: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.sc-editor-file-icon[data-kind="ts"],
+.sc-editor-file-icon[data-kind="tsx"] {
+    color: #3396ff;
+}
+.sc-editor-file-icon[data-kind="js"],
+.sc-editor-file-icon[data-kind="json"] {
+    color: #cba64e;
+}
+.sc-editor-file-icon[data-kind="css"] {
+    color: #b789e6;
+}
+.sc-editor-file-icon[data-kind="html"] {
+    color: #e98664;
+}
+.sc-editor-modified {
+    margin-left: auto;
+    color: var(--light-blue);
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-file-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+}
+.sc-editor-file-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2.75rem;
+    padding: 0 0.625rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-darker);
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-explorer-toggle {
+    padding: 0.375rem;
+    background: transparent;
+    border: none;
+    border-radius: 0.25rem;
+}
+.sc-editor-active-file {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.625rem 0;
+}
+.sc-editor-active-file > span:nth-child(2) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.sc-editor-mode-switch {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: auto;
+    gap: 0.125rem;
+}
+.sc-editor-mode-switch button {
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.625rem;
+    background: transparent;
+}
+.sc-editor-mode-switch button[aria-pressed="true"] {
+    background: var(--bg);
+    border-color: var(--border-color);
+}
+.sc-editor-code-scroll {
+    display: flex;
+    align-items: flex-start;
+    overflow: auto;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    scrollbar-gutter: stable;
+}
+.sc-editor-code-scroll pre,
+.sc-editor-edit-surface pre,
+.sc-editor-edit-surface textarea {
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-font-size-sm);
+    line-height: 1.6;
+    font-weight: 400;
+    tab-size: 4;
+    white-space: pre;
+    margin: 0;
+}
+.sc-editor-code-scroll > pre:last-child {
+    min-width: calc(100% - var(--sc-editor-gutter-width));
+    user-select: text;
+    flex-shrink: 0;
+}
+.sc-editor-code-scroll .sc-editor-read-gutter {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    width: var(--sc-editor-gutter-width);
+    min-width: var(--sc-editor-gutter-width);
+    padding: 0.75rem 0.75rem 1rem 0;
+    text-align: right;
+    color: var(--sc-editor-muted);
+    background: var(--sc-editor-code-bg);
+    border-right: 1px solid var(--border-color);
     user-select: none;
-}
-.sc-editor-code .sc-editor-code-body pre {
-    user-select: text !important;
-}
-.sc-editor-code .sc-editor-code-body pre code {
-    user-select: text !important;
-}
-.sc-editor-code .sc-editor-code-body pre code span {
-    user-select: text !important;
-}
-.sc-editor-code .sc-editor-code-body [class*="linenumber"],
-.sc-editor-code .sc-editor-code-body [class*="line-number"] {
-    user-select: none !important;
     pointer-events: none;
 }
-.sc-editor-code .sc-editor-code-right-button-group {
-    position: absolute;
+.sc-editor-edit-surface {
     display: flex;
-    gap: 15px;
-    padding: 20px;
-    top: 0;
-    right: 0;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    flex: 1;
+    min-height: 0;
+}
+.sc-editor-edit-gutter {
+    width: var(--sc-editor-gutter-width);
+    min-width: var(--sc-editor-gutter-width);
+    overflow: hidden;
+    color: var(--sc-editor-muted);
+    border-right: 1px solid var(--border-color);
     user-select: none;
 }
-.sc-editor-code .sc-editor-code-right-button-group button {
-    height: 24px;
-    width: 24px;
-    color: #888;
-    cursor: pointer;
-    user-select: none;
+.sc-editor-edit-gutter pre {
+    text-align: right;
+    padding: 0.75rem 0.75rem 1rem 0;
 }
-.sc-editor-code .sc-editor-code-right-button-group button:hover,
-.sc-editor-code .sc-editor-code-right-button-group button:active {
-    color: var(--text);
-}
-.sc-editor-code.sc-editor-code-fullscreen-editor {
-    position: absolute;
+.sc-editor-edit-surface textarea {
+    display: block;
     width: 100%;
-    height: 100%;
-    max-height: 100vh;
-    max-width: 100vw;
-    background-color: var(--bg);
-}
-
-.sc-editor-code-horizontal-scroller {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 40px;
-    width: calc(100% - 150px);
-    overflow: auto;
-    overflow-y: hidden;
-    display: flex;
-    align-items: center;
-    user-select: none;
-    margin: 12px;
-    gap: 2px;
-}
-.sc-editor-code-horizontal-scroller .sc-editor-code-select-tab {
-    user-select: none;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 4px;
-    padding: 3px 7px 3px 5px;
-    cursor: pointer;
-    color: var(--text);
-    background-color: var(--bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px 8px 0 0;
-    white-space: nowrap;
-    overflow-wrap: normal;
-    word-break: keep-all;
-}
-.sc-editor-code-horizontal-scroller .sc-editor-code-select-tab:hover {
-    background-color: rgba(136, 136, 136, 0.1333333333);
-}
-.sc-editor-code-horizontal-scroller .sc-editor-code-select-tab svg {
-    height: 22px;
-    width: 22px;
-    min-height: 22px;
-    min-width: 22px;
-}
-.sc-editor-code-horizontal-scroller .sc-editor-code-select-tab p {
-    font-size: var(--sc-font-size-sm);
-    margin: 0;
-    color: var(--text);
-}
-.sc-editor-code-horizontal-scroller .sc-editor-code-select-tab.sc-editor-code-active-tab {
-    background-color: var(--bg);
-    border-bottom-color: var(--bg);
-    position: relative;
-}
-.sc-editor-code-horizontal-scroller::-webkit-scrollbar {
-    height: 6px;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    padding: 0.75rem 0.75rem 1rem;
+    border: none;
     border-radius: 0;
+    resize: none;
+    overflow: auto;
+    color: var(--text);
+    background: var(--sc-editor-code-bg);
+    scrollbar-gutter: stable;
+}
+.sc-editor-status-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--bg-darker);
+    border-top: 1px solid var(--border-color);
+    color: var(--sc-editor-muted);
+    font-size: var(--sc-font-size-xs);
+}
+.sc-editor-status-message {
+    padding: 0.5rem 0.875rem;
+    border-top: 1px solid var(--border-color);
+    font-size: var(--sc-font-size-xs);
+    color: var(--sc-editor-muted);
+}
+.sc-app-details-content .sc-app-chart-code > .sc-editor-code-fullscreen {
+    position: fixed;
+    inset: 1rem;
+    width: auto;
+    height: calc(100dvh - 2rem);
+    max-width: none;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0.55);
+}
+.sc-editor-code-fullscreen .sc-editor-workspace {
+    flex: 1;
+    height: auto;
+}
+.sc-editor-code-fullscreen > :not(.sc-editor-workspace) {
+    flex-shrink: 0;
+}
+.sc-editor-code-scroll,
+.sc-editor-explorer,
+.sc-editor-edit-surface textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #687685 transparent;
+}
+@media only screen and (max-width: 768px) {
+    .sc-editor-project-header {
+        padding: 0.75rem;
+    }
+    .sc-editor-workspace {
+        height: 28rem;
+    }
+    .sc-editor-explorer {
+        width: 9rem;
+    }
+    .sc-editor-explorer-title {
+        flex-wrap: wrap;
+    }
+    .sc-editor-file-toolbar {
+        gap: 0.25rem;
+        padding: 0 0.25rem;
+    }
+    .sc-editor-mode-switch button {
+        padding: 0.375rem;
+    }
+    .sc-app-details-content .sc-app-chart-code > .sc-editor-code-fullscreen {
+        inset: 0;
+        height: 100dvh;
+        border-radius: 0;
+    }
 }
 
 .sc-editor-frame-container {
@@ -191,7 +429,7 @@
     flex-direction: column;
     width: 100%;
     position: relative;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     overflow: hidden;
 }
 .sc-editor-frame-container.sc-editor-frame-browser-fill {
@@ -207,7 +445,7 @@
 .sc-editor-frame-body {
     position: relative;
     outline: none;
-    height: 500px;
+    height: 31.25rem;
     z-index: 1;
 }
 .sc-editor-frame-browser-fill .sc-editor-frame-body {
@@ -239,7 +477,7 @@
 .sc-editor-frame-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     min-width: 0;
 }
 
@@ -249,8 +487,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 300px;
-    padding-left: 12px;
+    max-width: 18.75rem;
+    padding-left: 0.75rem;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -268,8 +506,8 @@
 }
 
 .sc-editor-loader-spinner {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     border: 6px solid #ccc;
     border-top: 6px solid #007bff;
     border-radius: 50%;
@@ -287,35 +525,35 @@
 
 .sc-editor-confirm-dialog {
     position: absolute;
-    top: 50px;
-    right: 10px;
+    top: 3.125rem;
+    right: 0.625rem;
     background: var(--bg);
     border: 1px solid var(--bg-darker);
-    border-radius: 4px;
-    padding: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    width: 280px;
+    width: 17.5rem;
 }
 .sc-editor-confirm-dialog h2 {
-    margin: 0 0 8px 0;
+    margin: 0 0 0.5rem 0;
     font-size: var(--sc-font-size-sm);
     font-weight: 600;
 }
 .sc-editor-confirm-dialog p {
-    margin: 0 0 12px 0;
+    margin: 0 0 0.75rem 0;
     font-size: var(--sc-font-size-xs);
 }
 
 .sc-editor-confirm-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 0.5rem;
 }
 .sc-editor-confirm-buttons button {
-    min-width: 60px;
-    padding: 4px 12px;
-    border-radius: 4px;
+    min-width: 3.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
     border: 1px solid var(--bg-darker);
     background: var(--bg);
     cursor: pointer;
@@ -335,7 +573,7 @@
 
 .sc-editor-info-overlay {
     position: absolute;
-    top: 20px;
+    top: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
@@ -344,32 +582,32 @@
 .sc-editor-info-dialog {
     background: #fff;
     color: #111;
-    border-radius: 8px;
-    padding: 10px 12px;
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.75rem;
     position: relative;
-    max-width: 400px;
+    max-width: 25rem;
     width: 90%;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0.625rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1), 0 0.3125rem 0.625rem -0.3125rem rgba(0, 0, 0, 0.04);
     animation: sc-editor-info-slide-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid var(--border-color);
 }
 
 .sc-editor-info-close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0.625rem;
+    right: 0.625rem;
     border: none;
     background: none;
     font-size: var(--sc-font-size-lg);
     cursor: pointer;
     color: #6e7681;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
+    border-radius: 0.375rem;
     line-height: 0;
 }
 .sc-editor-info-close-button:hover {
@@ -381,7 +619,7 @@
     color: #24292f;
     font-size: var(--sc-font-size-sm);
     line-height: 1.5;
-    margin-right: 24px;
+    margin-right: 1.5rem;
     font-weight: 500;
     letter-spacing: -0.01em;
 }
@@ -389,7 +627,7 @@
 @keyframes sc-editor-info-slide-in {
     from {
         opacity: 0;
-        transform: translate(-50%, -8px);
+        transform: translate(-50%, -0.5rem);
     }
     to {
         opacity: 1;
@@ -466,10 +704,10 @@
 
 .sc-editor-radio-group {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
-    padding: 4px;
-    border-radius: 6px;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
     background: rgba(0, 0, 0, 0.03);
 }
 
@@ -504,7 +742,7 @@
 .sc-editor-toolbar-group:not(:last-child)::after {
     content: "";
     height: var(--sc-editor-spacing-xl);
-    width: 1px;
+    width: 0.0625rem;
     background: var(--border-color);
     margin-left: var(--sc-editor-spacing-md);
 }

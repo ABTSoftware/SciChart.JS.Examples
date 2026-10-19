@@ -14,6 +14,7 @@ import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodePreview } from "../CodePreview/CodePreview";
+import { getDefaultSourceFile } from "../CodePreview/projectFiles";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
@@ -29,13 +30,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const { currentExample, seeAlso } = props;
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
-    const getInitialSelectedFile = () =>
-        initialSourceFilesVariant.files.find((file) => file.name.startsWith("drawExample")) ??
-        initialSourceFilesVariant.files.find((file) => file.name.startsWith("index")) ??
-        initialSourceFilesVariant.files[0];
-
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
-    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
+    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(() =>
+        getDefaultSourceFile(initialSourceFilesVariant.files)
+    );
     const [pageLayout, setPageLayout] = useState<EPageLayout>(EPageLayout.Default);
     const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
     const [embedCode, setEmbedCode] = useState<boolean>(false);
@@ -90,11 +88,8 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 return response.json();
             })
             .then((json: { files: { name: string; content: string }[]; framework: EPageFramework }) => {
-                let defaultFile = json.files.find((f) => f.name === "drawExample.ts");
-                if (!defaultFile) {
-                    defaultFile = json.files[json.files.length - 1];
-                }
-                setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
+                const defaultFile = getDefaultSourceFile(json.files);
+                setSelectedFile(defaultFile);
                 setSourceFiles(json.files);
                 setSourceFramework(json.framework);
             })
@@ -122,7 +117,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     const handleFileClick = (fileName: string) => {
         const file = sourceFiles.find((f) => f.name === fileName);
-        setSelectedFile({ name: file.name, content: file.content });
+        if (file) setSelectedFile(file);
     };
 
     const setOpenedMenuItem = (id: string, value: boolean = true) => {
@@ -206,7 +201,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                         currentExample={currentExample}
                     />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.9375rem", width: "100%" }}>
                     <div id="EXAMPLE_CONTENT_WRAPPER" className="sc-app-details-content">
                         <div style={{ display: "flex" }}>
                             <ExampleBreadcrumbs />
@@ -218,7 +213,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                             <h1
                                 id="EXAMPLE_TITLE"
                                 style={{
-                                    margin: isMaxWidth ? "-10px 0" : 0,
+                                    margin: isMaxWidth ? "-0.625rem 0" : 0,
                                     marginInline: isMaxWidth ? "auto" : 0,
                                     width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
                                 }}
@@ -256,9 +251,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
                                     className={`sc-editor-actions ${isMaxWidth ? "" : "sc-editor-actions-narrow"}`}
-                                    style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
+                                    style={{ minHeight: "2.1875rem", height: "2.1875rem", padding: 0, width: "100%" }}
                                 />
                                 <CodePreview
+                                    key={`${currentExample.path}:${sourceFramework}`}
                                     files={sourceFiles}
                                     selectedFile={selectedFile}
                                     handleFileClick={handleFileClick}

@@ -9,12 +9,11 @@
   },
   "scripts": {
     "generateExamplePaths": "node scripts/generateExamplePaths.js",
-    "exportExampleCss": "ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/exportExampleCss.ts",
     "updateExampleInfos": "ts-node -P tsconfig.node.json scripts/updateExampleInfos.ts",
     "updateExampleInfosJS": "node scripts/updateExampleInfos.js",
     "dev": "webpack-dev-server --config webpack.client.no_server.config.cjs",
     "dev-bigger": "NODE_OPTIONS='--max-old-space-size=2048' npm run dev",
-    "build": "npm run typecheck && rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && npm run buildClient",
+    "build": "npm run typecheck && rimraf ./build && npm run buildVanillaDemo && npm run buildImages && npm run buildServer && ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/generateExampleStyles.ts && npm run buildClient",
     "start": "HOST=0.0.0.0 node ./build/server.js",
     "buildServer": "webpack --config webpack.server.config.js",
     "buildClient": "webpack --config webpack.client.config.js",
@@ -37,7 +36,8 @@
     "linkcheck": "node scripts/linkcheck.js",
     "typecheck": "tsc --noEmit -p tsconfig.browser.json && tsc --noEmit -p tsconfig.server.json",
     "checkAppStyles": "node scripts/checkAppStyles.cjs",
-    "typecheck:watch": "tsc --noEmit -p tsconfig.browser.json --watch"
+    "typecheck:watch": "tsc --noEmit -p tsconfig.browser.json --watch",
+    "checkSandboxExports": "ts-node -P tsconfig.node.json -O '{\"module\":\"commonjs\",\"moduleResolution\":\"node\"}' scripts/checkSandboxExports.ts"
   },
   "author": "",
   "license": "ISC",
@@ -118,7 +118,9 @@
     "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "postcss": "^8.5.14",
+    "postcss-selector-parser": "^7.1.1"
   },
   "overrides": {
     "react": "^19.1.1",

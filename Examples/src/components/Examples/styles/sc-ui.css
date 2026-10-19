@@ -14,7 +14,9 @@
     src: url("https://rsms.me/inter/font-files/InterVariable-Italic.woff2") format("woff2");
 }
 
+/* Scale rem dimensions at the same breakpoints as the application theme. */
 :root {
+    font-size: 87.5%;
     --sc-font-family: "Inter", sans-serif;
     --sc-font-mono: ui-monospace, monospace;
     --sc-font-size-xs: 0.75rem;
@@ -42,13 +44,23 @@
     }
 }
 
-/* Match SciChart's theme backgrounds (Light uses a solid fill). */
+@media (min-width: 600px) {
+    :root { font-size: 93.75%; }
+}
+@media (min-width: 960px) {
+    :root { font-size: 96.875%; }
+}
+@media (min-width: 1460px) {
+    :root { font-size: 100%; }
+}
+
 [data-theme="light"] {
     --sc-text: #050a30;
     --sc-background: var(--bg, #fff);
     --sc-theme-bg: #F9F9F9FF;
     color-scheme: light;
 }
+/* Match SciChart's theme backgrounds (Light uses a solid fill). */
 [data-theme="dark"] {
     --sc-theme-bg: radial-gradient(circle, #3C3C3FFF 0%, #1C1C1EFF 100%);
     color-scheme: dark;
@@ -142,14 +154,14 @@
     box-sizing: border-box;
     display: flex;
     width: 100%;
-    min-height: 52px;
+    min-height: 3.25rem;
     order: -1;
     flex: none;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 0.5rem;
     overflow-x: auto;
-    padding: 8px;
+    padding: 0.5rem;
     border-bottom: 1px solid var(--sc-outline);
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
@@ -260,7 +272,7 @@ div > .sc-toolbar-row:last-child {
 
     > * {
         flex: 1 1 33%;
-        min-width: min(200px, 100%);
+        min-width: min(12.5rem, 100%);
         min-height: 0;
         height: auto;
     }
@@ -273,8 +285,8 @@ div > .sc-toolbar-row:last-child {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-template-rows: repeat(2, minmax(0, 1fr));
-        gap: 5px;
-        padding: 5px;
+        gap: 0.3125rem;
+        padding: 0.3125rem;
         box-sizing: border-box;
 
         > * { min-width: 0; }
@@ -291,13 +303,13 @@ div > .sc-toolbar-row:last-child {
     position: absolute !important;
     top: 0;
     right: 0;
-    width: 65px;
+    width: 4.0625rem;
     height: 100%;
 }
 
 .sc-chart-title {
     position: absolute;
-    top: 20px;
+    top: 1.25rem;
     left: 50%;
     max-width: 90%;
     margin: 0;
@@ -318,17 +330,17 @@ div > .sc-toolbar-row:last-child {
     > .sc-overview { flex: 1 1 20%; min-height: 0; }
 }
 
-/* Default, outline, danger and square icon buttons share one 40px size. */
+/* Default, outline, danger and square icon buttons share one 2.5rem size. */
 .sc-button {
     box-sizing: border-box;
     display: inline-flex;
-    height: 40px;
-    min-height: 40px;
+    height: 2.5rem;
+    min-height: 2.5rem;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 0 12px;
+    gap: 0.5rem;
+    padding: 0 0.75rem;
     border: 1px solid transparent;
     border-radius: var(--radius);
     background: var(--sc-primary);
@@ -366,8 +378,8 @@ div > .sc-toolbar-row:last-child {
     }
 
     &.sc-button-icon {
-        width: 40px;
-        min-width: 40px;
+        width: 2.5rem;
+        min-width: 2.5rem;
         padding: 0;
     }
 
@@ -383,8 +395,8 @@ div > .sc-toolbar-row:last-child {
     }
 
     svg {
-        width: 18px;
-        height: 18px;
+        width: 1.125rem;
+        height: 1.125rem;
         flex-shrink: 0;
     }
 }
@@ -435,7 +447,7 @@ div > .sc-toolbar-row:last-child {
 .sc-control {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
 }
@@ -443,9 +455,9 @@ div > .sc-toolbar-row:last-child {
 .sc-input,
 .sc-select {
     box-sizing: border-box;
-    height: 40px;
+    height: 2.5rem;
     max-width: 100%;
-    padding: 0 12px;
+    padding: 0 0.75rem;
     border: 1px solid var(--sc-outline);
     border-radius: var(--radius);
     background: var(--sc-background);
@@ -458,7 +470,7 @@ div > .sc-toolbar-row:last-child {
 .sc-input {
     &[type="number"] {
         appearance: auto;
-        padding-right: 4px;
+        padding-right: 0.25rem;
 
         /* Restore native steppers hidden by the application-wide input reset. */
         &::-webkit-inner-spin-button,
@@ -470,8 +482,8 @@ div > .sc-toolbar-row:last-child {
     }
 
     &[type="color"] {
-        width: 40px;
-        padding: 2px 4px;
+        width: 2.5rem;
+        padding: 0.125rem 0.25rem;
         cursor: pointer;
     }
 
@@ -480,15 +492,15 @@ div > .sc-toolbar-row:last-child {
         width: 100%;
         height: auto;
         min-height: 12rem;
-        padding: 8px 12px;
+        padding: 0.5rem 0.75rem;
         resize: vertical;
         font-family: ui-monospace, monospace;
 
         .sc-toolbar-row & {
             width: min(24rem, 40vw);
-            height: 40px;
-            min-height: 40px;
-            padding: 6px 12px;
+            height: 2.5rem;
+            min-height: 2.5rem;
+            padding: 0.375rem 0.75rem;
             resize: none;
         }
     }
@@ -496,12 +508,12 @@ div > .sc-toolbar-row:last-child {
 
 .sc-select {
     appearance: none;
-    padding-right: 32px;
+    padding-right: 2rem;
     text-align: start;
     text-align-last: auto;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2371717a' stroke-width='1.5'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
-    background-position: right 8px center;
-    background-size: 14px 14px;
+    background-position: right 0.5rem center;
+    background-size: 0.875rem 0.875rem;
     background-repeat: no-repeat;
     cursor: pointer;
 
@@ -523,32 +535,32 @@ div > .sc-toolbar-row:last-child {
             content: "";
             position: absolute;
             top: 50%;
-            right: 12px;
-            width: 7px;
-            height: 7px;
+            right: 0.75rem;
+            width: 0.4375rem;
+            height: 0.4375rem;
             border-right: 1.5px solid currentColor;
             border-bottom: 1.5px solid currentColor;
             transform: translateY(-75%) rotate(45deg);
         }
 
         &::picker(select) {
-            gap: 3px;
-            margin-top: 4px;
-            padding: 4px 4px 0 4px;
+            gap: 0.1875rem;
+            margin-top: 0.25rem;
+            padding: 0.25rem 0.25rem 0 0.25rem;
             border: 1px solid var(--sc-outline);
             border-radius: var(--radius);
             background: var(--sc-background);
             color: var(--sc-text);
-            box-shadow: 0 2px 4px rgb(0 0 0 / 12%), 0 6px 16px rgb(0 0 0 / 18%);
+            box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 12%), 0 0.375rem 1rem rgb(0 0 0 / 18%);
         }
 
         option {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 4px 8px;
-            margin-bottom: 4px;
-            border-radius: calc(var(--radius) - 2px);
+            gap: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            margin-bottom: 0.25rem;
+            border-radius: calc(var(--radius) - 0.125rem);
 
             &::checkmark {
                 order: 1;
@@ -563,8 +575,8 @@ div > .sc-toolbar-row:last-child {
 .sc-checkbox {
     appearance: none;
     box-sizing: border-box;
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     flex-shrink: 0;
     margin: 0;
     border: 1px solid var(--sc-outline);
@@ -582,8 +594,8 @@ div > .sc-toolbar-row:last-child {
 .sc-switch {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin: 4px 0;
+    gap: 0.5rem;
+    margin: 0.25rem 0;
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
     cursor: pointer;
@@ -592,12 +604,12 @@ div > .sc-toolbar-row:last-child {
         appearance: none;
         position: relative;
         box-sizing: border-box;
-        width: 36px;
-        height: 20px;
+        width: 2.25rem;
+        height: 1.25rem;
         flex-shrink: 0;
         margin: 0;
         border: 1px solid transparent;
-        border-radius: 999px;
+        border-radius: 62.4375rem;
         background: var(--sc-outline);
         cursor: pointer;
         transition: background-color 150ms;
@@ -607,8 +619,8 @@ div > .sc-toolbar-row:last-child {
             position: absolute;
             top: 1px;
             left: 1px;
-            width: 16px;
-            height: 16px;
+            width: 1rem;
+            height: 1rem;
             border-radius: 50%;
             background: var(--sc-background);
             transition: transform 150ms;
@@ -617,7 +629,7 @@ div > .sc-toolbar-row:last-child {
         &:checked {
             background: var(--sc-primary);
 
-            &::after { transform: translateX(16px); }
+            &::after { transform: translateX(1rem); }
         }
     }
 
@@ -630,21 +642,21 @@ div > .sc-toolbar-row:last-child {
 .sc-range {
     appearance: none;
     width: 100%;
-    height: 20px;
-    margin: 4px 0;
+    height: 1.25rem;
+    margin: 0.25rem 0;
     background: transparent;
     accent-color: var(--sc-primary);
     cursor: pointer;
 
     &::-webkit-slider-runnable-track {
-        height: 4px;
+        height: 0.25rem;
         border-radius: var(--radius);
         background: var(--sc-outline);
     }
 
     &::-moz-range-track,
     &::-moz-range-progress {
-        height: 4px;
+        height: 0.25rem;
         border-radius: var(--radius);
         background: var(--sc-outline);
     }
@@ -654,9 +666,9 @@ div > .sc-toolbar-row:last-child {
     &::-webkit-slider-thumb {
         appearance: none;
         box-sizing: border-box;
-        width: 14px;
-        height: 14px;
-        margin-top: -5px;
+        width: 0.875rem;
+        height: 0.875rem;
+        margin-top: -0.3125rem;
         border: 2px solid var(--sc-primary);
         border-radius: 50%;
         background: var(--sc-background);
@@ -664,8 +676,8 @@ div > .sc-toolbar-row:last-child {
 
     &::-moz-range-thumb {
         box-sizing: border-box;
-        width: 14px;
-        height: 14px;
+        width: 0.875rem;
+        height: 0.875rem;
         border: 2px solid var(--sc-primary);
         border-radius: 50%;
         background: var(--sc-background);
@@ -673,13 +685,13 @@ div > .sc-toolbar-row:last-child {
 
     /* Native thumbs do not support ::after; a shadow paints the halo behind them. */
     &:hover:not(:disabled) {
-        &::-webkit-slider-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
-        &::-moz-range-thumb { box-shadow: 0 0 0 5px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-webkit-slider-thumb { box-shadow: 0 0 0 0.3125rem color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-moz-range-thumb { box-shadow: 0 0 0 0.3125rem color-mix(in srgb, var(--sc-primary) 15%, transparent); }
     }
 
     &:active:not(:disabled) {
-        &::-webkit-slider-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
-        &::-moz-range-thumb { box-shadow: 0 0 0 7px color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-webkit-slider-thumb { box-shadow: 0 0 0 0.4375rem color-mix(in srgb, var(--sc-primary) 15%, transparent); }
+        &::-moz-range-thumb { box-shadow: 0 0 0 0.4375rem color-mix(in srgb, var(--sc-primary) 15%, transparent); }
     }
 }
 
@@ -692,7 +704,7 @@ div > .sc-toolbar-row:last-child {
 .sc-switch input {
     &:focus-visible {
         outline: 2px solid color-mix(in srgb, var(--sc-primary) 50%, transparent);
-        outline-offset: 2px;
+        outline-offset: 0.125rem;
     }
 
     &:disabled {
@@ -708,26 +720,26 @@ div > .sc-toolbar-row:last-child {
     z-index: 1300;
     display: grid;
     place-items: center;
-    padding: 16px;
+    padding: 1rem;
     background: rgb(0 0 0 / 55%);
 }
 
 .sc-modal {
     box-sizing: border-box;
-    width: min(480px, 100%);
-    max-height: min(90vh, 800px);
+    width: min(30rem, 100%);
+    max-height: min(90vh, 50rem);
     overflow: auto;
     border: 1px solid var(--sc-outline);
     border-radius: var(--radius);
     background: var(--sc-background);
     color: var(--sc-text);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 15%);
 
     &::backdrop { background: rgb(0 0 0 / 55%); }
 
     .sc-modal-header {
         display: flex;
-        min-height: 52px;
+        min-height: 3.25rem;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
@@ -738,7 +750,7 @@ div > .sc-toolbar-row:last-child {
     .sc-modal-body {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 0.5rem;
         padding: 0.5rem;
     }
 }
@@ -752,12 +764,12 @@ div > .sc-toolbar-row:last-child {
 
     .sc-accordion-summary {
         display: flex;
-        min-height: 38px;
+        min-height: 2.375rem;
         align-items: center;
         justify-content: space-between;
-        gap: 8px;
+        gap: 0.5rem;
         border-radius: var(--radius);
-        padding: 4px 12px;
+        padding: 0.25rem 0.75rem;
         background: color-mix(in srgb, var(--sc-primary) 4%, var(--sc-background));
         cursor: pointer;
         list-style: none;
@@ -772,7 +784,7 @@ div > .sc-toolbar-row:last-child {
 
         &:focus-visible {
             outline: 2px solid var(--sc-primary);
-            outline-offset: -2px;
+            outline-offset: -0.125rem;
         }
     }
 
@@ -789,4 +801,17 @@ div > .sc-toolbar-row:last-child {
         padding: 0.5rem 0.5rem 0.5rem 0.75rem;
         border-top: 1px solid var(--sc-outline);
     }
+}
+
+/* Preserve comfortable touch targets and prevent focus zoom on mobile inputs. */
+@media (pointer: coarse) {
+    .sc-button,
+    .sc-input:not([type="range"]),
+    .sc-select {
+        min-height: max(2.5rem, 44px);
+    }
+    .sc-button.sc-button-icon { min-width: max(2.5rem, 44px); }
+    .sc-input,
+    .sc-select,
+    .sc-textarea { font-size: max(1rem, 16px); }
 }

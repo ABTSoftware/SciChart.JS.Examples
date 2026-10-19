@@ -58,13 +58,13 @@
 }
 
 .sc-semiconductors-dashboard-container .scichart__legend-item label:nth-child(1) {
-    width: 10px !important;
-    height: 10px !important;
+    width: 0.625rem !important;
+    height: 0.625rem !important;
 }
 
 /* Chart toggle button group styles */
 .sc-semiconductors-chart-header {
-    padding: 2px;
+    padding: 0.125rem;
     display: flex;
     justify-content: center;
     background-color: var(--bg-chart);

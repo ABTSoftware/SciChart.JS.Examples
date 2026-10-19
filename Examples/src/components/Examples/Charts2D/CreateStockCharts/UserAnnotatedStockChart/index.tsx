@@ -94,7 +94,7 @@ export default function UserAnnotatedStockChart() {
                             if (event.key === "Enter") saveChart();
                         }}
                         disabled={!isReady}
-                        style={{ width: 110 }}
+                        style={{ width: "6.875rem" }}
                     />
                     <button
                         className="sc-button sc-button-outline"
@@ -116,7 +116,7 @@ export default function UserAnnotatedStockChart() {
                         value={selectedChart}
                         onChange={(event) => setSelectedChart(event.target.value)}
                         disabled={!isReady || savedChartNames.length === 0}
-                        style={{ width: 130 }}
+                        style={{ width: "8.125rem" }}
                     >
                         <option value="" disabled>
                             {savedChartNames.length > 0 ? "Saved charts" : "No saved charts"}

@@ -41,7 +41,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-pie-chart/",
+                href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/polar-pie-chart/",
                 title: "This specific page in the JavaScript Polar Pie Chart documentation will help you to get started",
                 linkTitle: "JavaScript Polar Pie Chart Documentation",
             },

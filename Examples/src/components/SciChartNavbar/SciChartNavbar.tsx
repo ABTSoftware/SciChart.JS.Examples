@@ -36,8 +36,8 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
             viewBox={themeValue === ETheme.dark ? "-1 -1 26 26" : "0 0 24 24"}
             strokeWidth="1.5"
             stroke="currentColor"
-            height={`${size}px`}
-            width={`${size}px`}
+            height={`${size / 16}rem`}
+            width={`${size / 16}rem`}
         >
             {themeValue === ETheme.light ? (
                 <path
@@ -131,7 +131,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                         setIsOpen(false);
                                     }}
                                 >
-                                    <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+                                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.625rem" }}>
                                         <ThemeIcon themeValue={option.value} size={18} />
                                         <span style={{ fontWeight: 500 }}>{option.label}</span>
                                     </span>
@@ -334,7 +334,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                             </li>
                                             <li id="menu-item-8028" className="sc-app-nav-menu-item">
                                                 <a
-                                                    href="https://www.scichart.com/documentation/js/v5/intro/"
+                                                    href="https://www.scichart.com/documentation/js/v6/intro/"
                                                     title="JS Chart Documentation"
                                                 >
                                                     JS Documentation

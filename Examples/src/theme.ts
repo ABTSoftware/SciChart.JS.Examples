@@ -2,6 +2,7 @@ import { cyan } from "@mui/material/colors"; // Correct way to import colors in 
 import { createTheme } from "@mui/material/styles";
 
 export const customTheme = createTheme({
+    spacing: (factor: number) => `${factor * 0.5}rem`,
     components: {
         MuiButtonBase: {
             defaultProps: {

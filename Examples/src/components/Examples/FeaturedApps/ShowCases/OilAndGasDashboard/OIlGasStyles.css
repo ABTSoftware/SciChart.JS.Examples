@@ -19,7 +19,7 @@
 }
 
 .sidebar-charts-2d-item-small {
-    height: 55px;
+    height: 3.4375rem;
 }
 
 .sidebar-charts-2d-item {
@@ -42,7 +42,7 @@
 }
 
 .sidebar-charts-2d-title {
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
 }
 
 .grid-container {
@@ -62,20 +62,20 @@
 }
 
 .main-area .container {
-    min-width: 350px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    min-width: 21.875rem;
+    margin-right: 0.625rem;
+    margin-bottom: 0.625rem;
 }
 
 .main-area .box {
-    padding-bottom: 1px;
+    padding-bottom: 0.0625rem;
     position: relative;
 }
 
 .main-area .icon {
     position: absolute;
-    left: 10px;
-    top: 4px;
+    left: 0.625rem;
+    top: 0.25rem;
 }
 
 .main-area .icon span {
@@ -85,13 +85,13 @@
 .main-area .title {
     text-align: center;
     font-size: var(--sc-font-size-lg);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .main-area .line {
     display: flex;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 0.125rem;
 }
 
 .main-area .line:hover {
@@ -99,10 +99,10 @@
 }
 
 .main-area .line-icon {
-    width: 30px;
+    width: 1.875rem;
     text-align: center;
-    padding-left: 10px;
-    margin-right: 10px;
+    padding-left: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 .main-area .line-text {
@@ -112,12 +112,12 @@
 .main-area .line-icon-file,
 .main-area .line-icon-folder {
     text-align: center;
-    padding: 10px 20px;
-    margin-left: 2px;
+    padding: 0.625rem 1.25rem;
+    margin-left: 0.125rem;
 }
 
 .main-area .line-icon-folder {
-    margin-right: 2px;
+    margin-right: 0.125rem;
 }
 
 #main-charts {
@@ -136,9 +136,9 @@
 /*}*/
 
 *::-webkit-scrollbar-thumb {
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 1px rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0.0625rem rgba(255, 255, 255, 1);
 }
 
 .scichart__legend-item {
@@ -150,12 +150,12 @@
     display: flex;
     justify-content: space-between;
     font-size: var(--sc-font-size-xs);
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 0.125rem;
+    margin-bottom: 0.125rem;
 }
 
 .scichart__legend-item-simple {
-    min-height: 40px;
+    min-height: 2.5rem;
     /* display: flex;
     align-items: center;
     justify-content: center; */
@@ -163,7 +163,7 @@
 
 .scichart__legend-line {
     width: 100%;
-    height: 2px;
+    height: 0.125rem;
     display: block;
 }
 
@@ -176,7 +176,7 @@
 }
 
 .legend-root {
-    min-height: 115px;
+    min-height: 7.1875rem;
     display: flex;
     align-items: flex-end;
 }
@@ -196,7 +196,7 @@
 }
 
 .legend-text-item {
-    height: 20px;
+    height: 1.25rem;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -206,7 +206,7 @@
 }
 
 .legend-color-item {
-    height: 20px;
+    height: 1.25rem;
     width: 100%;
     display: flex;
     flex: auto;
@@ -219,9 +219,9 @@
 
 #shale-chart-background {
     position: absolute;
-    top: 115px;
+    top: 7.1875rem;
     width: 100%;
-    min-height: calc(100% - 115px - 25px);
+    min-height: calc(100% - 7.1875rem - 1.5625rem);
 }
 
 #shale-chart-background > svg {
@@ -231,6 +231,6 @@
 
 .scichart__legend-line {
     width: 100%;
-    height: 2px;
+    height: 0.125rem;
     display: block;
 }

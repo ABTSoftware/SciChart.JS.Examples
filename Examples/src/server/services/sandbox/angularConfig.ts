@@ -3,10 +3,9 @@ import fs from "fs";
 
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
 import { NotFoundError } from "../../Errors";
-import { IFiles, includeExternalModules, commonFiles, csStyles, SandboxConfig } from "./sandboxDependencyUtils";
-import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
-
-const pj = require("../../../../package.json");
+import { IFiles, includeExternalModules, SandboxConfig } from "./sandboxDependencyUtils";
+import { SCICHART_ANCHOR } from "./constants";
+import { getExampleDependencies, jsonFile } from "./sandboxPackages";
 
 export const getAngularSrc = async (folderPath: string) => {
     let code: string;
@@ -14,7 +13,9 @@ export const getAngularSrc = async (folderPath: string) => {
     try {
         code = await fs.promises.readFile(tsPath, "utf8");
     } catch (err) {
-        throw new NotFoundError("Angular version not found! Try using different framework.");
+        if ((err as NodeJS.ErrnoException).code === "ENOENT")
+            throw new NotFoundError("Angular version not found! Try using different framework.");
+        throw err;
     }
 
     return code;
@@ -29,53 +30,44 @@ export const getAngularSandBoxConfig = async (
 
     let files: IFiles = {};
 
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true, baseUrl);
-    code = code.replace(/(\.\/)/g, "../");
+    code = await includeExternalModules(
+        folderPath,
+        folderPath,
+        files,
+        code,
+        true,
+        true,
+        baseUrl,
+        "src/app.component.ts",
+        "angular.ts"
+    );
     files = {
-        ...commonFiles,
         ...files,
-        "package.json": {
-            // @ts-ignore
-            content: {
-                name: currentExample.path,
-                version: "1.0.0",
-                scripts: {
-                    ng: "ng",
-                    start: "ng serve",
-                    build: "ng build",
-                    watch: "ng build --watch --configuration development",
-                    test: "ng test",
-                },
-                private: true,
-                dependencies: {
-                    "@angular/animations": "^18.2.0",
-                    "@angular/common": "^18.2.0",
-                    "@angular/compiler": "^18.2.0",
-                    "@angular/core": "^18.2.0",
-                    "@angular/forms": "^18.2.0",
-                    "@angular/platform-browser": "^18.2.0",
-                    "@angular/platform-browser-dynamic": "^18.2.0",
-                    "@angular/router": "^18.2.0",
-                    rxjs: "~7.8.0",
-                    scichart: pj.dependencies.scichart,
-                    "scichart-angular": pj.dependencies["scichart-angular"],
-                    tslib: "^2.3.0",
-                    "zone.js": "~0.14.10",
-
-                    "@angular-devkit/build-angular": "^18.2.8",
-                    "@angular/cli": "^18.2.8",
-                    "@angular/compiler-cli": "^18.2.0",
-                    "@types/jasmine": "~5.1.0",
-                    "jasmine-core": "~5.2.0",
-                    karma: "~6.4.0",
-                    "karma-chrome-launcher": "~3.2.0",
-                    "karma-coverage": "~2.2.0",
-                    "karma-jasmine": "~5.1.0",
-                    "karma-jasmine-html-reporter": "~2.1.0",
-                    typescript: "5.5.2",
-                },
+        "package.json": jsonFile({
+            name: currentExample.path.replace(/[^a-z0-9-]/gi, "").toLowerCase(),
+            version: "1.0.0",
+            private: true,
+            scripts: { start: "ng serve --host 0.0.0.0", build: "ng build" },
+            dependencies: {
+                ...getExampleDependencies(
+                    { ...files, "src/app.component.ts": { content: code, isBinary: false } },
+                    currentExample.extraDependencies
+                ),
+                "@angular/compiler": "^18.2.8",
+                "@angular/common": "^18.2.8",
+                "@angular/core": "^18.2.8",
+                "@angular/platform-browser": "^18.2.8",
+                rxjs: "~7.8.0",
+                tslib: "^2.3.0",
+                "zone.js": "~0.14.10",
             },
-        },
+            devDependencies: {
+                "@angular-devkit/build-angular": "^18.2.8",
+                "@angular/cli": "^18.2.8",
+                "@angular/compiler-cli": "^18.2.8",
+                typescript: "5.5.2",
+            },
+        }),
         ".devcontainer/devcontainer.json": {
             isBinary: false,
             content: `{
@@ -97,7 +89,7 @@ export const getAngularSandBoxConfig = async (
   "setupTasks": [
     {
       "name": "Install Dependencies",
-      "command": "npm install --legacy-peer-deps"
+      "command": "npm install"
     }
   ],
 
@@ -135,7 +127,7 @@ export const getAngularSandBoxConfig = async (
             "outputPath": "dist/template",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "styles": ["src/index.css"],
+            "styles": ["src/styles.css"],
             "polyfills": [
               "zone.js"
             ],
@@ -149,6 +141,7 @@ export const getAngularSandBoxConfig = async (
             "scripts": []
           },
           "configurations": {
+            "production": { "optimization": { "styles": { "inlineCritical": false } } },
             "development": {
               "optimization": false,
               "extractLicenses": false,
@@ -214,11 +207,11 @@ export const getAngularSandBoxConfig = async (
         `,
             isBinary: false,
         },
-        "src/app/app.component.ts": {
+        "src/app.component.ts": {
             content: code,
             isBinary: false,
         },
-        "src/app/app-wrapper.component.ts": {
+        "src/app-wrapper.component.ts": {
             content: `import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SciChartSurface, SciChart3DSurface } from 'scichart';
@@ -229,13 +222,18 @@ SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
   selector: 'app-root',
-  template: '',
+  template: '<ng-container #chart></ng-container>',
   standalone: true,
 })
 export class AppWrapperComponent implements OnInit {
-  constructor(private container: ViewContainerRef) {}
+  @ViewChild('chart', { read: ViewContainerRef, static: true })
+  private container!: ViewContainerRef;
+
   ngOnInit(): void {
-    this.container.createComponent(AppComponent);
+    const chart = this.container.createComponent(AppComponent);
+    Object.assign(chart.location.nativeElement.style, {
+      display: 'block', width: '100%', height: '100%',
+    });
   }
 }
 `,
@@ -243,7 +241,7 @@ export class AppWrapperComponent implements OnInit {
         },
         "src/main.ts": {
             content: `import { bootstrapApplication } from '@angular/platform-browser';
-import { AppWrapperComponent } from './app/app-wrapper.component';
+import { AppWrapperComponent } from './app-wrapper.component';
 import 'zone.js';
 
 bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
@@ -259,7 +257,7 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <app-root></app-root>
+    <app-root style="display: block; width: 100%; height: 100vh;"></app-root>
     ${SCICHART_ANCHOR}
   </body>
 </html>`,
@@ -267,8 +265,7 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
         },
         "readme.md": {
             content: `# Angular ${currentExample.path} Example
-    This sandbox uses Angular 15 to be compatible with the codesandbox.io,
-    but you can use it with the latest Angular version.
+Run npm install, then npm run start. Run npm run build to create a production bundle.
             `,
             isBinary: false,
         },
@@ -283,12 +280,5 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
         },
     };
 
-    if (currentExample.sandboxConfig) {
-        files["sandbox.config.json"] = {
-            // @ts-ignore
-            content: currentExample.sandboxConfig,
-            isBinary: false,
-        };
-    }
-    return { files: { ...csStyles, ...files } };
+    return { files };
 };

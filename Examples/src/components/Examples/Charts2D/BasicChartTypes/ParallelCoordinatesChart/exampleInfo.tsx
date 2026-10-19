@@ -41,12 +41,12 @@ const metaData: IExampleMetadata = {
     },
     documentationLinks: [
         {
-            href: "https://www.scichart.com/documentation/js/v5/2d-charts/axis-api/multi-axis-and-layout/vertically-stacked-axis-layout/",
+            href: "https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/vertically-stacked-axis-layout/",
             title: "SciChart.js multi axis and layout documentation",
             linkTitle: "Multi Axis & Layout",
         },
         {
-            href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-modifier-api/custom-modifiers/custom-modifiers-overview/",
+            href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/custom-modifiers/custom-modifiers-overview/",
             title: "SciChart.js custom chart modifiers documentation",
             linkTitle: "Custom Modifiers",
         },

@@ -42,7 +42,7 @@ const NotFound = () => (
     <div
         style={{
             textAlign: "center",
-            padding: "50px 20px",
+            padding: "3.125rem 1.25rem",
             minHeight: "60vh",
             display: "flex",
             flexDirection: "column",
@@ -181,16 +181,16 @@ export default function App() {
             <style>
                 {`
                 .chatbot-maximised {
-                    width: calc(100vw - 40px) !important;
-                    height: calc(100vh - 90px - 40px) !important;
-                    right: 20px !important;
-                    bottom: 20px !important;
+                    width: calc(100vw - 2.5rem) !important;
+                    height: calc(100vh - var(--sc-app-drawer-top) - 2.5rem) !important;
+                    right: 1.25rem !important;
+                    bottom: 1.25rem !important;
                     left: auto !important;
                     top: auto !important;
                 }
                 @media screen and (min-width: 960px) {
                     .chatbot-maximised {
-                        width: calc(100vw - min(350px, 25vw) - 40px - 20px) !important;
+                        width: calc(100vw - min(21.875rem, 25vw) - 2.5rem - 1.25rem) !important;
                     }
                 }
                 `}
