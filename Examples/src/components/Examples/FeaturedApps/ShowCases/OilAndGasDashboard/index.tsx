@@ -1,4 +1,3 @@
-import commonClasses from "../../../styles/Examples.module.scss";
 import "./OIlGasStyles.css";
 
 import { SciChart3DSurface, SciChartSurface, SciChartVerticalGroup } from "scichart";
@@ -20,10 +19,9 @@ import { drawResistivityChart } from "./charts/VerticalCharts/ResistivityChart";
 import { drawShaleChart } from "./charts/VerticalCharts/ShaleChart";
 import { drawSonicChart } from "./charts/VerticalCharts/SonicChart";
 import { drawTextureChart } from "./charts/VerticalCharts/TextureChart";
-import { IInitResult, SciChartReact } from "scichart-react";
-import { ChartGroupLoader } from "scichart-react";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import { IInitResult, SciChartReact, ChartGroupLoader } from "scichart-react";
+
+import { useEffect, useState } from "react";
 
 const onInitAllCharts = (initResults: IInitResult[]) => {
     const verticalChartIds = [
@@ -57,10 +55,17 @@ const onInitAllCharts = (initResults: IInitResult[]) => {
 };
 
 export default function OilAndGasDashboardShowcase() {
-    const theme = useTheme();
-    const isXs = useMediaQuery(theme.breakpoints.down("md")); // Mobile view
+    const [isXs, setIsXs] = useState(
+        () => typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches
+    );
+    useEffect(() => {
+        const query = window.matchMedia("(max-width: 900px)");
+        const update = () => setIsXs(query.matches);
+        query.addEventListener("change", update);
+        return () => query.removeEventListener("change", update);
+    }, []);
     return (
-        <ChartGroupLoader className={commonClasses.ChartWrapper} style={{ display: "flex" }} onInit={onInitAllCharts}>
+        <ChartGroupLoader className="sc-chart-wrapper flex" onInit={onInitAllCharts}>
             {isXs ? null : (
                 <div className="sidebar-charts">
                     <div id="sidebar-charts-2d" className="sidebar-charts-2d">
@@ -116,9 +121,7 @@ export default function OilAndGasDashboardShowcase() {
                         <div
                             id="shale-chart-background"
                             className="chart-root"
-                            style={{
-                                background: appTheme.ShaleBackgroundColor,
-                            }}
+                            style={{ background: appTheme.ShaleBackgroundColor }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                                 <defs>

@@ -38,7 +38,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/intro",
+                href: "https://www.scichart.com/documentation/js/v6/intro",
                 title: "This specific page in the JavaScript Polar Signals Intelligence Dashboard documentation will help you to get started",
                 linkTitle: "JavaScript Polar Signals Intelligence Dashboard Documentation",
             },

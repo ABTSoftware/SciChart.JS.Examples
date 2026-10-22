@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import * as React from "react";
 
 type TProps = {
@@ -13,7 +13,7 @@ const Title: React.FC<TProps> = (props) => {
                 {props.title}
             </Typography>
             {props.subtitle && (
-                <div style={{ maxWidth: 800, marginBottom: 20 }}>
+                <div style={{ maxWidth: "50rem", marginBottom: "1.25rem" }}>
                     <Typography variant="body1" variantMapping={{ body1: "h3" }} style={{ color: "dimgray" }}>
                         {props.subtitle}
                     </Typography>

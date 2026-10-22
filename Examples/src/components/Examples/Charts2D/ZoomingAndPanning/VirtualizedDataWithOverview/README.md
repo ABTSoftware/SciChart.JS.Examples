@@ -10,7 +10,7 @@ This example demonstrates how to implement a dynamically updating chart with vir
 -   **React**: The example uses React with TypeScript (TSX) for rendering the charts.
 -   **RxJS**: Used to debounce visible range changes and control data update frequency.
 -   **TypeScript/JavaScript**: Both JS and TS source files are provided.
--   **CSS Modules**: Used for styling as observed via the imported `Examples.module.scss` file.
+-   **CSS**: Uses the shared `sc-ui.css` stylesheet without a Sass dependency.
 
 ## Code Explanation
 

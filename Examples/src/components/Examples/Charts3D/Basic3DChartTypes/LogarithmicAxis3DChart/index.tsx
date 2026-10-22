@@ -1,9 +1,7 @@
 import { useRef, useState } from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { LogarithmicAxis3D, NumericAxis3D } from "scichart";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, X_RANGE_LINEAR, X_RANGE_LOG, Y_RANGE_LINEAR, Y_RANGE_LOG } from "./drawExample";
 
 export default function LogarithmicAxis3DChart() {
@@ -11,20 +9,22 @@ export default function LogarithmicAxis3DChart() {
     const [xIsLog, setXIsLog] = useState(true);
     const [yIsLog, setYIsLog] = useState(true);
 
-    const toggleXAxis = () => {
-        if (!chartRef.current) return;
+    const setXAxisScale = (useLog: boolean) => {
+        if (!chartRef.current || useLog === xIsLog) return;
         const { sciChartSurface, wasmContext } = chartRef.current;
-        const useLog = !xIsLog;
         sciChartSurface.xAxis = useLog
-            ? new LogarithmicAxis3D(wasmContext, { axisTitle: "Frequency (Hz)", logBase: 10, visibleRange: X_RANGE_LOG })
+            ? new LogarithmicAxis3D(wasmContext, {
+                  axisTitle: "Frequency (Hz)",
+                  logBase: 10,
+                  visibleRange: X_RANGE_LOG,
+              })
             : new NumericAxis3D(wasmContext, { axisTitle: "Frequency (Hz)", visibleRange: X_RANGE_LINEAR });
         setXIsLog(useLog);
     };
 
-    const toggleYAxis = () => {
-        if (!chartRef.current) return;
+    const setYAxisScale = (useLog: boolean) => {
+        if (!chartRef.current || useLog === yIsLog) return;
         const { sciChartSurface, wasmContext } = chartRef.current;
-        const useLog = !yIsLog;
         sciChartSurface.yAxis = useLog
             ? new LogarithmicAxis3D(wasmContext, { axisTitle: "PSD (V²/Hz)", logBase: 10, visibleRange: Y_RANGE_LOG })
             : new NumericAxis3D(wasmContext, { axisTitle: "PSD (V²/Hz)", visibleRange: Y_RANGE_LINEAR });
@@ -32,25 +32,58 @@ export default function LogarithmicAxis3DChart() {
     };
 
     return (
-        <div className={commonClasses.ChartWrapper}>
+        <div className="sc-chart-wrapper">
+            <div className="sc-toolbar-row">
+                <div className="flex items-center gap-2">
+                    <strong>X axis:</strong>
+                    <div className="sc-button-group" role="group" aria-label="X axis scale">
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={xIsLog}
+                            onClick={() => setXAxisScale(true)}
+                        >
+                            Log
+                        </button>
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={!xIsLog}
+                            onClick={() => setXAxisScale(false)}
+                        >
+                            Linear
+                        </button>
+                    </div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <strong>Y axis:</strong>
+                    <div className="sc-button-group" role="group" aria-label="Y axis scale">
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={yIsLog}
+                            onClick={() => setYAxisScale(true)}
+                        >
+                            Log
+                        </button>
+                        <button
+                            type="button"
+                            className="sc-button"
+                            aria-pressed={!yIsLog}
+                            onClick={() => setYAxisScale(false)}
+                        >
+                            Linear
+                        </button>
+                    </div>
+                </div>
+            </div>
             <SciChartReact
                 initChart={drawExample}
                 onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                     chartRef.current = initResult;
                 }}
-                style={{ height: "100%", width: "100%" }}
+                className="w-full h-full"
             />
-            <ButtonGroup
-                size="small"
-                style={{ position: "absolute", top: 8, left: 8 }}
-            >
-                <Button variant={xIsLog ? "contained" : "outlined"} onClick={toggleXAxis}>
-                    X: {xIsLog ? "Log" : "Linear"}
-                </Button>
-                <Button variant={yIsLog ? "contained" : "outlined"} onClick={toggleYAxis}>
-                    Y: {yIsLog ? "Log" : "Linear"}
-                </Button>
-            </ButtonGroup>
         </div>
     );
 }

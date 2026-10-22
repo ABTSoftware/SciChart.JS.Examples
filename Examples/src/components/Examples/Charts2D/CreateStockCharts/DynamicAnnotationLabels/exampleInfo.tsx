@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata = {
     reactComponent: "DynamicAnnotationLabels",
     id: "chart2D_createStockCharts_DynamicAnnotationLabels",
-    imagePath: "javascript-user-annotated-stock-chart.jpg",
+    imagePath: "javascript-dynamic-annotation-labels.jpg",
     description:
         "Dynamic multipoint annotation labels on a financial chart, including channel and Fibonacci retracement labels.",
     tips: [],
@@ -38,7 +38,7 @@ const metaData: IExampleMetadata = {
     },
     documentationLinks: [
         {
-            href: "https://www.scichart.com/documentation/js/v5/2d-charts/annotations-api/annotations-overview/",
+            href: "https://www.scichart.com/documentation/js/v6/2d-charts/annotations-api/annotations-api-overview/",
             title: "SciChart.js annotation documentation",
             linkTitle: "Annotations API",
         },
@@ -47,7 +47,7 @@ const metaData: IExampleMetadata = {
     metaKeywords: "stock chart, multipoint annotation labels, dynamic labels, fibonacci, channel",
     onWebsite: true,
     filepath: "Charts2D/CreateStockCharts/DynamicAnnotationLabels",
-    thumbnailImage: "javascript-user-annotated-stock-chart.jpg",
+    thumbnailImage: "javascript-dynamic-annotation-labels.jpg",
     sandboxConfig: {},
     markdownContent: null,
     pageLayout: "default",

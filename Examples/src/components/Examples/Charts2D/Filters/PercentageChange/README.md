@@ -2,19 +2,19 @@
 
 ### Overview
 
-This example demonstrates how to display a chart that toggles between showing the original data and a percentage change view using SciChart.JS. The example includes implementations in both Vanilla JavaScript/TypeScript and React, where the React component integrates the chart using the SciChartReact component along with Material UI toggle buttons to switch between the two views.
+This example demonstrates how to display a chart that toggles between showing the original data and a percentage change view using SciChart.JS. The example includes implementations in both Vanilla JavaScript/TypeScript and React, where the React component integrates the chart using the SciChartReact component along with shared CSS controls toggle buttons to switch between the two views.
 
 ### Technologies Used
 
 -   SciChart.JS
 -   React
 -   TypeScript
--   Material UI (MUI)
+-   shared CSS controls (shared CSS controls)
 
 ### Code Explanation
 
 -   **drawExample.js / drawExample.ts**: These files initialize the SciChart surface by creating X and Y numeric axes and adding two line series populated with random walk data. A custom transformation is applied using XyScaleOffsetFilter along with a customized renderable series class (TransformedSeries) that provides additional series info for the percentage change view. Chart modifiers such as ZoomPanModifier, ZoomExtentsModifier, and RolloverModifier are added for interactivity, and text annotations are used to display instructions and a watermark indicating the current view mode.
--   **index.tsx**: This is the main React component for the example. It renders a Material UI ToggleButtonGroup that lets the user switch between 'Percentage Change' and 'Original Data'. Changing the toggle updates a state variable that is passed to the drawExample function, effectively re-initializing the chart with the selected mode. The component leverages the SciChartReact component for rendering the chart in a React environment.
+-   **index.tsx**: This is the main React component for the example. It renders a shared CSS controls button group that lets the user switch between 'Percentage Change' and 'Original Data'. Changing the toggle updates a state variable that is passed to the drawExample function, effectively re-initializing the chart with the selected mode. The component leverages the SciChartReact component for rendering the chart in a React environment.
 
 ### Customization
 

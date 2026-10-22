@@ -31,15 +31,15 @@ export const ExampleStrings = {
 
     // Documentation links and link tooltips
     //
-    urlDocumentationHome: `https://www.scichart.com/documentation/js/v5/intro/`,
+    urlDocumentationHome: `https://www.scichart.com/documentation/js/v6/intro/`,
     titleDocumentationHome: `The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts`,
-    urlTutorialsHome: `https://www.scichart.com/documentation/js/v5/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/`,
+    urlTutorialsHome: `https://www.scichart.com/documentation/js/v6/get-started/tutorials-js-npm-webpack/tutorial-01-setting-up-npm-project-with-scichart-js/`,
     titleTutorialsHome: `Start here with the SciChart.js Tutorials if you haven't already`,
     urlTutorials3DHome: `#`,
     titleTutorials3DHome: `Start here with the SciChart3D.js Tutorials if you haven't already`,
-    urlRenderSeriesPropertiesDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/renderable-series-api-overview/`,
+    urlRenderSeriesPropertiesDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/renderable-series-api-overview/`,
     urlTitleRenderSeriesProperties: `Learn about common RenderableSeries properties in SciChart.js`,
-    urlPerformanceTipsDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/performance-tips/performance-tips-and-tricks/`,
+    urlPerformanceTipsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/performance-tips/performance-tips-and-tricks/`,
     urlTitlePerformanceTipsDocumentation: `Go to the Performance Tips and Tricks page in the SciChart.js Documentation`,
     urlJavascriptChartFeatures: `https://www.scichart.com/javascript-chart-features/`,
 
@@ -49,28 +49,28 @@ export const ExampleStrings = {
     urlDataAnimation: `data-animation`,
     titleDataAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Data Animation`,
     urlTitleDataAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Data Animation`,
-    urlDataAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/dataset-animations/`,
+    urlDataAnimationDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/animations-api/dataset-animations/`,
     urlTitleDataAnimationDocumentation: `The specific page for the JavaScript Dataset Animation documentation will help you to get started`,
 
     // Style Animation
     urlStyleAnimation: `style-animation`,
     titleStyleAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Style Animation`,
     urlTitleStyleAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Chart Style Animation`,
-    urlStyleAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/style-transition-animations/`,
+    urlStyleAnimationDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/animations-api/style-transition-animations/`,
     urlTitleStyleAnimationDocumentation: `The specific page for the JavaScript Style Transition Animation documentation will help you to get started`,
 
     // OnStart Animation
     urlStartupAnimation: `startup-animation`,
     titleStartupAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Startup Animation`,
     urlTitleStartupAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Startup Animation`,
-    urlStartupAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/series-startup-animations/`,
+    urlStartupAnimationDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/animations-api/series-startup-animations/`,
     urlTitleStartupAnimationDocumentation: `The specific page for the JavaScript Startup Animation documentation will help you to get started`,
 
     // Generic Animations
     urlGenericAnimation: `generic-animation`,
     titleGenericAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Generic Animation`,
     urlTitleGenericAnimation: (frameworkName: TFrameworkName) => `${frameworkName} Generic Animation`,
-    urlGenericAnimationDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/animations-api/generic-animations/`,
+    urlGenericAnimationDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/animations-api/generic-animations/`,
     urlTitleGenericAnimationDocumentation: `The specific page for the JavaScript Generic Animation documentation will help you to get started`,
 
     // Scatter chart
@@ -79,7 +79,7 @@ export const ExampleStrings = {
     pageTitleScatterChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Scatter Chart | JavaScript Charts | SciChart.js`,
     urlTitleScatterChart: `The JavaScript Scatter Chart example demonstrates how to create a Scatter Chart with SciChart.js`,
-    urlScatterChartDocumentation: `https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/xy-scatter-renderable-series/`,
+    urlScatterChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/xy-scatter-renderable-series/`,
     urlTitleScatterChartDocumentation: `This specific page in the JavaScript Scatter Chart documentation will help you to get started`,
 
     // Band chart
@@ -88,7 +88,7 @@ export const ExampleStrings = {
     titleBandChart: (frameworkName: TFrameworkName) => `${frameworkName} Band Chart`,
     pageTitleBandChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Band Chart | JavaScript Charts | View Examples`,
-    urlBandChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Band%20Series%20type.html`,
+    urlBandChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-band-renderable-series/`,
     urlTitleBandChartDocumentation: `This specific page in the JavaScript Band Chart documentation will help you to get started`,
 
     // Spline band chart
@@ -96,7 +96,7 @@ export const ExampleStrings = {
     pageTitleSplineBandChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Spline Band Chart | JavaScript Charts | SciChart`,
     urlSplineBandChart: `spline-band-chart`,
-    urlSplineBandChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Band%20Series%20Type.html`,
+    urlSplineBandChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/spline-band-renderable-series/`,
     urlTitleSplineBandChartDocumentation: `This specific page in the JavaScript Spline Band Chart documentation will help you to get started`,
 
     // Digital Band chart
@@ -105,7 +105,7 @@ export const ExampleStrings = {
     titleDigitalBandChart: (frameworkName: TFrameworkName) => `${frameworkName} Digital Band Chart`,
     pageTitleDigitalBandChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Digital Band Chart | JavaScript Chart Library`,
-    urlDigitalBandChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#DigitalBandSeriesType.html`,
+    urlDigitalBandChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-band-digital-renderable-series/`,
     urlTitleDigitalBandChartDocumentation: `This specific page in the JavaScript Digital Band Chart documentation will help you to get started`,
 
     // Bubble Chart
@@ -113,7 +113,7 @@ export const ExampleStrings = {
     titleBubbleChart: (frameworkName: TFrameworkName) => `${frameworkName} Bubble Chart`,
     pageTitleBubbleChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Bubble Chart | Online JavaScript Chart Examples`,
-    urlBubbleChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Bubble%20Series%20Type.html`,
+    urlBubbleChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-bubble-renderable-series/`,
     urlTitleBubbleChartDocumentation: `This specific page in the JavaScript Bubble Chart documentation will help you to get started`,
     urlTitleBubbleChart: `The JavaScript Bubble Chart example demonstrates how to create a Bubble Chart with SciChart.js`,
 
@@ -122,7 +122,7 @@ export const ExampleStrings = {
     titleColumnChart: (frameworkName: TFrameworkName) => `${frameworkName} Column Chart`,
     pageTitleColumnChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Column Chart | JavaScript Charts | SciChart.js`,
-    urlColumnChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html`,
+    urlColumnChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-column-renderable-series/column-series-type/`,
     urlTitleColumnChartDocumentation: `This specific page in the JavaScript Column Chart documentation will help you to get started`,
     urlTitleColumnChart: `The JavaScript Column Chart example demonstrates how to create a Column Chart with SciChart.js`,
 
@@ -131,7 +131,7 @@ export const ExampleStrings = {
     titleErrorBarsChart: (frameworkName: TFrameworkName) => `${frameworkName} Error Bars Chart`,
     pageTitleErrorBarsChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Error Bars Chart |  Online Examples | SciChart.js`,
-    urlErrorBarsChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Error%20Bars%20Chart%20Type.html`,
+    urlErrorBarsChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-error-bars-renderable-series/`,
     urlTitleErrorBarsChartDocumentation: `This specific page in the JavaScript Error Bars Chart documentation will help you to get started`,
     urlTitleErrorBarsChart: `The JavaScript Error Bars Chart example demonstrates how to create a Error Bars Chart with SciChart.js`,
 
@@ -140,12 +140,12 @@ export const ExampleStrings = {
     titleImpulseChart: (frameworkName: TFrameworkName) => `${frameworkName} Impulse Chart`,
     pageTitleImpulseChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Impulse Chart | JavaScript Charts | View Online`,
-    urlImpulseChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Lollipop%20(Impulse%20or%20Stem)%20Chart%20Type.html`,
+    urlImpulseChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-impulse-renderable-series/`,
     urlTitleImpulseChartDocumentation: `This specific page in the JavaScript Impulse Chart documentation will help you to get started`,
     urlTitleImpulseChart: `The JavaScript Impulse Chart example demonstrates how to create a Impulse Chart with SciChart.js`,
 
     // Mountain Chart
-    urlMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Mountain%20(Area)%20Series%20Type.html`,
+    urlMountainChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-mountain-area-renderable-series/`,
     urlTitleMountainChartDocumentation: `This specific page in the JavaScript Mountain Chart documentation will help you to get started`,
     urlMountainChart: `mountain-chart`,
     titleMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Mountain Chart`,
@@ -160,7 +160,7 @@ export const ExampleStrings = {
         `${frameworkName} Realtime Mountain Chart | View Online At SciChart`,
 
     // Spline mountain chart
-    urlSplineMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Mountain%20Series%20Type.html`,
+    urlSplineMountainChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/spline-mountain-renderable-series/`,
     urlTitleSplineMountainChartDocumentation: `This specific page in the JavaScript Spline Mountain Chart documentation will help you to get started`,
     urlSplineMountainChart: `spline-mountain-chart`,
     titleSplineMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Spline Mountain Chart`,
@@ -168,7 +168,7 @@ export const ExampleStrings = {
         `${frameworkName} Spline Mountain Chart | JavaScript Chart Library`,
 
     // Digital Mountain Chart
-    urlDigitalMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Mountain%20Series%20Type.html`,
+    urlDigitalMountainChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-mountain-area-digital-renderable-series/`,
     urlTitleDigitalMountainChartDocumentation: `This specific page in the JavaScript Digital Mountain Chart documentation will help you to get started`,
     urlDigitalMountainChart: `digital-mountain-chart`,
     titleDigitalMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Digital Mountain Chart`,
@@ -184,7 +184,7 @@ export const ExampleStrings = {
     urlTitleCandlestickChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Candlestick Chart example demonstrates how to create a Candlestick Chart with SciChart.js`,
     urlTitleCandlestickChartDocumentation: `This specific page in the JavaScript Candlestick Chart documentation will help you to get started`,
-    urlCandlestickChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Candlestick%20Series%20type.html`,
+    urlCandlestickChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-candlestick-renderable-series/`,
 
     // Ohlc Chart
     urlOhlcChart: `ohlc-chart`,
@@ -193,7 +193,7 @@ export const ExampleStrings = {
     pageTitleOhlcChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} OHLC Chart | JavaScript Chart Examples | SciChart`,
     urlTitleOhlcChartDocumentation: `This specific page in the JavaScript OHLC Chart documentation will help you to get started`,
-    urlOhlcChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20OHLC%20Series%20Type.html`,
+    urlOhlcChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-ohlc-renderable-series/`,
 
     // Fan Chart
     urlFanChart: `fan-chart`,
@@ -201,7 +201,7 @@ export const ExampleStrings = {
     titleFanChart: (frameworkName: TFrameworkName) => `${frameworkName} Fan Chart`,
     pageTitleFanChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Fan Chart | JavaScript Chart Library | View Now`,
-    urlFanChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Fan%20Charts%20Type.html`,
+    urlFanChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fan-charts-type/`,
     urlTitleFanChartDocumentation: `The specific page for the JavaScript Fan Chart documentation will help you to get started`,
 
     // Line Chart
@@ -209,11 +209,11 @@ export const ExampleStrings = {
     titleLineChart: (frameworkName: TFrameworkName) => `${frameworkName} Line Chart`,
     pageTitleLineChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Line Chart | JavaScript Chart Examples | SciChart`,
-    urlLineChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Line%20Series%20Type.html`,
+    urlLineChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-line-renderable-series/`,
     urlTitleLineChartDocumentation: `The specific page for the JavaScript Line Chart documentation will help you to get started`,
 
     // Spline line series
-    urlSplineLineChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Spline%20(Smoothed)%20Line%20Series%20Type.html`,
+    urlSplineLineChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/spline-line-renderable-series/`,
     urlTitleSplineLineChartDocumentation: `The specific page for the JavaScript Spline Line Chart documentation will help you to get started`,
     titleSplineLineChart: (frameworkName: TFrameworkName) => `${frameworkName} Spline Line Chart`,
     pageTitleSplineLineChart: (frameworkName: TFrameworkName) =>
@@ -225,11 +225,11 @@ export const ExampleStrings = {
     titleDigitalLineChart: (frameworkName: TFrameworkName) => `${frameworkName} Digital Line Chart`,
     pageTitleDigitalLineChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Digital Line Chart | JavaScript Charts | View Now`,
-    urlDigitalLineChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Digital%20(Step)%20Line%20Series.html`,
+    urlDigitalLineChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-line-digital-renderable-series/`,
     urlTitleDigitalLineChartDocumentation: `The specific page for the JavaScript Digital Line Chart documentation will help you to get started`,
 
     // Pie Chart
-    urlPieChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Pie%20Chart%20Type.html`,
+    urlPieChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/pie-chart-type/`,
     urlTitlePieChartDocumentation: `The specific page for the JavaScript Pie Chart documentation will help you to get started`,
     urlPieChart: `pie-chart`,
     urlTitlePieChart: (frameworkName: TFrameworkName) =>
@@ -243,7 +243,7 @@ export const ExampleStrings = {
     titleDonutChart: (frameworkName: TFrameworkName) => `${frameworkName} Donut Chart`,
     pageTitleDonutChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Donut Chart | JavaScript Charts | SciChart.js`,
-    urlDonutChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Donut%20Chart%20Type.html`,
+    urlDonutChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/donut-chart-type/`,
     urlTitleDonutChartDocumentation: `The specific page for the JavaScript Donut Chart documentation will help you to get started`,
 
     // Stacked Column Chart
@@ -253,7 +253,7 @@ export const ExampleStrings = {
         `${frameworkName} Stacked Column Chart | Online JavaScript Charts`,
     urlTitleStackedColumnChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Stacked Column Chart example demonstrates how to create a Stacked Column Chart with SciChart.js`,
-    urlStackedColumnChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Column%20Series%20Type.html`,
+    urlStackedColumnChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/stacked-column-renderable-series/`,
     urlTitleStackedColumnChartDocumentation: `The specific page for the JavaScript Stacked Column Chart documentation will help you to get started`,
 
     // Stacked (Grouped) Column Chart
@@ -269,7 +269,7 @@ export const ExampleStrings = {
     titleStackedMountainChart: (frameworkName: TFrameworkName) => `${frameworkName} Stacked Mountain Chart`,
     pageTitleStackedMountainChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Stacked Mountain Chart | JavaScript Chart Library`,
-    urlStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
+    urlStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/stacked-mountain-renderable-series/`,
     urlTitleStackedMountainChartDocumentation: `The specific page for the JavaScript Stacked Mountain Chart documentation will help you to get started`,
 
     // Smooth Stacked Mountain Chart
@@ -279,7 +279,7 @@ export const ExampleStrings = {
         `${frameworkName} Smooth Stacked Mountain Chart`,
     pageTitleSmoothStackedMountainChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Smooth Stacked Mountain Chart | JavaScript Chart Library`,
-    urlSmoothStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Stacked%20Mountain%20Series%20Type.html`,
+    urlSmoothStackedMountainChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/smooth-stacked-mountain-renderable-series/`,
     urlTitleSmoothStackedMountainChartDocumentation: `The specific page for the JavaScript Smooth Stacked Mountain Chart documentation will help you to get started`,
 
     // Heatmap Chart
@@ -288,7 +288,7 @@ export const ExampleStrings = {
     titleHeatmapChart: (frameworkName: TFrameworkName) => `${frameworkName} Heatmap Chart`,
     pageTitleHeatmapChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Heatmap Chart | JavaScript Chart Library Examples`,
-    urlHeatmapChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The-Uniform-Heatmap-Chart-Type.html`,
+    urlHeatmapChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/uniform-heatmap-renderable-series/uniform-heatmap-chart-type/`,
     urlTitleHeatmapChartDocumentation: `The specific page for the JavaScript Heatmap Chart documentation will help you to get started`,
 
     // NonUniform Heatmap Chart
@@ -298,12 +298,12 @@ export const ExampleStrings = {
     titleNonUniformHeatmapChart: (frameworkName: TFrameworkName) => `${frameworkName} Non Uniform Heatmap Chart`,
     pageTitleNonUniformHeatmapChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Non Uniform Heatmap Chart | JavaScript Chart Library Examples`,
-    urlNonUniformHeatmapChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The-Non-Uniform-Heatmap-Chart-Type.html`,
+    urlNonUniformHeatmapChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/non-uniform-heatmap-renderable-series/`,
     urlTitleNonUniformHeatmapChartDocumentation: `The specific page for the JavaScript Non Uniform Heatmap Chart documentation will help you to get started`,
 
     // Contours chart
     urlTitleContourChartDocumentation: `The specific page for the JavaScript Contours Chart documentation will help you to get started`,
-    urlContourChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Contours%20Series%20Type.html`,
+    urlContourChartDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/uniform-contours-renderable-series/`,
     titleContourChart: (frameworkName: TFrameworkName) => `${frameworkName} Heatmap Chart With Contours`,
     pageTitleContourChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} Heatmap Chart With Contours Example | SciChart.js`,
@@ -312,13 +312,13 @@ export const ExampleStrings = {
     // Annotations are easy
     urlAnnotationsAreEasy: `chart-annotations`,
     titleAnnotationsAreEasy: (frameworkName: TFrameworkName) => `${frameworkName} Chart Annotations`,
-    urlAnnotationsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Annotations%20API%20Overview.html`,
+    urlAnnotationsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/annotations-api/annotations-api-overview/`,
     urlTitleAnnotationsDocumentation: `The specific page for the SciChart.js Annotations documentation will help you to get started`,
 
     // Editable annotations
     urlEditableAnnotations: `editable-annotations`,
     titleEditableAnnotations: (frameworkName: TFrameworkName) => `${frameworkName} Chart Editable Annotations`,
-    urlEditableAnnotationsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#EditableAnnotations.html`,
+    urlEditableAnnotationsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/annotations-api/editable-annotations/`,
     urlTitleEditableAnnotations: `The specific page for the SciChart.js Annotations documentation will help you to get started`,
 
     // Annotation Layers
@@ -348,7 +348,7 @@ export const ExampleStrings = {
     titlePointMarkers: (frameworkName: TFrameworkName) => `${frameworkName} Point-Markers Chart`,
     urlTitlePointMarkers: (frameworkName: TFrameworkName) =>
         `${frameworkName} Chart Point-Markers example shows how to create different types of point-marker on Bubble and Scatter Series`,
-    urlPointMarkersDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#DrawingPointMarkersOnSeries.html`,
+    urlPointMarkersDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/common-series-apis/drawing-point-markers/`,
     urlTitlePointMarkersDocumentation: `SciChart.js PointMarkers Documentation`,
 
     // Multi Pane Stock Charts
@@ -397,7 +397,7 @@ export const ExampleStrings = {
     // Chart Legends
     urlChartLegends: `chart-legends`,
     titleChartLegends: `Chart Legends API`,
-    urlLegendDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#LegendModifier.html`,
+    urlLegendDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/miscellaneous-modifiers/legend-modifier/`,
     urlTitleLegendDocumentation: `The specific page for the SciChart.js Legends documentation will help you to get started`,
 
     // Multiple XAxis
@@ -405,7 +405,7 @@ export const ExampleStrings = {
     titleMultipleXAxis: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Multiple X Axes`,
     urlTitleMultipleXAxis: (frameworkName: TFrameworkName) =>
         `The Multiple XAxes example shows how to add series with several X and Y axis to a ${frameworkName} Chart.`,
-    urlMultipleXAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Setting%20Axis%20Alignment.html`,
+    urlMultipleXAxisDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/secondary-and-multiple-axis-overview/`,
     urlTitleMultipleXAxisDocumentation: `SciChart.js Multiple XAxis Documentation`,
 
     // Secondary YAxis
@@ -417,13 +417,13 @@ export const ExampleStrings = {
     // Logarithmic Axis
     urlLogarithmicAxis: `chart-logarithmic-axis`,
     titleLogarithmicAxis: (frameworkName: TFrameworkName) => `${frameworkName} Chart with Logarithmic Axis Example`,
-    urlLogarithmicAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Logarithmic%20Axis.html`,
+    urlLogarithmicAxisDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/logarithmic-axis/`,
     urlTitleLogarithmicAxisDocumentation: `SciChart.js Logarithmic Axis Documentation`,
 
     // Vertical charts
     titleVerticalCharts: (frameworkName: TFrameworkName) => `${frameworkName} Vertical Charts`,
     urlVerticalCharts: `vertical-charts`,
-    urlVerticalChartsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Alignment%20-%20Create%20a%20Vertical%20Chart.html`,
+    urlVerticalChartsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/vertical-charts-rotate-transpose-axis/`,
     urlTitleVerticalChartsDocumentation: `The specific page for the SciChart.js API documentation for Vertical Charts will help you to get started`,
     urlTitleVerticalCharts: (frameworkName: TFrameworkName) =>
         `The Vertical Charts example shows how to use Axis Alignment to rotate a ${frameworkName} Chart.`,
@@ -433,7 +433,7 @@ export const ExampleStrings = {
     urlCentralAxes: `central-axes`,
     urlTitleCentralAxes: (frameworkName: TFrameworkName) =>
         `The Central Axes example shows how to use inner axes and layout strategies to customize layout of a ${frameworkName} Chart.`,
-    urlCentralAxesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#CentralAxisLayout.html`,
+    urlCentralAxesDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/central-axis-layout/`,
     urlTitleCentralAxesDocumentation: `SciChart.js Central Axis Documentation page`,
 
     // StaticAxis
@@ -441,7 +441,7 @@ export const ExampleStrings = {
     urlStaticAxis: `static-x-axis`,
     urlTitleStaticAxis: (frameworkName: TFrameworkName) =>
         `The Static XAxis example shows how to use isStaticAxis to create a static xAxis on a ${frameworkName} Chart.`,
-    urlStaticAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Static%20Axis.html`,
+    urlStaticAxisDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-tick-label-interval/fixed-label-intervals-static-axis-feature/`,
     urlTitleStaticAxisDocumentation: `SciChart.js Static xAxis Documentation page`,
 
     // Vertically Stacked axes
@@ -451,29 +451,29 @@ export const ExampleStrings = {
     urlTitleVerticallyStackedAxes: (frameworkName: TFrameworkName) =>
         `The Vertically Stacked Axes example shows how to use Axis Layout Strategies to customize axis placement on a ${frameworkName} Chart.`,
     imgVerticallyStackedAxes: `images/javascript-vertically-stacked-axes.png`,
-    urlVerticallyStackedAxesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Vertically%20Stacked%20Axis.html`,
+    urlVerticallyStackedAxesDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/vertically-stacked-axis-layout/`,
     urlTitleVerticallyStackedAxesDocumentation: `The specific page for the SciChart.js documentation for the Vertically Stacked Axes to help you to get started`,
 
     // Drag Axis to Scale
     titleDragAxisToScale: (frameworkName: TFrameworkName) => `Drag ${frameworkName} Chart Axis to Scale or Pan`,
     urlDragAxisToScale: `chart-drag-axis-to-scale-pan`,
-    urlDragAxisToScaleDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#YAxisDragModifier.html`,
+    urlDragAxisToScaleDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/zooming-and-panning/y-axis-drag-modifier/`,
     urlTitleDragAxisToScaleDocumentation: `SciChart.js Drag Axis to Scale Documentation page`,
 
     // Draw Behind Axes
     titleDrawBehindAxes: (frameworkName: TFrameworkName) => `Draw ${frameworkName} Chart Behind Axis`,
     urlDrawBehindAxes: `draw-behind-axes`,
     urlTitleDrawBehindAxes: `The DrawBehindAxes example shows how to use Draw series for all SciChartSurface area of a JavaScript Chart.`,
-    urlDrawBehindAxesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html`,
+    urlDrawBehindAxesDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/inner-axis-layout/`,
     urlTitleDrawBehindAxesDocumentation: `SciChart.js Draw Behind Axes Documentation page`,
 
     urlTitleInnerAxes: (frameworkName: TFrameworkName) => `${frameworkName} Inner Axes`,
-    urlInnerAxes: `https://www.scichart.com/documentation/js/current/webframe.html#webframe.html#Axis%20Layout%20-%20Inside%20and%20Central%20Axis.html`,
+    urlInnerAxes: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/multi-axis-and-layout/inner-axis-layout/`,
 
     // Axis Layout
     titleAxisLayout: (frameworkName: TFrameworkName) => `${frameworkName} Chart Axis Layout Options`,
     urlAxisLayout: `chart-axis-layout-options`,
-    urlAxisDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#StartHere-AxisOverview.html`,
+    urlAxisDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-api-overview/`,
     urlTitleAxisDocumentation: `SciChart.js Axis Documentation`,
 
     // Chart Title
@@ -488,7 +488,7 @@ export const ExampleStrings = {
     titleZoomPanWithMultipleChartModifiers: (frameworkName: TFrameworkName) =>
         `Zoom and Pan with ${frameworkName} Chart multiple Modifiers`,
     urlZoomPanWithMultipleChartModifiers: `zoom-pan-multiple-modifiers`,
-    urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ZoomPanModifier.html`,
+    urlZoomPanModifierDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/zooming-and-panning/zoom-pan-modifier/`,
     urlTitleZoomPanModifierDocumentation: `Zoom and Pan Modifier Documentation`,
 
     titleZoomHighPrecision: (frameworkName: TFrameworkName) => `Range vs Precision on a DateTimeNumericAxis`,
@@ -497,7 +497,7 @@ export const ExampleStrings = {
     // PaletteProvider
     titlePaletteProvider: `Coloring Series per-point using the PaletteProvider`,
     urlPaletteProvider: `chart-color-points-individually-with-paletteprovider`,
-    urlPaletteProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20PaletteProvider%20API.html`,
+    urlPaletteProviderDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/palette-provider-api/palette-provider-api-overview/`,
     urlTitlePaletteProviderDocumentation: `The PaletteProvider API documentation`,
 
     // MultiStyleSeries
@@ -512,24 +512,24 @@ export const ExampleStrings = {
     // Dashed line styling
     titleDashedLineStyling: `Dashed Line Styling`,
     urlDashedLineStyling: `dashed-line-chart`,
-    urlDashedLineStylingDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Series%20Styling%20-%20Dash%20Line%20Patterns.html`,
+    urlDashedLineStylingDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/styling-and-theming/dash-line-patterns/`,
     urlTitleDashedLineStylingDocumentation: `SciChart.js Dash Line Styling Documentation page`,
 
     // Styling in code
     urlStylingInCode: `chart-styling-theming-in-code`,
     titleStylingInCode: (frameworkName: TFrameworkName) => `Styling a ${frameworkName} Chart in Code`,
     urlTitleStylingInCode: `The Styling in Code example shows how to use style chart parts such as Axis, Gridlines, Background.`,
-    urlStylingInCodeDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Style%20Chart%20Parts%20in%20Code.html`,
+    urlStylingInCodeDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/styling-and-theming/style-chart-parts-in-code/`,
     urlTitleStylingInCodeDocumentation: `How to style chart parts in code documentation`,
 
-    urlAxisStylingDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Styling%20-%20Title,%20Labels,%20Gridlines%20and%20Axis%20Bands.html`,
+    urlAxisStylingDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-styling/title-labels-gridlines-axis-band-style/`,
     urlTitleAxisStylingDocumentation: `The specific page for the SciChart.js API documentation for Styling Axis and Gridlines will help you to get started`,
     imgStylingInCode: `images/javascript-chart-styling-theming-in-code.png`,
 
     // Transparent Background
     titleTransparentBackground: `Background Image with Transparency`,
     urlTransparentBackground: `chart-transparent-background`,
-    urlTransparentBackgroundDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Images%20in%20Background.html`,
+    urlTransparentBackgroundDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/styling-and-theming/image-transparent-blurred-backgrounds/`,
     urlTitleTransparentBackgroundDocumentation: `How to add a background image with transparency documentation`,
 
     // ThemeManager
@@ -537,44 +537,44 @@ export const ExampleStrings = {
     titleThemeManager: (frameworkName: TFrameworkName) => `Using Theme Manager in ${frameworkName} Chart`,
     urlTitleThemeManager: (frameworkName: TFrameworkName) =>
         `The Theme Manager example shows how to use switch theme from light to dark in SciChart.js`,
-    urlThemeManagerDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20ThemeManager%20API.html`,
+    urlThemeManagerDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/styling-and-theming/theme-manager-api/`,
     urlTitleThemeManagerDocumentation: `SciChart.js ThemeManager Documentation`,
     imgThemeManagerChart: `images/javascript-chart-themes.png`,
 
     // Create Custom Theme
     titleCustomTheme: (frameworkName: TFrameworkName) => `Create a Custom Theme for ${frameworkName} Chart`,
     urlCustomTheme: `chart-custom-themes`,
-    urlCustomThemeDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Chart%20Styling%20-%20Creating%20a%20Custom%20Theme.html`,
+    urlCustomThemeDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/styling-and-theming/creating-custom-theme/`,
     urlTitleCustomThemeDocumentation: `SciChart.js Custom Theme Documentation`,
 
     // Hit-Test API
     titleHitTestApi: (frameworkName: TFrameworkName) => `${frameworkName} Chart Hit-Test API`,
     urlHitTestApi: `chart-hit-test-on-click`,
-    urlHitTestDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Hit-Test%20API.html`,
+    urlHitTestDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/hit-test-api/hit-test-api-overview/`,
     urlTitleHitTestDocumentation: `SciChart.js Hit-Test API documentation`,
     imgHitTestApiChart: `images/javascript-chart-hit-test-on-click.png`,
 
     // DataPointSelection
     titleDataPointSelection: (frameworkName: TFrameworkName) => `${frameworkName} Chart Data Point Selection`,
     urlDataPointSelection: `datapoint-selection`,
-    urlDataPointSelectionDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#DataPointSelection.html`,
+    urlDataPointSelectionDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/selection/data-point-selection/`,
     urlTitleDataPointSelectionDocumentation: `SciChart.js DataPointSelectionModifier Documentation`,
     imgDataPointSelection: `images/javascript-datapoint-selection.png`,
 
     // RolloverModifier
-    urlRolloverModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#RolloverModifier.html`,
+    urlRolloverModifierDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/rollover-modifier/`,
     urlTitleRolloverModifierDocumentation: `SciChart.js RolloverModifier Documentation`,
     titleRolloverModifier: `Using Rollover Modifier Tooltips`,
     urlRolloverModifier: `chart-rollovermodifier-tooltips`,
 
     // VerticalSliceModifier
-    urlVerticalSliceModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#VerticalSliceModifier.html`,
+    urlVerticalSliceModifierDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/vertical-slice-modifier/vertical-slice-modifier-overview/`,
     urlTitleVerticalSliceModifierDocumentation: `SciChart.js VerticalSliceModifier Documentation`,
     titleVerticalSliceModifier: `Using VerticalSliceModifier`,
     urlVerticalSliceModifier: `chart-vertical-slice-modifier`,
 
     // SeriesSelection
-    urlSeriesSelectionDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#SeriesSelection.html`,
+    urlSeriesSelectionDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/selection/series-selection/`,
     urlTitleSeriesSelectionDocumentation: `SciChart.js Series Selection Documentation`,
     titleSeriesSelection: `Using Series Selection`,
     urlSeriesSelection: `chart-series-selection`,
@@ -583,12 +583,12 @@ export const ExampleStrings = {
     urlCursorModifier: `chart-cursormodifier-crosshairs`,
     titleCursorModifier: `Using CursorModifier Crosshairs`,
     urlTitleCursorModifierDocumentation: `The specific page for the SciChart.js API documentation for the CursorModifier to help you to get started`,
-    urlCursorModifierDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#CursorModifier.html`,
+    urlCursorModifierDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/`,
 
     // MetaData
     titleMetaData: (frameworkName: TFrameworkName) => `Datapoint Metadata Tooltips on ${frameworkName} Chart`,
     urlMetaData: `chart-metadata`,
-    urlMetaDataDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#DataSeries%20PointMetaData%20Api.html`,
+    urlMetaDataDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/point-metadata-api/point-metadata-api-overview/`,
     urlTitleMetaDataDocumentation: `The specific page for the SciChart.js documentation for the MetaData API to help you to get started`,
 
     // 3D Bubble Chart
@@ -596,11 +596,11 @@ export const ExampleStrings = {
     titleBubble3DChart: (frameworkName: TFrameworkName) => `${frameworkName} 3D Bubble Chart`,
     pageTitleBubble3DChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} 3D Bubble Chart | 3D JavaScript Charts | View Now`,
-    urlBubble3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Bubble%203D%20Chart%20Type.html`,
+    urlBubble3DChartDocumentation: `https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/bubble-3d-chart/`,
     urlTitleBubble3DChartDocumentation: `SciChart.js 3D Bubble Chart Documentation`,
 
     // 3D Surface Mesh
-    urlSurfaceMesh3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20SurfaceMesh%203D%20Chart%20Type.html`,
+    urlSurfaceMesh3DChartDocumentation: `https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/surface-mesh-3d/`,
     urlTitleSurfaceMesh3DChartDocumentation: `SciChart.js 3D Surface Mesh Documentation`,
     titleSurfaceMesh3D: (frameworkName: TFrameworkName) => `${frameworkName} Surface Mesh 3D Chart`,
     pageTitleSurfaceMesh3D: (frameworkName: TFrameworkName) =>
@@ -619,7 +619,7 @@ export const ExampleStrings = {
     pageTitlePointLine3DChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} 3D Point Line Chart | View 3D JavaScript Charts`,
     urlPointLine3DChart: `3d-point-line-chart`,
-    urlPointLine3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ThePointLine3DChartType.html`,
+    urlPointLine3DChartDocumentation: `https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/lines-3d-chart/`,
     urlTitlePointLine3DChartDocumentation: `SciChart.js 3D Point Line Chart Documentation`,
 
     // 3D Column Line
@@ -627,14 +627,14 @@ export const ExampleStrings = {
     pageTitleColumn3DChart: (frameworkName: TFrameworkName) =>
         `${frameworkName} 3D Column Chart | View 3D JavaScript Charts`,
     urlColumn3DChart: `3d-column-chart`,
-    urlColumn3DChartDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheColumn3DChartType.html`,
+    urlColumn3DChartDocumentation: `https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/column-3d-chart/`,
     urlTitleColumn3DChartDocumentation: `SciChart.js 3D Column Chart Documentation`,
 
     // Featured Apps Lidar Example
     urlLidarFeaturedApp: `3d-lidar-visualization`,
     urlTitleLidarFeaturedApp: `LiDAR 3D Point Cloud of Geospatial Data`,
     titleLidarFeaturedApp: `LiDAR 3D Point Cloud of Geospatial Data`,
-    urlLidar3DDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#The%20Scatter%203D%20Chart%20Type.html`,
+    urlLidar3DDocumentation: `https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/scatter-3d-chart/`,
     urlTitleLidar3DDocumentation: `SciChart.js 3D Chart Documentation`,
 
     // Featured Apps Load 500x500
@@ -691,9 +691,9 @@ export const ExampleStrings = {
     // BuilderApi, Chart From JSON
     urlChartFromJSON: `chart-from-json`,
     titleChartFromJSON: `Chart from JSON`,
-    urlBuilderApiDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Intro%20to%20the%20Builder%20API.html`,
+    urlBuilderApiDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/builder-api/builder-api-overview/`,
     urlTitleBuilderApiDocumentation: `This specific page in the JavaScript Builder API documentation will help you to get started`,
-    urlDefinitionDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#typedoc/interfaces/iscichart2ddefinition.html`,
+    urlDefinitionDocumentation: `https://www.scichart.com/documentation/js/v6/typedoc/interfaces/iscichart2ddefinition.html`,
     urlTitleDefinitionDocumentation: `Full details of the definition object`,
 
     // BuilderApi, Custom Types
@@ -705,62 +705,62 @@ export const ExampleStrings = {
     titleSharedData: (frameworkName: TFrameworkName) =>
         `${frameworkName} Chart with Reusable Templates using Shared Data`,
 
-    urlTextLabelProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TextStringAxis.html`,
+    urlTextLabelProviderDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/text-string-axis/`,
     urlTitleTextLabelProviderDocumentation: `This specific page in the JavaScript TextLabelProvider documentation will help you to get started`,
 
     // TODO add proper URLs
     // SubCharts API
-    urlSubchartApiDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#WhatIsTheSubChartsAPI.html`,
+    urlSubchartApiDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/subcharts-api/subcharts-api-overview/`,
     urlTitleSubCharstApiDocumentation: `This specifics page in the JavaScript SubCharts API documentation will help you to get started`,
 
     // Multi Line labels
     urlMultiLineLabels: `multiline-labels`,
     titleMultiLineLabels: `Multi-line and Rotated Text labels`,
 
-    urlAxisLabelFormattingDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Label%20Formatting%20-%20LabelProvider%20API.html`,
+    urlAxisLabelFormattingDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-labels/label-provider-api-overview/`,
     urlTitleAxisLabelFormattingDocumentation: `This specific page in the JavaScript Axis Label Formatting documentation will help you to get started`,
 
     // Image labels
     urlImageLabels: `image-labels`,
     titleImageLabels: `Image labels`,
-    urlImageLabelsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#ImageLabels.html`,
+    urlImageLabelsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-labels/image-labels/`,
     urlTitleImageLabelsDocumentation: `This specific page about JavaScript Chart Image Labels documentation will help you to get started`,
 
-    urlCustomLabelProviderDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Axis%20Label%20Formatting%20-%20Custom%20LabelProviders.html`,
+    urlCustomLabelProviderDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-labels/custom-label-providers-readable-numbers/`,
     urlTitleCustomLabelProviderDocumentation: `This specific page in the JavaScript Custom LabelProviders documentation will help you to get started`,
 
     // Rotated labels
     urlRotatedLabels: `rotated-labels`,
     titleRotatedLabels: `Rotated Labels and Alignment`,
-    urlRotatingLabelsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#RotatingAxisLabels.html`,
+    urlRotatingLabelsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-labels/rotating-axis-labels/`,
     urlTitleRotatingLabelsDocumentation: `The SciChart.js rotated labels documentation page`,
 
     // Filters, Percentage Change
     urlPercentageChange: `percentage-change`,
     titlePercentageChange: `Realtime Percentage Change using Filter`,
-    urlScaleOffsetDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Scale%20Offset%20Filters.html`,
+    urlScaleOffsetDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/data-filters-api/scale-offset-filters/`,
     urlTitleFiltersApiDocumentation: `This specific page in the JavaScript Filters API documentation will help you to get started`,
 
     // Filters, Trend, MA, Ratio
     urlTrendMARatio: `trend-ma-ratio`,
     titleTrendMARatio: `Trendline, Moving Average and Ratio Filters`,
-    urlFiltersDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#What%20is%20the%20Filters%20API.html`,
+    urlFiltersDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/data-filters-api/data-filters-api-overview/`,
 
     // Filters, Custom Filters
     urlCustomFilters: `custom-filters`,
     titleCustomFilters: `Custom Filters`,
-    urlCustomFiltersDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#Creating%20a%20Custom%20Filter.html`,
+    urlCustomFiltersDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/data-filters-api/custom-filter/`,
 
     // Overview
     urlOverview: `overview`,
     titleOverview: `Zoom and Pan with Overview Chart`,
-    urlOverviewDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#SciChartOverview.html`,
+    urlOverviewDocumentation: `https://www.scichart.com/documentation/js/v6/intro/`,
     urlTitleOverviewDocumentation: `This specific page in the JavaScript SciChartOverview Api documentation will help you to get started`,
 
     // SyncMultiChart
     urlSyncMultiChart: `sync-multi-chart`,
     titleSyncMultiChart: `Synchronise Multiple Charts`,
-    urlSyncDocs: `https://www.scichart.com/documentation/js/current/webframe.html#Tutorial%2009%20-%20Linking%20Multiple%20Charts.html`,
+    urlSyncDocs: `https://www.scichart.com/documentation/js/v6/get-started/tutorials-js-npm-webpack/tutorial-09-linking-multiple-charts/`,
 
     // Oil & Gas Demo
     titleOilAndGasExplorerDashboard: (frameworkName: TFrameworkName) => `Oil & Gas Explorer ${frameworkName} Dashboard`,
@@ -773,7 +773,7 @@ export const ExampleStrings = {
     // Datalabels
     urlDatalabels: `datalabels`,
     titleDatalabels: (frameworkName: TFrameworkName) => `Data Labels`,
-    urlDatalabelsDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#AddingDataLabels.html`,
+    urlDatalabelsDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/data-point-labels/data-labels-api-overview/`,
     urlTitleDatalabelsDocumentation: `SciChart.js DataLabels API Documentation`,
 
     urlVirtualizedData: `chart-with-virtualized-data`,
@@ -794,6 +794,6 @@ export const ExampleStrings = {
 
     urlTextChart: `text-chart`,
     titleTextChart: (frameworkName: TFrameworkName) => `${frameworkName} Text Chart`,
-    urlTextSeriesDocumentation: `https://www.scichart.com/documentation/js/current/webframe.html#TheTextSeriesType.html`,
+    urlTextSeriesDocumentation: `https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-text-renderable-series/`,
     urlTitleTextSeriesDocumentation: `The documentation page for the TextSeries in SciChart.js`,
 };

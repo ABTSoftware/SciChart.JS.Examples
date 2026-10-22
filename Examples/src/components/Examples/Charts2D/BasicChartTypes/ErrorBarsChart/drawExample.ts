@@ -8,7 +8,6 @@ import {
     ZoomExtentsModifier,
     MouseWheelZoomModifier,
     HlcDataSeries,
-    PinchZoomModifier,
     EllipsePointMarker,
     FastErrorBarsRenderableSeries,
     EErrorMode,

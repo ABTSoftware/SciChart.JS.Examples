@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
-import sdk, { Project, ProjectFiles, VM, ProjectTemplate } from "@stackblitz/sdk";
-import styles from "./CodeSandbox.module.scss";
+import sdk, { Project, VM } from "@stackblitz/sdk";
 import { SandboxPlatform } from "./SandboxPlatform";
 import { EditorFrame } from "./EditorFrame";
 import type { StackBlitzResponse } from "../../helpers/types/types";
@@ -43,7 +42,7 @@ export const StackblitzEditor: React.FC<StackblitzEditorProps> = ({ id, onBack, 
 
             // Embed the Stackblitz editor with more robust configuration
             sdk.embedProject(container, project, {
-                height: 500,
+                height: "100%",
                 clickToLoad: false,
                 openFile: Object.keys(projectFiles.files)[0], // Open first file by default
                 terminalHeight: 50,
@@ -81,9 +80,9 @@ export const StackblitzEditor: React.FC<StackblitzEditorProps> = ({ id, onBack, 
             iframeRef={iframeRef}
         >
             {error ? (
-                <div className={styles.error}>{error}</div>
+                <div>{error}</div>
             ) : (
-                <div id="stackblitz-container" className={styles.frame} ref={containerRef} />
+                <div id="stackblitz-container" className="sc-editor-frame-embed" ref={containerRef} />
             )}
         </EditorFrame>
     );

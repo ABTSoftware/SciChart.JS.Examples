@@ -6,7 +6,7 @@ import { SciChartSurface, MemoryUsageHelper } from "scichart";
 /**
  * SciChartMemoryDebugWrapper is used to help checking memory leaks related to SciChart.
  * Rendering the component enables Memory Debug Mode and adds extra UI elements to allow easily mount/unmount the child components
- * @remarks Find more info at [Memory Leak Debugging docs](https://www.scichart.com/documentation/js/current/MemoryLeakDebugging.html)
+ * @remarks Find more info at [Memory Leak Debugging docs](https://www.scichart.com/documentation/js/v6/2d-charts/performance-tips/memory-leak-debugging/)
  */
 export function SciChartMemoryDebugWrapper(props: PropsWithChildren<any>): JSX.Element {
     useState(() => {

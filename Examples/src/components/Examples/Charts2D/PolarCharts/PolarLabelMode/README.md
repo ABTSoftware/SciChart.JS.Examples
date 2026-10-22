@@ -83,4 +83,4 @@ To run this example from the SciChart.JS.Examples repository:
     npm run dev
     ```
 
-For framework-specific implementations (React/Angular), refer to the corresponding component files in the repository. Additional documentation can be found at [JavaScript Polar Label Modes Documentation](https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html).
+For framework-specific implementations (React/Angular), refer to the corresponding component files in the repository. Additional documentation can be found at [JavaScript Polar Label Modes Documentation](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-column-renderable-series/column-series-type/).

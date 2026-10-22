@@ -20,7 +20,7 @@ The example centers on the `drawExample` function which generates a SciChartSurf
 -   **Scatter Series**: Uses `XyScatterRenderableSeries` with tiny `EllipsePointMarker` (1x1 pixels) and a custom `GradientPaletteProvider`.
 -   **Axes**: Numeric X axis with engineering format, Y axis with 1% growBy padding.
 -   **Interactivity**: `ZoomExtentsModifier`, `MouseWheelZoomModifier` for basic navigation.
--   **Dynamic Modifiers**: Toggles between `CursorModifier` and `RolloverModifier` with `isSvgOnly` property controlling SVG vs Native rendering. See [CursorModifier Overview](https://www.scichart.com/documentation/js/v5/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/).
+-   **Dynamic Modifiers**: Toggles between `CursorModifier` and `RolloverModifier` with `isSvgOnly` property controlling SVG vs Native rendering. See [CursorModifier Overview](https://www.scichart.com/documentation/js/v6/2d-charts/chart-modifier-api/cursor-modifier/cursor-modifier-overview/).
 -   **State Management**: `rebuildActiveModifier()` function handles switching modes while preserving accent color styling.
 
 The metadata file defines example configuration including framework subtitles and documentation links.

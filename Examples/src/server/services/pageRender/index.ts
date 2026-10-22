@@ -7,7 +7,8 @@ import { renderPage } from "./reactSsr";
 const pageHtmlCache = new Map<string, string>();
 
 export function handleRender(url: string) {
-    const cachedPageHtml = pageHtmlCache.get(url);
+    const pathname = new URL(url, "http://localhost").pathname.replace(/\/+$/, "") || "/";
+    const cachedPageHtml = pageHtmlCache.get(pathname);
     if (cachedPageHtml) {
         return cachedPageHtml;
     } else {

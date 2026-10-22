@@ -4,29 +4,13 @@
         "sourceMap": false,
         "strict": false,
         "noImplicitAny": false,
-        "strictNullChecks": false,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": false,
-        "noImplicitThis": true,
         "alwaysStrict": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "module": "ESNext",
         "target": "ESNext",
-        "baseUrl": ".",
-        "moduleResolution": "bundler",
-        "downlevelIteration": true,
         "allowJs": false,
         "checkJs": false,
-        "typeRoots": ["./src/types", "./node_modules/@types"],
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "tsBuildInfoFile": "./.cache/vanilla.tsbuildinfo"
     },
     "include": ["src/**/vanilla.ts", "src/**/drawExample.ts", "src/**/*.d.ts"],
-    "exclude": ["node_modules", "src/static/*"]
+    "exclude": ["node_modules", "src/static/*"],
+    "extends": "./tsconfig.base.json"
 }

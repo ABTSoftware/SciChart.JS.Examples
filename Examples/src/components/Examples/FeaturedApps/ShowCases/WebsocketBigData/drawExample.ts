@@ -445,20 +445,20 @@ export const drawExample =
             messageUpdateCounter++;
             if (messageUpdateCounter >= 10) {
                 newMessages.push({
-                    title: `Avg Load Time `,
-                    detail: `${avgLoadTime.toFixed(2)} ms`,
+                    title: `Avg Load Time`,
+                    detail: `${avgLoadTime.toFixed(2)}ms`,
                 });
                 newMessages.push({
-                    title: `Avg Render Time `,
-                    detail: `${avgRenderTime.toFixed(2)} ms`,
+                    title: `Avg Render Time`,
+                    detail: `${avgRenderTime.toFixed(2)}ms`,
                 });
                 newMessages.push({
-                    title: `Max FPS `,
+                    title: `Max FPS`,
                     detail: `${Math.min(60, 1000 / (avgLoadTime + avgRenderTime)).toFixed(1)}`,
                 });
                 if (droppedPackets > 0) {
                     newMessages.push({
-                        title: `Dropped Packets `,
+                        title: `Dropped Packets`,
                         detail: `${droppedPackets}`,
                     });
                 }

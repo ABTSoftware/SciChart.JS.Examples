@@ -2,11 +2,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const config = require("./config/default");
-const autoprefixer = require("autoprefixer");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-const filename = (ext) => `[name].[hash].${ext}`;
 
 module.exports = {
     mode: "production",
@@ -20,27 +16,8 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.scss$/,
-                use: [
-                    { loader: MiniCssExtractPlugin.loader },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                localIdentName: "[hash:base64:5]",
-                            },
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    { loader: "sass-loader" },
-                ],
-                exclude: /node_modules/,
-            },
-            {
                 test: /\.tsx?$/,
-                use: "ts-loader",
+                use: { loader: "ts-loader", options: { configFile: "tsconfig.browser.json" } },
                 exclude: /node_modules/,
             },
             {
@@ -81,47 +58,10 @@ module.exports = {
     //     maxEntrypointSize: 2000000, // Sets the maximum entry point size to 2MB (in bytes)
     // },
     plugins: [
+        new webpack.DefinePlugin({ __SCICHART_LAZY_EXAMPLES__: false }),
         new CopyPlugin({
-            patterns: [
-                { from: "src/static/favicon.ico", to: "" },
-                { from: "src/static/webgl-intel.html", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Shale.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Density.csv", to: "" },
-                {
-                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Resistivity.csv",
-                    to: "",
-                },
-                {
-                    from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/PoreSpace.csv",
-                    to: "",
-                },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Sonic.csv", to: "" },
-                { from: "src/components/Examples/FeaturedApps/ShowCases/OilAndGasDashboard/Data/Texture.csv", to: "" },
-                {
-                    from: "src/components/Examples/Charts2D/PolarCharts/PolarUniformHeatmapUltrasound/heatmap_data.csv",
-                    to: "",
-                },
-                { from: "src/server/vanillaDemo/common.js", to: "" },
-                { from: "node_modules/scichart/_glue/scichart.browser.mjs", to: "" },
-                { from: "node_modules/scichart/_wasm/", to: "" },
-                { from: "sitemap.xml", to: "" },
-                { from: process.env.NOINDEX ? "robotsNoIndex.txt" : "robots.txt", to: "robots.txt" },
-                { from: "src/server/Data/geojson/australia.json", to: "" },
-                { from: "src/server/Data/geojson/africa.json", to: "" },
-                { from: "src/server/Data/geojson/australia.json", to: "" },
-                { from: "src/server/Data/geojson/africa.json", to: "" },
-                { from: "src/server/Data/geojson/world.json", to: "" },
-                { from: "src/server/Data/geojson/usaStates.json", to: "" },
-                { from: "src/server/Data/geoJsonConverted/australiaConverted.json", to: "" },
-                { from: "src/server/Data/geoJsonConverted/africaConverted.json", to: "" },
-                { from: "src/server/Data/geoJsonConverted/worldConverted.json", to: "" },
-                { from: "src/server/Data/geoJsonConverted/europeConverted.json", to: "" },
-                { from: "src/server/Data/orderBook/LTCUSDT_OHLC.csv", to: "" },
-                { from: "src/server/Data/orderBook/orderbook_levels.csv", to: "" },
-                { from: "src/server/Data/earthquakes/earthquakes-23k.csv", to: "" },
-            ],
+            patterns: require("./webpack.assets.cjs"),
         }),
-        // new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin({
             // these duplicate style.css extracted in server build
             filename: "stylesClientBundle.css",

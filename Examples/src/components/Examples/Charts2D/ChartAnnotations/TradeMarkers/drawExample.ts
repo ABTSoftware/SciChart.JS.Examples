@@ -1,22 +1,15 @@
 import {
     AnnotationHoverEventArgs,
     AnnotationHoverModifier,
-    AUTO_COLOR,
     CategoryAxis,
     CustomAnnotation,
-    EAnnotationType,
-    EAxisAlignment,
     ECoordinateMode,
     EHorizontalAnchorPoint,
-    ELineType,
     ENumericFormat,
     EVerticalAnchorPoint,
     FastCandlestickRenderableSeries,
-    FastLineRenderableSeries,
     FastMountainRenderableSeries,
     IAnnotation,
-    LegendModifier,
-    MouseWheelZoomModifier,
     NativeTextAnnotation,
     NumberRange,
     NumericAxis,
@@ -28,8 +21,6 @@ import {
     Thickness,
     TTargetsSelector,
     XyDataSeries,
-    ZoomExtentsModifier,
-    ZoomPanModifier,
 } from "scichart";
 import { fetchMultiPaneData } from "../../../ExampleData/ExampleDataProvider";
 import { appTheme } from "../../../theme";
@@ -107,7 +98,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     let balance = 100;
     let avgPrice = 0;
 
-    const positionDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Position" });
     const balanceDataSeries = new XyDataSeries(wasmContext, { dataSeriesName: "Balance" });
 
     // Trade at random!
@@ -136,19 +126,16 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             }
         }
         equity = position * closeValues[i];
-        positionDataSeries.append(i, position);
         balanceDataSeries.append(i, balance + equity);
 
-        // Every 25th bar, add a news bullet
+        // Every 20th bar, add a news bullet
         if (i % 20 === 0) {
             sciChartSurface.annotations.add(newsBulletAnnotation(i));
         }
     }
 
-    //const positionAxis = new NumericAxis(wasmContext, { id: "Position", axisAlignment: EAxisAlignment.Left });
     const balanceAxis = new NumericAxis(wasmContext, {
         id: "Balance",
-        //visibleRange: new NumberRange(90, 110),
         growBy: new NumberRange(0.1, 0.1),
         stackedAxisLength: "20%",
     });
@@ -169,12 +156,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.layoutManager.rightOuterAxesLayoutStrategy =
         new RightAlignedOuterVerticallyStackedAxisLayoutStrategy();
 
-    const positionSeries = new FastLineRenderableSeries(wasmContext, {
-        dataSeries: positionDataSeries,
-        stroke: AUTO_COLOR,
-        yAxisId: "Position",
-        lineType: ELineType.Digital,
-    });
     const balanceSeries = new FastMountainRenderableSeries(wasmContext, {
         dataSeries: balanceDataSeries,
         stroke: appTheme.VividPurple,

@@ -44,7 +44,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/3d-charts/chart-types/lines-3d-chart/",
+                href: "https://www.scichart.com/documentation/js/v6/3d-charts/chart-types/lines-3d-chart/",
                 title: "SciChart.js 3D Line Chart Documentation",
                 linkTitle: "JavaScript 3D Line Chart Documentation",
             },

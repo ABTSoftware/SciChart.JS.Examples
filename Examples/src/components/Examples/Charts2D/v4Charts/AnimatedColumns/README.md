@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to create an animated column chart visualizing ATP tennis rankings over time using SciChart.js. The implementation uses [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/v5/typedoc/classes/fastrectanglerenderableseries.html) with custom coloring by country and smooth animations between yearly data updates.
+This example demonstrates how to create an animated column chart visualizing ATP tennis rankings over time using SciChart.js. The implementation uses [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/fastrectanglerenderableseries.html) with custom coloring by country and smooth animations between yearly data updates.
 
 ## Technologies Used
 
@@ -13,12 +13,12 @@ This example demonstrates how to create an animated column chart visualizing ATP
 
 ## Code Explanation
 
-The example centers around the `drawExample` function which creates a [SciChartSurface](https://www.scichart.com/documentation/js/current/typedoc/classes/scichartsurface.html) with a flipped [NumericAxis](https://www.scichart.com/documentation/js/current/typedoc/classes/numericaxis.html) for rankings display. Key components include:
+The example centers around the `drawExample` function which creates a [SciChartSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartsurface.html) with a flipped [NumericAxis](https://www.scichart.com/documentation/js/v6/typedoc/classes/numericaxis.html) for rankings display. Key components include:
 
 1. **Data Structure**: Uses ATP rankings data with player metadata (rank, name, country)
 2. **Custom Palette Provider**: The `CountryPaletteProvider` class assigns colors based on player nationality
-3. **Animation System**: Implements smooth transitions between yearly data using [ColumnAnimation](https://www.scichart.com/documentation/js/current/typedoc/classes/columnanimation.html) with easing functions
-4. **Data Series Management**: Uses [XyxDataSeries](https://www.scichart.com/documentation/js/current/typedoc/classes/xydataseries.html) with start/end values for precise column positioning
+3. **Animation System**: Implements smooth transitions between yearly data using [ColumnAnimation](https://www.scichart.com/documentation/js/v6/typedoc/classes/columnanimation.html) with easing functions
+4. **Data Series Management**: Uses [XyxDataSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/xydataseries.html) with start/end values for precise column positioning
 5. **Dynamic Updates**: The `updateData` function handles transitions between years while preserving animation continuity
 
 ## Customization

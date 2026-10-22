@@ -3,7 +3,6 @@ import { Radix2FFT } from "./Radix2FFT";
 import { appTheme } from "../../../theme";
 import {
     XyDataSeries,
-    UniformHeatmapDataSeries,
     TextAnnotation,
     ECoordinateMode,
     EHorizontalAnchorPoint,
@@ -15,12 +14,9 @@ import {
     FastLineRenderableSeries,
     EColumnYMode,
     EColumnMode,
-    XyxyDataSeries,
     FastRectangleRenderableSeries,
-    IRenderableSeries,
     parseColorToUIntArgb,
     EFillPaletteMode,
-    IFillPaletteProvider,
     EDataPointWidthMode,
     XyyDataSeries,
     DefaultPaletteProvider,
@@ -29,17 +25,12 @@ import {
 const AUDIO_STREAM_BUFFER_SIZE = 2048;
 
 export const getChartsInitializationApi = () => {
-    let createGauge: (value: number, position: number, label: string) => void = function () {};
-
     const dataProvider = new AudioDataProvider();
 
     const bufferSize = dataProvider.bufferSize;
-    const sampleRate = dataProvider.sampleRate;
 
     const fft = new Radix2FFT(bufferSize);
 
-    const hzPerDataPoint = sampleRate / bufferSize;
-    const fftSize = fft.fftSize;
     const fftCount = 200;
 
     let audioDS: XyDataSeries;
@@ -60,7 +51,7 @@ export const getChartsInitializationApi = () => {
         textColor: "#FFFFFF88",
     });
 
-    function updateAnalysers(frame: number): void {
+    function updateAnalysers(): void {
         // Make sure Audio is initialized
         if (dataProvider.initialized === false) {
             return;
@@ -78,41 +69,8 @@ export const getChartsInitializationApi = () => {
         // Perform FFT
         const fftData = fft.run(audioData.yData);
 
-        // Update FFT Chart. Clear() and appendRange() is a fast replace for data (if same size)
-        // fftDS.clear();
-        // fftDS.appendRange(fftXValues, fftData);
-
-        function calculateAverages(array: number[]) {
-            // Check if array has exactly 1024 elements
-            if (array.length !== 1024) {
-                throw new Error("Array must have exactly 1024 elements");
-            }
-
-            const result = [];
-            const groupSize = 128;
-
-            // Process each group of 128 elements
-            for (let i = 0; i < array.length; i += groupSize) {
-                const group = array.slice(i, i + groupSize);
-                const sum = group.reduce((acc: any, val: any) => acc + val, 0);
-                const average = sum / groupSize;
-                result.push(average);
-            }
-
-            return result;
-        }
-
-        // function findMinMax(array: number[]) {
-        //     if (array.length === 0) {
-        //         throw new Error("Array cannot be empty");
-        //     }
-
-        //     return JSON.stringify([Math.min(...array), Math.max(...array)]);
-        // }
-
-        // const averages = calculateAverages(fftData);
-
-        let calculateValues = [
+        // Average nearby FFT bins into ten frequency bands, from bass to treble.
+        const bandLevels = [
             (fftData[1] + fftData[2] + fftData[3]) / 3,
             (fftData[4] + fftData[5] + fftData[6]) / 3,
             (fftData[10] + fftData[11] + fftData[12]) / 3,
@@ -125,9 +83,9 @@ export const getChartsInitializationApi = () => {
             (fftData[1019] + fftData[1020] + fftData[1021] + fftData[1022] + fftData[1023]) / 5,
         ];
 
-        let frequencies = ["62Hz", "125Hz", "250Hz", "500Hz", "1Khz", "2Khz", "4Khz", "8Khz", "16Khz", "22Khz"];
+        const frequencies = ["62Hz", "125Hz", "250Hz", "500Hz", "1Khz", "2Khz", "4Khz", "8Khz", "16Khz", "22Khz"];
 
-        calculateValues
+        bandLevels
             .map((d) => d / 2 - 10)
             .forEach((d, i) => {
                 updateFunctions[i](d, frequencies[i]);
@@ -223,7 +181,7 @@ export const getChartsInitializationApi = () => {
 
     // FFT CHART
     const initFftChart = async (rootElement: string | HTMLDivElement) => {
-        const GRADIENT_COLOROS = [
+        const GRADIENT_COLORS = [
             "#1C5727",
             "#277B09",
             "#2C8A26",
@@ -315,7 +273,7 @@ export const getChartsInitializationApi = () => {
                 dataPointWidthMode: EDataPointWidthMode.Range,
                 stroke: appTheme.DarkIndigo, // Thick stroke same color as background gives gaps between rectangles
                 strokeThickness: 4,
-                paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLOROS),
+                paletteProvider: new RectangleFillPaletteProvider(GRADIENT_COLORS),
                 fill: appTheme.ForegroundColor + "00",
             });
 
@@ -370,10 +328,9 @@ export const getChartsInitializationApi = () => {
 
             // START ANIMATION
 
-            let frameCounter = 0;
             const updateChart = () => {
                 if (!dataProvider.isDeleted) {
-                    updateAnalysers(frameCounter++);
+                    updateAnalysers();
                 }
             };
 

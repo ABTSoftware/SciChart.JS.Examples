@@ -19,7 +19,7 @@ import {
     ESegmentLabelRotationMode,
     PolyLineAnnotation,
     IPolyLineAnnotationOptions,
-    IMultiPointLabelStyleFormatParams
+    IMultiPointLabelStyleFormatParams,
 } from "scichart-financial-tools";
 import {
     addDefaultFinancialModifiers,
@@ -339,6 +339,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     return {
         sciChartSurface,
+        isPlacing: () => placementModifier.isPlacing,
 
         startPlacement: (pointCount = 5) => {
             const safePointCount = normalizePlacementPointCount(pointCount);

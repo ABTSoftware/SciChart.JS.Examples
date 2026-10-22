@@ -8,7 +8,6 @@ import {
     NumberRange,
     SciChartSurface,
     XyDataSeries,
-    getLegendItemHtml,
 } from "scichart";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 

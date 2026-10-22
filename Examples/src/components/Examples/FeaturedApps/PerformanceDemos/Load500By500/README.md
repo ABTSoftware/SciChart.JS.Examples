@@ -7,21 +7,21 @@ This example demonstrates how to efficiently load and render 500 data series wit
 ## Technologies Used
 
 -   **SciChart.JS** for high-performance charting
--   **Angular** with standalone components and Angular Material UI
--   **React** with Material UI components and SciChartReact integration
+-   **Angular** with standalone components and shared CSS controls
+-   **React** with shared CSS controls and SciChartReact integration
 -   **TypeScript** and **JavaScript** for implementation
 
 ## Code Explanation
 
 -   **Angular Implementation (angular.ts):**
 
-    -   Defines a standalone Angular component that imports various Angular Material modules and the `ScichartAngularComponent`.
+    -   Defines a standalone Angular component with native HTML controls styled by the shared CSS classes.
     -   Uses the `drawExample` function to initialize the SciChartSurface and sets up event handlers for chart initialization and deletion.
     -   Provides a toolbar with a reload button and displays performance results for data generation, appending, and rendering.
 
 -   **React Implementation (index.tsx):**
 
-    -   Uses the `SciChartReact` component from SciChart.JS along with Material UI components to build the UI.
+    -   Uses the `SciChartReact` component from SciChart.JS along with shared CSS controls to build the UI.
     -   Implements controls for starting, pausing, and reloading the performance test.
     -   Updates performance results in an alert notification based on time measurements captured during data load and render events.
 

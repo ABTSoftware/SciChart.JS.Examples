@@ -9,7 +9,6 @@ import {
     FastLineRenderableSeries,
     INumericAxisOptions,
     ENumericFormat,
-    EAutoRange,
     ESubSurfacePositionCoordinateMode,
     SciChartSubSurface,
     Rect,
@@ -48,13 +47,10 @@ const axisOptions: INumericAxisOptions = {
     labelPrecision: 1,
 };
 
-// theme overrides
-const sciChartTheme = appTheme.SciChartJsTheme;
-
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Use createSingle here to get the performance benefit of subcharts
     const { wasmContext, sciChartSurface: mainSurface } = await SciChartSurface.createSingle(rootElement, {
-        theme: sciChartTheme,
+        theme: appTheme.SciChartJsTheme,
         title: "Hold Ctrl to Zoom / Pan the whole grid rather than an individual chart",
         titleStyle: { fontSize: 14, position: ETitlePosition.Bottom },
     });
@@ -64,13 +60,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const rowsNumber = 4;
 
     const pointsOnChart = 5000;
-
-    const subchartBorderColor = appTheme.VividSkyBlue;
-    const scatterColor = appTheme.VividSkyBlue;
-    const lineUp = appTheme.VividGreen;
-    const lineDown = appTheme.VividRed;
-    const lineHorizontal = appTheme.ForegroundColor;
-    const annotationColor = appTheme.ForegroundColor;
 
     const annotationFontSize = 14;
 
@@ -158,14 +147,14 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // sub-surface configuration
         const subChartOptions: I2DSubSurfaceOptions = {
             id: `subChart-${subChartIndex}`,
-            theme: sciChartTheme,
+            theme: appTheme.SciChartJsTheme,
             position,
             parentXAxisId: mainXAxis.id,
             parentYAxisId: mainYAxis.id,
             coordinateMode: subChartPositioningCoordinateMode,
             padding: Thickness.fromNumber(0),
             viewportBorder: {
-                color: subchartBorderColor + "30",
+                color: appTheme.VividSkyBlue + "30",
                 border: 1,
             },
         };
@@ -239,7 +228,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 xValues: [linePoints.x1, linePoints.x2],
                 yValues: [linePoints.y1, linePoints.y2],
             }),
-            stroke: correlationCoefficient > 0.1 ? lineUp : correlationCoefficient < -0.1 ? lineDown : lineHorizontal,
+            stroke: correlationCoefficient > 0.1 ? appTheme.VividGreen : correlationCoefficient < -0.1 ? appTheme.VividRed : appTheme.ForegroundColor,
             strokeThickness: 3,
             opacity: 0.8,
             animation: new FadeAnimation({ duration: 600, fadeEffect: true }),
@@ -251,7 +240,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 width: 2,
                 height: 2,
                 strokeThickness: 0,
-                fill: scatterColor,
+                fill: appTheme.VividSkyBlue,
             }),
             opacity: 1,
         });
@@ -263,7 +252,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             yCoordinateMode: ECoordinateMode.Relative,
             horizontalAnchorPoint: EHorizontalAnchorPoint.Left,
             verticalAnchorPoint: EVerticalAnchorPoint.Center,
-            textColor: annotationColor,
+            textColor: appTheme.ForegroundColor,
             fontSize: annotationFontSize,
             fontFamily: "Default",
             text: `i = ${subChartIndex}, r = ${correlationCoefficient.toFixed(2)}`,

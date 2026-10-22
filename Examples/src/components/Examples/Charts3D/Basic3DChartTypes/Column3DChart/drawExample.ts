@@ -6,7 +6,6 @@ import {
     MouseWheelZoomModifier3D,
     OrbitModifier3D,
     NumericAxis3D,
-    HeatmapLegend,
     TSciChart3D,
     XyzDataSeries3D,
     parseColorToTArgb,

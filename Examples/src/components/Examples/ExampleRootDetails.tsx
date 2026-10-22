@@ -4,19 +4,17 @@ import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
-import commonClasses from "./styles/Examples.module.scss";
 import { GalleryItem } from "../../helpers/types/types";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 type TProps = {
-    // example: () => JSX.Element;
     examplePage: TExamplePage;
     seeAlso: GalleryItem[];
 };
 
 const ExamplesRootDetails: FC<TProps> = (props) => {
-    const { examplePage, seeAlso } = props;
+    const { examplePage } = props;
     const { state } = _useContext();
     const framework = state.framework;
     const ExampleComponent = getExampleComponent(examplePage.id);
@@ -25,21 +23,18 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
     const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
 
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
-    const subtitleText = (examplePage ? examplePage.subtitle(framework) : "") as string;
     const seoKeywords = examplePage
         ? examplePage.metaKeywords
         : "chart, data, javascript, webassembly, scichart, react";
-    const basePath = "https://www.scichart.com/demo";
     const exampleImage = examplePage ? examplePage.thumbnailImage : undefined;
     const exampleUrl = examplePage ? examplePage.path : "";
 
     useEffect(() => {
         updateGoogleTagManagerPage();
         window.scrollTo(0, 0);
-        // window.Prism?.highlightAll();
     }, []);
     return (
-        <div className={commonClasses.ExamplesRoot}>
+        <div className="sc-app-example-root">
             <SeoTags
                 title={seoTitleText}
                 keywords={seoKeywords}
@@ -48,7 +43,7 @@ const ExamplesRootDetails: FC<TProps> = (props) => {
                 url={exampleUrl}
                 framework={framework}
             />
-            <div className={`${commonClasses.Example} AnExampleContainer`} style={{ height: "100%" }}>
+            <div className="sc-app-example">
                 <ExampleComponent />
             </div>
         </div>

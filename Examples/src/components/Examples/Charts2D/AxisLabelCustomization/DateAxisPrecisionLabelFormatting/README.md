@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to customize specific label formats on a High Precision Date Axis using external libraries like date-fns. It shows advanced customization of DateTimeNumericAxis for nanosecond precision while integrating standard date formatting libraries. [DateTimeNumericAxis Docs](https://www.scichart.com/documentation/js/current/DateTimeNumericAxis.html)
+This example demonstrates how to customize specific label formats on a High Precision Date Axis using external libraries like date-fns. It shows advanced customization of DateTimeNumericAxis for nanosecond precision while integrating standard date formatting libraries. [DateTimeNumericAxis Docs](https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/date-time-numeric-axis/)
 
 ## Technologies Used
 
@@ -10,11 +10,11 @@ This example demonstrates how to customize specific label formats on a High Prec
 -   React – For React integration with SciChartReact wrapper
 -   date-fns – For custom date formatting in wide and precise labels
 -   TypeScript – Used throughout the implementation
--   Material-UI – For React toggle switch control
+-   shared CSS controls – For React toggle switch control
 
 ## Code Explanation
 
-The core logic resides in the `drawExample` function which initializes a SciChartSurface with a DateTimeNumericAxis configured for nanosecond precision via `EDatePrecision.Nanoseconds` and `dateOffset`. It generates synthetic signal data across four clusters (damped ringing, frequency chirp, amplitude modulation, heartbeat) using nanosecond timestamps relative to a 2025 start date, rendered as a FastLineRenderableSeries with point markers. A SmartDateLabelProvider is customized by overriding `formatDateWide` and `formatDatePrecise` methods: wide labels use date-fns for contextual formatting (e.g., "MMM dd, yyyy HH:mm:ss"), while precise labels handle sub-second precision manually by calculating ticks within seconds for ns/µs/ms suffixes. The React component adds a toggle switch to swap between custom date-fns and SciChart defaults, invalidating the surface for live updates, with standard zoom modifiers and a NativeTextAnnotation for guidance. [SmartDateLabelProvider Docs](https://www.scichart.com/documentation/js/current/typedoc/classes/smartdatelabelprovider.html)
+The core logic resides in the `drawExample` function which initializes a SciChartSurface with a DateTimeNumericAxis configured for nanosecond precision via `EDatePrecision.Nanoseconds` and `dateOffset`. It generates synthetic signal data across four clusters (damped ringing, frequency chirp, amplitude modulation, heartbeat) using nanosecond timestamps relative to a 2025 start date, rendered as a FastLineRenderableSeries with point markers. A SmartDateLabelProvider is customized by overriding `formatDateWide` and `formatDatePrecise` methods: wide labels use date-fns for contextual formatting (e.g., "MMM dd, yyyy HH:mm:ss"), while precise labels handle sub-second precision manually by calculating ticks within seconds for ns/µs/ms suffixes. The React component adds a toggle switch to swap between custom date-fns and SciChart defaults, invalidating the surface for live updates, with standard zoom modifiers and a NativeTextAnnotation for guidance. [SmartDateLabelProvider Docs](https://www.scichart.com/documentation/js/v6/typedoc/classes/smartdatelabelprovider.html)
 
 ## Customization
 

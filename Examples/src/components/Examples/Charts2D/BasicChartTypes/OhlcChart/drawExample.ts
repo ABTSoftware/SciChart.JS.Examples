@@ -1,6 +1,5 @@
 import { closeValues, dateValues as xValues, highValues, lowValues, openValues } from "./data";
 import {
-    CategoryAxis,
     ENumericFormat,
     FastOhlcRenderableSeries,
     MouseWheelZoomModifier,

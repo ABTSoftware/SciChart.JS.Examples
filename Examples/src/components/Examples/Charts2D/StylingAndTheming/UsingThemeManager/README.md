@@ -10,14 +10,14 @@ This example demonstrates how to create SciChart.JS charts with different visual
 -   React (with SciChart.React for chart integration)
 -   TypeScript
 -   Vanilla JavaScript
--   tss-react/mui (for React styling)
+-   plain CSS classes (for React styling)
 
 ## Code Explanation
 
 -   **data.ts**: Provides static arrays of numerical data (dates, open, high, low, close values) used for charting.
 -   **drawExample.js / drawExample.ts**: Contains the core chart initialization API. The functions in these files create SciChart surfaces with a specified theme, add numeric X and Y axes, add a text annotation to display the theme title, and render three animated line series using Fourier series data. A custom theme is defined by extending the Light theme with modified properties (such as axisBandsFill, axisBorder, grid brushes, stroke and fill palettes).
 -   **index.html**: Defines a simple HTML layout with a 2x2 grid of div elements that act as host containers for the charts in the Vanilla JavaScript implementation.
--   **index.tsx**: Implements the React component that renders the four charts using the `SciChartReact` component. It uses custom styling (via tss-react/mui) to layout the charts in a responsive 2x2 grid and loads the chart initialization API from the drawExample module.
+-   **index.tsx**: Implements the React component that renders the four charts using the `SciChartReact` component. It uses custom styling (via plain CSS classes) to layout the charts in a responsive 2x2 grid and loads the chart initialization API from the drawExample module.
 -   **vanilla.js / vanilla.ts**: Provide a Vanilla JavaScript and a TypeScript example for initializing and rendering the four themed charts in the specified div elements. These scripts call the same API functions from the drawExample module and include cleanup functionality to delete the charts when needed.
 
 ## Customization

@@ -1,5 +1,4 @@
 import { FC, useState, useRef, useCallback, ReactNode } from "react";
-import styles from "./CodeSandbox.module.scss";
 import { DisplayMode } from "./DisplayMode";
 import { SandboxPlatform } from "./SandboxPlatform";
 import { useEditDetection } from "./hooks/useEditDetection";
@@ -35,8 +34,8 @@ export const EditorFrame: FC<EditorFrameProps> = ({
         setDisplayMode(mode);
     };
 
-    const containerClassName = `${styles.container} ${
-        displayMode === DisplayMode.BrowserFill ? styles.browserFill : ""
+    const containerClassName = `sc-editor-frame-container ${
+        displayMode === DisplayMode.BrowserFill ? "sc-editor-frame-browser-fill" : ""
     }`;
 
     const handleBack = useCallback(() => {
@@ -67,7 +66,7 @@ export const EditorFrame: FC<EditorFrameProps> = ({
                 onDisplayModeChange={handleDisplayModeChange}
                 onClose={handleBack}
             />
-            <div className={styles.frameContainer}>
+            <div className="sc-editor-frame-body">
                 {isLoading && <Loader />}
                 {children}
             </div>
