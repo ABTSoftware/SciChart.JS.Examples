@@ -15,12 +15,11 @@ import { _useContext } from "../../helpers/shared/Helpers/Context";
 type TProps = {
     onExpandClick: (id: string) => void;
     testIsOpened: (id: string) => boolean;
-    toggleDrawer: () => void;
     mostVisibleCategory?: string;
 };
 
 const Navigation: FC<TProps> = (props) => {
-    const { onExpandClick, testIsOpened, toggleDrawer, mostVisibleCategory } = props;
+    const { onExpandClick, testIsOpened, mostVisibleCategory } = props;
     const navigate = useNavigate();
     const location = useLocation();
     const { state } = _useContext();
@@ -28,12 +27,10 @@ const Navigation: FC<TProps> = (props) => {
     const historyPushPath = (path: string) => {
         if (!path) return;
         navigate(path);
-        toggleDrawer();
     };
 
     const historyPushHomepage = () => {
         navigate(`/${framework}`);
-        toggleDrawer();
     };
 
     return (

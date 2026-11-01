@@ -30,12 +30,14 @@
     --sc-primary: var(--sc-text);
     --sc-error: #ee6e6c;
     --sc-outline: color-mix(in srgb, var(--sc-text) 18%, var(--sc-background));
+    --sc-toolbar-outline: color-mix(in srgb, #fafafa 18%, var(--sc-background));
     --sc-muted: color-mix(in srgb, var(--sc-text) 8%, transparent);
     --sc-theme-bg: radial-gradient(circle, #22365B 0%, #17243d 100%);
     color-scheme: dark;
 
     @media (prefers-color-scheme: light) {
         &:not([data-theme]) {
+            --sc-toolbar-outline: color-mix(in srgb, #fafafa 18%, #0b162a);
             --sc-text: var(--text, #18181b);
             --sc-background: var(--bg, #fff);
             --sc-theme-bg: #F9F9F9FF;
@@ -55,6 +57,7 @@
 }
 
 [data-theme="light"] {
+    --sc-toolbar-outline: color-mix(in srgb, #fafafa 18%, #0b162a);
     --sc-text: #050a30;
     --sc-background: var(--bg, #fff);
     --sc-theme-bg: #F9F9F9FF;
@@ -162,7 +165,7 @@
     gap: 0.5rem;
     overflow-x: auto;
     padding: 0.5rem;
-    border-bottom: 1px solid var(--sc-outline);
+    border-bottom: 1px solid var(--sc-toolbar-outline);
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
     text-align: left;

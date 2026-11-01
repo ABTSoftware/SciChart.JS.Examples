@@ -68,5 +68,13 @@ module.exports = {
             ]),
     },
     plugins: [new webpack.DefinePlugin({ __SCICHART_LAZY_EXAMPLES__: true }), new ReactRefreshPlugin()],
-    devServer: { allowedHosts: "all", historyApiFallback: true, hot: true },
+    devServer: {
+        allowedHosts: "all",
+        historyApiFallback: true,
+        hot: true,
+        headers: {
+            "Cross-Origin-Opener-Policy": "same-origin",
+            "Cross-Origin-Embedder-Policy": "credentialless",
+        },
+    },
 };

@@ -512,7 +512,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                         </a>
                                     </li>
 
-                                    {isLoggedIn ? (
+                                    {/* {isLoggedIn ? (
                                         <li className="sc-app-nav-menu-item sc-app-nav-button-icon sc-app-nav-login">
                                             <a href="#!">Account</a>
                                             <ul className="sc-app-nav-sub-menu">
@@ -544,7 +544,7 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                                                 </li>
                                             </ul>
                                         </li>
-                                    )}
+                                    )} */}
                                 </ul>
                             </div>
                         </div>

@@ -44,5 +44,30 @@ function compress(input: string) {
 }
 
 export function getParameters(parameters: { files: IFiles; template?: ITemplate }) {
+    // Node templates create retired Container Sandboxes; exports must use browser bundlers.
+    if (parameters.template === "node") {
+        const template = parameters.files["angular.json"] ? "angular-cli" : "parcel";
+        const config = JSON.parse(parameters.files["sandbox.config.json"]?.content ?? "{}");
+        parameters = {
+            ...parameters,
+            template,
+            files: {
+                ...parameters.files,
+                ...(template === "angular-cli"
+                    ? {
+                          "index.html": parameters.files["src/index.html"],
+                          "src/main.ts": {
+                              ...parameters.files["src/main.ts"],
+                              content: `import "@angular/compiler";\nimport "./styles.css";\n${parameters.files["src/main.ts"].content}`,
+                          },
+                      }
+                    : {}),
+                "sandbox.config.json": {
+                    content: JSON.stringify({ ...config, template }),
+                    isBinary: false,
+                },
+            },
+        };
+    }
     return compress(JSON.stringify(parameters));
 }

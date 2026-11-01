@@ -1,4 +1,6 @@
 import { FC, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import DownloadIcon from "@mui/icons-material/Download";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
@@ -284,13 +286,10 @@ export const CodePreview: FC<CodeEditorProps> = ({
     const { state } = _useContext();
     const [draftFiles, setDraftFiles] = useState(files);
     const [isEditing, setIsEditing] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
     const [showExplorer, setShowExplorer] = useState(true);
     const [showDialog, setShowDialog] = useState(false);
-    const [status, setStatus] = useState("");
     const editorRef = useRef<HTMLElement>(null);
     const gutterRef = useRef<HTMLPreElement>(null);
-    const fullscreenButtonRef = useRef<HTMLButtonElement>(null);
     const readButtonRef = useRef<HTMLButtonElement>(null);
     const activeFile = draftFiles.find((file) => file.name === selectedFile?.name) ?? getDefaultSourceFile(draftFiles);
     const modifiedNames = useMemo(
@@ -310,7 +309,6 @@ export const CodePreview: FC<CodeEditorProps> = ({
     useEffect(() => {
         setDraftFiles(files);
         setIsEditing(false);
-        setStatus("");
     }, [files, examplePath]);
 
     useEffect(() => {
@@ -320,16 +318,6 @@ export const CodePreview: FC<CodeEditorProps> = ({
     useEffect(() => {
         if (gutterRef.current) gutterRef.current.style.transform = "";
     }, [activeFile?.name, isEditing]);
-
-    useEffect(() => {
-        if (!isFullscreen) return undefined;
-        const previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = "hidden";
-        editorRef.current?.focus();
-        return () => {
-            document.body.style.overflow = previousOverflow;
-        };
-    }, [isFullscreen]);
 
     const updateFiles = (next: ExampleSourceFile[]) => {
         setDraftFiles(next);
@@ -366,10 +354,6 @@ export const CodePreview: FC<CodeEditorProps> = ({
             requestAnimationFrame(() => textarea.setSelectionRange(start + 4, start + 4));
         }
     };
-    const closeFullscreen = () => {
-        setIsFullscreen(false);
-        fullscreenButtonRef.current?.focus();
-    };
     const handleWorkspaceKeys = (event: KeyboardEvent<HTMLElement>) => {
         if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "a") {
             const textarea = editorRef.current?.querySelector("textarea");
@@ -392,26 +376,6 @@ export const CodePreview: FC<CodeEditorProps> = ({
             }
             return;
         }
-        if (!isFullscreen) return;
-        if (event.key === "Escape") {
-            event.preventDefault();
-            closeFullscreen();
-        }
-        if (event.key === "Tab") {
-            const focusable = Array.from(
-                editorRef.current?.querySelectorAll<HTMLElement>('button:not(:disabled), textarea, [tabindex="0"]') ??
-                    []
-            );
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (event.shiftKey && (document.activeElement === first || document.activeElement === editorRef.current)) {
-                event.preventDefault();
-                last?.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first?.focus();
-            }
-        }
     };
     const download = (blob: Blob, name: string) => {
         const url = URL.createObjectURL(blob);
@@ -420,18 +384,13 @@ export const CodePreview: FC<CodeEditorProps> = ({
         link.download = name;
         link.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
-        setStatus(`Downloaded ${name}`);
     };
     const downloadProject = () => {
-        try {
-            const zip = createProjectZip(draftFiles);
-            download(
-                new Blob([zip.buffer as ArrayBuffer], { type: "application/zip" }),
-                `${examplePath}-${actualFramework || desiredFramework}.zip`
-            );
-        } catch (error) {
-            setStatus(error instanceof Error ? error.message : "Unable to download the project.");
-        }
+        const zip = createProjectZip(draftFiles);
+        download(
+            new Blob([zip.buffer as ArrayBuffer], { type: "application/zip" }),
+            `${examplePath}-${actualFramework || desiredFramework}.zip`
+        );
     };
 
     if (!activeFile) return <p role="status">Loading example source…</p>;
@@ -439,42 +398,11 @@ export const CodePreview: FC<CodeEditorProps> = ({
     return (
         <section
             ref={editorRef}
-            className={`sc-editor-code ${isFullscreen ? "sc-editor-code-fullscreen" : ""}`}
-            role={isFullscreen ? "dialog" : undefined}
-            aria-modal={isFullscreen ? true : undefined}
+            className="sc-editor-code"
             aria-label={`${frameworkName} example source editor`}
             tabIndex={-1}
             onKeyDown={handleWorkspaceKeys}
         >
-            <header className="sc-editor-project-header">
-                <div className="sc-editor-project-title">
-                    <strong>Source</strong>
-                    <span>{frameworkName} project</span>
-                </div>
-                <div className="sc-editor-project-actions">
-                    <button type="button" onClick={downloadProject}>
-                        Download project
-                    </button>
-                    <button
-                        type="button"
-                        disabled={!modifiedNames.size}
-                        onClick={() => {
-                            updateFiles(files);
-                            setStatus("Project edits reset");
-                        }}
-                    >
-                        Reset edits
-                    </button>
-                    <button
-                        ref={fullscreenButtonRef}
-                        type="button"
-                        aria-pressed={isFullscreen}
-                        onClick={() => (isFullscreen ? closeFullscreen() : setIsFullscreen(true))}
-                    >
-                        {isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-                    </button>
-                </div>
-            </header>
             <div className="sc-editor-workspace">
                 {showExplorer && (
                     <FileExplorer
@@ -493,7 +421,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             aria-pressed={showExplorer}
                             onClick={() => setShowExplorer(!showExplorer)}
                         >
-                            ☰
+                            <span className="sc-editor-menu-icon" aria-hidden="true" />
                         </button>
                         <div className="sc-editor-active-file">
                             <FileIcon name={activeFile.name} />
@@ -517,6 +445,25 @@ export const CodePreview: FC<CodeEditorProps> = ({
                                 Edit
                             </button>
                         </div>
+                        <div className="sc-editor-project-actions">
+                            <button
+                                type="button"
+                                aria-label="Reset edits"
+                                title="Reset edits"
+                                disabled={!modifiedNames.size}
+                                onClick={() => updateFiles(files)}
+                            >
+                                <RestartAltIcon fontSize="small" />
+                            </button>
+                            <button
+                                type="button"
+                                aria-label="Download project"
+                                title="Download project"
+                                onClick={downloadProject}
+                            >
+                                <DownloadIcon fontSize="small" />
+                            </button>
+                        </div>
                     </div>
                     {isEditing ? (
                         <div className="sc-editor-edit-surface">
@@ -526,7 +473,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             <textarea
                                 key={activeFile.name}
                                 aria-label={`Edit ${activeFile.name}`}
-                                aria-describedby="example-editor-edit-help"
+                                aria-description="Tab indents · Shift+Tab unindents · Escape exits editing"
                                 value={activeFile.content}
                                 spellCheck={false}
                                 autoCapitalize="off"
@@ -579,20 +526,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             </SyntaxHighlighter>
                         </div>
                     )}
-                    <footer className="sc-editor-status-bar">
-                        <span id="example-editor-edit-help">
-                            {isEditing
-                                ? "Tab indents · Shift+Tab unindents · Escape exits editing"
-                                : modifiedNames.size
-                                ? `${modifiedNames.size} modified · local edits`
-                                : "Read source · select Edit to make changes"}
-                        </span>
-                        <span>{lineCount} lines · UTF-8</span>
-                    </footer>
                 </div>
-            </div>
-            <div className="sc-editor-status-message" role="status" aria-live="polite">
-                {status || "Download the complete project to run your changes."}
             </div>
             <Dialog
                 isOpen={showDialog}

@@ -68,11 +68,11 @@ const DrawerContent: FC<TProps> = (props) => {
 
     return (
         <div className="sc-app-drawer-content">
-            <div className="sc-app-drawer-top">
+            {/* <div className="sc-app-drawer-top">
                 <IconButton
                     onClick={toggleDrawer}
                     className="sc-app-drawer-close-button"
-                    aria-label="close-drawer-button"
+                    aria-label="Close navigation"
                 >
                     <CloseIcon />
                 </IconButton>
@@ -90,13 +90,12 @@ const DrawerContent: FC<TProps> = (props) => {
                         </Link>
                     ))}
                 </div>
-            </div>
+            </div> */}
             {(isMedium || true) && <Divider sx={{ borderColor: "var(--border-color)" }} />}
             {(isMedium || true) && <Search />}
             <Navigation
                 testIsOpened={testIsOpened}
                 onExpandClick={toggleOpenedMenuItem}
-                toggleDrawer={toggleDrawer}
                 mostVisibleCategory={props?.mostVisibleCategory}
             />
         </div>

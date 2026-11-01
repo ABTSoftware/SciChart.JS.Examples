@@ -50,7 +50,7 @@
 :root[data-theme="light"] {
     --text: #080808;
     --bg: #fff;
-    --bg-darker: #f9f9f9;
+    --bg-darker: #f3f3f3;
     --bg-chart: #f9f9f9ff;
     --border-color: #b4d0db;
     --primary: #050a30;

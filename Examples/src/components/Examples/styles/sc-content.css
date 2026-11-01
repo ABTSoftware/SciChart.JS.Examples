@@ -75,6 +75,12 @@
 .sc-content-subtitle li {
     color: var(--text);
 }
+.sc-content-subtitle > :first-child {
+    margin-top: 0;
+}
+.sc-content-subtitle > :last-child {
+    margin-bottom: 0;
+}
 .sc-content-subtitle a {
     color: var(--light-blue);
 }

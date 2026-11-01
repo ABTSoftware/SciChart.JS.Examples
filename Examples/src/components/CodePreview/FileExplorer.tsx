@@ -3,13 +3,8 @@ import type { ExampleSourceFile } from "../../helpers/types/types";
 import { buildFileTree, type FileTreeNode } from "./projectFiles";
 
 export const FileIcon = ({ name }: { name: string }) => {
-    const extension = name.split(".").pop();
-    const label = extension === "json" ? "{}" : extension === "html" ? "<>" : extension === "css" ? "#" : extension;
-    return (
-        <span className="sc-editor-file-icon" data-kind={extension} aria-hidden="true">
-            {label?.slice(0, 3)}
-        </span>
-    );
+    const extension = name.split(".").pop()?.toLowerCase();
+    return <span className="sc-editor-file-icon" data-kind={extension} aria-hidden="true" />;
 };
 
 type Props = {
@@ -23,7 +18,10 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
     const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
     const [focusedPath, setFocusedPath] = useState(selectedName);
     const treeRef = useRef<HTMLUListElement>(null);
-    const tree = useMemo(() => buildFileTree(files), [files]);
+    const tree = useMemo(
+        () => buildFileTree(files).filter((node) => node.path !== ".codesandbox" && node.path !== "sandbox.config.json"),
+        [files]
+    );
     const visible: { node: FileTreeNode; level: number }[] = [];
     const visit = (nodes: FileTreeNode[], level: number) =>
         nodes.forEach((node) => {
@@ -89,10 +87,8 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
 
     return (
         <nav className="sc-editor-explorer" aria-label="Project files">
-            <div className="sc-editor-explorer-title">
-                Explorer <span>{files.length} files</span>
-            </div>
             <ul ref={treeRef} role="tree" aria-label="Example project" onKeyDown={handleKeyDown}>
+                <p className="p-2">Explorer</p>
                 {visible.map(({ node, level }) => (
                     <li key={node.path} role="none">
                         <button
@@ -104,15 +100,13 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
                             aria-label={node.name + (modifiedNames.has(node.path) ? ", modified" : "")}
                             tabIndex={focusedPath === node.path ? 0 : -1}
                             data-path={node.path}
-                            style={{ paddingLeft: `${0.625 + (level - 1) * 0.875}rem` }}
+                            style={{ paddingLeft: `${0.75 + (level - 1) * 0.5}rem` }}
                             title={node.path}
                             onFocus={() => setFocusedPath(node.path)}
                             onClick={() => (node.children ? toggleFolder(node.path) : onSelect(node.path))}
                         >
                             {node.children ? (
-                                <span className="sc-editor-folder-icon" aria-hidden="true">
-                                    {collapsed.has(node.path) ? "▸" : "▾"}
-                                </span>
+                                <span className="sc-editor-folder-icon" aria-hidden="true" />
                             ) : (
                                 <FileIcon name={node.name} />
                             )}

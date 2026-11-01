@@ -135,7 +135,10 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                                         ? "sc-app-menu-selected-bottom-level-list-item"
                                                         : "sc-app-menu-bottom-level-list-item"
                                                 }`}
-                                                onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    historyPushPath(`${selectedFramework}/${subEl.path}`);
+                                                }}
                                                 data-category-id={subEl.id}
                                             >
                                                 <a

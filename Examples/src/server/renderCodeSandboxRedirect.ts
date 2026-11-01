@@ -21,7 +21,6 @@ const renderCodeSandBoxRedirectPage = (config: SandboxConfig, framework: EPageFr
         <input type="hidden" name="parameters" value="${parameters}" />
         <input type="hidden" name="query" value="file=src/drawExample.ts" />
         <input type="hidden" name="embed" value="1" />
-        <input type="hidden" name="environment" value="server" />
     </form>`;
 
     return `
@@ -264,8 +263,6 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
                 const formData = new URLSearchParams();
 
                 formData.append("parameters", parameters);
-
-                formData.append("environment", "server");
 
                 formData.append("embed", "1");
                 formData.append("query", "file=src/drawExample.ts");

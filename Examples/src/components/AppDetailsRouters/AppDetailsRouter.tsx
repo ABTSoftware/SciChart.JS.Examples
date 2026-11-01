@@ -1,5 +1,5 @@
 import { baseAppPath } from "../../constants";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
 import { TExamplePage } from "../AppRouter/examplePages";
@@ -7,6 +7,7 @@ import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRo
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import DrawerContent from "../DrawerContent/DrawerContent";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
+import { useMeasure } from "../Examples/containerSizeHooks";
 import GalleryItems from "../GalleryItems";
 import MarkdownContent from "./MarkdownContent";
 import { CodeSandbox } from "../CodeSandbox";
@@ -19,6 +20,8 @@ import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 type TProps = {
     currentExample: TExamplePage;
@@ -35,7 +38,13 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         getDefaultSourceFile(initialSourceFilesVariant.files)
     );
     const [pageLayout, setPageLayout] = useState<EPageLayout>(EPageLayout.Default);
-    const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
+    const contentRef = useRef<HTMLDivElement>(null);
+    const contentBounds = useMeasure(contentRef);
+    const [isNarrowViewport, setIsNarrowViewport] = useState(false);
+    const [isExampleNavigationOpen, setIsExampleNavigationOpen] = useState(true);
+    const isSideBySidePossible = (contentBounds?.width ?? 0) >= (isExampleNavigationOpen ? 1500 : 1200);
+    const exampleNavigationRef = useRef<HTMLDivElement>(null);
+    const navigationToggleRef = useRef<HTMLButtonElement>(null);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
@@ -66,7 +75,6 @@ const AppDetailsRouter: FC<TProps> = (props) => {
     const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
-        setIsSideBySidePossible(window.innerWidth > 1900);
         setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
         window.scrollTo({
             top: 0,
@@ -101,8 +109,10 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsSideBySidePossible(window.innerWidth > 1900);
+            const width = window.innerWidth;
+            setIsNarrowViewport(width < 960);
         };
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
@@ -126,6 +136,18 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
+    const toggleExampleNavigation = () =>
+        setIsExampleNavigationOpen((isOpen) => {
+            const nextIsOpen = !isOpen;
+            requestAnimationFrame(() => {
+                if (nextIsOpen && isNarrowViewport) {
+                    exampleNavigationRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+                } else if (!nextIsOpen) {
+                    navigationToggleRef.current?.focus();
+                }
+            });
+            return nextIsOpen;
+        });
 
     const handleBack = () => {
         setEmbedCode(false);
@@ -192,52 +214,73 @@ const AppDetailsRouter: FC<TProps> = (props) => {
 
     return (
         <div>
-            <div className="sc-app-details-layout">
-                <div className="sc-app-details-drawer">
+            <div className={`sc-app-details-layout ${isExampleNavigationOpen ? "sc-app-details-nav-open" : ""}`}>
+                <div
+                    id="EXAMPLE_NAVIGATION"
+                    className="sc-app-details-drawer"
+                    ref={exampleNavigationRef}
+                    aria-hidden={!isExampleNavigationOpen}
+                    inert={!isExampleNavigationOpen}
+                >
                     <DrawerContent
                         testIsOpened={testIsOpened}
                         toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={() => {}}
+                        toggleDrawer={toggleExampleNavigation}
                         currentExample={currentExample}
                     />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.9375rem", width: "100%" }}>
-                    <div id="EXAMPLE_CONTENT_WRAPPER" className="sc-app-details-content">
-                        <div style={{ display: "flex" }}>
-                            <ExampleBreadcrumbs />
+                {isExampleNavigationOpen && (
+                    <button
+                        className="sc-app-details-nav-backdrop"
+                        type="button"
+                        onClick={toggleExampleNavigation}
+                        aria-label="Close example navigation"
+                    />
+                )}
+                <div
+                    style={{ display: "flex", flex: 1, flexDirection: "column", gap: "0.9375rem", minWidth: 0 }}
+                    inert={isNarrowViewport && isExampleNavigationOpen}
+                >
+                    <div id="EXAMPLE_CONTENT_WRAPPER" className="sc-app-details-content" ref={contentRef}>
+                        <div className="sc-app-details-header">
+                            <div className="sc-app-details-breadcrumb-row">
+                                <button
+                                    className="sc-app-details-nav-toggle"
+                                    ref={navigationToggleRef}
+                                    type="button"
+                                    onClick={toggleExampleNavigation}
+                                    aria-controls="EXAMPLE_NAVIGATION"
+                                    aria-expanded={isExampleNavigationOpen}
+                                    aria-label={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                    title={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                >
+                                    {isExampleNavigationOpen ? <MenuOpenIcon /> : <MenuIcon />}
+                                </button>
+                                <ExampleBreadcrumbs />
 
-                            <LayoutButtons />
+                                {isSideBySidePossible && <LayoutButtons />}
+                            </div>
+
+                            <div style={{ display: "flex", justifyContent: isMaxWidth ? "center" : "flex-start" }}>
+                                <h1
+                                    id="EXAMPLE_TITLE"
+                                    style={{
+                                        margin: 0,
+                                        marginInline: isMaxWidth ? "auto" : 0,
+                                        width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
+                                    }}
+                                >
+                                    {pageTitle}
+                                </h1>
+                            </div>
+
+                            {/* Subtitle // this returns a <p> already */}
+                            <ExamplesSubtitle
+                                content={currentExample.subtitle(selectedFramework)}
+                                isMaxWidth={isMaxWidth}
+                                alsoKnownAs={currentExample?.alsoKnownAs}
+                            />
                         </div>
-
-                        <div style={{ display: "flex", justifyContent: "center" }}>
-                            <h1
-                                id="EXAMPLE_TITLE"
-                                style={{
-                                    margin: isMaxWidth ? "-0.625rem 0" : 0,
-                                    marginInline: isMaxWidth ? "auto" : 0,
-                                    width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
-                                }}
-                            >
-                                {pageTitle}
-                            </h1>
-
-                            {/* Github, stackblitz buttons visible on maxwidth layout */}
-                            {!isMaxWidth ? (
-                                <CodeActionButtons
-                                    className={`sc-editor-actions sc-editor-actions-wide`}
-                                    {...{ currentExample, selectedFramework, selectedFile }}
-                                    onSandboxOpen={handleSandboxOpen}
-                                    style={{ marginLeft: "auto" }}
-                                />
-                            ) : null}
-                        </div>
-
-                        {/* Subtitle // this returns a <p> already */}
-                        <ExamplesSubtitle
-                            content={currentExample.subtitle(selectedFramework)}
-                            isMaxWidth={isMaxWidth}
-                            alsoKnownAs={currentExample?.alsoKnownAs}
-                        />
 
                         {/* Main example section */}
                         {embedCode ? (
@@ -250,7 +293,7 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                                 <CodeActionButtons
                                     {...{ currentExample, selectedFramework, selectedFile }}
                                     onSandboxOpen={handleSandboxOpen}
-                                    className={`sc-editor-actions ${isMaxWidth ? "" : "sc-editor-actions-narrow"}`}
+                                    className="sc-editor-actions"
                                     style={{ minHeight: "2.1875rem", height: "2.1875rem", padding: 0, width: "100%" }}
                                 />
                                 <CodePreview

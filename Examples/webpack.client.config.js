@@ -12,7 +12,12 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [{ loader: MiniCssExtractPlugin.loader }, "css-loader", "postcss-loader"],
+                // Keep asset URLs relative to the extracted CSS under /demo/.
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    { loader: "css-loader", options: { esModule: false } },
+                    "postcss-loader",
+                ],
                 exclude: /node_modules/,
             },
             {

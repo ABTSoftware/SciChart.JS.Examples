@@ -25,25 +25,19 @@ export const StackblitzEditor: React.FC<StackblitzEditorProps> = ({ id, onBack, 
             setError(null);
             setIsLoading(true);
 
-            // Merge dependencies and devDependencies
-            const allDependencies = {
-                ...projectFiles.dependencies,
-                ...projectFiles.devDependencies,
-            };
-
             // Create project configuration from the provided files
             const project: Project = {
                 files: projectFiles.files,
                 title: projectFiles.title,
                 description: projectFiles.description,
                 template: projectFiles.template,
-                dependencies: allDependencies,
             };
 
             // Embed the Stackblitz editor with more robust configuration
             sdk.embedProject(container, project, {
                 height: "100%",
                 clickToLoad: false,
+                crossOriginIsolated: true,
                 openFile: Object.keys(projectFiles.files)[0], // Open first file by default
                 terminalHeight: 50,
                 hideDevTools: false,

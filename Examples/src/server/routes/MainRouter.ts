@@ -14,6 +14,14 @@ const targetDir = defaultConfig.buildConfig.targetDir;
 
 export const mainRouter = Router({ mergeParams: true });
 
+mainRouter.use((req, res, next) => {
+    res.set({
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "credentialless",
+    });
+    next();
+});
+
 mainRouter.use(makeStaticRouter(targetDir, { etag: true, maxAge: 0 }));
 mainRouter.use("/api", api);
 mainRouter.use("/services/oembed", oembed);

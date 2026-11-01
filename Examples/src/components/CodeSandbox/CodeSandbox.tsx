@@ -51,6 +51,7 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     src={url}
                     title={platform === SandboxPlatform.CodeSandbox ? "CodeSandbox" : "StackBlitz"}
                     className="sc-editor-frame-embed"
+                    {...{ credentialless: "" }}
                     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                     onLoad={handleLoad}
                 />
