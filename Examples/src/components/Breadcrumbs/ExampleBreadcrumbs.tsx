@@ -1,13 +1,10 @@
 import { ReactNode, useMemo } from "react";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examples";
 import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./GenericBreadcrumbs";
-import { appTheme } from "../Examples/theme";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
@@ -15,7 +12,7 @@ const onBreadcrumbPathChange = (value: TBreadcrumbPath) => {};
 
 export const ExampleBreadcrumbs = () => {
     const navigate = useNavigate();
-    const { isIFrame, currentExample, framework: selectedFramework } = useExampleRouteParams();
+    const { currentExample, framework: selectedFramework } = useExampleRouteParams();
     const memoizedMenuPath = useMemo(() => getExampleCategoryPath(currentExample), [currentExample]);
 
     return (
@@ -43,6 +40,7 @@ export const ExampleBreadcrumbs = () => {
                             sx={{
                                 // align in center
                                 verticalAlign: "middle",
+                                marginTop: "-0.4rem",
                             }}
                         />
                     );
@@ -54,24 +52,7 @@ export const ExampleBreadcrumbs = () => {
                     labelContent = breadcrumb.title;
                 }
 
-                const label = (
-                    <Button
-                        sx={{
-                            display: "inline-block",
-                            padding: 0,
-                            minWidth: "unset",
-                            textWrap: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: { xs: "ellipsis", md: "unset", lg: "unset" },
-                            textTransform: "unset",
-                            color: "var(--light-blue)",
-
-                            "&:hover": { textDecoration: "underline" },
-                        }}
-                    >
-                        {labelContent}
-                    </Button>
-                );
+                const label = <span className="sc-app-breadcrumb-label">{labelContent}</span>;
 
                 return { link, label, title, menuItems };
             }}
@@ -93,16 +74,7 @@ export const ExampleBreadcrumbs = () => {
                 }
 
                 const label = (
-                    <Typography
-                        sx={{
-                            padding: 0,
-                            minWidth: "unset",
-                            textTransform: "unset",
-                            textDecoration: "none",
-
-                            color: "var(--text)",
-                            // "&:hover": { textDecoration: "underline" },
-                        }}
+                    <span
                         onClick={(e) => {
                             e.preventDefault();
 
@@ -124,7 +96,7 @@ export const ExampleBreadcrumbs = () => {
                         }}
                     >
                         {labelContent}
-                    </Typography>
+                    </span>
                 );
 
                 return { link, label, title };

@@ -4,16 +4,14 @@ import rehypeRaw from "rehype-raw";
 
 type TSubtitleProps = {
     content: ReactElement | string;
-    isMaxWidth?: boolean;
     alsoKnownAs?: string;
 };
 
-export const ExamplesSubtitle: FC<TSubtitleProps> = ({ content, isMaxWidth, alsoKnownAs }) => {
-    const className = `sc-content-subtitle ${isMaxWidth ? "sc-content-max-width" : ""}`;
+export const ExamplesSubtitle: FC<TSubtitleProps> = ({ content, alsoKnownAs }) => {
     const plugins = [rehypeRaw as any];
     if (typeof content === "string") {
         return (
-            <span id="EXAMPLE_SUBTITLE" className={className}>
+            <span id="EXAMPLE_SUBTITLE" className="sc-content-subtitle">
                 <ReactMarkdown>{content}</ReactMarkdown>
                 {alsoKnownAs ? (
                     <div className="sc-content-also-known-as">
@@ -24,5 +22,5 @@ export const ExamplesSubtitle: FC<TSubtitleProps> = ({ content, isMaxWidth, also
         );
     }
 
-    return <span className={className}>{content}</span>;
+    return <span className="sc-content-subtitle">{content}</span>;
 };

@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { ExampleSourceFile } from "../../helpers/types/types";
 import { buildFileTree, type FileTreeNode } from "./projectFiles";
+import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { useNavigate } from "react-router";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export const FileIcon = ({ name }: { name: string }) => {
     const extension = name.split(".").pop()?.toLowerCase();
@@ -15,11 +18,16 @@ type Props = {
 };
 
 export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: Props) {
+    const { state } = _useContext();
+    const { framework, currentExample } = state;
+    const navigate = useNavigate();
+
     const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
     const [focusedPath, setFocusedPath] = useState(selectedName);
     const treeRef = useRef<HTMLUListElement>(null);
     const tree = useMemo(
-        () => buildFileTree(files).filter((node) => node.path !== ".codesandbox" && node.path !== "sandbox.config.json"),
+        () =>
+            buildFileTree(files).filter((node) => node.path !== ".codesandbox" && node.path !== "sandbox.config.json"),
         [files]
     );
     const visible: { node: FileTreeNode; level: number }[] = [];
@@ -87,8 +95,36 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
 
     return (
         <nav className="sc-editor-explorer" aria-label="Project files">
+            <select
+                className={`sc-select sc-framework-select-${framework}`}
+                aria-label="Source framework"
+                value={framework}
+                onChange={(event) =>
+                    navigate(currentExample ? `/${event.target.value}/${currentExample.path}` : `/${event.target.value}`)
+                }
+            >
+                <option value={EPageFramework.Vanilla}>
+                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.Vanilla} aria-hidden="true" />
+                    JavaScript
+                </option>
+                <option value={EPageFramework.React}>
+                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.React} aria-hidden="true" />
+                    React
+                </option>
+                <option value={EPageFramework.Angular}>
+                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.Angular} aria-hidden="true" />
+                    Angular
+                </option>
+                <option value="vue" disabled>
+                    <span className="sc-editor-framework-icon" data-framework="vue" aria-hidden="true" />
+                    Vue
+                </option>
+                <option value="svelte" disabled>
+                    <span className="sc-editor-framework-icon" data-framework="svelte" aria-hidden="true" />
+                    Svelte
+                </option>
+            </select>
             <ul ref={treeRef} role="tree" aria-label="Example project" onKeyDown={handleKeyDown}>
-                <p className="p-2">Explorer</p>
                 {visible.map(({ node, level }) => (
                     <li key={node.path} role="none">
                         <button

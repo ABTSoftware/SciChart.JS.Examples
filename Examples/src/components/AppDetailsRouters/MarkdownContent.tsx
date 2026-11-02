@@ -2,6 +2,7 @@ import { FC, lazy, Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { TExamplePage } from "../AppRouter/examplePages";
 
 type TProps = {
@@ -32,16 +33,7 @@ const getDescription = __SCICHART_LAZY_EXAMPLES__
 const Description: FC<TProps> = (props) => {
     const { currentExample, selectedFramework } = props;
     return (
-        <div
-            id="EXAMPLE_MARKDOWN_CONTENT"
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.3125rem",
-                color: "var(--text)",
-            }}
-            className="sc-content-markdown"
-        >
+        <div id="EXAMPLE_MARKDOWN_CONTENT" className="sc-content-markdown">
             <ReactMarkdown rehypePlugins={plugins}>
                 {getFrameworkContent(currentExample.markdownContent, selectedFramework)}
             </ReactMarkdown>
@@ -49,7 +41,11 @@ const Description: FC<TProps> = (props) => {
     );
 };
 
-const MarkdownContent: FC<TProps> = (props) => {
+const MarkdownContent: FC = () => {
+    const {
+        state: { currentExample, framework: selectedFramework },
+    } = _useContext();
+    const props = { currentExample, selectedFramework };
     if (!__SCICHART_LAZY_EXAMPLES__) return <Description {...props} />;
     const Content = getDescription(props.currentExample);
     return (

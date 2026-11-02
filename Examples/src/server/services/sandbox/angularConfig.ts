@@ -47,7 +47,7 @@ export const getAngularSandBoxConfig = async (
             name: currentExample.path.replace(/[^a-z0-9-]/gi, "").toLowerCase(),
             version: "1.0.0",
             private: true,
-            scripts: { start: "ng serve --host 0.0.0.0", build: "ng build" },
+            scripts: { start: "ng serve --host 0.0.0.0", dev: "ng serve --host 0.0.0.0", build: "ng build" },
             dependencies: {
                 ...getExampleDependencies(
                     { ...files, "src/app.component.ts": { content: code, isBinary: false } },

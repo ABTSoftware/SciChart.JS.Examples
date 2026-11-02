@@ -24,7 +24,7 @@ export enum EPageLayout {
      */
     MaxWidth = "max-width",
     /**
-     * Where the chart does not need a whole lot of space, it will be side by side with the code section if screen width > 1900px
+     * Where the chart can sit beside the code when the content container has enough space
      */
     Default = "default",
 }

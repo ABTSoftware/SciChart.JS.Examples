@@ -1,13 +1,24 @@
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { ETheme } from "../../helpers/types/types";
 
 // for testing only - to see logged in UI
 // document.cookie = "wordpress_logged_in_=true;expires=Thu,18Dec2023-12:00:00UTC;path=/";
 
-export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => void }) {
+export default function SciChartNavbar({
+    toggleDrawer,
+    showExampleNavigationToggle,
+    isExampleNavigationOpen,
+    toggleExampleNavigation,
+}: {
+    toggleDrawer: () => void;
+    showExampleNavigationToggle: boolean;
+    isExampleNavigationOpen: boolean;
+    toggleExampleNavigation: () => void;
+}) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { state, setTheme } = _useContext();
     const theme = state.theme;
@@ -153,14 +164,14 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
             <nav id="site-navigation">
                 <div className="sc-app-nav-row">
                     <div className="sc-app-nav-site-logo">
-                        <a href="https://www.scichart.com/">
+                        <Link to="/" title="SciChart Chart Library Examples">
                             <img
                                 src="https://www.scichart.com/wp-content/themes/scichartv6/assets/icons/scichart-logo.svg"
                                 alt="SciChart"
                                 width="312"
                                 height="69"
                             />
-                        </a>
+                        </Link>
                     </div>
                     <div className="sc-app-nav-header-nav">
                         <a href="#site-navigation" data-target="body" className="sc-app-nav-main-menu-button">
@@ -549,22 +560,27 @@ export default function SciChartNavbar({ toggleDrawer }: { toggleDrawer: () => v
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Mobile only */}
-                <div className="sc-app-nav-mobile-buttons">
-                    <div>
-                        <ThemeSelectComponent />
-                    </div>
-                    <div className="sc-app-nav-menu-burger">
-                        <button
-                            type="button"
-                            className="sc-button sc-button-icon"
-                            onClick={toggleDrawer}
-                            aria-label="Open menu"
-                        >
-                            <MenuIcon />
-                        </button>
+                    <div className="sc-app-nav-mobile-buttons">
+                        <div>
+                            <ThemeSelectComponent />
+                        </div>
+                        <div className="sc-app-nav-menu-burger">
+                            <button
+                                type="button"
+                                className="sc-button sc-button-icon"
+                                onClick={showExampleNavigationToggle ? toggleExampleNavigation : toggleDrawer}
+                                aria-controls={showExampleNavigationToggle ? "EXAMPLE_NAVIGATION" : undefined}
+                                aria-expanded={showExampleNavigationToggle ? isExampleNavigationOpen : undefined}
+                                aria-label={
+                                    showExampleNavigationToggle
+                                        ? `${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`
+                                        : "Open menu"
+                                }
+                            >
+                                <MenuIcon />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </nav>

@@ -2,7 +2,7 @@ import { HelmetData } from "react-helmet";
 import { baseAppPath } from "../constants";
 import type { SourceFilesVariant } from "../helpers/types/types";
 
-export function renderIndexHtml(html: string, css: string, helmet: HelmetData, sourceFilesInfo: SourceFilesVariant) {
+export function renderIndexHtml(html: string, helmet: HelmetData, sourceFilesInfo: SourceFilesVariant) {
     return `
     <!DOCTYPE html>
     <html lang="en-us" ${helmet.htmlAttributes.toString()}>
@@ -30,9 +30,6 @@ export function renderIndexHtml(html: string, css: string, helmet: HelmetData, s
               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
             -->
             <link rel="stylesheet" href="style.css" />
-
-            <meta name="emotion-insertion-point" content="" />
-            ${css}
 
             <script defer fetchpriority="high" type="text/javascript" src="bundle.js"></script>
             <link rel="preload" href="scichart.wasm" as="fetch" crossorigin="anonymous" />

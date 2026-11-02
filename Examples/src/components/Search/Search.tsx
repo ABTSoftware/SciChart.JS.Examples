@@ -1,79 +1,120 @@
-import { useMemo } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from "@mui/material/InputAdornment";
-import { generateSearchItems, TSearchItem } from "./searchItems";
+import { filterSearchItems, generateSearchItems, type TSearchItem } from "./searchItems";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export default function Search() {
     const navigate = useNavigate();
     const { state } = _useContext();
-    const framework = state.framework;
-    const searchItems: TSearchItem[] = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, framework), [framework]);
-
-    const handleChange = (_e: any, value: TSearchItem | string) => {
-        if (value && typeof value === "object" && "link" in value) {
-            const v = value as TSearchItem;
-            navigate(v.link);
-        }
+    const items = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, state.framework), [state.framework]);
+    const [query, setQuery] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
+    const results = useMemo(() => filterSearchItems(items, query), [items, query]);
+    const listRef = useRef<HTMLUListElement>(null);
+    const id = useId();
+    const selectItem = (item: TSearchItem) => {
+        setQuery(item.title);
+        setIsOpen(false);
+        setActiveIndex(-1);
+        navigate(item.link);
     };
 
+    useEffect(() => {
+        setQuery("");
+        setIsOpen(false);
+        setActiveIndex(-1);
+    }, [state.framework]);
+
+    useEffect(() => {
+        if (isOpen) listRef.current?.querySelector('[aria-selected="true"]')?.scrollIntoView({ block: "nearest" });
+    }, [activeIndex, isOpen]);
+
     return (
-        <div className="sc-app-search">
-            <Autocomplete
-                id="someElement1"
-                freeSolo
-                options={searchItems}
-                componentsProps={{
-                    paper: {
-                        sx: {
-                            backgroundColor: "var(--bg)",
-                            color: "var(--text)",
-                            border: "1px solid var(--border-color)",
-                        },
-                    },
-                }}
-                getOptionLabel={(option) => {
-                    // Check if option is TSearchItem and return title
-                    if (typeof option === "object" && "title" in option) {
-                        return option.title;
-                    }
-                    return option; // In case option is a string, return it directly
-                }}
-                onChange={handleChange}
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        size="small"
-                        margin="none"
-                        variant="outlined"
-                        placeholder="Search for example names and chart types"
-                        className="sc-app-search-field"
-                        InputProps={{
-                            ...params.InputProps,
-                            autoComplete: "new-password",
-                            type: "text",
-                            startAdornment: (
-                                <InputAdornment position="start" style={{ marginLeft: "0.5rem" }}>
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                        sx={{
-                            "& .MuiOutlinedInput-root": {
-                                borderRadius: "0.25rem",
-                                height: "2.75rem",
-                            },
-                            "& fieldset": {
-                                border: "none",
-                            },
-                        }}
-                    />
-                )}
-            />
-        </div>
+        <form
+            className="sc-app-search"
+            role="search"
+            onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+            }}
+            onSubmit={(event) => {
+                event.preventDefault();
+                if (isOpen && results[activeIndex]) selectItem(results[activeIndex]);
+            }}
+        >
+            <label className="sc-app-search-field">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                    <circle cx="10" cy="10" r="6" />
+                    <path d="m15 15 5 5" />
+                </svg>
+                <input
+                    type="search"
+                    role="combobox"
+                    autoComplete="off"
+                    aria-autocomplete="list"
+                    aria-expanded={isOpen}
+                    aria-controls={isOpen ? id : undefined}
+                    aria-activedescendant={isOpen && results[activeIndex] ? `${id}-${activeIndex}` : undefined}
+                    value={query}
+                    aria-label="Search examples"
+                    placeholder="Search for example names and chart types"
+                    onClick={() => setIsOpen(true)}
+                    onFocus={() => {
+                        if (query) setIsOpen(true);
+                    }}
+                    onChange={(event) => {
+                        setQuery(event.target.value);
+                        setActiveIndex(-1);
+                        setIsOpen(true);
+                    }}
+                    onKeyDown={(event) => {
+                        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                            event.preventDefault();
+                            setIsOpen(true);
+                            const direction = event.key === "ArrowDown" ? 1 : -1;
+                            setActiveIndex((index) => {
+                                if (!results.length) return -1;
+                                if (!isOpen || index < 0) return direction === 1 ? 0 : results.length - 1;
+                                return (index + direction + results.length) % results.length;
+                            });
+                        } else if (event.key === "Escape" && isOpen) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            setIsOpen(false);
+                            setActiveIndex(-1);
+                        }
+                    }}
+                />
+            </label>
+            {isOpen && (
+                <ul
+                    id={id}
+                    ref={listRef}
+                    className="sc-app-search-options"
+                    role="listbox"
+                    aria-label="Example suggestions"
+                >
+                    {results.map((item, index) => (
+                        <li
+                            key={item.link}
+                            id={`${id}-${index}`}
+                            role="option"
+                            aria-selected={index === activeIndex}
+                            onMouseDown={(event) => event.preventDefault()}
+                            onMouseMove={() => setActiveIndex(index)}
+                            onClick={() => selectItem(item)}
+                        >
+                            {item.title}
+                        </li>
+                    ))}
+                    {!results.length && (
+                        <li role="presentation">
+                            <span role="status">No examples found</span>
+                        </li>
+                    )}
+                </ul>
+            )}
+        </form>
     );
 }

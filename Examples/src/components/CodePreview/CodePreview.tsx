@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
-import DownloadIcon from "@mui/icons-material/Download";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
@@ -265,19 +264,14 @@ const LightStyles: Record<string, CSSProperties> = {
 
 export type CodeEditorProps = {
     files: ExampleSourceFile[];
-    selectedFile: ExampleSourceFile;
-    handleFileClick: (fileName: string) => void;
     desiredFramework: EPageFramework;
     actualFramework: EPageFramework | null;
     examplePath: string;
-    isMaxWidth: boolean;
     onFilesChange?: (files: ExampleSourceFile[]) => void;
 };
 
 export const CodePreview: FC<CodeEditorProps> = ({
     files,
-    selectedFile,
-    handleFileClick,
     desiredFramework,
     actualFramework,
     examplePath,
@@ -285,13 +279,14 @@ export const CodePreview: FC<CodeEditorProps> = ({
 }) => {
     const { state } = _useContext();
     const [draftFiles, setDraftFiles] = useState(files);
+    const [selectedName, setSelectedName] = useState(() => getDefaultSourceFile(files)?.name);
     const [isEditing, setIsEditing] = useState(false);
     const [showExplorer, setShowExplorer] = useState(true);
     const [showDialog, setShowDialog] = useState(false);
     const editorRef = useRef<HTMLElement>(null);
     const gutterRef = useRef<HTMLPreElement>(null);
     const readButtonRef = useRef<HTMLButtonElement>(null);
-    const activeFile = draftFiles.find((file) => file.name === selectedFile?.name) ?? getDefaultSourceFile(draftFiles);
+    const activeFile = draftFiles.find((file) => file.name === selectedName) ?? getDefaultSourceFile(draftFiles);
     const modifiedNames = useMemo(
         () =>
             new Set(
@@ -308,6 +303,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
     useEffect(() => {
         setDraftFiles(files);
+        setSelectedName(getDefaultSourceFile(files)?.name);
         setIsEditing(false);
     }, [files, examplePath]);
 
@@ -409,7 +405,7 @@ export const CodePreview: FC<CodeEditorProps> = ({
                         files={draftFiles}
                         selectedName={activeFile.name}
                         modifiedNames={modifiedNames}
-                        onSelect={handleFileClick}
+                        onSelect={setSelectedName}
                     />
                 )}
                 <div className="sc-editor-file-panel">
@@ -421,7 +417,19 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             aria-pressed={showExplorer}
                             onClick={() => setShowExplorer(!showExplorer)}
                         >
-                            <span className="sc-editor-menu-icon" aria-hidden="true" />
+                            <svg
+                                className="sc-editor-files-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M14 2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+                                <path d="M14 2v6h6M3 5v15a3 3 0 0 0 3 3h11" />
+                            </svg>
                         </button>
                         <div className="sc-editor-active-file">
                             <FileIcon name={activeFile.name} />
@@ -432,28 +440,22 @@ export const CodePreview: FC<CodeEditorProps> = ({
                                 </span>
                             )}
                         </div>
-                        <div className="sc-editor-mode-switch" aria-label="Source mode">
-                            <button
-                                ref={readButtonRef}
-                                type="button"
-                                aria-pressed={!isEditing}
-                                onClick={() => setIsEditing(false)}
-                            >
+                        {/* <div className="sc-editor-mode-switch" aria-label="Source mode">
+                            <button ref={readButtonRef} type="button" aria-pressed={!isEditing} onClick={() => setIsEditing(false)}>
                                 Read
                             </button>
                             <button type="button" aria-pressed={isEditing} onClick={() => setIsEditing(true)}>
                                 Edit
                             </button>
-                        </div>
+                        </div> */}
                         <div className="sc-editor-project-actions">
                             <button
                                 type="button"
-                                aria-label="Reset edits"
-                                title="Reset edits"
-                                disabled={!modifiedNames.size}
-                                onClick={() => updateFiles(files)}
+                                aria-label={`Copy ${activeFile.name}`}
+                                title={`Copy ${activeFile.name}`}
+                                onClick={() => navigator.clipboard.writeText(activeFile.content)}
                             >
-                                <RestartAltIcon fontSize="small" />
+                                <ContentCopyIcon fontSize="small" />
                             </button>
                             <button
                                 type="button"
@@ -461,7 +463,10 @@ export const CodePreview: FC<CodeEditorProps> = ({
                                 title="Download project"
                                 onClick={downloadProject}
                             >
-                                <DownloadIcon fontSize="small" />
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M12 3v11m0 0 4-4m-4 4-4-4" />
+                                    <path d="M5 16v3a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3" />
+                                </svg>
                             </button>
                         </div>
                     </div>

@@ -63,6 +63,25 @@ export const getSandboxConfig = async (
     };
     const entryFilePath = entryFiles[config.actualFramework];
     const css = await loadExampleStylesheet(folderPath, config.actualFramework, uiCss, config.files);
+    const frameworkName = { react: "React", javascript: "JavaScript", angular: "Angular" } as const;
+    const title =
+        typeof currentExample.title === "function"
+            ? currentExample.title(frameworkName[config.actualFramework])
+            : currentExample.title;
+    config.files["README.md"] = {
+        isBinary: false,
+        content: `# ${title || currentExample.path}
+
+With Node.js installed, open a terminal in this folder:
+
+\`\`\`sh
+npm install
+npm run dev
+\`\`\`
+
+Open the local URL shown in the terminal.
+`,
+    };
 
     return {
         ...config,

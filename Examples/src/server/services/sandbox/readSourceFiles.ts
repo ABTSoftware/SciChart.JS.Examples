@@ -9,7 +9,10 @@ export const readSourceFiles = async (
     folderPath: string,
     baseUrl: string,
     stylesPath?: string,
-    example: Pick<TExampleInfo, "path" | "extraDependencies" | "sandboxConfig"> = { path: "scichart-example" }
+    example: Pick<TExampleInfo, "path" | "extraDependencies" | "sandboxConfig"> &
+        Partial<Pick<TExampleInfo, "title">> = {
+        path: "scichart-example",
+    }
 ): Promise<SourceFilesVariant> => {
     const config = await getSandboxConfig(folderPath, example as TExampleInfo, framework, baseUrl, stylesPath);
     return {

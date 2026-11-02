@@ -547,6 +547,8 @@ div > .sc-toolbar-row:last-child {
         }
 
         &::picker(select) {
+            box-sizing: border-box;
+            width: anchor-size(width);
             gap: 0.1875rem;
             margin-top: 0.25rem;
             padding: 0.25rem 0.25rem 0 0.25rem;

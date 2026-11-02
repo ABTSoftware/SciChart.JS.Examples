@@ -1,16 +1,6 @@
-import { useContext, useState, MouseEvent, ReactNode } from "react";
+import { ReactNode, useRef, useEffect } from "react";
 import { Link } from "react-router";
-import MenuItem from "@mui/material/MenuItem";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import MenuList from "@mui/material/MenuList";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import type { Theme } from "@mui/material/styles";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import React from "react";
 
 export type TBreadcrumbItem = {
     id: string;
@@ -20,7 +10,12 @@ export type TBreadcrumbItem = {
 
 export type TBreadcrumbPath = (number | string)[];
 
-export type TBreadcrumbProps = { link: string; label: ReactNode; title: string; menuItems?: TBreadcrumbItem[] };
+export type TBreadcrumbProps = {
+    link: string;
+    label: ReactNode;
+    title: string;
+    menuItems?: TBreadcrumbItem[];
+};
 
 export function BreadcrumbsWithMenu(props: {
     path: TBreadcrumbPath;
@@ -31,54 +26,32 @@ export function BreadcrumbsWithMenu(props: {
 }) {
     const { path, items, breadcrumbPropsMapper } = props;
 
-    const [open, setOpen] = React.useState(false);
-    const [openedBreadcrumb, setOpenedBreadcrumb] = useState<TBreadcrumbNode>(null);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLAnchorElement>(null);
-    const handleBreadcrumbClick = (event: React.MouseEvent<HTMLAnchorElement>, breadcrumb: TBreadcrumbNode) => {
-        if (breadcrumb.menuItems.length > 0) {
-            event.preventDefault();
-        }
-
-        setAnchorEl(event.currentTarget);
-        if (breadcrumb.entry.id === openedBreadcrumb?.entry?.id) {
-            setOpen(false);
-            setOpenedBreadcrumb(null);
-        } else {
-            setOpenedBreadcrumb(breadcrumb);
-            setOpen(true);
-        }
-    };
-
-    const handleClose = (event: Event | React.SyntheticEvent) => {
-        if (anchorEl.contains(event.target as HTMLElement)) {
-            return;
-        }
-
-        setOpen(false);
-        setOpenedBreadcrumb(null);
-    };
-
-    function handleListKeyDown(event: React.KeyboardEvent) {
-        if (event.key === "Tab") {
-            event.preventDefault();
-            setOpen(false);
-        } else if (event.key === "Escape") {
-            setOpen(false);
-        }
-    }
-
-    // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
-        if (prevOpen.current === true && open === false) {
-            anchorEl.focus();
-        }
-
-        prevOpen.current = open;
-    }, [open]);
+    const ref = useRef<HTMLElement>(null);
+    useEffect(() => {
+        const closeMenus = (event: PointerEvent | KeyboardEvent) => {
+            if (event instanceof KeyboardEvent && event.key !== "Escape") return;
+            ref.current
+                ?.querySelectorAll<HTMLDetailsElement>("details[open]")
+                .forEach((details: HTMLDetailsElement) => {
+                    if (event instanceof KeyboardEvent || !details.contains(event.target as Node)) {
+                        details.open = false;
+                        if (event instanceof KeyboardEvent) details.querySelector("summary")?.focus();
+                    }
+                });
+        };
+        document.addEventListener("pointerdown", closeMenus);
+        document.addEventListener("keydown", closeMenus);
+        return () => {
+            document.removeEventListener("pointerdown", closeMenus);
+            document.removeEventListener("keydown", closeMenus);
+        };
+    }, []);
 
     /** Describes a structure that will be used for rendering the breadcrumb */
-    type TBreadcrumbNode = TBreadcrumbProps & { sameLevelEntries: TBreadcrumbItem[]; entry: TBreadcrumbItem };
+    type TBreadcrumbNode = TBreadcrumbProps & {
+        sameLevelEntries: TBreadcrumbItem[];
+        entry: TBreadcrumbItem;
+    };
 
     const defaultMapper = (breadcrumbItem: TBreadcrumbItem): TBreadcrumbProps => {
         const label = breadcrumbItem?.title;
@@ -109,98 +82,54 @@ export function BreadcrumbsWithMenu(props: {
         { nodes: [], submenuEntries: items }
     ).nodes;
 
-    const breadcrumbElements = breadcrumbList.map((breadcrumb) => {
-        const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => handleBreadcrumbClick(event, breadcrumb);
-
-        return (
-            <Link
-                key={breadcrumb.entry.id}
-                style={{ textDecoration: "none" }}
-                to={breadcrumb.link}
-                title={breadcrumb.title}
-                id="composition-button"
-                aria-controls={open ? "composition-menu" : undefined}
-                aria-expanded={open ? "true" : undefined}
-                aria-haspopup="true"
-                onClick={handleClick}
-            >
-                {breadcrumb.label}
-            </Link>
-        );
-    });
-
-    const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down("md")); // Mobile view
-
     return (
-        <>
-            <Breadcrumbs
-                aria-label="breadcrumbs"
-                maxItems={isXs ? 2 : 8}
-                separator={<NavigateNextIcon fontSize="small" sx={{ color: "var(--text)" }} />}
-            >
-                {breadcrumbElements}
-            </Breadcrumbs>
-
-            <Popper
-                open={open && openedBreadcrumb?.menuItems.length > 0}
-                anchorEl={anchorEl}
-                role={undefined}
-                placement="bottom-start"
-                transition
-                disablePortal
-                sx={{ zIndex: 10 }}
-            >
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                        {...TransitionProps}
-                        style={{
-                            transformOrigin: placement === "bottom-start" ? "left top" : "left bottom",
-                        }}
-                    >
-                        <Paper
-                            sx={{
-                                backgroundColor: "var(--bg)",
-                                color: "var(--text)",
-                            }}
-                        >
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList
-                                    autoFocusItem={open}
-                                    id="composition-menu"
-                                    aria-labelledby="composition-button"
-                                    onKeyDown={handleListKeyDown}
-                                >
-                                    {openedBreadcrumb?.menuItems?.map((item, index, collection) => {
-                                        const { label, link } =
+        <nav ref={ref} aria-label="Breadcrumbs" className="sc-app-breadcrumbs">
+            <ol>
+                {breadcrumbList.map((breadcrumb, index) => (
+                    <li key={breadcrumb.entry.id}>
+                        {index > 0 && <NavigateNextIcon fontSize="small" />}
+                        {breadcrumb.menuItems.length ? (
+                            <details
+                                onToggle={(event) => {
+                                    if (event.currentTarget.open) {
+                                        ref.current
+                                            ?.querySelectorAll<HTMLDetailsElement>("details[open]")
+                                            .forEach((other: HTMLDetailsElement) => {
+                                                if (other !== event.currentTarget) other.open = false;
+                                            });
+                                    }
+                                }}
+                            >
+                                <summary title={breadcrumb.title}>{breadcrumb.label}</summary>
+                                <ul>
+                                    {breadcrumb.menuItems.map((item, index, collection) => {
+                                        const { label, link, title } =
                                             props.breadcrumbMenuItemsMapper?.(item, index, collection) ??
                                             defaultMapper(item);
-
                                         return (
-                                            <MenuItem key={item.id} onClick={handleClose} sx={{ padding: "0" }}>
-                                                {
-                                                    <Link
-                                                        color="primary"
-                                                        style={{
-                                                            textDecoration: "none",
-                                                            width: "100%",
-                                                            height: "100%",
-                                                            padding: "0.375rem 1rem",
-                                                        }}
-                                                        to={link}
-                                                        title={item.title}
-                                                    >
-                                                        {label}
-                                                    </Link>
-                                                }
-                                            </MenuItem>
+                                            <li key={item.id}>
+                                                <Link
+                                                    to={link}
+                                                    title={title}
+                                                    onClick={(event) => {
+                                                        event.currentTarget.closest("details").open = false;
+                                                    }}
+                                                >
+                                                    {label}
+                                                </Link>
+                                            </li>
                                         );
                                     })}
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
-                    </Grow>
-                )}
-            </Popper>
-        </>
+                                </ul>
+                            </details>
+                        ) : (
+                            <Link to={breadcrumb.link} title={breadcrumb.title}>
+                                {breadcrumb.label}
+                            </Link>
+                        )}
+                    </li>
+                ))}
+            </ol>
+        </nav>
     );
 }

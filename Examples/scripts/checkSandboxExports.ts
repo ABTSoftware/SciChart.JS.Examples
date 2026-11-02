@@ -14,7 +14,15 @@ import type { TExampleInfo } from "../src/components/AppRouter/examplePages";
 const root = path.resolve("src/components/Examples");
 const entryFiles = { react: "index.tsx", javascript: "vanilla.ts", angular: "angular.ts" };
 
-const checkProject = (files: IFiles) => {
+let readmeSteps: string;
+const checkProject = (files: IFiles, expectedTitle: string) => {
+    const readme = files["README.md"].content;
+    assert.ok(readme.startsWith(`# ${expectedTitle}\n`));
+    assert.ok(readme.includes("npm install\nnpm run dev"));
+    assert.ok(readme.split(/\s+/).length < 60, "Setup instructions stay short");
+    const steps = readme.slice(readme.indexOf("\n"));
+    if (readmeSteps) assert.equal(steps, readmeSteps, "Only README titles vary");
+    readmeSteps = steps;
     assert.equal(Object.keys(files).filter((name) => name.endsWith(".css")).length, 1);
     assert.ok(files["src/styles.css"]);
     postcss.parse(files["src/styles.css"].content).walkRules(":root", (rule) => {
@@ -34,6 +42,7 @@ const checkProject = (files: IFiles) => {
         files["angular.json"] ? 0 : 1
     );
     const pkg = getPackageJson(files);
+    assert.ok(pkg.scripts.dev, "Every generated project supports the README dev command");
     if (files["src/App.tsx"]) assert.ok(pkg.dependencies.react, "JSX runtime requires React explicitly");
     const imported = getExampleDependencies(files, pkg.dependencies);
     for (const [name, version] of Object.entries(imported)) assert.equal(pkg.dependencies[name], version);
@@ -163,13 +172,21 @@ const main = async () => {
             try {
                 const config = await getSandboxConfig(
                     folder,
-                    { path: "sandbox-check" } as TExampleInfo,
+                    {
+                        path: "sandbox-check",
+                        title: framework === EPageFramework.React ? "Sandbox check" : (name) => `${name} Sandbox check`,
+                    } as TExampleInfo,
                     framework,
                     "",
                     path.join(root, "styles")
                 );
                 assert.equal(config.actualFramework, framework, "Existing variants must not silently fall back");
-                checkProject(config.files);
+                checkProject(
+                    config.files,
+                    framework === EPageFramework.React
+                        ? "Sandbox check"
+                        : `${framework === EPageFramework.Vanilla ? "JavaScript" : "Angular"} Sandbox check`
+                );
                 projects++;
             } catch (error) {
                 failures.push(

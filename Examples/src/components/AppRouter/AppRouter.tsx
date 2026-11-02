@@ -1,20 +1,20 @@
 import { memo } from "react";
 import { Routes, Route } from "react-router";
-import { EXAMPLES_PAGES, TExamplePage } from "./examplePages";
+import { EXAMPLES_PAGES } from "./examplePages";
 import { getExampleComponent } from "./getExampleComponent";
 import NoIndexTag from "../SeoTags/NoIndexTag";
 import ChartControlWrapper from "./ChartControlWrapper";
 
-type TProps = {
-    currentExample: TExamplePage;
-};
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 const examplePagesKeys = Object.keys(EXAMPLES_PAGES);
 
 const ExampleComponent = memo(ChartControlWrapper);
 
-export default function AppRouter(props: TProps) {
-    const { currentExample } = props;
+export default function AppRouter() {
+    const {
+        state: { currentExample },
+    } = _useContext();
 
     const ChartComponent = getExampleComponent(currentExample.id);
 

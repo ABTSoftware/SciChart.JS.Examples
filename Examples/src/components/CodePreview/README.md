@@ -6,6 +6,12 @@ The initial server render contains highlighted `<pre><code>` for the selected fi
 
 Edits live in memory until the example/framework changes or the page reloads. Selection and project downloads use the draft. The existing hosted sandbox actions open the canonical example, not this local draft. There is no execution of edited code on the examples page.
 
+## Moving app components
+
+`useAppContext()` (also exported as `_useContext`) provides `state.currentExample`, `state.framework`, route flags, and theme, plus theme actions. `StateProvider` reads the router directly, so framework and example always come from the same URL. Keep moved app components beneath this provider; change framework with router links rather than maintaining a second framework state.
+
+`DrawerContent` supplies `NavigationProvider`. Navigation blocks read collapse state and gallery tracking through `useNavigationContext()`; parents no longer forward navigation callbacks. Editor file selection and drafts belong to `CodePreview`. Its direct props describe the loaded source project, including the actual framework when the requested variant is unavailable.
+
 ## Future harness adapter
 
 Connect `onFilesChange` to a separate preview controller when a compilation service and harness deployment exist. The controller, not `CodePreview`, owns compilation, iframe creation/disposal, readiness, and replaying the latest compiled content. Keep semantic source rendering for the selected file if an editor such as Monaco later replaces the textarea.
@@ -18,4 +24,4 @@ This editor supplies editable project files and a controller callback. It delibe
 
 ## Checks
 
-From `Examples`, run `node src/components/CodePreview/projectFiles.test.cjs`, `npm run typecheck`, and `npm run checkAppStyles`. The ZIP check uses the system `unzip` reader to validate checksums, paths, and exact UTF-8 file content independently of the writer.
+From `Examples`, run `node src/helpers/shared/Helpers/Context.test.cjs`, `node src/components/CodePreview/projectFiles.test.cjs`, `npm run typecheck`, and `npm run checkAppStyles`. The ZIP check uses the system `unzip` reader to validate checksums, paths, and exact UTF-8 file content independently of the writer.

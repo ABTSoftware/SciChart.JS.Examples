@@ -4,7 +4,7 @@ import {
     getFrameworkContent,
     getFrameworkName,
 } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { TExamplePage } from "../AppRouter/examplePages";
+import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
 import { CodeActionButton } from "./CodeActionButton";
@@ -12,26 +12,18 @@ import type { StackBlitzResponse } from "../../helpers/types/types";
 
 type CodeActionButtonsProps = {
     className?: string;
-    currentExample: TExamplePage;
-    selectedFramework: EPageFramework;
-    selectedFile: { name: string; content: string };
     onSandboxOpen: (
         platform: SandboxPlatform,
         sandboxId: string,
         projectFiles?: StackBlitzResponse,
         framework?: EPageFramework
     ) => void;
-    style?: React.CSSProperties;
 };
 
-export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
-    className,
-    currentExample,
-    selectedFramework,
-    onSandboxOpen,
-    selectedFile,
-    style,
-}): ReactNode => {
+export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSandboxOpen }): ReactNode => {
+    const {
+        state: { currentExample, framework: selectedFramework },
+    } = _useContext();
     const [availableFrameworks] = useState<EPageFramework[]>([
         EPageFramework.React,
         EPageFramework.Vanilla,
@@ -71,7 +63,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({
     };
 
     return (
-        <div className={className} style={style}>
+        <div className={className}>
             <CodeActionButton
                 iconName="fullscreen"
                 label="Fullscreen"

@@ -1,22 +1,15 @@
 import { FC, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
-import { TExamplePage } from "../AppRouter/examplePages";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/getExampleComponent";
 import { ExampleStrings } from "./ExampleStrings";
-import { GalleryItem } from "../../helpers/types/types";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
-type TProps = {
-    examplePage: TExamplePage;
-    seeAlso: GalleryItem[];
-};
-
-const ExamplesRootDetails: FC<TProps> = (props) => {
-    const { examplePage } = props;
-    const { state } = _useContext();
-    const framework = state.framework;
+const ExamplesRootDetails: FC = () => {
+    const {
+        state: { currentExample: examplePage, framework },
+    } = _useContext();
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
