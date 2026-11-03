@@ -1,0 +1,494 @@
+// Value cell for InfoBox first row
+@use "/assets/_index" as *;
+@use "sass:color";
+
+.IbRow1Value {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: min(4vw, 32px);
+  margin-left: 1rem;
+}
+// --- Added variable definitions for demo/fix ---
+$Background: #181c2a;
+$VividOrange: #ff9900;
+$VividSkyBlue: #00bfff;
+$VividTeal: #20cfcf;
+
+// Flex container for full height
+.FlexFullHeight {
+  display: flex;
+  height: 100%;
+}
+
+// Connection status box
+.ConnectionStatus {
+  font-weight: 600;
+  text-align: center;
+//  margin-bottom: 0.5rem;
+  height: 0.5rem; // Reduced height for a single line
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+}
+.Connected {
+  color: #2ecc40; // vivid green
+  background: $Background;
+}
+.Disconnected {
+  color: #ff4136; // vivid red
+  background: $Background;
+}
+
+// HRV stats styling
+.HrvStatsTitle {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: $VividOrange;
+}
+.HrvStatsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 1.5rem;
+  font-size: 0.95em;
+  margin-top: 0.25rem;
+}
+
+// Color overrides for InfoBoxes
+.EcgBox {
+  color: $VividOrange;
+  background: $Background;
+  height: 200px; // Increased height for ECG section
+  margin-bottom: 1rem;
+}
+.GsrBox {
+  color: $VividSkyBlue;
+  background: $Background;
+  height: 150px;
+  margin-bottom: 1rem;
+}
+.RespBox {
+  color: $VividTeal;
+  background: $Background;
+  height: 150px;
+  margin-bottom: 1rem;
+}
+
+// Toolbar header
+.ToolbarHeader {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: $Background;
+  border-bottom: 1px solid rgba($VividOrange, 0.2);
+
+  button {
+    color: $VividOrange;
+    &:hover {
+      color: color.adjust($VividOrange, $lightness: 10%);
+    }
+  }
+}
+
+// Analysis section
+.AnalysisButton {
+  background: $Background;
+  border: 1px solid $VividOrange;
+  color: $VividOrange;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    background: $VividOrange;
+    color: $Background;
+  }
+}
+
+.AnalysisPanel {
+  background: rgba($Background, 0.9);
+  padding: 1rem;
+  margin-top: 1rem;
+  border: 1px solid $VividOrange;
+}
+
+// Unit displays
+.RespRate {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+  &::after {
+    content: "/min";
+    font-size: 0.8em;
+    margin-left: 0.25rem;
+    opacity: 0.8;
+  }
+}
+
+.IERatio {
+  font-size: 1.2em;
+  &::after {
+    content: "%";
+    font-size: 0.8em;
+    margin-left: 0.25rem;
+    opacity: 0.8;
+  }
+}
+
+.ExampleWrapperIFrame {
+    height: 100vh;
+    .ChartWrapper {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        touch-action: none;
+        img {
+            display: block;
+        }
+    }
+}
+
+.ChartWrapper {
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
+    height: 100%;
+    // this seems to be an optimal aspect ration to keep the whole chart in view
+    // aspect-ratio: 16 / 9;
+    img {
+        display: block;
+    }
+
+    // @include sm { // maybe someday
+    //     aspect-ratio: 9 / 16;
+    // }
+}
+
+.ChartWithToolbar {
+    @extend .ChartWrapper;
+
+    display: flex;
+    flex-direction: column;
+    background: #14233c; // DarkIndigo
+}
+
+// TODO add class name in SciChartReact
+.ChartWithToolbar > div:first-child {
+    order: 2;
+    flex: 1;
+}
+
+.ChartWithBottomToolbar {
+    @extend .ChartWithToolbar;
+
+    flex: 1;
+}
+
+.FullHeightChartWrapper {
+    @extend .ChartWrapper;
+    flex: auto;
+}
+
+.ExampleWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .Example {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        max-width: 100%;
+        margin-right: 0;
+    }
+    .ExampleDescription {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+.ToolbarRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // flex-wrap: wrap;
+    flex: none;
+    padding: 0px;
+    color: $color-primary-white;
+    background: #14233c; // DarkIndigo
+    font-size: 1em;
+    text-align: center;
+    max-width: 100%;
+
+    // TODO consider whether this should be applied globally and what would be a proper size
+    @media only screen and (max-width: 768px) {
+        font-size: 0.75em;
+    }
+
+    .ToggleButtonGroup {
+        font-size: inherit;
+    }
+
+    button {
+        padding: 1em;
+        font-size: inherit;
+        text-align: center;
+        color: inherit;
+    }
+}
+
+.FormControl {
+    margin: $default-spacing;
+    margin-left: 0;
+    min-width: 120;
+}
+
+.FormControlLabel {
+    font-size: inherit;
+    color: inherit;
+}
+
+.AlignRight {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.Notification {
+    font-size: inherit;
+    padding: 0.5em;
+
+    .NotificationTitle {
+        font-size: 1.2em;
+    }
+}
+
+/////*****ExamplesRoot*****/////
+.ExamplesRoot {
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+
+    .SciChartLogo {
+        text-align: right;
+        margin-bottom: $default-spacing * 2;
+        @include sm {
+            display: none;
+        }
+    }
+    .Body {
+        display: flex;
+
+        @include sm {
+            display: block;
+        }
+    }
+    .ColMain {
+        flex-basis: 240px;
+        flex-shrink: 0;
+        flex-grow: 1;
+        overflow-x: auto;
+        // margin-bottom: $default-spacing * 3;
+    }
+
+    .ColDescription {
+        flex-basis: 360px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding-left: $default-spacing * 3;
+        @include sm {
+            padding-left: 0;
+        }
+        margin-bottom: $default-spacing * 3;
+    }
+    .ExampleRootDescription {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .ExampleRootDescriptionLink {
+            color: $color-link-text !important;
+            &:hover {
+                color: $color-link-text-hover !important;
+            }
+        }
+        @include md {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 20px;
+        }
+        h5 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            line-height: 40px;
+            @include md {
+                margin-bottom: 20px;
+            }
+        }
+        .ExampleDescriptionText {
+            font-size: 1rem;
+            color: $font-color;
+            line-height: 30px;
+
+            width: 75%;
+            @include md {
+                margin-bottom: 20px;
+                width: 100%;
+            }
+        }
+    }
+    .Title {
+        width: 100%;
+        font-weight: 600;
+        font-size: 1.5rem;
+        // margin-bottom: 30px;
+    }
+}
+/////*****VitalSignsMonitorDemo*****/////
+.VitalSigns {
+    width: 100%;
+    max-width: 90vw;
+}
+.InfoBoxContainer {
+    flex-basis: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    max-width: 90vw;
+    //@include md {
+    //    flex-basis: 25%;
+    //}
+}
+
+.InfoBox {
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-left: 1px solid #364ba0;
+    padding: 6px;
+    height: 25%;
+    width: 100%;
+    line-height: 1.4;
+    background-color: black;
+    border-bottom: 1px solid #364ba0;
+    //@include sm {
+    //    height: auto;
+    //}
+}
+.IbRow1 {
+    flex-grow: 1;
+    display: flex;
+}
+.IbRow1Col1 {
+    flex-grow: 1;
+    font-size: min(4vw, 32px);
+}
+.IbRow1Col2 {
+    text-align: right;
+    margin-top: 4px;
+    font-size: min(3vw, 12px);
+}
+.IbRow2 {
+    display: flex;
+    align-items: flex-end;
+}
+.IbRow2Col1 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    font-size: min(3vw, 14px);
+    img {
+        width: 45px;
+    }
+}
+.IbRow2Col2 {
+    display: flex;
+    flex-direction: column;
+    font-size: min(5vw, 44px);
+}
+
+.ButtonsWrapper {
+    display: flex;
+    flex: none;
+    margin-top: 10px;
+    button {
+        color: $color-main-green;
+        border: 1px $color-main-green solid;
+        text-align: center;
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+    .GitHubLink {
+        border: 1px $color-medium-blue solid;
+        border-radius: 4px;
+        background-color: $color-lightest-green;
+        color: $color-medium-blue;
+        text-decoration: none;
+        a {
+            color: $color-medium-blue;
+        }
+    }
+    .ButtonsText {
+        margin-left: 10px;
+        color: $color-main-green;
+        text-decoration: none;
+    }
+
+    @include xs {
+        flex-direction: column;
+        align-items: center;
+        align-items: stretch;
+        button {
+            &:not(:last-child) {
+                margin-right: 0px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.Animation {
+    transition: all 0.2s;
+
+    animation-name: up;
+    animation-delay: 0.9s;
+    animation-duration: 1.2s;
+}
+
+@keyframes up {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+//Common
+.PurpleButton {
+    background: $gradient-btn-dark;
+    border-radius: 14px;
+    margin: 10px;
+    span {
+        font-weight: bold;
+        padding: 6px 15px;
+        color: white !important;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+}
+
+.PurpleButton:hover {
+    background-size: 200% 100%;
+    background-position: 0 100%;
+}

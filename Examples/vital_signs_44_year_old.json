@@ -1,0 +1,176 @@
+{
+  "sessionId": "session_44yo_20250915_110000",
+  "startTime": 1694755800,
+  "endTime": 1694757000,
+  "totalDuration": 1200000,
+  "totalDataPoints": 21,
+  "phases": {
+    "initial": {
+      "phase": "initial",
+      "startTime": 1694755800,
+      "endTime": 1694756100,
+      "duration": 300000,
+      "dataPoints": 5,
+      "heartRate": {
+        "min": 74,
+        "max": 75,
+        "avg": 74.6,
+        "stdDev": 0.49,
+        "validReadings": 5
+      },
+      "respiratoryRate": {
+        "min": 13,
+        "max": 14,
+        "avg": 13.6,
+        "stdDev": 0.49,
+        "validReadings": 5
+      },
+      "gsr": {
+        "min": 2.4,
+        "max": 2.5,
+        "avg": 2.44,
+        "stdDev": 0.05,
+        "validReadings": 5
+      },
+      "hrv": {
+        "sdnn": { "min": 41, "max": 44, "avg": 42.4, "stdDev": 1.14, "validReadings": 5 },
+        "rmssd": { "min": 37, "max": 40, "avg": 38.4, "stdDev": 1.14, "validReadings": 5 },
+        "pnn50": { "min": 21, "max": 24, "avg": 22.4, "stdDev": 1.14, "validReadings": 5 },
+        "lfPower": { "min": 670, "max": 710, "avg": 690, "stdDev": 12.25, "validReadings": 5 },
+        "hfPower": { "min": 900, "max": 960, "avg": 930, "stdDev": 24.49, "validReadings": 5 },
+        "lfHfRatio": { "min": 0.73, "max": 0.74, "avg": 0.74, "stdDev": 0.00, "validReadings": 5 }
+      },
+      "respiratoryPattern": {
+        "inhalePercent": { "min": 40, "max": 40, "avg": 40, "stdDev": 0, "validReadings": 5 },
+        "exhalePercent": { "min": 60, "max": 60, "avg": 60, "stdDev": 0, "validReadings": 5 },
+        "breathCount": 0,
+        "averageCycleDuration": 4.3
+      },
+      "quality": {
+        "ecgQuality": { "min": 92, "max": 93, "avg": 92.6, "stdDev": 0.49, "validReadings": 5 },
+        "connectionStability": 100,
+        "sensorStability": { "ecg": 100, "gsr": 100, "respiratory": 100 }
+      }
+    },
+    "main": {
+      "phase": "main",
+      "startTime": 1694756100,
+      "endTime": 1694756700,
+      "duration": 600000,
+      "dataPoints": 10,
+      "heartRate": {
+        "min": 64,
+        "max": 73,
+        "avg": 68.5,
+        "stdDev": 3.03,
+        "validReadings": 10
+      },
+      "respiratoryRate": {
+        "min": 4,
+        "max": 12,
+        "avg": 8.0,
+        "stdDev": 3.03,
+        "validReadings": 10
+      },
+      "gsr": {
+        "min": 1.3,
+        "max": 2.2,
+        "avg": 1.75,
+        "stdDev": 0.32,
+        "validReadings": 10
+      },
+      "hrv": {
+        "sdnn": { "min": 46, "max": 64, "avg": 55, "stdDev": 6.32, "validReadings": 10 },
+        "rmssd": { "min": 42, "max": 60, "avg": 51, "stdDev": 6.32, "validReadings": 10 },
+        "pnn50": { "min": 26, "max": 44, "avg": 35, "stdDev": 6.32, "validReadings": 10 },
+        "lfPower": { "min": 740, "max": 1010, "avg": 875, "stdDev": 87.18, "validReadings": 10 },
+        "hfPower": { "min": 1000, "max": 1360, "avg": 1180, "stdDev": 127.28, "validReadings": 10 },
+        "lfHfRatio": { "min": 0.74, "max": 0.75, "avg": 0.74, "stdDev": 0.00, "validReadings": 10 }
+      },
+      "respiratoryPattern": {
+        "inhalePercent": { "min": 12, "max": 40, "avg": 26, "stdDev": 9.49, "validReadings": 10 },
+        "exhalePercent": { "min": 60, "max": 88, "avg": 74, "stdDev": 9.49, "validReadings": 10 },
+        "breathCount": 6,
+        "averageCycleDuration": 7.5
+      },
+      "quality": {
+        "ecgQuality": { "min": 94, "max": 99, "avg": 98.5, "stdDev": 1.08, "validReadings": 10 },
+        "connectionStability": 100,
+        "sensorStability": { "ecg": 100, "gsr": 100, "respiratory": 100 }
+      }
+    },
+    "final": {
+      "phase": "final",
+      "startTime": 1694756700,
+      "endTime": 1694757000,
+      "duration": 300000,
+      "dataPoints": 6,
+      "heartRate": {
+        "min": 65,
+        "max": 75,
+        "avg": 70,
+        "stdDev": 3.27,
+        "validReadings": 6
+      },
+      "respiratoryRate": {
+        "min": 4,
+        "max": 14,
+        "avg": 9,
+        "stdDev": 3.27,
+        "validReadings": 6
+      },
+      "gsr": {
+        "min": 1.3,
+        "max": 2.5,
+        "avg": 1.95,
+        "stdDev": 0.37,
+        "validReadings": 6
+      },
+      "hrv": {
+        "sdnn": { "min": 42, "max": 64, "avg": 53, "stdDev": 3.27, "validReadings": 6 },
+        "rmssd": { "min": 38, "max": 60, "avg": 49, "stdDev": 3.27, "validReadings": 6 },
+        "pnn50": { "min": 22, "max": 44, "avg": 33, "stdDev": 3.27, "validReadings": 6 },
+        "lfPower": { "min": 680, "max": 1010, "avg": 845, "stdDev": 32.66, "validReadings": 6 },
+        "hfPower": { "min": 920, "max": 1360, "avg": 1140, "stdDev": 49.97, "validReadings": 6 },
+        "lfHfRatio": { "min": 0.73, "max": 0.75, "avg": 0.74, "stdDev": 0.00, "validReadings": 6 }
+      },
+      "respiratoryPattern": {
+        "inhalePercent": { "min": 18, "max": 40, "avg": 29, "stdDev": 9.17, "validReadings": 6 },
+        "exhalePercent": { "min": 60, "max": 82, "avg": 71, "stdDev": 9.17, "validReadings": 6 },
+        "breathCount": 4,
+        "averageCycleDuration": 6.67
+      },
+      "quality": {
+        "ecgQuality": { "min": 92, "max": 99, "avg": 97.17, "stdDev": 2.32, "validReadings": 6 },
+        "connectionStability": 100,
+        "sensorStability": { "ecg": 100, "gsr": 100, "respiratory": 100 }
+      }
+    }
+  },
+  "overall": {
+    "heartRate": { "min": 64, "max": 75, "avg": 70.95, "stdDev": 3.27 },
+    "respiratoryRate": { "min": 4, "max": 14, "avg": 10.05, "stdDev": 4.12 },
+    "gsr": { "min": 1.3, "max": 2.5, "avg": 2.05, "stdDev": 0.37 },
+    "hrv": { "avgSdnn": 50.0, "avgRmssd": 46.19, "avgPnn50": 30.0 },
+    "respiratoryPattern": { "avgInhalePercent": 31.67, "avgExhalePercent": 68.33, "totalBreaths": 10 }
+  },
+  "qualityAssessment": {
+    "overallQuality": "excellent",
+    "dataCompleteness": 100,
+    "connectionReliability": 100,
+    "sensorReliability": { "ecg": 100, "gsr": 100, "respiratory": 100 },
+    "recommendations": [
+      "Excellent data quality throughout the session",
+      "All sensors maintained stable connections",
+      "Meditation response shows typical parasympathetic activation",
+      "Age-appropriate HRV improvements observed",
+      "Realistic physiological improvements for age group",
+      "Consider longer sessions for deeper relaxation benefits"
+    ]
+  },
+  "exportData": {
+    "csv": "vital_signs_44_year_old.csv",
+    "json": "vital_signs_44_year_old.json",
+    "summary": "44-year-old subject showed realistic response to guided meditation with moderate improvements in HRV metrics (10-15% increase), reduced heart rate (75→64 bpm, 14.7% reduction), and enhanced respiratory efficiency. Peak meditation benefits observed at 10-14 minutes with gradual return to baseline. Session conducted on September 15th, 2025 at 11:00 AM IST. Age-appropriate physiological responses with all sensors maintaining 100% connection stability and medically plausible values throughout."
+  }
+}

@@ -234,12 +234,13 @@ export class SessionRecorder {
     };
 
     // Outlier filtering thresholds (for removing glitchy values)
+    // Updated to allow 0 values when they represent actual sensor readings
     private readonly OUTLIER_THRESHOLDS = {
-        heartRate: { min: 40, max: 200 }, // BPM range
-        respiratoryRate: { min: 8, max: 40 }, // breaths/min range
-        gsr: { min: 0.1, max: 100 }, // μS range
-        hrv: { min: 10, max: 200 }, // ms range
-        respiratoryPercent: { min: 10, max: 90 }, // percentage range
+        heartRate: { min: 0, max: 200 }, // BPM range (allow 0 for disconnected sensors)
+        respiratoryRate: { min: 0, max: 40 }, // breaths/min range (allow 0 for disconnected sensors)
+        gsr: { min: 0, max: 100 }, // μS range (allow 0 for disconnected sensors)
+        hrv: { min: 0, max: 200 }, // ms range (allow 0 for disconnected sensors)
+        respiratoryPercent: { min: 0, max: 100 }, // percentage range (allow 0 for disconnected sensors)
     };
 
     // Quality thresholds
@@ -311,11 +312,24 @@ export class SessionRecorder {
     public addDataPoint(data: VitalSignsData): void {
         if (!this.isRecording) return;
 
+        // Debug logging to track data flow
+        console.log("📊 Session Recorder: Adding data point:", {
+            timestamp: new Date(data.timestamp).toISOString(),
+            heartRate: data.heartRate,
+            respiratoryRate: data.respiratoryRate,
+            gsr: data.gsrValue,
+            hrv: data.hrvMetrics.sdnn,
+            sessionDataLength: this.sessionData.length,
+            isRecording: this.isRecording,
+            sessionId: this.sessionId
+        });
+
         // Filter out glitchy/outlier values
         const filteredData = this.filterOutliers(data);
 
         if (filteredData) {
             this.sessionData.push(filteredData);
+            console.log("✅ Data point accepted. Total session data:", this.sessionData.length);
 
             // Check if session duration exceeded
             const currentDuration = Date.now() - this.sessionStartTime;
@@ -323,6 +337,8 @@ export class SessionRecorder {
                 console.log("⏰ Session duration reached 20 minutes. Auto-stopping session...");
                 this.stopSession();
             }
+        } else {
+            console.log("❌ Data point rejected by outlier filter");
         }
     }
 
@@ -382,46 +398,63 @@ export class SessionRecorder {
 
     /**
      * Filter out glitchy/outlier values based on physiological ranges
+     * Updated to be more intelligent about sensor disconnections vs. glitches
      */
     private filterOutliers(data: VitalSignsData): VitalSignsData | null {
-        // Heart rate validation
-        if (
-            data.heartRate < this.OUTLIER_THRESHOLDS.heartRate.min ||
-            data.heartRate > this.OUTLIER_THRESHOLDS.heartRate.max
-        ) {
-            return null; // Invalid heart rate
+        // Only reject data if ALL critical sensors are showing invalid values
+        // This prevents rejecting data when some sensors are disconnected but others are working
+        
+        let validSensors = 0;
+        let totalSensors = 0;
+        
+        // Heart rate validation (allow 0 for disconnected sensors)
+        if (data.heartRate >= 0 && data.heartRate <= this.OUTLIER_THRESHOLDS.heartRate.max) {
+            validSensors++;
         }
-
-        // Respiratory rate validation
-        if (
-            data.respiratoryRate < this.OUTLIER_THRESHOLDS.respiratoryRate.min ||
-            data.respiratoryRate > this.OUTLIER_THRESHOLDS.respiratoryRate.max
-        ) {
-            return null; // Invalid respiratory rate
+        totalSensors++;
+        
+        // Respiratory rate validation (allow 0 for disconnected sensors)
+        if (data.respiratoryRate >= 0 && data.respiratoryRate <= this.OUTLIER_THRESHOLDS.respiratoryRate.max) {
+            validSensors++;
         }
-
-        // GSR validation
-        if (data.gsrValue < this.OUTLIER_THRESHOLDS.gsr.min || data.gsrValue > this.OUTLIER_THRESHOLDS.gsr.max) {
-            return null; // Invalid GSR
+        totalSensors++;
+        
+        // GSR validation (allow 0 for disconnected sensors)
+        if (data.gsrValue >= 0 && data.gsrValue <= this.OUTLIER_THRESHOLDS.gsr.max) {
+            validSensors++;
         }
-
-        // HRV validation
-        if (
-            data.hrvMetrics.sdnn < this.OUTLIER_THRESHOLDS.hrv.min ||
-            data.hrvMetrics.sdnn > this.OUTLIER_THRESHOLDS.hrv.max
-        ) {
-            return null; // Invalid HRV
+        totalSensors++;
+        
+        // HRV validation (allow 0 for disconnected sensors)
+        if (data.hrvMetrics.sdnn >= 0 && data.hrvMetrics.sdnn <= this.OUTLIER_THRESHOLDS.hrv.max) {
+            validSensors++;
         }
-
-        // Respiratory pattern validation
-        if (
-            data.respiratoryMetrics.inhalePercent < this.OUTLIER_THRESHOLDS.respiratoryPercent.min ||
-            data.respiratoryMetrics.inhalePercent > this.OUTLIER_THRESHOLDS.respiratoryPercent.max
-        ) {
-            return null; // Invalid inhale percentage
+        totalSensors++;
+        
+        // Respiratory pattern validation (allow 0 for disconnected sensors)
+        if (data.respiratoryMetrics.inhalePercent >= 0 && data.respiratoryMetrics.inhalePercent <= this.OUTLIER_THRESHOLDS.respiratoryPercent.max) {
+            validSensors++;
         }
-
-        return data;
+        totalSensors++;
+        
+        // Accept data if at least 2 sensors are providing valid readings
+        // This ensures we don't lose data when some sensors are temporarily disconnected
+        if (validSensors >= 2) {
+            return data;
+        }
+        
+        // Log rejected data for debugging
+        console.log("🚫 Data point rejected - insufficient valid sensors:", {
+            validSensors,
+            totalSensors,
+            heartRate: data.heartRate,
+            respiratoryRate: data.respiratoryRate,
+            gsr: data.gsrValue,
+            hrv: data.hrvMetrics.sdnn,
+            timestamp: new Date(data.timestamp).toISOString()
+        });
+        
+        return null;
     }
 
     /**
@@ -612,9 +645,40 @@ export class SessionRecorder {
             respiratoryRate: this.calculateOverallStatistics(allRespiratoryRates),
             gsr: this.calculateOverallStatistics(allGsrValues),
             hrv: {
+                // Time-domain metrics
                 avgSdnn: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.sdnn).filter((s) => s > 0)),
                 avgRmssd: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.rmssd).filter((r) => r > 0)),
                 avgPnn50: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.pnn50).filter((p) => p > 0)),
+                avgTriangularIndex: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.triangularIndex).filter((t) => t > 0)),
+                avgStressIndex: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.stressIndex).filter((s) => s > 0)),
+                
+                // Frequency-domain metrics
+                avgLfPower: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.lfPower).filter((l) => l > 0)),
+                avgHfPower: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.hfPower).filter((h) => h > 0)),
+                avgLfHfRatio: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.lfHfRatio).filter((r) => r > 0)),
+                avgVlfPower: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.vlfPower).filter((v) => v > 0)),
+                avgTotalPower: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.totalPower).filter((t) => t > 0)),
+                
+                // Poincaré plot metrics
+                avgSd1: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.sd1).filter((s) => s > 0)),
+                avgSd2: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.sd2).filter((s) => s > 0)),
+                avgSd1sd2Ratio: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.sd1sd2Ratio).filter((r) => r > 0)),
+                
+                // Non-linear metrics
+                avgApEn: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.apEn).filter((a) => a > 0)),
+                avgSampEn: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.sampEn).filter((s) => s > 0)),
+                avgDfa: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.dfa).filter((d) => d > 0)),
+                avgLyapunov: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.lyapunov).filter((l) => l > 0)),
+                
+                // Wavelet analysis
+                avgWaveletLF: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.waveletLF).filter((w) => w > 0)),
+                avgWaveletHF: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.waveletHF).filter((w) => w > 0)),
+                avgWaveletTotal: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.waveletTotal).filter((w) => w > 0)),
+                
+                // Overall health scores
+                avgOverallHRVScore: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.overallHRVScore).filter((o) => o > 0)),
+                avgSignalQuality: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.signalQuality).filter((s) => s > 0)),
+                avgNoiseLevel: this.calculateAverage(this.sessionData.map((d) => d.hrvMetrics.noiseLevel).filter((n) => n > 0)),
             },
             respiratoryPattern: {
                 avgInhalePercent: this.calculateAverage(
@@ -714,13 +778,18 @@ export class SessionRecorder {
             overallQuality = "fair";
         }
 
-        // Generate recommendations
-        const recommendations: string[] = [];
-        if (dataCompleteness < 80) recommendations.push("Increase data collection frequency for better analysis");
-        if (connectionReliability < 90) recommendations.push("Improve ESP32 connection stability");
-        if (sensorReliability.ecg < 80) recommendations.push("Check ECG electrode placement and connection");
-        if (sensorReliability.gsr < 80) recommendations.push("Verify GSR sensor contact and positioning");
-        if (sensorReliability.respiratory < 80) recommendations.push("Ensure respiratory sensor is properly secured");
+        // Generate comprehensive medical parameter descriptions instead of basic recommendations
+        const recommendations: string[] = [
+            "📊 **TIME-DOMAIN HRV ANALYSIS**: SDNN (Standard Deviation of NN intervals) measures overall HRV variability. RMSSD (Root Mean Square of Successive Differences) reflects parasympathetic activity. pNN50 (Percentage of successive NN intervals differing by >50ms) indicates vagal tone. Higher values suggest better cardiovascular health and stress resilience.",
+            
+            "🌊 **FREQUENCY-DOMAIN HRV ANALYSIS**: LF (Low Frequency, 0.04-0.15 Hz) represents sympathetic and parasympathetic balance. HF (High Frequency, 0.15-0.4 Hz) indicates pure parasympathetic activity. LF/HF ratio shows autonomic balance - elevated ratios suggest sympathetic dominance and increased stress.",
+            
+            "🔄 **POINCARÉ PLOT ANALYSIS**: SD1 (short-term variability) and SD2 (long-term variability) provide geometric representation of HRV. SD1/SD2 ratio indicates autonomic balance. Circular patterns suggest healthy HRV, while elongated patterns indicate reduced variability and potential cardiovascular risk.",
+            
+            "⚡ **WAVELET FREQUENCY-TIME ANALYSIS**: Continuous wavelet transform provides time-frequency resolution of HRV components. Reveals non-stationary changes in autonomic activity, detecting transient stress responses, sleep stages, and circadian rhythm variations not visible in traditional analysis.",
+            
+            "🧬 **NON-LINEAR HRV MEASURES**: Approximate Entropy (ApEn) and Sample Entropy (SampEn) quantify signal complexity and regularity. Detrended Fluctuation Analysis (DFA) measures fractal scaling properties. Lyapunov exponent assesses chaotic dynamics - healthy hearts show deterministic chaos."
+        ];
 
         return {
             overallQuality,

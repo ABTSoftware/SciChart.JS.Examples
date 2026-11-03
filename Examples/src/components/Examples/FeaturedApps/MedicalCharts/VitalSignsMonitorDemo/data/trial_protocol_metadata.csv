@@ -1,0 +1,4 @@
+Phase,Duration_Mins,Stimulus,Data_Rate_Hz
+Phase I (Baseline),5,Quiet Rest / Spontaneous Breathing,"ECG: 250, Resp: 100, GSR: 10"
+Phase II (Active Biofeedback),10,Emotion-Adaptive Visual Pacer (Resonance Search),"ECG: 250, Resp: 100, GSR: 10"
+Phase III (Recovery),5,Unguided Rest (Carry-over assessment),"ECG: 250, Resp: 100, GSR: 10"
