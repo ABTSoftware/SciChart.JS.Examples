@@ -87,6 +87,6 @@ To run this example from the SciChart.JS.Examples repository:
 
 For framework-specific implementations, refer to:
 
--   [React Documentation](https://www.scichart.com/documentation/js/current/TutorialReusableReactComponent.html)
+-   [React Documentation](https://www.scichart.com/documentation/js/v6/get-started/tutorials-react/tutorial-01-setting-up-project-with-scichart-react/)
 -   [Angular Documentation](https://www.npmjs.com/package/scichart-angular)
--   [Box Plot Series Documentation](https://www.scichart.com/documentation/js/current/The%20Box%20Plot%20Series%20Type.html)
+-   [Box Plot Series Documentation](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-box-plot-renderable-series/)

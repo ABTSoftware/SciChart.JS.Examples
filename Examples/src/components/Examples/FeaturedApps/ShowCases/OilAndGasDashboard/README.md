@@ -9,11 +9,11 @@ This example demonstrates an advanced Oil and Gas dashboard that combines multip
 -   React
 -   TypeScript
 -   SciChart.JS and SciChart-React
--   Material UI (for responsive design with useMediaQuery and useTheme)
+-   shared CSS controls (for responsive design with matchMedia and CSS theme variables)
 
 ## Code Explanation
 
-The main component file is `index.tsx`, which defines the functional React component `OilAndGasDashboardShowcase`. This component uses SciChartReact components to initialize and render multiple charts. It also uses the `ChartGroupLoader` and groups several vertical charts with the `SciChartVerticalGroup` so that a unified rollover modifier is applied to them. In the component, sidebar 2D charts are conditionally rendered based on screen size (using Material UI’s `useMediaQuery` hook). The sidebar includes several individual SciChartReact components, each initialized via separate 2D chart initializer functions (e.g. `init2dFirstChart`, `init2dSecondChart`, etc.). Additionally, a 3D chart is rendered using the `SciChart3DSurface` component and its associated initializer function (`init3dChart`). The main container holds the vertical charts which are initialized using dedicated drawing functions (e.g. `drawShaleChart`, `drawDensityChart`, etc.). Other supporting files include:
+The main component file is `index.tsx`, which defines the functional React component `OilAndGasDashboardShowcase`. This component uses SciChartReact components to initialize and render multiple charts. It also uses the `ChartGroupLoader` and groups several vertical charts with the `SciChartVerticalGroup` so that a unified rollover modifier is applied to them. In the component, sidebar 2D charts are conditionally rendered based on screen size (using shared CSS controls’s `matchMedia` hook). The sidebar includes several individual SciChartReact components, each initialized via separate 2D chart initializer functions (e.g. `init2dFirstChart`, `init2dSecondChart`, etc.). Additionally, a 3D chart is rendered using the `SciChart3DSurface` component and its associated initializer function (`init3dChart`). The main container holds the vertical charts which are initialized using dedicated drawing functions (e.g. `drawShaleChart`, `drawDensityChart`, etc.). Other supporting files include:
 
 -   **index.html & indexVerticalCharts.html**: Provide standalone HTML pages embedding the bundled JavaScript file and include basic CSS styling for layout and scrollbar customization.
 -   **OIlGasStyles.css**: Contains CSS rules for styling the sidebar, grid layout, chart containers, legends and other UI elements used in the dashboard.

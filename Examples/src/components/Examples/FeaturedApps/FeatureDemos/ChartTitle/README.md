@@ -8,8 +8,8 @@ This example demonstrates how to configure, customize, and update the chart titl
 
 -   **React** (with TypeScript – TSX)
 -   **SciChart.js** for high-performance charting
--   **@mui/material** for UI components
--   **tss-react/mui** for styling
+-   **shared CSS controls** for UI components
+-   **plain CSS classes** for styling
 
 ## Code Explanation
 

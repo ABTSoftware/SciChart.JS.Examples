@@ -41,7 +41,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/2d-charts/chart-types/polar-uniform-heatmap-renderable-series/",
+                href: "https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/polar-uniform-heatmap-renderable-series/",
                 title: "This specific page in the JavaScript Polar Heatmap Kinetic Tomography Chart documentation will help you to get started",
                 linkTitle: "JavaScript Polar Heatmap Kinetic Tomography Chart Documentation",
             },

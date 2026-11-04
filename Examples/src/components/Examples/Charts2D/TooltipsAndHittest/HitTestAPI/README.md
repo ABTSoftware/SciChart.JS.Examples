@@ -8,7 +8,7 @@ This example demonstrates the use of the SciChart.js Hit Test API by allowing us
 
 -   SciChart.js for high performance real-time charting
 -   SciChart React for React integration (TSX implementation)
--   Material-UI for toggle buttons in the React component
+-   shared CSS controls for toggle buttons in the React component
 -   JavaScript and TypeScript
 
 ## Code Explanation

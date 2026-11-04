@@ -28,7 +28,6 @@ import {
     XyzSeriesInfo3D,
 } from "scichart";
 import { Radix2FFT } from "../../../FeaturedApps/ScientificCharts/AudioAnalyzer/Radix2FFT";
-import { appTheme } from "../../../theme";
 
 export const divMainChart3DId = "sciChart1_3d";
 export const divCrossSection1 = "sciChart2";

@@ -22,6 +22,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         showLegend: true,
         showLegendSeriesMarkers: true,
         animateLegend: true,
+        cornerRadius: 6
     });
     // Optional placement of legend
     sciChartPieSurface.legend.orientation = ELegendOrientation.Vertical;

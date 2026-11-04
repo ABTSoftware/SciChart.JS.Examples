@@ -4,7 +4,7 @@ import { IExampleMetadata } from "../../../IExampleMetadata";
 const metaData: IExampleMetadata = {
     reactComponent: "PairedDashedPolylineAnnotation",
     id: "chart2D_createStockCharts_PairedDashedPolylineAnnotation",
-    imagePath: "javascript-user-annotated-stock-chart.jpg",
+    imagePath: "javascript-paired-dashed-polyline-annotation.jpg",
     description:
         "A custom financial annotation extending PolyLineAnnotation with dashed peak connectors and a single point-1-to-last-point connector.",
     tips: [],
@@ -38,7 +38,7 @@ const metaData: IExampleMetadata = {
     },
     documentationLinks: [
         {
-            href: "https://www.scichart.com/documentation/js/v5/2d-charts/annotations-api/custom-annotations/custom-annotations-overview/",
+            href: "https://www.scichart.com/documentation/js/v6/2d-charts/annotations-api/custom-annotation/",
             title: "SciChart.js custom annotation documentation",
             linkTitle: "Custom Annotations",
         },
@@ -47,7 +47,7 @@ const metaData: IExampleMetadata = {
     metaKeywords: "custom annotation, polyline annotation, stock chart, trading annotation, dashed line",
     onWebsite: true,
     filepath: "Charts2D/CreateStockCharts/PairedDashedPolylineAnnotation",
-    thumbnailImage: "javascript-user-annotated-stock-chart.jpg",
+    thumbnailImage: "javascript-paired-dashed-polyline-annotation.jpg",
     sandboxConfig: {},
     markdownContent: null,
     pageLayout: "default",

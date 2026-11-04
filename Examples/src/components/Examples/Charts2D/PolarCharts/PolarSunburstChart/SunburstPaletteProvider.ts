@@ -1,6 +1,5 @@
 import {
     IRenderableSeries,
-    parseColorToUIntArgb,
     EFillPaletteMode,
     EStrokePaletteMode,
     IFillPaletteProvider,

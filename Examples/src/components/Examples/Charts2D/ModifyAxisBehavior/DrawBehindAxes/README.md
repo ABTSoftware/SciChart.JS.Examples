@@ -11,13 +11,13 @@ This example demonstrates how to render series behind the chart axes in SciChart
 -   Vanilla JavaScript
 -   React
 -   TypeScript
--   Material UI (for React toggle buttons)
+-   shared CSS controls (for React toggle buttons)
 
 ## Code Explanation
 
 -   **angular.ts**: This file sets up the Angular implementation using the SciChartAngularComponent. It imports and passes the `drawExample` function to initialize the chart.
 -   **drawExample.js / drawExample.ts**: These files contain the core chart setup code. They create a SciChartSurface, configure numerical X and Y axes, and add two FastLineRenderableSeries. A key configuration is the property `drawSeriesBehindAxis` set to `true`, which renders the series behind the axes. These files also add zoom and pan modifiers for interactive navigation.
--   **index.tsx**: This React component initializes the SciChartSurface using SciChartReact. It includes a toggle button group (from Material UI) that allows users to switch between drawing series behind the axes and clipping the series at the viewport edge. The toggle button updates the chart title and axis border properties dynamically.
+-   **index.tsx**: This React component initializes the SciChartSurface using SciChartReact. It includes a toggle button group (from shared CSS controls) that allows users to switch between drawing series behind the axes and clipping the series at the viewport edge. The toggle button updates the chart title and axis border properties dynamically.
 -   **javascript-draw-behind-axes.jpg**: This image provides a visual preview of the example output.
 
 ## Customization

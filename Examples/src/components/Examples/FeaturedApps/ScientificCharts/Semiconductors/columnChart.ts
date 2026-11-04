@@ -8,13 +8,10 @@ import {
     XyNDataSeries,
     CategoryAxis,
     DataPointSelectionModifier,
-    BoxAnnotation,
     StackedColumnCollection,
-    ECoordinateMode,
     ENumericFormat,
     DataPointInfo,
     Thickness,
-    ESelectionMode,
     DataPointSelectionPaletteProvider,
 } from "scichart";
 

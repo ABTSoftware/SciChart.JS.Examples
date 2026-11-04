@@ -6,9 +6,7 @@ import {
     NumberRange,
     ZoomPanModifier,
     BoxAnnotation,
-    TextAnnotation,
     EAnnotationLayer,
-    NativeTextAnnotation,
     EAxisAlignment,
     MouseWheelZoomModifier,
     FastBubbleRenderableSeries,
@@ -27,9 +25,6 @@ import {
     SeriesInfo,
     XyzSeriesInfo,
     SweepAnimation,
-    ECoordinateMode,
-    EVerticalAnchorPoint,
-    SciChartLegend,
     ManualLegend,
 } from "scichart";
 

@@ -11,7 +11,6 @@ import {
     MouseWheelZoomModifier,
     NumberRange,
     NumericAxis,
-    PinchZoomModifier,
     RubberBandXyZoomModifier,
     SciChartSurface,
     XyDataSeries,

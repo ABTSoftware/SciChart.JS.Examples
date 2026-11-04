@@ -21,7 +21,7 @@ const metaData: IExampleMetadata =
     {
         reactComponent: "FinancialDataFilters",
         id: "chart2D_createStockCharts_FinancialDataFilters",
-        imagePath: "javascript-candlestick-chart.jpg",
+        imagePath: "javascript-financial-data-filters.jpg",
         description,
         tips: [],
         frameworks: {
@@ -49,7 +49,7 @@ const metaData: IExampleMetadata =
         },
         documentationLinks: [
             {
-                href: "https://www.scichart.com/documentation/js/v5/intro/",
+                href: "https://www.scichart.com/documentation/js/v6/intro/",
                 title: "The SciChart.js documentation contains loads of useful information on how to use our High Performance JavaScript Charts",
                 linkTitle: "Scichart.js Documentation",
             },
@@ -58,7 +58,7 @@ const metaData: IExampleMetadata =
         metaKeywords: "financial, filters, heikin ashi, renko, point and figure, ohlc, candlestick",
         onWebsite: false,
         filepath: "Charts2D/CreateStockCharts/FinancialDataFilters",
-        thumbnailImage: "javascript-candlestick-chart.jpg",
+        thumbnailImage: "javascript-financial-data-filters.jpg",
         sandboxConfig: {},
         markdownContent: null,
         pageLayout: "max-width",

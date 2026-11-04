@@ -11,7 +11,6 @@ import {
     EllipsePointMarker,
     HitTestInfo,
     DpiHelper,
-    TextAnnotation,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,

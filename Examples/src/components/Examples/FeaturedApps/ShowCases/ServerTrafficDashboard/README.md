@@ -8,7 +8,7 @@ The Server Traffic Dashboard example demonstrates how to build a multi-chart int
 
 -   React with TypeScript (TSX)
 -   SciChart.JS and SciChart-React
--   Material-UI for the configuration dialog and UI components
+-   shared CSS controls for the configuration dialog and UI components
 -   SciChart chartBuilder API for registering tooltip templates and functions
 
 ## Code Explanation

@@ -5,7 +5,6 @@ import type { StackBlitzResponse } from "../../helpers/types/types";
 // Types for the API responses
 interface SandboxUrlResponse {
     id: string;
-    actualFramework: EPageFramework;
 }
 
 interface SandboxErrorResponse {
@@ -37,7 +36,7 @@ export async function getSandboxUrl(
     examplePath: string,
     framework: EPageFramework = EPageFramework.React,
     platform = "codeSandbox"
-): Promise<{ id: string; actualFramework: EPageFramework }> {
+): Promise<{ id: string }> {
     try {
         const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}&platform=${platform}`);
         if (!response.ok) {
@@ -52,7 +51,7 @@ export async function getSandboxUrl(
         }
 
         console.log(data);
-        return { id: data.id, actualFramework: data.actualFramework };
+        return { id: data.id };
     } catch (error) {
         console.error("Failed to get CodeSandbox URL:", error);
         throw error;

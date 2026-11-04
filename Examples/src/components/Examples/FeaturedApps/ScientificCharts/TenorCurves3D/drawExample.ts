@@ -3,7 +3,6 @@ import { getTenorCurveData } from "./TenorCurveData";
 import {
     EllipsePointMarker,
     FastMountainRenderableSeries,
-    IDeletable,
     NumericAxis,
     NumberRange,
     Point,

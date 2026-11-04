@@ -15,7 +15,6 @@ import {
     NumericAxis,
     RubberBandXyZoomModifier,
     SciChartSurface,
-    TextAnnotation,
     XAxisDragModifier,
     XyDataSeries,
     YAxisDragModifier,

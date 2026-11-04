@@ -117,7 +117,10 @@ export const drawMultiSeriesExample = async (rootElement: string | HTMLDivElemen
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
         theme: appTheme.SciChartJsTheme,
     });
-    const xAxis = new NumericAxis(wasmContext, { drawLabels: false, growBy: new NumberRange(0.07, 0.07) });
+    const xAxis = new NumericAxis(wasmContext, { 
+        drawLabels: false, 
+        growBy: new NumberRange(0.07, 0.07) 
+    });
     sciChartSurface.xAxes.add(xAxis);
 
     const carsData = generateData(MULTI_SERIES_RECORD_COUNT);

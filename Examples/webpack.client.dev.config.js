@@ -1,27 +1,15 @@
-const { merge } = require("webpack-merge");
-const webpackClientConfig = require("./webpack.client.config.js");
-
-module.exports = merge(webpackClientConfig, {
-    mode: "development",
-    resolve: {
-        fallback : {
-            child_process: false,
-            fs: false,
-            crypto: false,
-            net: false,
-            tls: false
-        }
-    },
-    devtool: "inline-source-map",
-
+const development = require("./webpack.client.development.cjs");
+const setupMiddleware = require("./scripts/devMiddleware.cjs");
+module.exports = {
+    ...development,
+    cache: { ...development.cache, name: "client-with-server" },
     devServer: {
-        allowedHosts: "all",
-        proxy: {
-            "/": {
-                target: "http://localhost:3000"
-            }
-        }
+        ...development.devServer,
+        static: false,
+        setupMiddlewares(middlewares, devServer) {
+            setupMiddleware(devServer.app, { withApi: false });
+            return middlewares;
+        },
+        proxy: { "/": { target: "http://localhost:3000" } },
     },
-    watch: true,
-
-});
+};

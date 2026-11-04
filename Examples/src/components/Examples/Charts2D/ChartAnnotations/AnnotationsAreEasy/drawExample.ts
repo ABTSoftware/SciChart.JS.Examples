@@ -13,7 +13,6 @@ import {
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,
     ECoordinateMode,
-    EAnnotationLayer,
     IAnnotation,
     HorizontalLineAnnotation,
     ELabelPlacement,

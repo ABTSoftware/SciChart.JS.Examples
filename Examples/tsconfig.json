@@ -7,47 +7,9 @@
     },
     "compilerOptions": {
         "outDir": "./build",
-        "sourceMap": true,
-        "strict": true,
-        "noImplicitAny": true,
-        "strictNullChecks": false,
-        "strictFunctionTypes": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": false,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "module": "ESNext",
-        "moduleResolution": "bundler",
-        "baseUrl": ".",
-        // To build against the vendored copy in src/scichart-react instead of the npm package:
-        // uncomment the block below, uncomment the matching alias in the three webpack configs,
-        // and comment out "src/scichart-react/**" in "exclude" at the bottom of this file
-        // "paths": {
-        //     "scichart-react": ["./src/scichart-react/index.ts"]
-        // },
-        "target": "es2018",
-        "downlevelIteration": true,
-        "jsx": "react-jsx",
-        "allowJs": true,
-        "typeRoots": ["./src/types", "./node_modules/@types"],
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "experimentalDecorators": true
+        "sourceMap": true
     },
     "include": ["src/**/*", "testUnit/**/*", "../ExampleDependencies/src/ExampleData/binanceRestClient.ts"],
-    "exclude": [
-        "node_modules",
-        "src/static/*",
-        "src/**/vanilla.ts",
-        "src/**/angular.ts",
-        // The vendored scichart-react copy is kept as a fallback but is not part of the app -
-        // comment this out when re-enabling the "paths" entry above
-        "src/scichart-react/**"
-    ]
+    "exclude": ["node_modules", "src/static/*", "src/**/vanilla.ts", "src/**/angular.ts", "src/scichart-react/**"],
+    "extends": "./tsconfig.base.json"
 }

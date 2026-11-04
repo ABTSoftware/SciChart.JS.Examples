@@ -1,42 +1,43 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import { useState, useRef, useEffect } from "react";
+
 import { SciChartReact } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample, TFilterMode } from "./drawExample";
 
 const FILTER_LABELS: Array<{ mode: TFilterMode; label: string }> = [
-    { mode: "source", label: "No Filter" },
+    { mode: "source", label: "Default (no filter)" },
     { mode: "heikinAshi", label: "Heikin-Ashi" },
     { mode: "renko", label: "Renko" },
     { mode: "pointAndFigure", label: "Point & Figure" },
 ];
 
 export default function FinancialDataFilters() {
-    const [filterMode, setFilterMode] = React.useState<TFilterMode>("source");
-    const chartApiRef = React.useRef<Awaited<ReturnType<typeof drawExample>> | undefined>(undefined);
+    const [filterMode, setFilterMode] = useState<TFilterMode>("source");
+    const chartApiRef = useRef<Awaited<ReturnType<typeof drawExample>> | undefined>(undefined);
 
-    React.useEffect(() => {
+    useEffect(() => {
         chartApiRef.current?.setFilterMode(filterMode);
     }, [filterMode]);
 
     return (
-        <div className={commonClasses.ChartWrapper} style={{ position: "relative", width: "100%", height: "100%" }}>
-            <div style={{ position: "absolute", zIndex: 1, top: 10, left: 12 }}>
-                <ButtonGroup size="small" variant="contained">
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group">
                     {FILTER_LABELS.map(({ mode, label }) => (
-                        <Button
+                        <button
+                            className="sc-button"
+                            type="button"
                             key={mode}
-                            color={filterMode === mode ? "primary" : "inherit"}
+                            aria-pressed={filterMode === mode}
                             onClick={() => setFilterMode(mode)}
                         >
                             {label}
-                        </Button>
+                        </button>
                     ))}
-                </ButtonGroup>
-            </div>
+                </div>
+            </header>
+
             <SciChartReact
-                style={{ width: "100%", height: "100%" }}
+                className="w-full h-full"
                 initChart={async (rootElement) => {
                     const chartApi = await drawExample(rootElement);
                     chartApiRef.current = chartApi;

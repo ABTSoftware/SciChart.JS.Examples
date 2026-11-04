@@ -16,17 +16,14 @@ import {
     SciChartSurfaceBase,
 } from "scichart";
 import { ETheme } from "../../types/types";
-import type { EPageFramework } from "./frameworkParametrization";
+import { useExampleRouteParams } from "./frameworkParametrization";
 
-export type StateType = {
-    framework: EPageFramework;
+export type StateType = ReturnType<typeof useExampleRouteParams> & {
     theme: ETheme;
 };
 
 type TStateContextValue = {
     state: StateType;
-    setState: React.Dispatch<React.SetStateAction<StateType>>;
-    setFramework: (framework: EPageFramework) => void;
     setTheme: (theme: ETheme) => void;
     toggleTheme: () => void;
     getNextTheme: (currentTheme?: ETheme) => ETheme;
@@ -321,33 +318,32 @@ const patchSciChartCreateMethodsOnce = () => {
 
 patchSciChartCreateMethodsOnce();
 
-export function StateProvider({ children, framework }: { children: React.ReactNode; framework: EPageFramework }) {
-    const [state, setState] = useState<StateType>(() => ({
-        framework,
-        theme: getInitialTheme(),
-    }));
+export function StateProvider({ children }: { children: React.ReactNode }) {
+    const route = useExampleRouteParams();
+    const [theme, setTheme] = useState<ETheme>(() =>
+        // Match SSR first; apply the browser's stored/system preference after hydration.
+        process.env.NODE_ENV === "production" ? ETheme.navy : getInitialTheme()
+    );
+    const state = useMemo<StateType>(
+        () => ({ ...route, theme }),
+        [route.currentExample, route.framework, route.isIFrame, route.isHomePage, route.is404, theme]
+    );
 
     const themeRef = useRef(state.theme);
     const themeCssColorsRef = useRef<TThemeCssColors>(getThemeCssColors());
     const surfacesRef = useRef<Set<ISciChartSurfaceBase>>(new Set());
     const patchedDeletesRef = useRef<WeakSet<ISciChartSurfaceBase>>(new WeakSet());
 
-    const setTheme = useCallback((nextTheme: ETheme) => {
-        setState((prevState) => (prevState.theme === nextTheme ? prevState : { ...prevState, theme: nextTheme }));
-    }, []);
+    useEffect(() => {
+        if (process.env.NODE_ENV === "production") setTheme(getInitialTheme());
+    }, [setTheme]);
 
     const toggleTheme = useCallback(() => {
-        setState((prevState) => ({ ...prevState, theme: getNextThemeInternal(prevState.theme) }));
+        setTheme(getNextThemeInternal);
     }, []);
 
     const getNextTheme = useCallback((currentTheme?: ETheme) => {
         return getNextThemeInternal(currentTheme ?? themeRef.current);
-    }, []);
-
-    const setFramework = useCallback((nextFramework: EPageFramework) => {
-        setState((prevState) =>
-            prevState.framework === nextFramework ? prevState : { ...prevState, framework: nextFramework }
-        );
     }, []);
 
     const registerSurface = useCallback((surface: ISciChartSurfaceBase) => {
@@ -378,12 +374,6 @@ export function StateProvider({ children, framework }: { children: React.ReactNo
             surfaceRegistrars.delete(registerSurface);
         };
     }, [registerSurface]);
-
-    useEffect(() => {
-        if (state.framework !== framework) {
-            setFramework(framework);
-        }
-    }, [framework, setFramework, state.framework]);
 
     useEffect(() => {
         const theme = state.theme;
@@ -419,13 +409,11 @@ export function StateProvider({ children, framework }: { children: React.ReactNo
     const contextValue = useMemo<TStateContextValue>(
         () => ({
             state,
-            setState,
-            setFramework,
             setTheme,
             toggleTheme,
             getNextTheme,
         }),
-        [state, setFramework, setTheme, toggleTheme, getNextTheme]
+        [state, toggleTheme, getNextTheme]
     );
 
     return <StateContext.Provider value={contextValue}>{children}</StateContext.Provider>;

@@ -79,4 +79,4 @@ To run this example from the SciChart.JS.Examples repository:
     npm run dev
     ```
 
-For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md) and [Polar Chart Documentation](https://www.scichart.com/documentation/js/current/webframe.html#The%20Column%20Series%20Type.html).
+For more details, refer to the [SciChart.JS.Examples README](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/README.md) and [Polar Chart Documentation](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-column-renderable-series/column-series-type/).

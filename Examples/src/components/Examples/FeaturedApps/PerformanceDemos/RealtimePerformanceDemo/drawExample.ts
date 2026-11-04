@@ -4,6 +4,7 @@ import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import {
     EAutoRange,
     EDragMode,
+    ENumericFormat,
     FastLineRenderableSeries,
     MouseWheelZoomModifier,
     NumericAxis,
@@ -29,8 +30,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     });
 
     // Create an XAxis and YAxis with autoRange=Always
-    const xAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
+    const xAxis = new NumericAxis(wasmContext, { 
+        autoRange: EAutoRange.Always,
+        labelPrecision: 0,
+        labelFormat: ENumericFormat.Engineering,
+    });
     sciChartSurface.xAxes.add(xAxis);
+    
     const yAxis = new NumericAxis(wasmContext, { autoRange: EAutoRange.Always });
     sciChartSurface.yAxes.add(yAxis);
 

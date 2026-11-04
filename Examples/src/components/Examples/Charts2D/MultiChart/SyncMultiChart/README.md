@@ -8,8 +8,8 @@ This example demonstrates how to synchronize multiple chart surfaces using SciCh
 
 -   **React**: The example is implemented as a React component using TSX.
 -   **SciChart.JS**: Utilized for creating and managing high-performance charts.
--   **Material-UI (MUI)**: Used for components such as buttons, checkboxes, and typography.
--   **tss-react/mui**: For custom styling.
+-   **shared CSS controls (shared CSS controls)**: Used for components such as buttons, checkboxes, and typography.
+-   **plain CSS classes**: For custom styling.
 
 ## Code Explanation
 

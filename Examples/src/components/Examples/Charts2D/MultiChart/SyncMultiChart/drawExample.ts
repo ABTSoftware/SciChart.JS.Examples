@@ -15,29 +15,38 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
     buildSeries,
+    Thickness
 } from "scichart";
 import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 import { AxisSynchroniser } from "./AxisSynchroniser";
 
-export const createChart = async (divId: string, id: number) => {
+export const MAX_CHARTS = 8;
+
+export const createChart = async (divId: string | HTMLDivElement, id: number) => {
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-        id: divId,
+        id: `multiChart${id}`,
         theme: appTheme.SciChartJsTheme,
         disableAspect: true,
+        padding: new Thickness(0, 0, 6, 0)
     });
 
     // Create and add an XAxis and YAxis
-    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {}));
+    sciChartSurface.xAxes.add(new NumericAxis(wasmContext, {
+        drawMinorGridLines: false,
+        labelPrecision: 0
+    }));
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment: EAxisAlignment.Left,
+            labelPrecision: 0,
+            drawMinorGridLines: false
         })
     );
 
-    const stroke = appTheme.SciChartJsTheme.getStrokeColor(id, 5, wasmContext);
+    const stroke = appTheme.SciChartJsTheme.getStrokeColor((id - 1) % MAX_CHARTS, MAX_CHARTS, wasmContext);
     const POINTS = 1000;
     const data0 = new RandomWalkGenerator().Seed((id + 1) * 10).getRandomWalkSeries(POINTS);
     sciChartSurface.renderableSeries.add(
@@ -64,22 +73,27 @@ export const createChart = async (divId: string, id: number) => {
     return { sciChartSurface, wasmContext };
 };
 
-export const createOverview = async (divId: string, axisSynchroniser: AxisSynchroniser) => {
+export const createOverview = async (divId: string | HTMLDivElement, axisSynchroniser: AxisSynchroniser) => {
     // Note this does not use SciChartOverview.
     // Instead we create a normal chart and then manually add the OverviewRangeSelectionModifier and bind it to the axisSynchroniser
     const { wasmContext, sciChartSurface } = await SciChartSurface.create(divId, {
-        id: divId,
+        id: "multiChartOverview",
         theme: appTheme.SciChartJsTheme,
     });
 
     // Create and add an XAxis and YAxis
-    const xAxis = new NumericAxis(wasmContext, { visibleRange: new NumberRange(0, 1000), autoRange: EAutoRange.Never });
+    const xAxis = new NumericAxis(wasmContext, { 
+        visibleRange: new NumberRange(0, 1000), 
+        autoRange: EAutoRange.Never,
+        labelPrecision: 0
+    });
     sciChartSurface.xAxes.add(xAxis);
     sciChartSurface.yAxes.add(
         new NumericAxis(wasmContext, {
             autoRange: EAutoRange.Always,
             growBy: new NumberRange(0.1, 0.1),
             axisAlignment: EAxisAlignment.Left,
+            labelPrecision: 0
         })
     );
 

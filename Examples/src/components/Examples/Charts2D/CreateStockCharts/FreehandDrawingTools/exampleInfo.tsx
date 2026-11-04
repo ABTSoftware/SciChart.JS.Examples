@@ -41,7 +41,7 @@ const metaData: IExampleMetadata = {
     },
     documentationLinks: [
         {
-            href: "https://www.scichart.com/documentation/js/v5/2d-charts/annotations-api/annotations-overview/",
+            href: "https://www.scichart.com/documentation/js/v6/2d-charts/annotations-api/annotations-api-overview/",
             title: "SciChart.js annotation documentation",
             linkTitle: "Annotations API",
         },

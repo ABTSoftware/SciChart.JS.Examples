@@ -103,10 +103,10 @@ export interface AppThemeBase {
     PalePurple: string;
 }
 
-export class SciChart2022AppTheme implements AppThemeBase {
+export class CustomSciChartAppTheme implements AppThemeBase {
     SciChartJsTheme = new SciChartJsNavyTheme();
 
-    // Dynamic colors
+    // Dynamic colors - mostly used for text and bg colors, derived by CSS variables from our Examples website
     get isDark() {
         const brightness = getPerceivedBrightness(this.Background);
         return brightness === undefined || brightness < 128;
@@ -150,4 +150,4 @@ export class SciChart2022AppTheme implements AppThemeBase {
     PalePurple = "#CFB4D5";
 }
 
-export const appTheme = new SciChart2022AppTheme();
+export const appTheme = new CustomSciChartAppTheme();

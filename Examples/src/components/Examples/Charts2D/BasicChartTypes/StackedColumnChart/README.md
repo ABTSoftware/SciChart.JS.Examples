@@ -7,16 +7,16 @@ This example demonstrates a stacked column chart using SciChart.JS. It visualize
 ## Technologies Used
 
 -   SciChart.JS
--   Angular and scichart-angular (Angular Material for UI controls)
--   React and scichart-react (with Material-UI components)
+-   Angular and scichart-angular (shared CSS classes for UI controls)
+-   React and scichart-react (with shared CSS controls)
 -   Vanilla JavaScript
 -   TypeScript
 
 ## Code Explanation
 
--   **angular.ts**: This is the main Angular component that imports necessary Angular Material modules and the SciChartAngularComponent. It initializes the chart by calling the asynchronous `drawExample` function and provides UI controls (using button toggles and switches) to interactively change between stacked and 100% stacked modes as well as toggling data label visibility.
+-   **angular.ts**: This is the main Angular component that imports necessary native HTML controls styled with shared CSS classes and the SciChartAngularComponent. It initializes the chart by calling the asynchronous `drawExample` function and provides UI controls (using button toggles and switches) to interactively change between stacked and 100% stacked modes as well as toggling data label visibility.
 -   **drawExample.js / drawExample.ts**: These files contain the core chart creation code. They create a SciChartSurface, configure numeric axes (with custom label formats and titles for Year and Sales USD), and set up five stacked column series representing different regions. Each series uses a shared stacked group to ensure they are stacked together. The collection of series is animated using a WaveAnimation and interactive modifiers (ZoomExtentsModifier, ZoomPanModifier, MouseWheelZoomModifier) are added to the chart. Two control functions are defined: one to toggle between normal and 100% stacked modes (by updating the `isOneHundredPercent` property of the collection) and another to toggle the visibility of data labels by adjusting their font size.
--   **index.tsx**: This React component uses the SciChartReact wrapper to initialize the chart. It manages the state for 100% stacked mode and data label visibility, passing these values to the chart via callbacks. UI components from Material-UI (Switch, ToggleButton, FormControlLabel) are used to provide interactivity in the React version.
+-   **index.tsx**: This React component uses the SciChartReact wrapper to initialize the chart. It manages the state for 100% stacked mode and data label visibility, passing these values to the chart via callbacks. UI components from shared CSS controls (Switch, button, label) are used to provide interactivity in the React version.
 -   **Additional assets**: Other files (such as the provided JPEG image) serve as supplementary resources for display or documentation purposes.
 
 ## Customization

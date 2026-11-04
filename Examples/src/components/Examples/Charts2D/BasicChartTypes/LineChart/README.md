@@ -10,7 +10,7 @@ This example demonstrates nine variations of line charts using SciChart.JS. It s
 -   SciChartSurface, NumericAxis, and various renderable series (e.g. FastLineRenderableSeries)
 -   SciChart modifiers such as RolloverModifier, VerticalSliceModifier, and SeriesSelectionModifier
 -   Angular (using scichart-angular)
--   React (using scichart-react and tss-react/mui for styling)
+-   React (using scichart-react and plain CSS classes for styling)
 -   TypeScript and JavaScript
 
 ## Code Explanation
@@ -19,7 +19,7 @@ The example is organized around a shared chart initialization API defined in the
 
 The Angular implementation is contained in `angular.ts`. It defines an Angular component which lays out a 3x3 grid of charts using the `<scichart-angular>` component. In its `ngOnInit` method the component assigns each chart initialization function from the shared API (for example, `initJustLineCharts`, `initDigitalLineCharts`, etc.) to corresponding properties in the component, ensuring that each chart variant is rendered.
 
-The React implementation is provided in `index.tsx`. This file defines a React component that uses `SciChartReact` along with custom styling (via tss-react/mui and custom CSS classes) to render the same nine chart variations in a responsive 3x3 grid layout. The component retrieves the initialization API and passes the appropriate chart initializer to each instance of the `SciChartReact` component.
+The React implementation is provided in `index.tsx`. This file defines a React component that uses `SciChartReact` along with custom styling (via plain CSS classes and custom CSS classes) to render the same nine chart variations in a responsive 3x3 grid layout. The component retrieves the initialization API and passes the appropriate chart initializer to each instance of the `SciChartReact` component.
 
 Additionally, a JPEG image file (`javascript-line-chart.jpg`) is included which likely demonstrates the visual output of the chart, serving as an illustrative preview for the example.
 

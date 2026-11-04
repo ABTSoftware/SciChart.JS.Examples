@@ -30,6 +30,7 @@ import {
     VerticalSliceModifier,
     ChartModifierBase2D,
     ECoordinateMode,
+    ETextAlignment
 } from "scichart";
 import { appTheme } from "../../../theme";
 import { TDataEntry, getData, getRequestsNumberPerTimestamp } from "./data-generation";
@@ -48,6 +49,7 @@ export const createMainChart = async (divElementId: string | HTMLDivElement, opt
             placeWithinChart: true,
             fontSize: 16,
             color: appTheme.ForegroundColor,
+            alignment: ETextAlignment.Left
         },
     });
 

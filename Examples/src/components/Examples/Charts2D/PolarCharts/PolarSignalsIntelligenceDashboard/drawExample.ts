@@ -7,7 +7,6 @@ import {
     EPolarAxisMode,
     NumberRange,
     EAxisAlignment,
-    EPolarLabelMode,
     HeatmapColorMap,
     UniformHeatmapDataSeries,
     PolarUniformHeatmapRenderableSeries,

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to create a **Treemap Chart** using SciChart.js, visualizing hierarchical data with rectangles sized by value. The implementation leverages [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/current/typedoc/classes/fastrectanglerenderableseries.html) and integrates with D3.js for layout calculations.
+This example demonstrates how to create a **Treemap Chart** using SciChart.js, visualizing hierarchical data with rectangles sized by value. The implementation leverages [FastRectangleRenderableSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/fastrectanglerenderableseries.html) and integrates with D3.js for layout calculations.
 
 ## Technologies Used
 

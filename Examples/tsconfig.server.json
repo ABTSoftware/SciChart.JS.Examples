@@ -1,0 +1,25 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "types": [
+            "node",
+            "react",
+            "react-dom",
+            "react-syntax-highlighter"
+        ],
+        "incremental": true,
+        "tsBuildInfoFile": "./.cache/server.tsbuildinfo"
+    },
+    "include": [
+        "src/**/*",
+        "generate-sitemap.ts",
+        "scripts/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/static/*",
+        "src/**/vanilla.ts",
+        "src/**/angular.ts",
+        "src/scichart-react/**"
+    ]
+}

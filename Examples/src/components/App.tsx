@@ -1,34 +1,27 @@
 import * as React from "react";
-import { Theme } from "@mui/material/styles";
-import Drawer from "@mui/material/Drawer";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import "scichart-react/configureDefaults";
 import { Helmet } from "react-helmet";
 import AppRouter from "./AppRouter/AppRouter";
-import {
-    ALL_MENU_ITEMS,
-    getParentMenuIds,
-    MENU_ITEMS_2D,
-    MENU_ITEMS_3D,
-    MENU_ITEMS_FEATURED_APPS,
-} from "./AppRouter/examples";
-// import AppBarTop from "./AppTopBar/AppBarTop";
+import "./Examples/styles/sc-main.css";
+import "./Examples/styles/sc-app.css";
+import "./Examples/styles/sc-gallery.css";
+import "./Examples/styles/sc-content.css";
+import "./Examples/styles/sc-editor.css";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
-import classes from "./App.module.scss";
-import "./index.scss";
-import { GalleryItem } from "../helpers/types/types";
-import { generateExamplesGallery, getSeeAlsoGalleryItems } from "../helpers/SciChartExamples";
-import { StateProvider } from "../helpers/shared/Helpers/Context";
-import { useExampleRouteParams } from "../helpers/shared/Helpers/frameworkParametrization";
+import { generateExamplesGallery } from "../helpers/SciChartExamples";
+import { StateProvider, _useContext } from "../helpers/shared/Helpers/Context";
 import AppDetailsRouter from "./AppDetailsRouters/AppDetailsRouter";
 import { Link, useNavigate } from "react-router";
 import { appTheme } from "./Examples/theme";
-import { SciChart3DSurface, SciChartSurfaceBase } from "scichart";
+import { SciChartSurfaceBase } from "scichart";
 import { ContentSectionRouter } from "./Navigation/AnchorTagRouter";
 import GalleryItems from "./GalleryItems";
 import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
+import { useMediaQuery } from "../helpers/useMediaQuery";
+import { MobileDrawer } from "./DrawerContent/MobileDrawer";
 import { baseAppPath } from "../constants";
 // scichart-react applies its own defaults (wasmUrl: "/scichart.wasm") at import time.
 // Example components are pulled in lazily via require.context, so without this eager import
@@ -43,7 +36,7 @@ const NotFound = () => (
     <div
         style={{
             textAlign: "center",
-            padding: "50px 20px",
+            padding: "3.125rem 1.25rem",
             minHeight: "60vh",
             display: "flex",
             flexDirection: "column",
@@ -56,8 +49,12 @@ const NotFound = () => (
     </div>
 );
 
+const EXAMPLE_NAVIGATION_STORAGE_KEY = "scichart-demo-example-navigation-open";
+
 const ChatbotScript = (): React.ReactElement | null => {
     React.useEffect(() => {
+        const hostname = window.location.hostname;
+        if (hostname !== "scichart.com" && !hostname.endsWith(".scichart.com")) return undefined;
         const script = document.createElement("script");
         script.src = "https://chat.scichart.com/chatbot.js";
         script.type = "text/javascript";
@@ -72,58 +69,51 @@ const ChatbotScript = (): React.ReactElement | null => {
     return null;
 };
 
+// Override the wrapper's import-time defaults with the application's WASM base path.
 SciChartSurface.configure({
     wasmUrl: `${baseAppPath}/scichart.wasm`,
 });
 
 export default function App() {
-    const { isIFrame, isHomePage, currentExample, framework, is404 } = useExampleRouteParams();
+    return (
+        <StateProvider>
+            <AppContent />
+        </StateProvider>
+    );
+}
+
+function AppContent() {
+    const { state } = _useContext();
+    const { isIFrame, isHomePage, currentExample, framework, is404 } = state;
     const navigate = useNavigate(); // Hook to programmatically navigate
 
-    // TODO md was changed by migration script.requires verification
-    const isMedium = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-
-    let initialOpenedMenuItems = {
-        MENU_ITEMS_FEATURED_APPS_ID: false,
-        MENU_ITEMS_3D_ID: false,
-        MENU_ITEMS_2D_ID: false,
-    };
-
-    MENU_ITEMS_FEATURED_APPS.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-    MENU_ITEMS_3D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-    MENU_ITEMS_2D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-
-    const [openedMenuItems, setOpenedMenuItems] = React.useState<Record<string, boolean>>(initialOpenedMenuItems);
+    const isMedium = useMediaQuery("(max-width: 959.98px)");
 
     const [isDrawerOpened, setIsDrawerOpened] = React.useState(false);
+    const [isExampleNavigationOpen, setIsExampleNavigationOpen] = React.useState(true);
     const [mostVisibleCategory, setMostVisibleCategory] = React.useState<string | null>(null);
 
-    const currentExampleId = currentExample?.id;
-    // SeeAlso is now optional on exampleInfo. Return this if provided else auto-generate from menu
-    const seeAlso: GalleryItem[] =
-        currentExample?.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, framework);
-
-    // // Find the example category
-    // const exampleCategory = ALL_MENU_ITEMS.find(menuItem => {
-    //     return menuItem.submenu.find(subMenu => subMenu.id === examplePage.id) !== undefined;
-    // });
-    // // Generate the seeAlso gallery items
-    // const seeAlso: GalleryItem[] = examplePage?.seeAlso;
-
-    const setOpenedMenuItem = (id: string, value: boolean = true) => {
-        setOpenedMenuItems({ ...openedMenuItems, [id]: value });
-    };
-
-    const toggleOpenedMenuItem = (id: string) => {
-        setOpenedMenuItem(id, !openedMenuItems[id]);
-    };
     const toggleDrawer = () => setIsDrawerOpened(!isDrawerOpened);
+
+    React.useEffect(() => {
+        try {
+            setIsExampleNavigationOpen(window.localStorage.getItem(EXAMPLE_NAVIGATION_STORAGE_KEY) !== "false");
+        } catch {
+            // Keep the default when browser storage is unavailable.
+        }
+    }, []);
+
+    const toggleExampleNavigation = () => {
+        setIsExampleNavigationOpen((isOpen) => {
+            const nextIsOpen = !isOpen;
+            try {
+                window.localStorage.setItem(EXAMPLE_NAVIGATION_STORAGE_KEY, String(nextIsOpen));
+            } catch {
+                // Keep the toggle usable when browser storage is unavailable.
+            }
+            return nextIsOpen;
+        });
+    };
 
     React.useEffect(() => {
         const currentPath = window.location.pathname;
@@ -140,30 +130,16 @@ export default function App() {
                 "H+Bf3l0m3O9Gx8d4X/vCChsFHOhjiTQ0T2lzaif9nz2klHiSfReMWWMGw2Cq4EuOyFgJRqRnlUrbnMIuRnnSu16d96IYP0XhtTJj0V7/ysnEdR7prle0i83/Ozaogy7X2wbeXM0iNBAjwbxJhkJfMtVVNCLh+jJN0122J1PImaqnohEeSO0E5BCGzya0a7tRMVzWOijgaO6CVPNyjfkccY07DgqjDgDKPQGhbgxCgPyvgHVwnLgbCG4p348eTEOGAmwQANZAVEAS5q3kul3OscYLLD+My0ArsWxushDi1xU1egn/pmfr7Mp3nMSpcMd2wv2QA9+XTJJIFGiYqtn95oDSeo5mrBF+mLekv8vMIvVsmvdAtclaTQMSSwXlAn4BpGTpzrMC9FZNTIyKGGBHR9Yhhp7rt1DhfTum1RPXo5j6ELYzqxL2/IuKnrjW3Oe8cOdiN5x9srgWCtFsEpxJBz07CSRutCzgEdwSrNMK6JJsHaWU6xgxlsPUHnWE1dDYmVbvgkKe+5lTsdGQ2wFIqp4/7nmKpm/pXEBPQyOk98PJ3rUKwCkDM7lz9HlheHD1I20BhUkJnVB4eVHrY/xCWvI+O/NutTIH+OAgD8FrwNnjTdCiqnq9pWsqEUjBIfg/noUuIciSUP6nCLiHxdn1fFr7d5xrJBvmsQF4p+5/NvAaCUgTY1NyV/rJhmQI8aLBnSlfCd0+hkKKiif9rhnbPJa2EG7+06e5897mUr5KvZeGXcQHcgSngSxxu9J+WEBtfszDhf4IAnq1LBoNc/Q="
             );
         }
-
-        if (currentExample) {
-            const parentMenuIds = getParentMenuIds(currentExample.id);
-            const updatedOpenedItems: Record<string, boolean> = { ...openedMenuItems };
-            parentMenuIds.forEach((elId) => {
-                updatedOpenedItems[elId] = true;
-            });
-            setOpenedMenuItems(updatedOpenedItems);
-        }
-    }, [currentExampleId]);
+    }, []);
 
     if (isIFrame) {
-        return (
-            <StateProvider framework={framework}>
-                <AppRouter currentExample={currentExample} seeAlso={seeAlso} isIFrame={true} />
-            </StateProvider>
-        );
+        return <AppRouter />;
     }
 
     const allGalleryItems = generateExamplesGallery(framework);
 
-    const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
     return (
-        <StateProvider framework={framework}>
+        <>
             {isHomePage && (
                 <Helmet>
                     <link rel="canonical" href={`https://www.scichart.com/demo/${framework}`} />
@@ -179,61 +155,45 @@ export default function App() {
             <style>
                 {`
                 .chatbot-maximised {
-                    width: calc(100vw - 40px) !important;
-                    height: calc(100vh - 90px - 40px) !important;
-                    right: 20px !important;
-                    bottom: 20px !important;
+                    width: calc(100vw - 2.5rem) !important;
+                    height: calc(100vh - var(--sc-app-drawer-top) - 2.5rem) !important;
+                    right: 1.25rem !important;
+                    bottom: 1.25rem !important;
                     left: auto !important;
                     top: auto !important;
                 }
                 @media screen and (min-width: 960px) {
                     .chatbot-maximised {
-                        width: calc(100vw - min(350px, 25vw) - 40px - 20px) !important;
+                        width: calc(100vw - min(21.875rem, 25vw) - 2.5rem - 1.25rem) !important;
                     }
                 }
                 `}
             </style>
             <ChatbotScript />
 
-            <div className={classes.App}>
+            <div className="sc-app-root">
                 {isMedium && (
-                    <Drawer
-                        className={classes.DrawerMobile}
-                        variant="temporary"
-                        classes={{ paper: classes.DrawerPaper }}
-                        anchor="right"
-                        open={isDrawerOpened}
-                        onClose={toggleDrawer}
-                    >
-                        <DrawerContent
-                            testIsOpened={testIsOpened}
-                            toggleOpenedMenuItem={toggleOpenedMenuItem}
-                            toggleDrawer={toggleDrawer}
-                            currentExample={currentExample}
-                            // mostVisibleCategory={mostVisibleCategory} mobile does not need this hover feature
-                        />
-                    </Drawer>
+                    <MobileDrawer open={isDrawerOpened} onClose={toggleDrawer}>
+                        <DrawerContent />
+                    </MobileDrawer>
                 )}
-                <div className={classes.MainAppContent} style={{ position: "relative" }}>
-                    <SciChartNavbar toggleDrawer={toggleDrawer} />
+                <div className="sc-app-content">
+                    <SciChartNavbar
+                        toggleDrawer={toggleDrawer}
+                        showMenuToggle={isHomePage || is404}
+                    />
 
                     {is404 ? (
                         <NotFound />
                     ) : isHomePage ? (
-                        <div className={classes.MainAppWrapper}>
+                        <div className="sc-app-gallery-layout">
                             {!isMedium ? (
-                                <div className={classes.DrawerDesktop}>
-                                    <DrawerContent
-                                        testIsOpened={testIsOpened}
-                                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                                        toggleDrawer={toggleDrawer}
-                                        currentExample={currentExample}
-                                        mostVisibleCategory={mostVisibleCategory}
-                                    />
+                                <div className="sc-app-home-drawer">
+                                    <DrawerContent mostVisibleCategory={mostVisibleCategory} />
                                 </div>
                             ) : null}
 
-                            <div className={classes.GalleryAppWrapper}>
+                            <div className="sc-app-gallery-content">
                                 <GalleryItems
                                     examples={allGalleryItems}
                                     setMostVisibleCategory={setMostVisibleCategory}
@@ -241,13 +201,17 @@ export default function App() {
                             </div>
                         </div>
                     ) : (
-                        <AppDetailsRouter currentExample={currentExample} seeAlso={seeAlso} />
+                        <AppDetailsRouter
+                            isExampleNavigationOpen={isExampleNavigationOpen}
+                            isNarrowViewport={isMedium}
+                            toggleExampleNavigation={toggleExampleNavigation}
+                        />
                     )}
 
                     <AppFooter />
                 </div>
             </div>
             <ContentSectionRouter />
-        </StateProvider>
+        </>
     );
 }

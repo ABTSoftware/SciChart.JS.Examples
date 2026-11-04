@@ -15,7 +15,6 @@ import {
     EHighPrecisionLabelMode,
     ETradeChartLabelFormat,
     NumberRange,
-    RubberBandXyZoomModifier,
     NativeTextAnnotation,
     EHorizontalAnchorPoint,
     ECoordinateMode,

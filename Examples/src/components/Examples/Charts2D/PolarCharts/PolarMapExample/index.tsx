@@ -1,16 +1,12 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
 import { useEffect, useRef, useState } from "react";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [view, setView] = useState(false);
     const [mapData, setMapData] = useState();
     const setMapFunc = useRef(null);
     const setMapJsonFunc = useRef(null);
-    const clearMapFunc = useRef(null);
     const setViewFunc = useRef(null);
 
     useEffect(() => {
@@ -27,55 +23,29 @@ export default function ChartComponent() {
             })
             .catch((error) => console.error(error));
 
-        return () => {
-            // clearMapFunc.current();
-        };
     }, [view]);
 
     return (
-        <div className="" style={{ width: "100%", height: "100%", position: "relative" }}>
-            <div className="" style={{ position: "absolute", zIndex: "100" }}>
-                <div className="">
-                    <button
-                        onClick={() => {
-                            setView(false);
-                        }}
-                        style={{
-                            color: view === false ? "white" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: view === false ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                    >
-                        VIEW FROM NORTH
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Map viewpoint">
+                    <button type="button" className="sc-button" aria-pressed={!view} onClick={() => setView(false)}>
+                        View from north
                     </button>
-                    <button
-                        onClick={() => {
-                            setView(true);
-                            // setViewFunc.current(true);
-                        }}
-                        style={{
-                            color: view === true ? "white" : "rgb(0, 188, 212)",
-                            display: "inline-block",
-                            padding: "10px 24px",
-                            background: view === true ? "#14233c" : "#163149",
-                            cursor: "pointer",
-                        }}
-                    >
-                        VIEW FROM SOUTH
+                    <button type="button" className="sc-button" aria-pressed={view} onClick={() => setView(true)}>
+                        View from south
                     </button>
                 </div>
-            </div>
+            </header>
             {mapData ? (
                 <SciChartReact
                     initChart={drawExample}
-                    className={commonClasses.ChartWrapper}
+                    className="sc-chart-wrapper"
                     onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                         // get the "setMap" function that is returned by "drawExample"
-                        let { setMapJson, setMap, setView } = initResult;
+                        const { setMapJson, setMap, setView } = initResult;
 
-                        // set fiew point
+                        // Choose the initial viewpoint
                         setView(false);
 
                         // set geojson
@@ -84,7 +54,7 @@ export default function ChartComponent() {
                         // set the initial map
                         setMap();
 
-                        // // assign function to ref so we can call it later
+                        // Keep the controls for subsequent viewpoint changes
                         setMapFunc.current = setMap;
                         setViewFunc.current = setView;
                         setMapJsonFunc.current = setMapJson;

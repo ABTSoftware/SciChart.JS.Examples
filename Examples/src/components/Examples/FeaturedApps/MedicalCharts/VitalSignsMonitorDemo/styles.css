@@ -1,0 +1,19 @@
+.sc-vitals-cards {
+    width: 30%;
+    border-left: 1px solid var(--border-color);
+}
+.sc-vitals-card {
+    border-bottom: 1px solid var(--border-color);
+}
+.sc-vitals-title {
+    font-size: var(--sc-font-size-base);
+    font-weight: 600;
+}
+.sc-vitals-value {
+    font-size: var(--sc-font-size-xl);
+    font-variant-numeric: tabular-nums;
+}
+.sc-vitals-details,
+.sc-vitals-meta {
+    font-size: var(--sc-font-size-sm);
+}

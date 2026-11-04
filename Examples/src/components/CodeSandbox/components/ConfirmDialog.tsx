@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ConfirmDialog.module.scss";
 
 interface ConfirmDialogProps {
     isOpen: boolean;
@@ -19,12 +18,12 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
     if (!isOpen) return null;
 
     return (
-        <div className={styles.dialog}>
+        <div className="sc-editor-confirm-dialog">
             <h2>{title}</h2>
             <p>{message}</p>
-            <div className={styles.buttons}>
+            <div className="sc-editor-confirm-buttons">
                 <button onClick={onCancel}>Cancel</button>
-                <button className={styles.confirm} onClick={onConfirm}>
+                <button className="sc-editor-confirm-confirm" onClick={onConfirm}>
                     OK
                 </button>
             </div>

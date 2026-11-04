@@ -8,7 +8,7 @@ This example demonstrates how to create a smooth stacked mountain chart using Sc
 
 -   **SciChart.js** – High performance charting library
 -   **Angular** – Uses scichart-angular component to initialize the chart
--   **React** – Uses SciChartReact with Material UI components for UI controls
+-   **React** – Uses SciChartReact with shared CSS controls for UI controls
 -   **Vanilla JavaScript/TypeScript** – The core chart drawing is implemented in both JS and TS
 
 ## Code Explanation
@@ -19,7 +19,7 @@ The example is structured with multiple source files:
 
 -   **drawExample.js / drawExample.ts**: These files contain the main logic to create a SciChartSurface. They set up numeric axes, a StackedMountainCollection, and populate it with ten SmoothStackedMountainRenderableSeries. Each series is assigned a ScaleAnimation with a 500ms duration and an increasing delay. Interactivity is added with zoom, pan, and mouse wheel modifiers as well as a LegendModifier for displaying series legends. The function also exposes a control to toggle the 100% stacked mode.
 
--   **index.tsx**: The React implementation. It wraps the chart in a React component using the SciChartReact component and displays a toggle button group (from Material UI) to switch between regular stacked mode and 100% stacked mode. The React component makes use of the same `drawExample` function to initialize the chart and updates the chart using a controls reference.
+-   **index.tsx**: The React implementation. It wraps the chart in a React component using the SciChartReact component and displays a toggle button group (from shared CSS controls) to switch between regular stacked mode and 100% stacked mode. The React component makes use of the same `drawExample` function to initialize the chart and updates the chart using a controls reference.
 
 -   **javascript-smooth-stacked-mountain-chart.jpg**: An image file, typically used as a thumbnail or preview image for the example.
 

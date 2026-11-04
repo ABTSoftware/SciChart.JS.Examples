@@ -6,7 +6,6 @@ import {
     EDataPointWidthMode,
     ENumericFormat,
     FastBoxPlotRenderableSeries,
-    ICategoryAxisOptions,
     NumberRange,
     NumericAxis,
     Rect,

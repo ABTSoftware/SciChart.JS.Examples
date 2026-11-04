@@ -2,7 +2,6 @@ import { appTheme } from "../../../theme";
 import {
     AnimationToken,
     CustomAnnotation,
-    DoubleAnimator,
     easing,
     EHorizontalAnchorPoint,
     EVerticalAnchorPoint,

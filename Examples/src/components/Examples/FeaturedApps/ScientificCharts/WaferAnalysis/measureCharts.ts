@@ -18,8 +18,6 @@ import {
     ZoomPanModifier,
 } from "scichart";
 
-import { appTheme } from "../../../theme";
-
 class IntegerDeltaCalculator extends NumericDeltaCalculator {
     public getDeltaFromRange(min: number, max: number, minorsPerMajor: number, maxTicks: number): NumberRange {
         const delta = super.getDeltaFromRange(min, max, minorsPerMajor, maxTicks);

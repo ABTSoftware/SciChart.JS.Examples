@@ -1,42 +1,40 @@
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import * as React from "react";
-import { useContext } from "react";
-import { SciChartReact, SciChartSurfaceContext, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
-import { appTheme } from "../../../theme";
+import { useState } from "react";
+import { SciChartReact, TResolvedReturnType } from "scichart-react";
 import { drawExample } from "./drawExample";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function DynamicLayout() {
-    return (
-        <SciChartReact className={commonClasses.ChartWithNestedToolbar} initChart={drawExample}>
-            <ChartToolbar />
-        </SciChartReact>
-    );
-}
+    const [initResult, setInitResult] = useState<TResolvedReturnType<typeof drawExample>>();
+    const [isGrid, setIsGrid] = useState<boolean>(true);
 
-const ChartToolbar = () => {
-    const initResult = useContext(SciChartSurfaceContext) as TResolvedReturnType<typeof drawExample>;
-    const [isGrid, setIsGrid] = React.useState<boolean>(false);
-
-    const handleToggleButtonChanged = (event: any, value: boolean) => {
+    const handleToggleButtonChanged = (value: boolean) => {
         initResult.setIsGridLayoutMode(value);
         setIsGrid(value);
     };
     return (
-        <ToggleButtonGroup
-            className={commonClasses.ToolbarRow}
-            style={{ order: 1 }}
-            exclusive
-            value={isGrid}
-            onChange={handleToggleButtonChanged}
-            size="medium"
-            color="primary"
-            aria-label="small outlined button group"
-        >
-            <ToggleButton value={false}>Single Chart</ToggleButton>
-            <ToggleButton value={true}>Chart Per Series</ToggleButton>
-        </ToggleButtonGroup>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="Chart layout">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isGrid === true}
+                        disabled={!initResult}
+                        onClick={() => handleToggleButtonChanged(true)}
+                    >
+                        Chart Per Series
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={isGrid === false}
+                        disabled={!initResult}
+                        onClick={() => handleToggleButtonChanged(false)}
+                    >
+                        Single Chart
+                    </button>
+                </div>
+            </header>
+            <SciChartReact initChart={drawExample} onInit={setInitResult} />
+        </div>
     );
 };

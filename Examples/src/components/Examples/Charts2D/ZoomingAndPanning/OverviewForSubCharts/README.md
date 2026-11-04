@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to create multiple synchronized subcharts with an interactive overview using SciChart.js. It features vertically stacked subcharts displaying phase-shifted sine waves, synchronized X-axis zooming/panning, and a dynamic bottom overview panel for range selection across all charts. [Subchart Docs](https://www.scichart.com/documentation/js/current/WhatIsTheSubChartsAPI.html)
+This example demonstrates how to create multiple synchronized subcharts with an interactive overview using SciChart.js. It features vertically stacked subcharts displaying phase-shifted sine waves, synchronized X-axis zooming/panning, and a dynamic bottom overview panel for range selection across all charts. [Subchart Docs](https://www.scichart.com/documentation/js/v6/2d-charts/subcharts-api/subcharts-api-overview/)
 
 ## Technologies Used
 
@@ -16,7 +16,7 @@ This example demonstrates how to create multiple synchronized subcharts with an 
 
 The core logic centers on the `drawExample` function, which initializes a single `SciChartSurface` and dynamically creates `SciChartSubSurface` instances positioned relatively within it. Each subchart gets independent `NumericAxis` pairs, `XyDataSeries` with generated sine wave data via `createLineData`, and `FastLineRenderableSeries` styled with theme colors and opacity. An `AxisSynchroniser` ensures all subchart X-axes share the same visible range for synchronized interactions. [github](https://github.com/ABTSoftware/SciChart.JS.Examples/blob/master/Examples/src/components/Examples/Charts2D/CreateStockCharts/MultiPaneStockCharts/drawExample.ts)
 
-Interaction modifiers like `ZoomPanModifier`, `MouseWheelZoomModifier` (X-direction only), `ZoomExtentsModifier`, and `RolloverModifier` are added per subchart. A custom `SubChartsOverviewModifier` creates a bottom overview subsurface (20% height) aggregating all subchart series, enabling unified range selection. The `SubChartManager` interface exposes methods (`updateSubCharts`, `addSubChart`, `removeSubChart`) for runtime management, using `suspendUpdates()` and `removeSubChart()` to prevent MouseManager issues during recreation. [Subchart Positioning Docs](https://www.scichart.com/documentation/js/current/SubChartPositioning.html)
+Interaction modifiers like `ZoomPanModifier`, `MouseWheelZoomModifier` (X-direction only), `ZoomExtentsModifier`, and `RolloverModifier` are added per subchart. A custom `SubChartsOverviewModifier` creates a bottom overview subsurface (20% height) aggregating all subchart series, enabling unified range selection. The `SubChartManager` interface exposes methods (`updateSubCharts`, `addSubChart`, `removeSubChart`) for runtime management, using `suspendUpdates()` and `removeSubChart()` to prevent MouseManager issues during recreation. [Subchart Positioning Docs](https://www.scichart.com/documentation/js/v6/2d-charts/subcharts-api/sub-charts-positioning/)
 
 Framework wrappers include:
 

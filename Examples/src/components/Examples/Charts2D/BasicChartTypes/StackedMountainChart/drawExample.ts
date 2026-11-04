@@ -25,35 +25,23 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     sciChartSurface.xAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
     sciChartSurface.yAxes.add(new NumericAxis(wasmContext, { labelPrecision: 0 }));
 
-    // Create the three Stacked Mountain series
-    const stackedMountain1 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y1Values, dataSeriesName: "Apples" }),
-        fill: appTheme.VividPurple + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain2 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y2Values, dataSeriesName: "Pears" }),
-        fill: appTheme.VividPink + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain3 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y3Values, dataSeriesName: "Bananas" }),
-        fill: appTheme.VividSkyBlue + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-    const stackedMountain4 = new StackedMountainRenderableSeries(wasmContext, {
-        dataSeries: new XyDataSeries(wasmContext, { xValues, yValues: y4Values, dataSeriesName: "Oranges" }),
-        fill: appTheme.VividOrange + "AA",
-        stroke: appTheme.PaleSkyBlue,
-        strokeThickness: 2,
-    });
-
-    // Group these StackedMountain series together in a StackedMountainCollection
+    // A collection stacks its series in insertion order.
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
-    stackedMountainCollection.add(stackedMountain1, stackedMountain2, stackedMountain3, stackedMountain4);
+    for (const { yValues, dataSeriesName, fill } of [
+        { yValues: y1Values, dataSeriesName: "Apples", fill: appTheme.VividPurple },
+        { yValues: y2Values, dataSeriesName: "Pears", fill: appTheme.VividPink },
+        { yValues: y3Values, dataSeriesName: "Bananas", fill: appTheme.VividSkyBlue },
+        { yValues: y4Values, dataSeriesName: "Oranges", fill: appTheme.VividOrange },
+    ]) {
+        stackedMountainCollection.add(
+            new StackedMountainRenderableSeries(wasmContext, {
+                dataSeries: new XyDataSeries(wasmContext, { xValues, yValues, dataSeriesName }),
+                fill: fill + "AA",
+                stroke: appTheme.PaleSkyBlue,
+                strokeThickness: 2,
+            })
+        );
+    }
     stackedMountainCollection.animation = new WaveAnimation({ duration: 600, fadeEffect: true });
 
     // Add the StackedMountainCollection to the chart

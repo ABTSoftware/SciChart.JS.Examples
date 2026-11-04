@@ -15,12 +15,9 @@ import {
     DataLabelProvider,
     DataPointSelectionModifier,
     DataPointSelectionPaletteProvider,
-    TextLabelProvider,
-    ELabelAlignment,
     RolloverModifier,
     SeriesInfo,
     RolloverTooltipSvgAnnotation,
-    ENumericFormat,
     DateTimeNumericAxis,
 } from "scichart";
 
@@ -33,7 +30,6 @@ interface IWaferPointMetadata extends IPointMetadata {
 
 import { WaferDayData } from "./waferData";
 
-import { RandomWalkGenerator } from "../../../ExampleData/RandomWalkGenerator";
 import { appTheme } from "../../../theme";
 
 export const drawLineChart = async (

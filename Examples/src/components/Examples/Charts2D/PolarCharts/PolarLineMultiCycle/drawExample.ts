@@ -232,11 +232,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         );
     }
 
-    // A light panel with dark text, so the muted series swatches read against every app theme
+    // CSS theme colors keep both legends in sync with live theme changes.
     const legendOptions = {
         showCheckboxes: true,
-        backgroundColor: "rgba(225, 228, 235, 0.92)",
-        textColor: appTheme.DarkIndigo,
+        backgroundColor: "var(--bg-chart)",
+        textColor: "var(--text)",
     };
 
     // split half of the years into two legends

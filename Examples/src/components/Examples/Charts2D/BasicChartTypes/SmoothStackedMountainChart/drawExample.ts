@@ -14,8 +14,6 @@ import {
     XyDataSeries,
     ZoomExtentsModifier,
     ZoomPanModifier,
-    WaveAnimation,
-    SweepAnimation,
 } from "scichart";
 import { appTheme } from "../../../theme";
 
@@ -33,27 +31,15 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const stackedMountainCollection = new StackedMountainCollection(wasmContext);
 
     const xValues = makeIncArray(20);
-    const strokes = [
-        "#274b92ff",
-        "#3784bcff",
-        "#47bce5ff",
-        "#7a7eb9ff",
-        "#ae418cff",
-        "#cb5878ff",
-        "#e86f64ff",
-        "#a89588ff",
-        "#68bbadff",
-        "#6585a2ff",
-    ];
     for (let i = 0; i < 10; i++) {
-        const yValues = xValues.map((x) => Math.random() * 10);
+        const yValues = xValues.map(() => Math.random() * 10);
         const stackedMountain = new SmoothStackedMountainRenderableSeries(wasmContext, {
             id: i.toString(),
             dataSeries: new XyDataSeries(wasmContext, { xValues, yValues }),
             fill: AUTO_COLOR,
             stroke: AUTO_COLOR,
             strokeThickness: 2,
-            // From 3.4 Animations can be added to individual stacked series
+            // Stagger each series so the stack builds from bottom to top.
             animation: new ScaleAnimation({ duration: 500, delay: i * 200 }),
         });
         stackedMountainCollection.add(stackedMountain);
@@ -82,10 +68,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     stackedMountainCollection.asArray().forEach((series) =>
         series.isVisibleChanged.subscribe((data) => {
             if (data.isVisible) {
-                // If you want to zoom to the new range when making a series visible, you need to force a recalculation of the Accumulated values first
-                //stackedMountainCollection.setAccumulatedValuesDirty();
-                //stackedMountainCollection.updateAccumulatedVectors();
-                //sciChartSurface.zoomExtents();
                 data.sourceSeries.runAnimation(
                     new ScaleAnimation({
                         duration: 500,
@@ -106,7 +88,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                             data.sourceSeries.isVisibleProperty = false;
                             // Force the legend to update
                             legendModifier.sciChartLegend.invalidateLegend();
-                            //sciChartSurface.zoomExtents();
                         },
                     })
                 );

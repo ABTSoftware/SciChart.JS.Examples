@@ -260,7 +260,7 @@ export default function WaferAnalysis() {
     }, [MRs, HRs, MR2s, HDIs, RowsFilter, ColsFilter]);
 
     return data.length ? (
-        <div className="wafer-analysis-container">
+        <div className="sc-chart-wrapper wafer-analysis-container">
             <div className="left-panel">
                 <div className="wafer-chart-container">
                     <SciChartReact initChart={initWaferChart} onInit={handleWaferChartInit} className="wafer-chart" />
@@ -274,7 +274,8 @@ export default function WaferAnalysis() {
                         <select
                             value={selectedVariable}
                             onChange={(e) => setSelectedVariable(e.target.value)}
-                            className="variable-select"
+                            className="sc-select"
+                            aria-label="Color wafer by"
                         >
                             {["DEFECT", "MR", "HR", "MR2", "HDI"].map((variable) => (
                                 <option key={variable} value={variable}>

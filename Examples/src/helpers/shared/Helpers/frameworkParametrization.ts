@@ -1,12 +1,8 @@
 import { useMatch } from "react-router";
 import { EXAMPLES_PAGES } from "../../../components/AppRouter/examplePages";
 
-export enum EPageFramework {
-    Vanilla = "javascript",
-    React = "react",
-    Angular = "angular",
-    // Vue = "vue",
-}
+import { EPageFramework } from "./frameworkTypes";
+export { EPageFramework } from "./frameworkTypes";
 
 export enum EPlatform {
     CodeSandbox = "codesandbox",
@@ -69,7 +65,7 @@ export const useExampleRouteParams = () => {
         if (isValidFramework(matchWithFrameworkAndExample.params.framework)) {
             framework = matchWithFrameworkAndExample.params.framework as EPageFramework;
             examplePageKey = getExamplePageKey(framework, matchWithFrameworkAndExample.params.example);
-            if(!examplePageKey) {
+            if (!examplePageKey) {
                 is404 = true;
             }
         } else {

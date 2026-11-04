@@ -10,7 +10,7 @@ This example demonstrates a real-time updating heatmap chart using SciChart.JS. 
 -   **Angular** – Angular component integration via scichart-angular
 -   **React** – React integration using SciChartReact
 -   **TypeScript & JavaScript** – Implementing the chart drawing logic
--   **Material UI** – Used for toolbar buttons and icons in the React example
+-   **shared CSS controls** – Used for toolbar buttons and icons in the React example
 
 ## Code Explanation
 
@@ -25,7 +25,7 @@ This example demonstrates a real-time updating heatmap chart using SciChart.JS. 
     -   Implement a timer-based update mechanism (using setTimeout) to continuously update the heatmap data in real time.
     -   Expose control functions (startUpdate, stopUpdate) and a method to subscribe to render statistics, such as FPS and heatmap dimensions.
 
--   **index.tsx**: The React example uses the SciChartReact component to initialize the heatmap chart and legend. It incorporates a toolbar built with Material UI buttons that allow users to start and stop the data updates. The component also subscribes to render statistics similarly to the Angular version and offers a layout that overlays the heatmap legend on the chart area.
+-   **index.tsx**: The React example uses the SciChartReact component to initialize the heatmap chart and legend. It incorporates a toolbar built with shared CSS controls buttons that allow users to start and stop the data updates. The component also subscribes to render statistics similarly to the Angular version and offers a layout that overlays the heatmap legend on the chart area.
 
 -   **javascript-heatmap-chart.jpg**: This image file likely provides a preview or screenshot of the rendered heatmap chart.
 

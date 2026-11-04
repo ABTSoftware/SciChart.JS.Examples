@@ -1,23 +1,14 @@
 import { SciChartReact, TResolvedReturnType } from "scichart-react";
-import commonClasses from "../../../styles/Examples.module.scss";
 import { drawExample } from "./drawExample";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchGeoJson } from "../../../ExampleData/ExampleDataProvider";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 type MapName = "worldConverted" | "europeConverted" | "australiaConverted" | "africaConverted";
 
-// React component needed as our examples app is react.
-// SciChart can be used in Angular, Vue, Blazor and vanilla JS! See our Github repo for more info
 export default function ChartComponent() {
     const [mapName, setMapName] = useState<MapName>("worldConverted");
     const [mapData, setMapData] = useState<any>();
     const controlsRef = useRef<TResolvedReturnType<typeof drawExample>["controls"]>(undefined);
-
-    const handleToggleButtonChanged = (_event: MouseEvent<HTMLElement>, value: MapName | null) => {
-        if (!value) return;
-        setMapName(value);
-    };
 
     useEffect(() => {
         fetchGeoJson(mapName)
@@ -37,28 +28,48 @@ export default function ChartComponent() {
     }, [mapName]);
 
     return (
-        <div className={commonClasses.ChartWithToolbar}>
-            <div className={commonClasses.ToolbarRow}>
-                <ToggleButtonGroup
-                    className={commonClasses.ToggleButtonGroup}
-                    exclusive
-                    value={mapName}
-                    onChange={handleToggleButtonChanged}
-                    size="medium"
-                    color="primary"
-                    aria-label="map region"
-                >
-                    <ToggleButton value="worldConverted">World</ToggleButton>
-                    <ToggleButton value="europeConverted">Europe</ToggleButton>
-                    <ToggleButton value="australiaConverted">Australia</ToggleButton>
-                    <ToggleButton value="africaConverted">Africa</ToggleButton>
-                </ToggleButtonGroup>
-            </div>
-            <div className={commonClasses.FullHeightChartWrapper}>
+        <div className="sc-chart-wrapper">
+            <header className="sc-toolbar-row">
+                <div className="sc-button-group" role="group" aria-label="map region">
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "worldConverted"}
+                        onClick={() => setMapName("worldConverted")}
+                    >
+                        World
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "europeConverted"}
+                        onClick={() => setMapName("europeConverted")}
+                    >
+                        Europe
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "australiaConverted"}
+                        onClick={() => setMapName("australiaConverted")}
+                    >
+                        Australia
+                    </button>
+                    <button
+                        type="button"
+                        className="sc-button"
+                        aria-pressed={mapName === "africaConverted"}
+                        onClick={() => setMapName("africaConverted")}
+                    >
+                        Africa
+                    </button>
+                </div>
+            </header>
+            <div className="sc-chart-wrapper flex-auto">
                 {mapData ? (
                     <SciChartReact
                         initChart={drawExample}
-                        className={commonClasses.ChartWrapper}
+                        className="sc-chart-wrapper"
                         onInit={(initResult: TResolvedReturnType<typeof drawExample>) => {
                             const { controls } = initResult;
                             controls.setConvertedData(mapData);

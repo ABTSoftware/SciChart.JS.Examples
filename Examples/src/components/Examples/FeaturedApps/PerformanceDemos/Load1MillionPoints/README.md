@@ -9,7 +9,7 @@ This example demonstrates the creation and performance testing of a SciChart.js 
 -   **SciChart.js** for high performance charting
 -   **Angular**: Standalone Angular component using SciChartAngular
 -   **React**: React component implementation with SciChartReact
--   **Material UI**: Angular Material components and MUI for UI controls
+-   **Angular**: Native HTML controls styled with shared CSS classes
 -   **TypeScript/JavaScript** for chart and control logic
 
 ## Code Explanation
@@ -18,7 +18,7 @@ This example demonstrates the creation and performance testing of a SciChart.js 
 
 -   **drawExample.js / drawExample.ts**: These files implement the chart creation and data loading logic. They create a SciChartSurface with numeric X and Y axes and add watermark annotations and renderable series. One million data points are generated and appended to a data series, and performance timings for data generation, appending, and frame rendering are recorded. The functions `startUpdate`, `stopUpdate`, and `reloadOnce` allow for continuous reloading of data, while `subscribeToInfo` provides a way to relay the performance information to the UI.
 
--   **index.tsx**: This file provides the React implementation of the example. It uses the SciChartReact component and Material UI buttons to let the user toggle continuous data reload and perform a one-off reload test. Performance results are displayed via MUI alerts. It demonstrates similar functionality as the Angular version, but with React-specific state management and hooks.
+-   **index.tsx**: This file provides the React implementation of the example. It uses the SciChartReact component and shared CSS controls buttons to let the user toggle continuous data reload and perform a one-off reload test. Performance results are displayed via shared CSS controls alerts. It demonstrates similar functionality as the Angular version, but with React-specific state management and hooks.
 
 -   **javascript-chart-performance-load-one-million-points.jpg**: An image asset included with the example that likely serves as a preview or screenshot of the rendered chart.
 

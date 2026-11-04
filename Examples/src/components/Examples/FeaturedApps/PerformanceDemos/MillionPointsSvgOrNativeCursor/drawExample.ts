@@ -98,6 +98,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
     }
 
     // 2. Create Scatter Series with Gradient Palette
+    const ACCENT_COLOR = "#5e7dba";
+
     const scatterSeries = new XyScatterRenderableSeries(wasmContext, {
         dataSeries: new XyDataSeries(wasmContext, {
             xValues,
@@ -117,6 +119,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             appTheme.Indigo, // Start (Low Y)
             appTheme.VividOrange // End (High Y)
         ),
+        stroke: ACCENT_COLOR
     });
     sciChartSurface.renderableSeries.add(scatterSeries);
 
@@ -139,22 +142,20 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             activeModifier = null;
         }
 
-        const accentColor = "#5e7dba";
-
         if (isCursorMode) {
             activeModifier = new CursorModifier({
                 isSvgOnly: isSvgMode,
                 showTooltip: true,
-                crosshairStroke: accentColor,
-                axisLabelFill: accentColor,
-                tooltipContainerBackground: accentColor,
+                crosshairStroke: ACCENT_COLOR,
+                axisLabelFill: ACCENT_COLOR,
+                tooltipContainerBackground: ACCENT_COLOR,
             });
         } else {
             activeModifier = new RolloverModifier({
                 isSvgOnly: isSvgMode,
                 showTooltip: true,
                 showAxisLabel: true,
-                rolloverLineStroke: accentColor,
+                rolloverLineStroke: ACCENT_COLOR,
                 tooltipDataTemplate: (seriesInfo: XySeriesInfo): string[] => {
                     const valuesWithLabels: string[] = [];
                     const xySeriesInfo = seriesInfo as XySeriesInfo;
@@ -163,7 +164,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     return valuesWithLabels;
                 },
             });
-            (activeModifier as RolloverModifier).rolloverLineAnnotation.axisLabelFill = accentColor;
+            (activeModifier as RolloverModifier).rolloverLineAnnotation.axisLabelFill = ACCENT_COLOR;
         }
 
         sciChartSurface.chartModifiers.add(activeModifier);

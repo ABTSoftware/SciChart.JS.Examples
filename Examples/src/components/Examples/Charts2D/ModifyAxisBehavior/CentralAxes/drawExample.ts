@@ -11,7 +11,6 @@ import {
     MouseWheelZoomModifier,
     NumericAxis,
     NumberRange,
-    PinchZoomModifier,
     SciChartSurface,
     TextAnnotation,
     TSciChart,

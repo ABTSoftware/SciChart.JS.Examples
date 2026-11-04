@@ -897,7 +897,7 @@ export class ParallelCoordinateDataSource implements IDeletable {
             // (updateAxesInPlace), so an axis that previously hosted a CategoryAxis category would otherwise
             // keep its TextLabelProvider + autoTicks=false and show no numeric labels once a numeric category
             // is moved onto it.
-            axis.labelProvider = new NumericLabelProvider();
+            axis.labelProvider = new NumericLabelProvider({ labelPrecision: 0 });
             axis.autoTicks = category.axisOptions?.autoTicks ?? true;
         }
     }

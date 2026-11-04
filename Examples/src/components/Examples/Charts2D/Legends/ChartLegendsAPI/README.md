@@ -8,13 +8,13 @@ This example demonstrates how to add and customize a chart legend using SciChart
 
 -   SciChart.JS core library
 -   LegendModifier, NumericAxis, XyDataSeries, FastLineRenderableSeries
--   Material-UI (MUI) for React UI components
+-   shared CSS controls (shared CSS controls) for React UI components
 -   React (with TypeScript in the TSX file)
 
 ## Code Explanation
 
 -   **drawExample.js / drawExample.ts**: These files set up the SciChartSurface by creating numeric X and Y axes, adding four Fourier series line renderable series to the chart, and applying a LegendModifier with initial configuration (show legend, placement in the top left, vertical orientation, and options to show checkboxes and series markers).
--   **index.tsx**: This React component integrates the chart example using the SciChartReact component. It includes a toolbar built with Material-UI components (Checkboxes and select drop-downs) that allow the user to modify various legend properties at runtime. The component initializes the chart and holds references to the SciChartSurface and LegendModifier for dynamic updates to the legend configuration.
+-   **index.tsx**: This React component integrates the chart example using the SciChartReact component. It includes a toolbar built with shared CSS controls (Checkboxes and select drop-downs) that allow the user to modify various legend properties at runtime. The component initializes the chart and holds references to the SciChartSurface and LegendModifier for dynamic updates to the legend configuration.
 -   **javascript-chart-legends.jpg**: An image asset provided as part of the example resources.
 
 ## Customization

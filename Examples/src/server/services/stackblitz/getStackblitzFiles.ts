@@ -8,6 +8,8 @@ import { TExamplePage } from "../../../components/AppRouter/examplePages";
 import { loadStyles, SandboxConfig } from "../sandbox/sandboxDependencyUtils";
 import { StackBlitzResponse } from "../../../helpers/types/types";
 import { ProjectFiles } from "@stackblitz/sdk";
+import { SANDBOX_TEMPLATE } from "../sandbox/constants";
+import { getPackageJson } from "../sandbox/sandboxPackages";
 
 /**
  * Gets the files and configuration needed for StackBlitz project
@@ -55,24 +57,6 @@ function validateFramework(framework: string): EPageFramework {
     return isValidFramework ? (framework as EPageFramework) : EPageFramework.React;
 }
 
-const handleInvalidFrameworkValue = (value: never): never => {
-    throw new Error("Invalid framework value!");
-};
-
-// TODO this was copy-pasted. refactor
-const getStackblitzTemplate = (framework: EPageFramework) => {
-    switch (framework) {
-        case EPageFramework.Angular:
-            return "node";
-        case EPageFramework.React:
-            return "create-react-app";
-        case EPageFramework.Vanilla:
-            return "typescript";
-        default:
-            return handleInvalidFrameworkValue(framework);
-    }
-};
-
 /**
  * Formats sandbox configuration into StackBlitz response format
  * @param sandboxConfig Configuration from sandbox service
@@ -85,19 +69,18 @@ function formatStackBlitzResponse(
     example: TExamplePage
 ): StackBlitzResponse {
     const { files } = sandboxConfig;
-    const packageJsonContent = files["package.json"]?.content as any;
+    const packageJsonContent = getPackageJson(files);
 
     // Format files for StackBlitz
     const stackblitzFiles: ProjectFiles = {};
     Object.entries(files).forEach(([filename, file]: [string, any]) => {
         stackblitzFiles[filename] = file.content;
     });
-    stackblitzFiles["package.json"] = JSON.stringify(packageJsonContent);
 
     // Get the title string by calling the title template function with the framework
     const title = getFrameworkContent(example.title, sandboxConfig.actualFramework) || "SciChart Example";
 
-    const template = getStackblitzTemplate(sandboxConfig.actualFramework);
+    const template = SANDBOX_TEMPLATE;
 
     return {
         files: stackblitzFiles,

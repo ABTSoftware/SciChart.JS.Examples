@@ -1,115 +1,37 @@
-import path from "path";
-import fs from "fs";
 import { TExampleInfo } from "../../../components/AppRouter/examplePages";
-import {
-    SandboxConfig,
-    IFiles,
-    includeImportedModules,
-    includeExternalModules,
-    commonFiles,
-    csStyles,
-} from "./sandboxDependencyUtils";
-import { SCICHART_ANCHOR, SCICHART_VERSION } from "./constants";
-
-const pj = require("../../../../package.json");
+import { SandboxConfig, getSourceFilesForPath } from "./sandboxDependencyUtils";
+import { viteProjectFiles, chartBootstrap } from "./viteConfig";
 
 export const getReactSandBoxConfig = async (
     folderPath: string,
     currentExample: TExampleInfo,
     baseUrl: string
 ): Promise<SandboxConfig> => {
-    const tsPath = path.join(folderPath, "index.tsx");
-    let code = await fs.promises.readFile(tsPath, "utf8");
-    let files: IFiles = {};
-    await includeImportedModules(folderPath, files, code, true, true, baseUrl);
-    code = code.replace(/\.\.\/.*styles\/Examples\.module\.scss/, `./styles/Examples.module.scss`);
-    code = await includeExternalModules(folderPath, folderPath, files, code, true, true);
-    // console.log("creating sandbox", currentExample.title, currentExample.path.replace("/", ""));
-    // for (const f in files) {
-    //    console.log(f);
-    // }
-    files = {
-        ...commonFiles,
-        ...files,
-        "package.json": {
-            // @ts-ignore
-            content: {
-                name: currentExample.path.replace("/", ""),
-                version: "1.0.0",
-                main: "src/index.tsx",
-                scripts: {
-                    start: "react-scripts start",
-                    build: "react-scripts build",
-                    test: "react-scripts test --env=jsdom",
-                    eject: "react-scripts eject",
-                },
-                dependencies: {
-                    "@emotion/react": pj.dependencies["@emotion/react"],
-                    "@emotion/styled": pj.dependencies["@emotion/styled"],
-                    "@mui/material": pj.dependencies["@mui/material"],
-                    "@mui/lab": pj.dependencies["@mui/lab"],
-                    "@mui/icons-material": pj.dependencies["@mui/icons-material"],
-                    sass: "^1.49.9",
-                    "loader-utils": "3.2.1",
-                    react: pj.dependencies["react"],
-                    "react-dom": pj.dependencies["react-dom"],
-                    "react-scripts": "5.0.1",
-                    scichart: pj.dependencies.scichart,
-                    "scichart-react": pj.dependencies["scichart-react"],
-                    typescript: pj.devDependencies.typescript,
-                    ...currentExample.extraDependencies,
-                    "@types/react": pj.dependencies["@types/react"],
-                    "@types/react-dom": pj.dependencies["@types/react-dom"],
-                    "@babel/runtime": pj.dependencies["@babel/runtime"],
-                },
-                browserslist: [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
-            },
-            isBinary: false,
-        },
-        "src/App.tsx": {
-            content: code,
-            isBinary: false,
-        },
-        "src/index.tsx": {
-            content: `
-import { createRoot, hydrateRoot } from "react-dom/client";
-
-import { SciChartSurface, SciChart3DSurface } from "scichart";
-
+    const files = await getSourceFilesForPath(folderPath, "index.tsx", baseUrl, "App.tsx");
+    files["src/main.tsx"] = {
+        content: `${chartBootstrap}
+import { createRoot } from "react-dom/client";
 import App from "./App";
 
-const rootElement = document.getElementById("root");
-
-SciChartSurface.UseCommunityLicense();
-SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
-
-const root = createRoot(rootElement)
-root.render(<><App />${SCICHART_ANCHOR}</>);
+createRoot(document.getElementById("root")!).render(<App />);
 `,
-            isBinary: false,
-        },
-        "public/index.html": {
-            content: `<!DOCTYPE html>
-        <html lang="en">
-          <head>
-          <title>React App</title>
-          </head>
-          <body style="margin: 0px;background: #050a30;">
-            <noscript>You need to enable JavaScript to run this app.</noscript>
-            <div id="root" style="height: 100vh;"></div>
-          </body>
-        </html>`,
-            isBinary: false,
-        },
+        isBinary: false,
     };
-
-    if (currentExample.sandboxConfig) {
-        files["sandbox.config.json"] = {
-            // @ts-ignore
-            content: currentExample.sandboxConfig,
-            isBinary: false,
-        };
-    }
-    return { files: { ...files, ...csStyles } };
+    files["index.html"] = {
+        content: `<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>SciChart React Example</title>
+    </head>
+    <body style="margin: 0; height: 100vh;">
+        <div id="root" style="height: 100%;"></div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>
+`,
+        isBinary: false,
+    };
+    return { files: viteProjectFiles(currentExample.path, files, true, currentExample.extraDependencies) };
 };

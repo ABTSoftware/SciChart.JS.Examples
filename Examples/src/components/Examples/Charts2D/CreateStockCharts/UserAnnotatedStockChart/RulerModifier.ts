@@ -17,7 +17,6 @@ import {
     DpiHelper,
     NumberRange,
     EChart2DModifierType,
-    IChartModifierBaseOptions,
     ModifierMouseArgs,
     EExecuteOn,
     translateFromCanvasToSeriesViewRect,

@@ -1,17 +1,10 @@
-import { FC, useContext, useEffect, useState } from "react";
-import {
-    EPageFramework,
-    FRAMEWORK_NAME,
-    getFrameworkContent,
-} from "../../helpers/shared/Helpers/frameworkParametrization";
-import { EPageLayout, ExampleSourceFile, GalleryItem } from "../../helpers/types/types";
-import { TExamplePage } from "../AppRouter/examplePages";
-import { MENU_ITEMS_2D, MENU_ITEMS_3D, MENU_ITEMS_FEATURED_APPS } from "../AppRouter/examples";
-import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
+import { baseAppPath } from "../../constants";
+import { FC, useContext, useEffect, useRef, useState } from "react";
+import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { EPageLayout, ExampleSourceFile } from "../../helpers/types/types";
 import DrawerContent from "../DrawerContent/DrawerContent";
 import ExamplesRoot from "../Examples/ExampleRootDetails";
 import GalleryItems from "../GalleryItems";
-import classes from "./AppDetailsRouter.scss";
 import MarkdownContent from "./MarkdownContent";
 import { CodeSandbox } from "../CodeSandbox";
 import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
@@ -21,61 +14,53 @@ import { CodePreview } from "../CodePreview/CodePreview";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
-import { ToolbarGroup } from "../buttons/Toolbar";
-import { Tooltip } from "@mui/material";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
+import { ALL_MENU_ITEMS } from "../AppRouter/examples";
+import { getSeeAlsoGalleryItems } from "../../helpers/SciChartExamples";
+import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
+import MenuIcon from "@mui/icons-material/Menu";
 
-type TProps = {
-    currentExample: TExamplePage;
-    isIFrame?: boolean;
-    seeAlso: GalleryItem[];
+const EXAMPLE_LAYOUT_STORAGE_KEY = "scichart-demo-example-layout";
+
+const getSavedPageLayout = (fallback: EPageLayout): EPageLayout => {
+    if (typeof window === "undefined") return fallback;
+    try {
+        const savedLayout = window.localStorage.getItem(EXAMPLE_LAYOUT_STORAGE_KEY);
+        return savedLayout === EPageLayout.Default || savedLayout === EPageLayout.MaxWidth ? savedLayout : fallback;
+    } catch {
+        return fallback;
+    }
 };
 
-const AppDetailsRouter: FC<TProps> = (props) => {
-    const { currentExample, seeAlso } = props;
+const AppDetailsRouter: FC<{
+    isExampleNavigationOpen: boolean;
+    isNarrowViewport: boolean;
+    toggleExampleNavigation: () => void;
+}> = ({
+    isExampleNavigationOpen,
+    isNarrowViewport,
+    toggleExampleNavigation,
+}) => {
+    const { state } = _useContext();
+    const { currentExample, framework: selectedFramework } = state;
+    const seeAlso = currentExample.seeAlso ?? getSeeAlsoGalleryItems(ALL_MENU_ITEMS, currentExample, selectedFramework);
+    const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
-    const getInitialSelectedFile = () =>
-        initialSourceFilesVariant.files.find((file) => file.name.startsWith("drawExample")) ??
-        initialSourceFilesVariant.files.find((file) => file.name.startsWith("index")) ??
-        initialSourceFilesVariant.files[0];
-
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
-    const [selectedFile, setSelectedFile] = useState<ExampleSourceFile>(getInitialSelectedFile);
-    const [pageLayout, setPageLayout] = useState<EPageLayout>(EPageLayout.Default);
-    const [isSideBySidePossible, setIsSideBySidePossible] = useState<boolean>();
+    const [pageLayout, setPageLayout] = useState<EPageLayout>(() =>
+        getSavedPageLayout(currentExample.pageLayout ?? EPageLayout.Default)
+    );
+    const exampleNavigationRef = useRef<HTMLDivElement>(null);
+    const previousNavigationOpen = useRef(isExampleNavigationOpen);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<StackBlitzResponse>(null);
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
-    const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
-
-    const { state } = _useContext();
-    const selectedFramework = state.framework;
-    const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
-
-    let initialOpenedMenuItems = {
-        MENU_ITEMS_FEATURED_APPS_ID: true,
-        MENU_ITEMS_3D_ID: true,
-        MENU_ITEMS_2D_ID: true,
-    };
-
-    MENU_ITEMS_FEATURED_APPS.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-    MENU_ITEMS_3D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-    MENU_ITEMS_2D.forEach((item) => {
-        initialOpenedMenuItems = { ...initialOpenedMenuItems, [item.id]: true };
-    });
-
-    const [openedMenuItems, setOpenedMenuItems] = useState<Record<string, boolean>>(initialOpenedMenuItems);
 
     useEffect(() => {
-        setIsSideBySidePossible(window.innerWidth > 1900);
-        setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
+        setPageLayout(getSavedPageLayout(currentExample.pageLayout ?? EPageLayout.Default));
         window.scrollTo({
             top: 0,
         });
@@ -83,9 +68,11 @@ const AppDetailsRouter: FC<TProps> = (props) => {
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
-        setSandboxFramework(null);
 
-        fetch("source/" + currentExample.path + "?framework=" + selectedFramework)
+        const controller = new AbortController();
+        fetch(`${baseAppPath}/source/${currentExample.path}?framework=${selectedFramework}`, {
+            signal: controller.signal,
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
@@ -93,59 +80,46 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 return response.json();
             })
             .then((json: { files: { name: string; content: string }[]; framework: EPageFramework }) => {
-                let defaultFile = json.files.find((f) => f.name === "drawExample.ts");
-                if (!defaultFile) {
-                    defaultFile = json.files[json.files.length - 1];
-                }
-                setSelectedFile({ name: defaultFile.name, content: defaultFile.content });
                 setSourceFiles(json.files);
                 setSourceFramework(json.framework);
+            })
+            .catch((error) => {
+                if (error.name !== "AbortError") console.error("Unable to load example source", error);
             });
+        return () => controller.abort();
     }, [currentExample, selectedFramework]);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsSideBySidePossible(window.innerWidth > 1900);
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    useEffect(() => {
-        if (embedCode) {
-            setEmbedCode(false);
-            setProjectFiles(null);
-            setSandboxFramework(null);
-        }
-    }, []);
-
-    const handleFileClick = (fileName: string) => {
-        const file = sourceFiles.find((f) => f.name.includes(fileName));
-        setSelectedFile({ name: file.name, content: file.content });
-    };
-
-    const setOpenedMenuItem = (id: string, value: boolean = true) => {
-        setOpenedMenuItems({ ...openedMenuItems, [id]: value });
-    };
-
-    const testIsOpened = (id: string): boolean => !!openedMenuItems[id];
-    const toggleOpenedMenuItem = (id: string) => setOpenedMenuItem(id, !openedMenuItems[id]);
+        const navigationChanged = previousNavigationOpen.current !== isExampleNavigationOpen;
+        previousNavigationOpen.current = isExampleNavigationOpen;
+        if (!navigationChanged) return;
+        requestAnimationFrame(() => {
+            if (isExampleNavigationOpen && isNarrowViewport) {
+                exampleNavigationRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+            }
+        });
+    }, [isExampleNavigationOpen, isNarrowViewport]);
 
     const handleBack = () => {
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
-        setSandboxFramework(null);
     };
 
-    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any, framework?: EPageFramework) => {
+    const handlePageLayoutChange = (layout: EPageLayout) => {
+        setPageLayout(layout);
+        try {
+            window.localStorage.setItem(EXAMPLE_LAYOUT_STORAGE_KEY, layout);
+        } catch {
+            // Keep layout switching available when browser storage is unavailable.
+        }
+    };
+
+    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: StackBlitzResponse) => {
         setSandboxPlatform(platform);
         setSandboxId(id);
         if (files) {
             setProjectFiles(files);
-        }
-        if (framework) {
-            setSandboxFramework(framework);
         }
         setEmbedCode(true);
     };
@@ -157,122 +131,127 @@ const AppDetailsRouter: FC<TProps> = (props) => {
                 onBack={handleBack}
                 platform={sandboxPlatform}
                 exampleName={pageTitle}
-                desiredFramework={selectedFramework}
-                actualFramework={sandboxFramework || selectedFramework}
             />
         ) : (
             <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
         );
     };
 
-    const LayoutButtons = () => {
-        return (
-            <ul className={classes.layoutButtons}>
-                <li
-                    onClick={() => setPageLayout(EPageLayout.Default)}
-                    className={pageLayout === EPageLayout.Default ? classes.active : ""}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <rect x="1.3" y="1.3" width="10" height="21.4" stroke="none" rx="2" />
-                        <rect x="12.7" y="1.3" width="10" height="21.4" stroke="none" rx="2" />
-                    </svg>
-                </li>
-
-                <li
-                    onClick={() => setPageLayout(EPageLayout.MaxWidth)}
-                    className={pageLayout === EPageLayout.MaxWidth ? classes.active : ""}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <rect x="1.3" y="1.3" width="21.4" height="10" stroke="none" rx="2" />
-                        <rect x="1.3" y="12.7" width="21.4" height="10" stroke="none" rx="2" />
-                    </svg>
-                </li>
-            </ul>
-        );
-    };
-
-    const isMaxWidth = pageLayout === EPageLayout.MaxWidth || !isSideBySidePossible;
-    // const md = getFrameworkContent(currentExample.markdownContent, selectedFramework);
-
     return (
-        <div>
-            <div className={classes.mainWrapper}>
-                <div className={classes.DrawerDesktop}>
-                    <DrawerContent
-                        testIsOpened={testIsOpened}
-                        toggleOpenedMenuItem={toggleOpenedMenuItem}
-                        toggleDrawer={() => {}}
-                        currentExample={currentExample}
-                    />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 15, width: "100%" }}>
-                    <div id="EXAMPLE_CONTENT_WRAPPER" className={classes.contentwrapper}>
-                        <div style={{ display: "flex" }}>
-                            <ExampleBreadcrumbs />
+        <div className={`sc-app-details-layout ${isExampleNavigationOpen ? "sc-app-details-nav-open" : ""}`}>
+            <div
+                id="EXAMPLE_NAVIGATION"
+                className="sc-app-details-drawer"
+                ref={exampleNavigationRef}
+                aria-hidden={!isExampleNavigationOpen}
+                inert={!isExampleNavigationOpen}
+            >
+                <DrawerContent />
+            </div>
+            <button
+                className="sc-app-details-nav-backdrop"
+                type="button"
+                onClick={toggleExampleNavigation}
+                aria-label="Close example navigation"
+                aria-hidden={!isExampleNavigationOpen}
+                inert={!isExampleNavigationOpen}
+            />
+            <div className="sc-app-details-main" inert={isNarrowViewport && isExampleNavigationOpen}>
+                <div
+                    id="EXAMPLE_CONTENT_WRAPPER"
+                    className="sc-app-details-content"
+                    data-layout={pageLayout}
+                    data-sandbox-open={embedCode ? "" : undefined}
+                >
+                    <div className="sc-app-details-header">
+                        <div className="sc-app-details-header-actions">
+                            <div className="sc-app-details-breadcrumbs">
+                                <button
+                                    type="button"
+                                    className="sc-button sc-button-icon"
+                                    onClick={toggleExampleNavigation}
+                                    aria-controls="EXAMPLE_NAVIGATION"
+                                    aria-expanded={isExampleNavigationOpen}
+                                    aria-label={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                    title={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                >
+                                    <MenuIcon />
+                                </button>
+                                <ExampleBreadcrumbs />
+                            </div>
 
-                            <LayoutButtons />
-                        </div>
-
-                        <div style={{ display: "flex", justifyContent: "center" }}>
-                            <h1
-                                id="EXAMPLE_TITLE"
-                                className={classes.headingtxt}
-                                style={{
-                                    margin: isMaxWidth ? "-10px 0" : 0,
-                                    marginInline: isMaxWidth ? "auto" : 0,
-                                    width: isMaxWidth && !embedCode ? "min(100vh , 100%)" : "auto",
-                                }}
+                            <div
+                                className="sc-button-group sc-app-layout-buttons"
+                                role="group"
+                                aria-label="Example layout"
                             >
-                                {pageTitle}
-                            </h1>
-
-                            {/* Github, stackblitz buttons visible on maxwidth layout */}
-                            {!isMaxWidth ? (
-                                <CodeActionButtons
-                                    className={`${classes.tabbtnwrap} ${classes.hiddenSmall}`}
-                                    {...{ currentExample, selectedFramework, selectedFile }}
-                                    onSandboxOpen={handleSandboxOpen}
-                                    style={{ marginLeft: "auto" }}
-                                />
-                            ) : null}
+                                <button
+                                    type="button"
+                                    className="sc-button sc-button-icon"
+                                    onClick={() => handlePageLayoutChange(EPageLayout.Default)}
+                                    aria-label="Side by side layout"
+                                    title="Side by side layout"
+                                    aria-pressed={pageLayout === EPageLayout.Default}
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        aria-hidden="true"
+                                    >
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <path d="M12 3v18" />
+                                    </svg>
+                                </button>
+                                <button
+                                    type="button"
+                                    className="sc-button sc-button-icon"
+                                    onClick={() => handlePageLayoutChange(EPageLayout.MaxWidth)}
+                                    aria-label="Stacked layout"
+                                    title="Stacked layout"
+                                    aria-pressed={pageLayout === EPageLayout.MaxWidth}
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        aria-hidden="true"
+                                    >
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <path d="M3 12h18" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
 
-                        {/* Subtitle // this returns a <p> already */}
+                        <h1 id="EXAMPLE_TITLE">{pageTitle}</h1>
+
                         <ExamplesSubtitle
                             content={currentExample.subtitle(selectedFramework)}
-                            isMaxWidth={isMaxWidth}
                             alsoKnownAs={currentExample?.alsoKnownAs}
                         />
-
-                        {/* Main example section */}
-                        {embedCode ? (
-                            renderEditor()
-                        ) : (
-                            <div // Chart + Code section
-                                className={`${classes.dynamicFlexWrapper} ${isMaxWidth ? classes.maxWidth : ""}`}
-                            >
-                                <ExamplesRoot examplePage={currentExample} seeAlso={seeAlso} />
-                                <CodeActionButtons
-                                    {...{ currentExample, selectedFramework, selectedFile }}
-                                    onSandboxOpen={handleSandboxOpen}
-                                    className={`${classes.tabbtnwrap} ${isMaxWidth ? "" : classes.hiddenLarge}`}
-                                    style={{ minHeight: 35, height: 35, padding: 0, width: "100%" }}
-                                />
-                                <CodePreview
-                                    files={sourceFiles}
-                                    selectedFile={selectedFile}
-                                    handleFileClick={handleFileClick}
-                                    desiredFramework={selectedFramework}
-                                    actualFramework={sourceFramework}
-                                    examplePath={currentExample.path}
-                                    isMaxWidth={isMaxWidth}
-                                />
-                            </div>
-                        )}
-                        <MarkdownContent selectedFramework={selectedFramework} currentExample={currentExample} />
                     </div>
-                    <GalleryItems examples={seeAlso} />
+
+                    {/* Main example section */}
+                    {embedCode ? (
+                        renderEditor()
+                    ) : (
+                        <div className="sc-app-chart-code">
+                            <ExamplesRoot />
+                            <CodeActionButtons onSandboxOpen={handleSandboxOpen} className="sc-editor-actions" />
+                            <CodePreview
+                                key={`${currentExample.path}:${sourceFramework}`}
+                                files={sourceFiles}
+                                framework={sourceFramework || selectedFramework}
+                                examplePath={currentExample.path}
+                            />
+                        </div>
+                    )}
+                    <MarkdownContent />
                 </div>
+                <GalleryItems examples={seeAlso} needsH1={false} />
             </div>
         </div>
     );

@@ -1,12 +1,43 @@
-const { merge } = require("webpack-merge");
 const path = require("path");
 const webpackServerConfig = require("./webpack.server.config.js");
 const NodemonPlugin = require("nodemon-webpack-plugin");
 
-module.exports = merge(webpackServerConfig, {
+module.exports = {
+    ...webpackServerConfig,
     mode: "development",
-    devtool: "inline-source-map", // Changed from 'source-map' for better debugging
+    devtool: "cheap-module-source-map",
+    cache: {
+        type: "filesystem",
+        name: "server",
+        maxMemoryGenerations: 1,
+        buildDependencies: {
+            config: [
+                __filename,
+                require.resolve("./webpack.server.config.js"),
+                require.resolve("./tsconfig.server.json"),
+                require.resolve("./tsconfig.base.json"),
+                require.resolve("./tsconfig.json"),
+            ],
+        },
+    },
+    module: {
+        rules: webpackServerConfig.module.rules.map((rule) =>
+            String(rule.test) === String(/\.tsx?$/)
+                ? {
+                      ...rule,
+                      use: {
+                          loader: "ts-loader",
+                          options: {
+                              configFile: "tsconfig.server.json",
+                              transpileOnly: true,
+                          },
+                      },
+                  }
+                : rule
+        ),
+    },
     plugins: [
+        ...webpackServerConfig.plugins,
         new NodemonPlugin({
             script: "./build/server.js",
             watch: path.resolve("./src/server"),
@@ -15,4 +46,4 @@ module.exports = merge(webpackServerConfig, {
         }),
     ],
     watch: true,
-});
+};

@@ -11,7 +11,6 @@ import {
     ModifierMouseArgs,
     Point,
     SciChartSurface,
-    SciChartSurfaceBase,
     SciChartSubSurface,
     translateFromCanvasToSeriesViewRect,
     translateToNotScaled,

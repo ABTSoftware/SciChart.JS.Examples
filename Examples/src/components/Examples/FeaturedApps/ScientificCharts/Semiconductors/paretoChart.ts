@@ -7,7 +7,6 @@ import {
     XyDataSeries,
     ZoomPanModifier,
     ENumericFormat,
-    LegendModifier,
     EAxisAlignment,
     ELineDrawMode,
     EllipsePointMarker,
@@ -19,13 +18,11 @@ import {
     DataPointSelectionPaletteProvider,
     MouseWheelZoomModifier,
     ZoomExtentsModifier,
-    DataPointSelectionChangedArgs,
     DataPointInfo,
     BaseDataSeries,
     XyFilterBase,
     vectorToArrayViewF64,
     EAutoRange,
-    ESelectionMode,
 } from "scichart";
 
 import { WaferLotData } from "./waferData";

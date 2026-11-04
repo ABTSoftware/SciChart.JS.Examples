@@ -1,28 +1,25 @@
 import { FC, Fragment, useEffect, useRef, useState } from "react";
-import Collapse from "@mui/material/Collapse";
-import List from "@mui/material/List";
 import { TMenuItem } from "../AppRouter/examples";
 import MenuListItemText from "../../helpers/shared/MenuListItemText/MenuListItemText";
-import classes from "./ListItemsBlock.module.scss";
 import ListItemCollapseArrowIcon from "./ListItemCollapseArrowIcon";
-import { getFrameworkContent, useExampleRouteParams } from "../../helpers/shared/Helpers/frameworkParametrization";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
+import { useNavigate } from "react-router";
+import { useNavigationContext } from "./NavigationContext";
+
 type TProps = {
-    onExpandClick: (id: string) => void;
-    checkIsOpened: (id: string) => boolean;
-    historyPushPath: (path: string) => void;
     title: string;
     menuItems: TMenuItem[];
     menuItemsId: string;
-    mostVisibleCategory?: string;
 };
 
 const ListItemsBlock: FC<TProps> = (props) => {
     const { state } = _useContext();
     const selectedFramework = state.framework;
-    const match = useExampleRouteParams();
-    const { onExpandClick, checkIsOpened, historyPushPath, title, menuItems, menuItemsId, mostVisibleCategory } = props;
+    const { toggleCategory, isCategoryCollapsed, expandCategory, mostVisibleCategory } = useNavigationContext();
+    const historyPushPath = useNavigate();
+    const { title, menuItems, menuItemsId } = props;
 
     const [manuallyCollapsed, setManuallyCollapsed] = useState<Set<string>>(new Set());
 
@@ -59,14 +56,14 @@ const ListItemsBlock: FC<TProps> = (props) => {
             );
 
             if (activeMenuItem) {
-                onExpandClick(activeMenuItem.id);
-                onExpandClick(menuItemsId);
+                expandCategory(activeMenuItem.id);
+                expandCategory(menuItemsId);
             }
         }
-    }, [mostVisibleCategory, menuItems, onExpandClick, menuItemsId]);
+    }, [mostVisibleCategory, menuItems, expandCategory, menuItemsId]);
 
     const isItemActive = (itemId: string): boolean => {
-        return match?.currentExample?.id === itemId;
+        return state.currentExample?.id === itemId;
     };
 
     const hasActiveItem = (category: TMenuItem): boolean => {
@@ -89,55 +86,62 @@ const ListItemsBlock: FC<TProps> = (props) => {
             });
         }
 
-        onExpandClick(categoryId);
+        toggleCategory(categoryId);
     };
 
     return (
-        <div className={classes.ListItemBlock} ref={containerRef}>
-            <div onClick={() => onExpandClick(menuItemsId)} className={classes.CollapsibleMenuListItem}>
-                <MenuListItemText text={title} className={classes.MenuListItemText} />
+        <div className="sc-app-menu-list-item-block" ref={containerRef}>
+            <div onClick={() => toggleCategory(menuItemsId)} className="sc-app-menu-collapsible-menu-list-item">
+                <MenuListItemText text={title} className="sc-app-menu-menu-list-item-text" />
             </div>
-            <Collapse in={true} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+            <div>
+                <div>
                     {menuItems.map((el) => {
                         const isActiveCategory = hasActiveItem(el);
                         const isManuallyCollapsed = manuallyCollapsed.has(el.id);
                         const shouldExpand =
-                            (isActiveCategory && !isManuallyCollapsed) || (!isActiveCategory && !checkIsOpened(el.id));
+                            (isActiveCategory && !isManuallyCollapsed) ||
+                            (!isActiveCategory && !isCategoryCollapsed(el.id));
 
                         return (
                             <Fragment key={el.id}>
                                 {/* Parent category element */}
                                 <div
                                     ref={(elem) => registerCategoryElement(el.id, elem)}
-                                    className={`${classes.CollapsibleMenuListItem} ${
-                                        el.id === mostVisibleCategory ? classes.ActiveParentCategory : ""
+                                    className={`sc-app-menu-collapsible-menu-list-item ${
+                                        el.id === mostVisibleCategory ? "sc-app-menu-active-parent-category" : ""
                                     }`}
                                     onClick={() => handleCategoryClick(el.id)}
                                     data-category-id={el.id}
                                 >
-                                    <MenuListItemText text={el.title} className={classes.SecondLevelMenuListItemText} />
+                                    <MenuListItemText
+                                        text={el.title}
+                                        className="sc-app-menu-second-level-menu-list-item-text"
+                                    />
                                     <ListItemCollapseArrowIcon
-                                        className={classes.CollapseArrowButton}
+                                        className="sc-app-menu-collapse-arrow-button"
                                         isCollapseOpened={shouldExpand}
                                     />
                                 </div>
-                                <Collapse in={shouldExpand} timeout="auto" unmountOnExit>
-                                    <List component="div" disablePadding>
+                                <div hidden={!shouldExpand}>
+                                    <div>
                                         {el.submenu.map((subEl) => (
                                             <div
                                                 key={subEl.id}
                                                 ref={(elem) => registerCategoryElement(subEl.id, elem)}
                                                 className={`${
                                                     isItemActive(subEl.id)
-                                                        ? classes.SelectedBottomLevelListItem
-                                                        : classes.BottomLevelListItem
-                                                } ${subEl.id === mostVisibleCategory ? classes.MostVisible : ""}`}
-                                                onClick={() => historyPushPath(`${selectedFramework}/${subEl.path}`)}
+                                                        ? "sc-app-menu-selected-bottom-level-list-item"
+                                                        : "sc-app-menu-bottom-level-list-item"
+                                                }`}
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    historyPushPath(`${selectedFramework}/${subEl.path}`);
+                                                }}
                                                 data-category-id={subEl.id}
                                             >
                                                 <a
-                                                    className={classes.ExampleLink}
+                                                    className="sc-app-menu-example-link"
                                                     href={`${selectedFramework}/${subEl.path}`}
                                                     title={getFrameworkContent(subEl.title, selectedFramework)}
                                                 >
@@ -145,13 +149,13 @@ const ListItemsBlock: FC<TProps> = (props) => {
                                                 </a>
                                             </div>
                                         ))}
-                                    </List>
-                                </Collapse>
+                                    </div>
+                                </div>
                             </Fragment>
                         );
                     })}
-                </List>
-            </Collapse>
+                </div>
+            </div>
         </div>
     );
 };
