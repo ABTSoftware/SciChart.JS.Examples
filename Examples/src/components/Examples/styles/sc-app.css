@@ -214,10 +214,10 @@
 
 .sc-app-mobile-drawer {
     position: fixed;
-    inset: 0 0 0 auto !important;
+    inset: 0 auto 0 0 !important;
     margin: 0;
     padding: 0;
-    width: min(23.4375rem, 100vw);
+    width: 80vw;
     max-width: 100vw;
     height: 100dvh;
     max-height: 100dvh;
@@ -612,23 +612,24 @@
 
 .sc-app-drawer-top {
     display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     background-color: var(--bg);
     justify-content: space-between;
     padding: 1rem;
     gap: 0.5rem;
 }
-.sc-app-drawer-top .sc-app-drawer-close-button {
-    align-self: center;
-    cursor: pointer;
-    padding: 0.4375rem;
-    margin-left: -0.4375rem;
-    display: none;
-    color: var(--border-color);
+.sc-app-drawer-top .sc-app-search {
+    min-width: 0;
+    padding: 0;
+    position: relative;
 }
-@media (max-width: 959.98px) {
-    .sc-app-drawer-top .sc-app-drawer-close-button {
-        display: block;
-    }
+.sc-app-drawer-top .sc-app-search-options {
+    top: 100%;
+    left: 0;
+    right: 0;
 }
 
 .sc-app-menu-list-item-block .sc-app-menu-bottom-level-list-item,

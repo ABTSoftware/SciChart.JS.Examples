@@ -170,13 +170,13 @@ function AppContent() {
             <div className="sc-app-root">
                 {isMedium && (
                     <MobileDrawer open={isDrawerOpened} onClose={toggleDrawer}>
-                        <DrawerContent />
+                        <DrawerContent onClose={toggleDrawer} />
                     </MobileDrawer>
                 )}
                 <div className="sc-app-content">
                     <SciChartNavbar
                         toggleDrawer={toggleDrawer}
-                        showMenuToggle={isHomePage || is404}
+                        showMenuToggle={isMedium && (isHomePage || is404)}
                     />
 
                     {is404 ? (

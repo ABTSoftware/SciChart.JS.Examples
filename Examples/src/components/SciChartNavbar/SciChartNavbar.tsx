@@ -159,6 +159,18 @@ export default function SciChartNavbar({
         <header id="masthead" className="sc-app-nav-site-header">
             <nav id="site-navigation">
                 <div className="sc-app-nav-row">
+                    {showMenuToggle && (
+                        <div className="sc-app-nav-menu-burger">
+                            <button
+                                type="button"
+                                className="sc-button sc-button-icon"
+                                onClick={toggleDrawer}
+                                aria-label="Open menu"
+                            >
+                                <MenuIcon />
+                            </button>
+                        </div>
+                    )}
                     <div className="sc-app-nav-site-logo">
                         <Link to="/" title="SciChart Chart Library Examples">
                             <img
@@ -561,18 +573,6 @@ export default function SciChartNavbar({
                         <div>
                             <ThemeSelectComponent />
                         </div>
-                        {showMenuToggle && (
-                            <div className="sc-app-nav-menu-burger">
-                                <button
-                                    type="button"
-                                    className="sc-button sc-button-icon"
-                                    onClick={toggleDrawer}
-                                    aria-label="Open menu"
-                                >
-                                    <MenuIcon />
-                                </button>
-                            </div>
-                        )}
                     </div>
                 </div>
             </nav>

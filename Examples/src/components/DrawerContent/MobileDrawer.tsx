@@ -27,9 +27,6 @@ export function MobileDrawer({ open, onClose, children }: { open: boolean; onClo
             }}
         >
             <div className="sc-app-drawer-paper">
-                <button type="button" className="sc-button" onClick={onClose} aria-label="Close navigation">
-                    Close
-                </button>
                 {children}
             </div>
         </dialog>
