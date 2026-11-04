@@ -1,9 +1,5 @@
-import React, { FC, ReactNode, useState } from "react";
-import {
-    EPageFramework,
-    getFrameworkContent,
-    getFrameworkName,
-} from "../../helpers/shared/Helpers/frameworkParametrization";
+import React, { FC, ReactNode } from "react";
+import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { getSandboxUrl, getStackBlitzFiles } from "./sandboxUtils";
@@ -15,8 +11,7 @@ type CodeActionButtonsProps = {
     onSandboxOpen: (
         platform: SandboxPlatform,
         sandboxId: string,
-        projectFiles?: StackBlitzResponse,
-        framework?: EPageFramework
+        projectFiles?: StackBlitzResponse
     ) => void;
 };
 
@@ -24,15 +19,6 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
     const {
         state: { currentExample, framework: selectedFramework },
     } = _useContext();
-    const [availableFrameworks] = useState<EPageFramework[]>([
-        EPageFramework.React,
-        EPageFramework.Vanilla,
-        EPageFramework.Angular,
-    ]);
-
-    const isFrameworkVariantAvailable = availableFrameworks?.includes(selectedFramework);
-    const frameWorkName = getFrameworkName(selectedFramework);
-
     const pageTitle = getFrameworkContent(currentExample.title, selectedFramework);
 
     const contextualGithubTitle =
@@ -43,18 +29,16 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
     const handleSandboxClick = async (e: React.MouseEvent<HTMLAnchorElement>, platform: SandboxPlatform) => {
         e.preventDefault();
         try {
-            const framework = isFrameworkVariantAvailable ? selectedFramework : EPageFramework.React;
-
             if (platform === SandboxPlatform.CodeSandbox) {
-                const { id, actualFramework } = await getSandboxUrl(currentExample.path, framework, platform);
+                const { id } = await getSandboxUrl(currentExample.path, selectedFramework, platform);
                 if (id) {
-                    onSandboxOpen(platform, id, undefined, actualFramework);
+                    onSandboxOpen(platform, id);
                 } else {
                     console.log("error");
                 }
             } else {
                 // For StackBlitz, get the files first
-                const files = await getStackBlitzFiles(currentExample.path, framework);
+                const files = await getStackBlitzFiles(currentExample.path, selectedFramework);
                 onSandboxOpen(platform, currentExample.path, files);
             }
         } catch (error) {
@@ -78,22 +62,14 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
                 label="Edit"
                 className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
-                title={
-                    isFrameworkVariantAvailable
-                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`
-                        : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
-                }
+                title={`Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`}
             />
             <CodeActionButton
                 iconName="codesandbox"
                 label="&nbsp;Edit"
                 className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
-                title={
-                    isFrameworkVariantAvailable
-                        ? `Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`
-                        : `Sorry, we have not got ${frameWorkName} code for this example yet, so you will see react code instead, but the actual chart code is always the same. Contact support@scichart.com to request prioritisation of this example`
-                }
+                title={`Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`}
             />
             <CodeActionButton
                 iconName="docs"

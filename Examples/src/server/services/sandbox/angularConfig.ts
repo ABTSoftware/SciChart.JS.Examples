@@ -214,11 +214,10 @@ export const getAngularSandBoxConfig = async (
         "src/app-wrapper.component.ts": {
             content: `import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { AppComponent } from './app.component';
-import { SciChartSurface, SciChart3DSurface } from 'scichart';
+import { SciChartSurface } from 'scichart';
 
 SciChartSurface.UseCommunityLicense();
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
 
 @Component({
   selector: 'app-root',
@@ -261,12 +260,6 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
     ${SCICHART_ANCHOR}
   </body>
 </html>`,
-            isBinary: false,
-        },
-        "readme.md": {
-            content: `# Angular ${currentExample.path} Example
-Run npm install, then npm run start. Run npm run build to create a production bundle.
-            `,
             isBinary: false,
         },
         "sandbox.config.json": {

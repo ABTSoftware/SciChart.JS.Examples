@@ -58,9 +58,8 @@ export const viteProjectFiles = (
     }),
 });
 
-export const chartBootstrap = `import { SciChartSurface, SciChart3DSurface } from "scichart";
+export const chartBootstrap = `import { SciChartSurface } from "scichart";
 
 SciChartSurface.UseCommunityLicense();
 SciChartSurface.loadWasmFromCDN();
-SciChart3DSurface.loadWasmFromCDN();
 `;

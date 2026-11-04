@@ -10,14 +10,10 @@ import { ETheme } from "../../helpers/types/types";
 
 export default function SciChartNavbar({
     toggleDrawer,
-    showExampleNavigationToggle,
-    isExampleNavigationOpen,
-    toggleExampleNavigation,
+    showMenuToggle,
 }: {
     toggleDrawer: () => void;
-    showExampleNavigationToggle: boolean;
-    isExampleNavigationOpen: boolean;
-    toggleExampleNavigation: () => void;
+    showMenuToggle: boolean;
 }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { state, setTheme } = _useContext();
@@ -565,22 +561,18 @@ export default function SciChartNavbar({
                         <div>
                             <ThemeSelectComponent />
                         </div>
-                        <div className="sc-app-nav-menu-burger">
-                            <button
-                                type="button"
-                                className="sc-button sc-button-icon"
-                                onClick={showExampleNavigationToggle ? toggleExampleNavigation : toggleDrawer}
-                                aria-controls={showExampleNavigationToggle ? "EXAMPLE_NAVIGATION" : undefined}
-                                aria-expanded={showExampleNavigationToggle ? isExampleNavigationOpen : undefined}
-                                aria-label={
-                                    showExampleNavigationToggle
-                                        ? `${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`
-                                        : "Open menu"
-                                }
-                            >
-                                <MenuIcon />
-                            </button>
-                        </div>
+                        {showMenuToggle && (
+                            <div className="sc-app-nav-menu-burger">
+                                <button
+                                    type="button"
+                                    className="sc-button sc-button-icon"
+                                    onClick={toggleDrawer}
+                                    aria-label="Open menu"
+                                >
+                                    <MenuIcon />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </nav>

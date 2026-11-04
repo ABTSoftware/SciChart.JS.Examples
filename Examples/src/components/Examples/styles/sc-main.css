@@ -1,4 +1,4 @@
-/* Shared document defaults and application theme. Demo controls own their sc-ui.css tokens. */
+/* Shared document defaults and application theme */
 :root {
     --text: #f5f5f5;
     --bg: #121212;

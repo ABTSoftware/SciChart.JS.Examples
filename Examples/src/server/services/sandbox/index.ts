@@ -68,6 +68,7 @@ export const getSandboxConfig = async (
         typeof currentExample.title === "function"
             ? currentExample.title(frameworkName[config.actualFramework])
             : currentExample.title;
+    if (config.actualFramework === EPageFramework.Angular) delete config.files["readme.md"];
     config.files["README.md"] = {
         isBinary: false,
         content: `# ${title || currentExample.path}

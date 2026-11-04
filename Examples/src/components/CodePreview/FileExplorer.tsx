@@ -27,7 +27,12 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
     const treeRef = useRef<HTMLUListElement>(null);
     const tree = useMemo(
         () =>
-            buildFileTree(files).filter((node) => node.path !== ".codesandbox" && node.path !== "sandbox.config.json"),
+            buildFileTree(files).filter(
+                (node) =>
+                    node.path !== ".codesandbox" &&
+                    node.path !== ".devcontainer" &&
+                    node.path !== "sandbox.config.json"
+            ),
         [files]
     );
     const visible: { node: FileTreeNode; level: number }[] = [];
@@ -117,11 +122,11 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
                 </option>
                 <option value="vue" disabled>
                     <span className="sc-editor-framework-icon" data-framework="vue" aria-hidden="true" />
-                    Vue
+                    Vue (soon)
                 </option>
                 <option value="svelte" disabled>
                     <span className="sc-editor-framework-icon" data-framework="svelte" aria-hidden="true" />
-                    Svelte
+                    Svelte (soon)
                 </option>
             </select>
             <ul ref={treeRef} role="tree" aria-label="Example project" onKeyDown={handleKeyDown}>

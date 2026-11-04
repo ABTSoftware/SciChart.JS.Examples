@@ -1,4 +1,14 @@
-import { FC, useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import {
+    FC,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type CSSProperties,
+    type KeyboardEvent,
+    type PointerEvent as ReactPointerEvent,
+} from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
 import ts from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
@@ -7,7 +17,6 @@ import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
 import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
 import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
 import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { Dialog } from "../Dialog/Dialog";
 import { ETheme, type ExampleSourceFile } from "../../helpers/types/types";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
@@ -29,6 +38,7 @@ SyntaxHighlighter.registerLanguage("typescript", ts);
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("css", css);
 SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("xml", xml);
 SyntaxHighlighter.registerLanguage("html", xml);
 
 const DarkStyles: Record<string, CSSProperties> = {
@@ -264,16 +274,14 @@ const LightStyles: Record<string, CSSProperties> = {
 
 export type CodeEditorProps = {
     files: ExampleSourceFile[];
-    desiredFramework: EPageFramework;
-    actualFramework: EPageFramework | null;
+    framework: EPageFramework;
     examplePath: string;
     onFilesChange?: (files: ExampleSourceFile[]) => void;
 };
 
 export const CodePreview: FC<CodeEditorProps> = ({
     files,
-    desiredFramework,
-    actualFramework,
+    framework,
     examplePath,
     onFilesChange,
 }) => {
@@ -282,10 +290,15 @@ export const CodePreview: FC<CodeEditorProps> = ({
     const [selectedName, setSelectedName] = useState(() => getDefaultSourceFile(files)?.name);
     const [isEditing, setIsEditing] = useState(false);
     const [showExplorer, setShowExplorer] = useState(true);
-    const [showDialog, setShowDialog] = useState(false);
     const editorRef = useRef<HTMLElement>(null);
     const gutterRef = useRef<HTMLPreElement>(null);
     const readButtonRef = useRef<HTMLButtonElement>(null);
+    const codeScrollRef = useRef<HTMLDivElement>(null);
+    const verticalTrackRef = useRef<HTMLDivElement>(null);
+    const verticalThumbRef = useRef<HTMLDivElement>(null);
+    const horizontalTrackRef = useRef<HTMLDivElement>(null);
+    const horizontalThumbRef = useRef<HTMLDivElement>(null);
+    const scrollbarDrag = useRef<{ axis: "vertical" | "horizontal"; offset: number; pointerId: number } | null>(null);
     const activeFile = draftFiles.find((file) => file.name === selectedName) ?? getDefaultSourceFile(draftFiles);
     const modifiedNames = useMemo(
         () =>
@@ -298,8 +311,96 @@ export const CodePreview: FC<CodeEditorProps> = ({
     );
     const lineCount = activeFile?.content.split("\n").length ?? 1;
     const lineNumbers = Array.from({ length: lineCount }, (_, index) => index + 1).join("\n");
-    const frameworkName = FRAMEWORK_NAME[actualFramework || desiredFramework];
+    const frameworkName = FRAMEWORK_NAME[framework];
     const isLight = state.theme === ETheme.light;
+
+    const updateScrollbars = useCallback(() => {
+        const viewport = codeScrollRef.current;
+        if (!viewport) return;
+        const updateAxis = (
+            axis: "vertical" | "horizontal",
+            track: HTMLDivElement | null,
+            thumb: HTMLDivElement | null,
+            position: number,
+            visibleSize: number,
+            contentSize: number
+        ) => {
+            if (!track || !thumb) return;
+            const trackSize = axis === "vertical" ? track.clientHeight : track.clientWidth;
+            const hasOverflow = contentSize > visibleSize + 1 && trackSize > 0;
+            track.style.visibility = hasOverflow ? "visible" : "hidden";
+            if (!hasOverflow) return;
+            const thumbSize = Math.min(trackSize, Math.max(24, (trackSize * visibleSize) / contentSize));
+            const scrollRange = contentSize - visibleSize;
+            const trackRange = trackSize - thumbSize;
+            const offset = (position / scrollRange) * trackRange;
+            thumb.style[axis === "vertical" ? "height" : "width"] = `${thumbSize}px`;
+            thumb.style.transform = axis === "vertical" ? `translateY(${offset}px)` : `translateX(${offset}px)`;
+        };
+        updateAxis(
+            "vertical",
+            verticalTrackRef.current,
+            verticalThumbRef.current,
+            viewport.scrollTop,
+            viewport.clientHeight,
+            viewport.scrollHeight
+        );
+        updateAxis(
+            "horizontal",
+            horizontalTrackRef.current,
+            horizontalThumbRef.current,
+            viewport.scrollLeft,
+            viewport.clientWidth,
+            viewport.scrollWidth
+        );
+    }, []);
+
+    const handleScrollbarPointerDown = (event: ReactPointerEvent<HTMLDivElement>, axis: "vertical" | "horizontal") => {
+        const viewport = codeScrollRef.current;
+        const thumb = axis === "vertical" ? verticalThumbRef.current : horizontalThumbRef.current;
+        if (!viewport || !thumb) return;
+        const trackRect = event.currentTarget.getBoundingClientRect();
+        const pointerPosition = axis === "vertical" ? event.clientY - trackRect.top : event.clientX - trackRect.left;
+        const thumbSize = axis === "vertical" ? thumb.offsetHeight : thumb.offsetWidth;
+        const trackSize = axis === "vertical" ? trackRect.height : trackRect.width;
+        const scrollRange = axis === "vertical"
+            ? viewport.scrollHeight - viewport.clientHeight
+            : viewport.scrollWidth - viewport.clientWidth;
+        const thumbPosition = scrollRange > 0
+            ? ((axis === "vertical" ? viewport.scrollTop : viewport.scrollLeft) / scrollRange) *
+              (trackSize - thumbSize)
+            : 0;
+        const onThumb = thumb.contains(event.target as Node);
+        const offset = onThumb ? pointerPosition - thumbPosition : thumbSize / 2;
+        scrollbarDrag.current = { axis, offset, pointerId: event.pointerId };
+        event.currentTarget.setPointerCapture(event.pointerId);
+        if (!onThumb) handleScrollbarPointerMove(event, axis);
+        event.preventDefault();
+    };
+
+    function handleScrollbarPointerMove(event: ReactPointerEvent<HTMLDivElement>, axis: "vertical" | "horizontal") {
+        const drag = scrollbarDrag.current;
+        const viewport = codeScrollRef.current;
+        if (!drag || drag.axis !== axis || drag.pointerId !== event.pointerId || !viewport) return;
+        const trackRect = event.currentTarget.getBoundingClientRect();
+        const trackSize = axis === "vertical" ? trackRect.height : trackRect.width;
+        const thumb = axis === "vertical" ? verticalThumbRef.current : horizontalThumbRef.current;
+        if (!thumb) return;
+        const thumbSize = axis === "vertical" ? thumb.offsetHeight : thumb.offsetWidth;
+        const pointerPosition = axis === "vertical" ? event.clientY - trackRect.top : event.clientX - trackRect.left;
+        const trackRange = trackSize - thumbSize;
+        const scrollRange = axis === "vertical"
+            ? viewport.scrollHeight - viewport.clientHeight
+            : viewport.scrollWidth - viewport.clientWidth;
+        if (trackRange <= 0 || scrollRange <= 0) return;
+        const position = Math.max(0, Math.min(1, (pointerPosition - drag.offset) / trackRange)) * scrollRange;
+        if (axis === "vertical") viewport.scrollTop = position;
+        else viewport.scrollLeft = position;
+    }
+
+    const stopScrollbarDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
+        if (scrollbarDrag.current?.pointerId === event.pointerId) scrollbarDrag.current = null;
+    };
 
     useEffect(() => {
         setDraftFiles(files);
@@ -308,12 +409,19 @@ export const CodePreview: FC<CodeEditorProps> = ({
     }, [files, examplePath]);
 
     useEffect(() => {
-        setShowDialog(!!actualFramework && actualFramework !== desiredFramework);
-    }, [examplePath, actualFramework, desiredFramework]);
-
-    useEffect(() => {
         if (gutterRef.current) gutterRef.current.style.transform = "";
     }, [activeFile?.name, isEditing]);
+
+    useEffect(() => {
+        const viewport = codeScrollRef.current;
+        if (!viewport) return undefined;
+        const observer = new ResizeObserver(updateScrollbars);
+        observer.observe(viewport);
+        const code = viewport.querySelector("pre:not(.sc-editor-read-gutter)");
+        if (code) observer.observe(code);
+        updateScrollbars();
+        return () => observer.disconnect();
+    }, [activeFile?.content, activeFile?.name, isEditing, updateScrollbars]);
 
     const updateFiles = (next: ExampleSourceFile[]) => {
         setDraftFiles(next);
@@ -382,10 +490,16 @@ export const CodePreview: FC<CodeEditorProps> = ({
         setTimeout(() => URL.revokeObjectURL(url), 1000);
     };
     const downloadProject = () => {
-        const zip = createProjectZip(draftFiles);
+        const zip = createProjectZip(
+            draftFiles.filter(
+                ({ name }) =>
+                    name !== "sandbox.config.json" &&
+                    !name.split("/").some((part) => part === ".codesandbox" || part === ".devcontainer")
+            )
+        );
         download(
             new Blob([zip.buffer as ArrayBuffer], { type: "application/zip" }),
-            `${examplePath}-${actualFramework || desiredFramework}.zip`
+            `${examplePath}-${framework}.zip`
         );
     };
 
@@ -494,50 +608,71 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             />
                         </div>
                     ) : (
-                        <div
-                            id="EXAMPLE_CODE"
-                            className="sc-editor-code-scroll"
-                            tabIndex={0}
-                            role="region"
-                            aria-label={`${activeFile.name} source, scroll to read`}
-                            onCopy={(event) => {
-                                const selection = window.getSelection();
-                                if (
-                                    selection?.rangeCount &&
-                                    selection.getRangeAt(0).toString() === activeFile.content
-                                ) {
-                                    event.preventDefault();
-                                    event.clipboardData.setData("text/plain", activeFile.content);
-                                }
-                            }}
-                        >
-                            <pre className="sc-editor-read-gutter" aria-hidden="true">
-                                {lineNumbers}
-                            </pre>
-                            <SyntaxHighlighter
-                                language={EditorLanguageMap[activeFile.name.split(".").pop()] || "text"}
-                                style={isLight ? LightStyles : DarkStyles}
-                                customStyle={{
-                                    margin: 0,
-                                    padding: "0.75rem 1rem 1rem 0.75rem",
-                                    background: "transparent",
-                                    overflow: "visible",
+                        <>
+                            <div
+                                ref={codeScrollRef}
+                                id="EXAMPLE_CODE"
+                                className="sc-editor-code-scroll"
+                                tabIndex={0}
+                                role="region"
+                                aria-label={`${activeFile.name} source, scroll to read`}
+                                onCopy={(event) => {
+                                    const selection = window.getSelection();
+                                    if (
+                                        selection?.rangeCount &&
+                                        selection.getRangeAt(0).toString() === activeFile.content
+                                    ) {
+                                        event.preventDefault();
+                                        event.clipboardData.setData("text/plain", activeFile.content);
+                                    }
                                 }}
-                                codeTagProps={{
-                                    style: { fontFamily: "inherit", fontSize: "inherit", lineHeight: "inherit" },
-                                }}
+                                onScroll={updateScrollbars}
                             >
-                                {activeFile.content}
-                            </SyntaxHighlighter>
-                        </div>
+                                <pre className="sc-editor-read-gutter" aria-hidden="true">
+                                    {lineNumbers}
+                                </pre>
+                                <SyntaxHighlighter
+                                    language={EditorLanguageMap[activeFile.name.split(".").pop()] || "text"}
+                                    style={isLight ? LightStyles : DarkStyles}
+                                    customStyle={{
+                                        margin: 0,
+                                        padding: "0.75rem 1rem 1rem 0.75rem",
+                                        background: "transparent",
+                                        overflow: "visible",
+                                    }}
+                                    codeTagProps={{
+                                        style: { fontFamily: "inherit", fontSize: "inherit", lineHeight: "inherit" },
+                                    }}
+                                >
+                                    {activeFile.content}
+                                </SyntaxHighlighter>
+                            </div>
+                            <div
+                                ref={verticalTrackRef}
+                                className="sc-editor-scrollbar sc-editor-scrollbar-vertical"
+                                aria-hidden="true"
+                                onPointerDown={(event) => handleScrollbarPointerDown(event, "vertical")}
+                                onPointerMove={(event) => handleScrollbarPointerMove(event, "vertical")}
+                                onPointerUp={stopScrollbarDrag}
+                                onPointerCancel={stopScrollbarDrag}
+                            >
+                                <div ref={verticalThumbRef} className="sc-editor-scrollbar-thumb" />
+                            </div>
+                            <div
+                                ref={horizontalTrackRef}
+                                className="sc-editor-scrollbar sc-editor-scrollbar-horizontal"
+                                aria-hidden="true"
+                                onPointerDown={(event) => handleScrollbarPointerDown(event, "horizontal")}
+                                onPointerMove={(event) => handleScrollbarPointerMove(event, "horizontal")}
+                                onPointerUp={stopScrollbarDrag}
+                                onPointerCancel={stopScrollbarDrag}
+                            >
+                                <div ref={horizontalThumbRef} className="sc-editor-scrollbar-thumb" />
+                            </div>
+                        </>
                     )}
                 </div>
             </div>
-            <Dialog
-                isOpen={showDialog}
-                onClose={() => setShowDialog(false)}
-                text={`This example is available in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`}
-            />
         </section>
     );
 };

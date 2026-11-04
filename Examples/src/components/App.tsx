@@ -176,9 +176,7 @@ function AppContent() {
                 <div className="sc-app-content">
                     <SciChartNavbar
                         toggleDrawer={toggleDrawer}
-                        showExampleNavigationToggle={!isHomePage && !is404}
-                        isExampleNavigationOpen={isExampleNavigationOpen}
-                        toggleExampleNavigation={toggleExampleNavigation}
+                        showMenuToggle={isHomePage || is404}
                     />
 
                     {is404 ? (

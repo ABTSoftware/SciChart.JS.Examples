@@ -1,8 +1,6 @@
 import { FC, useState, useRef } from "react";
 import { SandboxPlatform, getEmbedUrl } from "./SandboxPlatform";
 import { EditorFrame } from "./EditorFrame";
-import { Dialog } from "../Dialog/Dialog";
-import { EPageFramework, FRAMEWORK_NAME } from "../../helpers/shared/Helpers/frameworkParametrization";
 
 type TCodeSandbox = {
     id: string;
@@ -11,8 +9,6 @@ type TCodeSandbox = {
     title?: string;
     platform?: SandboxPlatform;
     exampleName?: string;
-    desiredFramework: EPageFramework;
-    actualFramework: EPageFramework;
 };
 
 export const CodeSandbox: FC<TCodeSandbox> = ({
@@ -22,8 +18,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     title,
     platform = SandboxPlatform.CodeSandbox,
     exampleName,
-    desiredFramework,
-    actualFramework,
 }) => {
     const [isLoading, setIsLoading] = useState(true);
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -32,8 +26,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
     const handleLoad = () => {
         setIsLoading(false);
     };
-
-    const dialogText = `This example will be shown in ${FRAMEWORK_NAME[actualFramework]} instead of ${FRAMEWORK_NAME[desiredFramework]}.`;
 
     return (
         <div className="sc-editor-frame-container">
@@ -56,7 +48,6 @@ export const CodeSandbox: FC<TCodeSandbox> = ({
                     onLoad={handleLoad}
                 />
             </EditorFrame>
-            <Dialog isOpen={desiredFramework !== actualFramework} text={dialogText} />
         </div>
     );
 };

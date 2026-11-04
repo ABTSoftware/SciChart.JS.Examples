@@ -18,6 +18,19 @@ import { _useContext } from "../../helpers/shared/Helpers/Context";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import { getSeeAlsoGalleryItems } from "../../helpers/SciChartExamples";
 import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
+import MenuIcon from "@mui/icons-material/Menu";
+
+const EXAMPLE_LAYOUT_STORAGE_KEY = "scichart-demo-example-layout";
+
+const getSavedPageLayout = (fallback: EPageLayout): EPageLayout => {
+    if (typeof window === "undefined") return fallback;
+    try {
+        const savedLayout = window.localStorage.getItem(EXAMPLE_LAYOUT_STORAGE_KEY);
+        return savedLayout === EPageLayout.Default || savedLayout === EPageLayout.MaxWidth ? savedLayout : fallback;
+    } catch {
+        return fallback;
+    }
+};
 
 const AppDetailsRouter: FC<{
     isExampleNavigationOpen: boolean;
@@ -35,7 +48,9 @@ const AppDetailsRouter: FC<{
 
     const initialSourceFilesVariant = useContext(SourceFilesContext);
     const [sourceFiles, setSourceFiles] = useState<ExampleSourceFile[]>(initialSourceFilesVariant.files);
-    const [pageLayout, setPageLayout] = useState<EPageLayout>(currentExample.pageLayout ?? EPageLayout.Default);
+    const [pageLayout, setPageLayout] = useState<EPageLayout>(() =>
+        getSavedPageLayout(currentExample.pageLayout ?? EPageLayout.Default)
+    );
     const exampleNavigationRef = useRef<HTMLDivElement>(null);
     const previousNavigationOpen = useRef(isExampleNavigationOpen);
     const [embedCode, setEmbedCode] = useState<boolean>(false);
@@ -43,10 +58,9 @@ const AppDetailsRouter: FC<{
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<StackBlitzResponse>(null);
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
-    const [sandboxFramework, setSandboxFramework] = useState<EPageFramework | null>(null);
 
     useEffect(() => {
-        setPageLayout(currentExample.pageLayout ?? EPageLayout.Default);
+        setPageLayout(getSavedPageLayout(currentExample.pageLayout ?? EPageLayout.Default));
         window.scrollTo({
             top: 0,
         });
@@ -54,7 +68,6 @@ const AppDetailsRouter: FC<{
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
-        setSandboxFramework(null);
 
         const controller = new AbortController();
         fetch(`${baseAppPath}/source/${currentExample.path}?framework=${selectedFramework}`, {
@@ -91,17 +104,22 @@ const AppDetailsRouter: FC<{
         setEmbedCode(false);
         setSandboxId("");
         setProjectFiles(null);
-        setSandboxFramework(null);
     };
 
-    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: any, framework?: EPageFramework) => {
+    const handlePageLayoutChange = (layout: EPageLayout) => {
+        setPageLayout(layout);
+        try {
+            window.localStorage.setItem(EXAMPLE_LAYOUT_STORAGE_KEY, layout);
+        } catch {
+            // Keep layout switching available when browser storage is unavailable.
+        }
+    };
+
+    const handleSandboxOpen = (platform: SandboxPlatform, id: string, files?: StackBlitzResponse) => {
         setSandboxPlatform(platform);
         setSandboxId(id);
         if (files) {
             setProjectFiles(files);
-        }
-        if (framework) {
-            setSandboxFramework(framework);
         }
         setEmbedCode(true);
     };
@@ -113,8 +131,6 @@ const AppDetailsRouter: FC<{
                 onBack={handleBack}
                 platform={sandboxPlatform}
                 exampleName={pageTitle}
-                desiredFramework={selectedFramework}
-                actualFramework={sandboxFramework || selectedFramework}
             />
         ) : (
             <StackblitzEditor id={sandboxId} onBack={handleBack} exampleName={pageTitle} projectFiles={projectFiles} />
@@ -132,14 +148,14 @@ const AppDetailsRouter: FC<{
             >
                 <DrawerContent />
             </div>
-            {isExampleNavigationOpen && (
-                <button
-                    className="sc-app-details-nav-backdrop"
-                    type="button"
-                    onClick={toggleExampleNavigation}
-                    aria-label="Close example navigation"
-                />
-            )}
+            <button
+                className="sc-app-details-nav-backdrop"
+                type="button"
+                onClick={toggleExampleNavigation}
+                aria-label="Close example navigation"
+                aria-hidden={!isExampleNavigationOpen}
+                inert={!isExampleNavigationOpen}
+            />
             <div className="sc-app-details-main" inert={isNarrowViewport && isExampleNavigationOpen}>
                 <div
                     id="EXAMPLE_CONTENT_WRAPPER"
@@ -149,7 +165,20 @@ const AppDetailsRouter: FC<{
                 >
                     <div className="sc-app-details-header">
                         <div className="sc-app-details-header-actions">
-                            <ExampleBreadcrumbs />
+                            <div className="sc-app-details-breadcrumbs">
+                                <button
+                                    type="button"
+                                    className="sc-button sc-button-icon"
+                                    onClick={toggleExampleNavigation}
+                                    aria-controls="EXAMPLE_NAVIGATION"
+                                    aria-expanded={isExampleNavigationOpen}
+                                    aria-label={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                    title={`${isExampleNavigationOpen ? "Hide" : "Show"} example navigation`}
+                                >
+                                    <MenuIcon />
+                                </button>
+                                <ExampleBreadcrumbs />
+                            </div>
 
                             <div
                                 className="sc-button-group sc-app-layout-buttons"
@@ -159,7 +188,7 @@ const AppDetailsRouter: FC<{
                                 <button
                                     type="button"
                                     className="sc-button sc-button-icon"
-                                    onClick={() => setPageLayout(EPageLayout.Default)}
+                                    onClick={() => handlePageLayoutChange(EPageLayout.Default)}
                                     aria-label="Side by side layout"
                                     title="Side by side layout"
                                     aria-pressed={pageLayout === EPageLayout.Default}
@@ -178,7 +207,7 @@ const AppDetailsRouter: FC<{
                                 <button
                                     type="button"
                                     className="sc-button sc-button-icon"
-                                    onClick={() => setPageLayout(EPageLayout.MaxWidth)}
+                                    onClick={() => handlePageLayoutChange(EPageLayout.MaxWidth)}
                                     aria-label="Stacked layout"
                                     title="Stacked layout"
                                     aria-pressed={pageLayout === EPageLayout.MaxWidth}
@@ -215,8 +244,7 @@ const AppDetailsRouter: FC<{
                             <CodePreview
                                 key={`${currentExample.path}:${sourceFramework}`}
                                 files={sourceFiles}
-                                desiredFramework={selectedFramework}
-                                actualFramework={sourceFramework}
+                                framework={sourceFramework || selectedFramework}
                                 examplePath={currentExample.path}
                             />
                         </div>

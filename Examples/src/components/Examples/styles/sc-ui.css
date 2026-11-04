@@ -164,7 +164,7 @@
     justify-content: space-between;
     gap: 0.5rem;
     overflow-x: auto;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-bottom: 1px solid var(--sc-toolbar-outline);
     color: var(--sc-text);
     font-size: var(--sc-font-size-sm);
@@ -176,6 +176,11 @@
     > * { flex-shrink: 0; }
     > :is(.sc-switch, .sc-control):first-child { margin-left: 0.5rem; }
     > :is(.sc-switch):last-child { margin-right: 0.5rem; }
+
+    .sc-button-group > .sc-button {
+        height: 2.375rem;
+        min-height: 2.375rem;
+    }
 }
 
 [data-theme="light"] .sc-toolbar-row {
@@ -567,12 +572,17 @@ div > .sc-toolbar-row:last-child {
             margin-bottom: 0.25rem;
             border-radius: calc(var(--radius) - 0.125rem);
 
+            &:disabled {
+                color: color-mix(in srgb, var(--sc-text) 55%, var(--sc-background));
+                cursor: not-allowed;
+            }
+
             &::checkmark {
                 order: 1;
                 margin-left: auto;
             }
 
-            &:hover, &:checked { background: var(--sc-muted); }
+            &:hover:not(:disabled), &:checked:not(:disabled) { background: var(--sc-muted); }
         }
     }
 }
@@ -810,12 +820,10 @@ div > .sc-toolbar-row:last-child {
 
 /* Preserve comfortable touch targets and prevent focus zoom on mobile inputs. */
 @media (pointer: coarse) {
-    .sc-button,
     .sc-input:not([type="range"]),
     .sc-select {
         min-height: max(2.5rem, 44px);
     }
-    .sc-button.sc-button-icon { min-width: max(2.5rem, 44px); }
     .sc-input,
     .sc-select,
     .sc-textarea { font-size: max(1rem, 16px); }

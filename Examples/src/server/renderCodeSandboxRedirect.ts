@@ -268,7 +268,7 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
                 formData.append("query", "file=src/drawExample.ts");
                 const sbres = await sendCodeSandboxRequest(formData.toString()); // may fail
                 const id = await getId(sbres);
-                res.status(200).json({ id, actualFramework });
+                res.status(200).json({ id });
             } else {
                 const url = new URL(
                     `${baseAppPath}/stackblitz/${currentExample.path}?framework=${actualFramework}`,
