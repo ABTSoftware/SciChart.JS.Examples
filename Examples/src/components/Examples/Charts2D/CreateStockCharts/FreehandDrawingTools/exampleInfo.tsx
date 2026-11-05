@@ -23,9 +23,9 @@ const metaData: IExampleMetadata = {
             subtitle:
                 "Try the React Freehand Drawing Tools Demo for trading and financial charts using SciChart.js. This example can be used for drawing trends, arrow, markers, text, and more. View all the code samples and documentation links below.",
             title: "React Freehand Drawing Tools Demo",
-            pageTitle: "React Freehand Drawing Tools for Apps | Try SciChart Demo",
+            pageTitle: "React Freehand Drawing Tools | View Demo | SciChart.js",
             metaDescription:
-                "Deploy the ultimate React freehand drawing tool in your app. Render complex freehand drawing tools with a smooth UI experience. Try the SciChart demo today.",
+                "Add freehand drawing tools to React trading and financial charts with SciChart.js. Draw trends, arrows, markers, and text directly on the chart.",
             markdownContent:
                 "## React Freehand Drawing Tools\n\nThis example demonstrates `FreehandDrawingModifier` and `FreehandDrawingAnnotation`. Select color, switch between drawing and edit modes, delete annotations using backspace button and delete icon. This tool can be used for drawing trend lines, event markers, text or any arbitrary drawing for financial and trading charts.",
         },

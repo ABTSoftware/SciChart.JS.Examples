@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Scatter Chart** using SciChart.js, with the **PolarXyScatterRenderableSeries** and custom legend-markers.",
                 title: "React Polar Scatter Chart",
-                pageTitle: "React Polar Scatter Chart",
+                pageTitle: "React Polar Scatter Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Build a React Polar Scatter Chart with this example to render multiple scatter series on radial and angular axes. Try the flexible SciChart demo today.",
+                    "Render multiple scatter series on radial and angular axes with the React Polar Scatter Chart in SciChart.js, with custom legend markers.",
                 markdownContent:
                     "## Polar Scatter Chart - React\n\n### Overview\nThis example integrates a **Polar Scatter Chart** into a React application using `scichart-react`. It asynchronously initializes the chart via `drawExample`, rendering multiple scatter series on radial and angular axes.\n\n### Technical Implementation\nWithin the `<SciChartReact>` component, `drawExample` calls `SciChartPolarSurface.create` to set up the chart surface and WebAssembly context. Axes are configured with [PolarNumericAxis](https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/polar-numeric-axis/), specifying `EPolarAxisMode.Radial` and `EPolarAxisMode.Angular`, start angles, ranges, and styling. Scatter series are added using `PolarXyScatterRenderableSeries` and animated via `SweepAnimation`.\n\n### Features and Capabilities\nReact integration includes:\n- **Customizable legend** with `PolarLegendModifier` overriding `getLegendItemHTML` to render SVG markers\n- **Interactive chart modifiers**: `PolarPanModifier`, `PolarZoomExtentsModifier`, `PolarMouseWheelZoomModifier`\n- **High-performance rendering** through WebGL and WebAssembly\n\n### Integration and Best Practices\nUse `scichart-react` to manage the chart lifecycle. Provide cleanup by returning a destructor that calls `sciChartSurface.delete()`. Follow best practices for async initialization in React components and leverage documented hooks in [scichart-react GitHub](https://github.com/ABTSoftware/scichart-react).",
             },

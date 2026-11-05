@@ -8,7 +8,9 @@ export const ExampleStrings = {
     siteKeywords: `performance, demo, chart, javascript, webgl, canvas`,
     siteHomeDescription: `Examples for SciChart.js: High Performance JavaScript Charts. Featuring 2D & 3D JavaScript Chart types, performance demos, JavaScript stock charts, Heatmaps, Bubble charts`,
     siteHomeMetaImage: `https://www.scichart.com/wp-content/uploads/2022/12/javascript-chart-collage-2022.jpg`,
-    exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixLength?: number) => {
+    exampleGenericTitleSuffix: (frameworkName: TFrameworkName | EPageFramework, prefixTitle?: string) => {
+        if (prefixTitle?.includes(" | SciChart")) return "";
+        const prefixLength = prefixTitle?.length;
         // to make sure there are no long titles (it ideally should be between 45-60 characters)
         if (prefixLength > 50) {
             // [51, +]

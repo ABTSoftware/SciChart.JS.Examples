@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates an interactive **React 3D waterfall spectral chart** with two synchronized 2D cross-section charts.",
                 title: "React Interactive 3D Waterfall Spectral Chart",
-                pageTitle: "React Interactive 3D Waterfall Spectral Chart | View 3D JavaScript Charts",
+                pageTitle: "React 3D Waterfall Spectral Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Build an interactive React 3D waterfall spectral chart with synchronized 2D cross-section charts using SciChart.js and SciChartReact.",
+                    "Build an interactive React 3D Waterfall Spectral Chart in SciChart.js with two synchronized 2D cross-section charts for frequency analysis.",
                 markdownContent:
                     "## Interactive 3D Waterfall Spectral Chart in React\n\n### Overview\nThis React example renders the 3D spectral waterfall and the two lower 2D cross-section charts in a single synchronized layout. It uses `<SciChartReact/>` and `ChartGroupLoader` so the top 3D chart and the lower series/slice views are initialized together.\n\n### Technical Implementation\nThe implementation creates a `SciChart3DSurface`, sets a custom camera, and adds 3D modifiers for orbiting, zooming, and selection. The data is generated with `Radix2FFT`, then mapped into a stack of `PointLineRenderableSeries3D` series in the 3D scene. The lower charts read from the same shared selection state to display the selected spectrum and cross-section slice.\n\n### Related Example\nFor the 2D-only version, see the [WaterfallChart](../../../Charts2D/v4Charts/WaterfallChart/README.md) example.\n",
             },

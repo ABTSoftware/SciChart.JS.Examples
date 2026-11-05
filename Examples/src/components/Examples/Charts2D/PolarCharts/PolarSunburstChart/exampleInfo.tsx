@@ -26,9 +26,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Sunburst Chart** using SciChart.js, with multiple levels and interaction driven animations.",
                 title: "React Polar Sunburst Chart",
-                pageTitle: "React Polar Sunburst Chart",
+                pageTitle: "React Sunburst Chart | Hierarchy Chart | Try Demo | SciChart",
                 metaDescription:
-                    "See the React Sunburst Chart example with multiple levels, smooth animation transitions and dynamically updating segment colors. Try the SciChart demo.",
+                    "Create a React Sunburst Chart in SciChart.js with multiple hierarchy levels, smooth animated transitions, and dynamically updating segments.",
                 markdownContent:
                     "## Polar Sunburst Chart - React\n\n### Overview\nThis [React Charts](https://www.scichart.com/react-charts/) example demonstrates how to integrate SciChart.js's Polar Sunburst Chart using the SciChart React component.\n\n### Technical Implementation\nThe implementation uses React hooks pattern with the `SciChartReact` wrapper component. The core chart logic in `drawExample.ts` creates a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartpolarsurface.html) and configures polar axes. The recursive `drawSeriesFn` handles dynamic series generation for each hierarchy level.\n\n### Features and Capabilities\nThe chart features smooth animated transitions between levels using [GenericAnimation](https://www.scichart.com/documentation/js/v6/typedoc/classes/genericanimation.html). Interactive selection is implemented via [PolarCursorModifier](https://www.scichart.com/documentation/js/v6/typedoc/classes/polarcursormodifier.html) with custom tooltips. The [SunburstPaletteProvider](https://www.scichart.com/documentation/js/v6/typedoc/interfaces/ifillpaletteprovider.html) dynamically updates segment colors.\n\n### Integration and Best Practices\nThe example follows React best practices by encapsulating chart logic in a separate module. The `SciChartReact` component handles proper cleanup of WebAssembly resources when unmounting.",
             },

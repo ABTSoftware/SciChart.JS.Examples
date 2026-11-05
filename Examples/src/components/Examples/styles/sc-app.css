@@ -461,7 +461,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .sc-app-details-content[data-layout="default"] .sc-editor-code {
-        grid-area: 1 / 1;
+        grid-area: 1 / 2;
         aspect-ratio: 1.5;
         display: flex;
         flex-direction: column;
@@ -471,7 +471,7 @@
         flex: 1;
     }
     .sc-app-details-content[data-layout="default"] .sc-app-example-root {
-        grid-area: 1 / 2;
+        grid-area: 1 / 1;
     }
     .sc-app-details-content[data-layout="default"] .sc-editor-actions {
         grid-area: 2 / 2;

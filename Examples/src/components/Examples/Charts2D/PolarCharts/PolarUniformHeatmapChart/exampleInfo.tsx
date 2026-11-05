@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Uniform Heatmap Chart** using SciChart's powerful JavaScript Charts and its range of features.",
                 title: "React Polar Uniform Heatmap Chart",
-                pageTitle: "React Polar Uniform Heatmap Chart",
+                pageTitle: "React Polar Heatmap Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Try SciChart's React Polar Heatmap example to combine a polar heatmap with a legend component. Supports responsive design and chart and legend separation.",
+                    "Combine a React Polar Heatmap with a separate legend component in SciChart.js, with responsive layout and independent chart and legend sizing.",
                 markdownContent:
                     "## React Polar Uniform Heatmap Chart\n\n### Overview\nThis React example showcases a **Polar Uniform Heatmap Chart** using SciChart.js, integrating the heatmap visualization into a React component. The implementation combines the polar heatmap with a standalone legend component.\n\n### Technical Implementation\nThe chart is rendered using `SciChartReact` component with `initChart={drawExample}` prop. The heatmap surface and legend are separate instances, both using the shared `COLOR_MAP` for consistent coloring. The main chart features polar axes configured with `innerRadius` and `totalAngle` properties to control the circular layout.\n\n### Features and Capabilities\nThe example demonstrates React-specific integration patterns while maintaining all JavaScript features: heatmap rendering, polar coordinate system, and interactive modifiers. The legend is positioned absolutely within the component layout, showcasing React's composition capabilities.\n\n### Integration and Best Practices\nThe implementation uses SciChart's React wrapper (`scichart-react`) for seamless integration. Best practices include proper component structure for chart and legend separation, and responsive styling. For React-specific guidance, see [SciChart React documentation](https://www.scichart.com/blog/react-charts-with-scichart-js/).",
             },

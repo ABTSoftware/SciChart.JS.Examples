@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Stacked Radial Column Chart** representing Olympic medals per country, using SciChart.js",
                 title: "React Stacked Radial Column Chart | Stacked Radial Bar Chart",
-                pageTitle: "React Stacked Radial Column Chart | Stacked Radial Bar Chart",
+                pageTitle: "React Stacked Radial Bar Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "This React Stacked Radial Bar Chart example shows Olympic medal data by country. Try the demo for yourself with async initialization and theme application.",
+                    "Build a React Stacked Radial Column or Radial Bar Chart in SciChart.js, shown here comparing Olympic medal totals by country.",
                 markdownContent:
                     "## Polar Stacked Radial Column Chart - React\n\n### Overview\nThis React example showcases a **Polar Stacked Radial Column Chart** using SciChart's [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) component. It visualizes Olympic medal data with stacked radial columns, demonstrating React integration with SciChart's polar charts.\n\n### Technical Implementation\nThe chart is initialized via the `initChart` prop passed to `<SciChartReact/>`, creating a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartpolarsurface.html) with radial columns. The implementation uses React's component structure while leveraging SciChart's WebAssembly core for high performance.\n\n### Features and Capabilities\nThe chart features medal data grouped by country with [PolarStackedColumnRenderableSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/polarstackedcolumnrenderableseries.html) for each medal type. Interactive elements include [PolarMouseWheelZoomModifier](https://www.scichart.com/documentation/js/v6/typedoc/classes/polarmousewheelzoommodifier.html) and a configurable legend.\n\n### Integration and Best Practices\nThe example demonstrates proper React integration patterns using SciChart's dedicated React component. The async initialization and theme application follow React best practices for data visualization components.",
             },

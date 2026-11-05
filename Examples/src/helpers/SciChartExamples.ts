@@ -16,7 +16,7 @@ const getGalleryItems = (category: string, menuItem: TMenuItem, framework: EPage
                     getFrameworkContent(subMenu.pageTitle, framework) +
                     ExampleStrings.exampleGenericTitleSuffix(
                         framework,
-                        getFrameworkContent(subMenu.pageTitle, framework).length
+                        getFrameworkContent(subMenu.pageTitle, framework)
                     ),
                 examplePath: subMenu.path,
                 subTitle: subMenu.subtitle(framework),

@@ -27,9 +27,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Windrose Column Chart** using SciChart.js, via **PolarStackedColumnRenderableSeries** and a custom axis LabelProvider for cardinal directions.",
                 title: "React Windrose Plot | React Polar Stacked Radial Column Chart",
-                pageTitle: "React Windrose Plot | React Polar Stacked Radial Column Chart",
+                pageTitle: "React Windrose Chart | Polar Radial Columns | View Demo",
                 metaDescription:
-                    "View the React Windrose Chart example to display directional data with stacked columns in a polar layout. Try the polar chart demo with customizable labels.",
+                    "Display directional data on a React Windrose Chart in SciChart.js with stacked polar columns and a custom label provider for cardinal points.",
                 markdownContent:
                     "## Polar Windrose Column Chart - React\n\n### Overview\nThis React example showcases a **Polar Windrose Column Chart** using SciChart.js, wrapped in a reusable component. The chart displays directional data with stacked columns in a polar layout.\n\n### Technical Implementation\nThe implementation uses [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) component with an `initChart` prop pointing to the `drawExample` function. The polar surface configuration matches the JavaScript version, using [EPolarAxisMode](https://www.scichart.com/documentation/js/v6/typedoc/enums/epolaraxismode.html) for axis setup.\n\n### Features and Capabilities\nThe chart features compass-direction labels via custom label provider and stacked columns with distinct colors. The [PolarMouseWheelZoomModifier](https://www.scichart.com/documentation/js/v6/typedoc/classes/polarmousewheelzoommodifier.html) enables intuitive zooming.\n\n### Integration and Best Practices\nThe example demonstrates React best practices by encapsulating chart logic in a separate function and using CSS modules for styling. For performance, consider memoizing the `initChart` callback in production apps.",
             },

@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Radial Column Chart** using SciChart.js, by switching radial and angular axes, thus creating a Vertical / Radial Chart.",
                 title: "React Polar Radial Column Chart",
-                pageTitle: "React Polar Radial Column Chart",
+                pageTitle: "React Radial Column Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "View the React Radial Column Chart example to see the difference that SciChart has to offer. Switch radial and angular axes and add interactive modifiers.",
+                    "Create a React Radial Column Chart in SciChart.js by swapping the radial and angular axes, turning a polar plot into a vertical radial layout.",
                 markdownContent:
                     "## Polar Radial Column Chart - React\n\n### Overview\nThis React example renders a **Polar Radial Column Chart** within the `<SciChartReact>` component. It showcases radial column series with dynamic palette coloring and interactive zoom modifiers in a React application.\n\n### Technical Implementation\nChart creation is handled by passing `drawExample` to `SciChartReact`’s `initChart` prop. Inside `drawExample`, `SciChartPolarSurface.create` sets up the surface. Axes are configured using `PolarNumericAxis` with `EPolarAxisMode.Radial` and `EPolarAxisMode.Angular` for radial and angular measurements. A `PolarColumnRenderableSeries` leverages `XyDataSeries` for data and a `ColumnPaletteProvider` extends `DefaultPaletteProvider` to apply conditional coloring.\n\n### Features and Capabilities\nInteractive behaviors include `PolarArcZoomModifier`, `PolarZoomExtentsModifier`, and `PolarMouseWheelZoomModifier` for arc-based zooming and mouse-wheel control. Animated series entry is enabled via `WaveAnimation` for enhanced UX.\n\n### Integration and Best Practices\nLeverage the React wrapper from [scichart-react](https://github.com/ABTSoftware/scichart-react) to manage lifecycle and WASM dependencies. Ensure cleanup by calling `sciChartSurface.delete()` on component unmount. Use hooks or effects to handle asynchronous chart initialization and disposal.",
             },

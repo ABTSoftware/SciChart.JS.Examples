@@ -24,9 +24,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Heatmap Kinetic Tomography Chart** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Polar Heatmap Kinetic Tomography Chart",
-                pageTitle: "React Polar Heatmap Kinetic Tomography Chart",
+                pageTitle: "React Kinetic Tomography Polar Heatmap | Try Demo | SciChart",
                 metaDescription:
-                    "React Polar Heatmap Kinetic Tomography Chart demo by SciChart supports gradient fill and paletteproviders for more custom coloring options. Get your free demo now.",
+                    "Render a React Kinetic Tomography Polar Heatmap in SciChart.js with data labels, rounded corners, and gradient palette fills for imaging data.",
                 markdownContent: null,
             },
             angular: {

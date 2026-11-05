@@ -57,13 +57,13 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
                 rel="nofollow"
                 title={`View ${getFrameworkContent(currentExample.title, selectedFramework)} in fullscreen`}
             />
-            <CodeActionButton
+            {/* <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"
                 className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={`Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`}
-            />
+            /> */}
             <CodeActionButton
                 iconName="codesandbox"
                 label="&nbsp;Edit"

@@ -108,24 +108,13 @@ export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: P
                     navigate(currentExample ? `/${event.target.value}/${currentExample.path}` : `/${event.target.value}`)
                 }
             >
-                <option value={EPageFramework.Vanilla}>
-                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.Vanilla} aria-hidden="true" />
-                    JavaScript
-                </option>
-                <option value={EPageFramework.React}>
-                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.React} aria-hidden="true" />
-                    React
-                </option>
-                <option value={EPageFramework.Angular}>
-                    <span className="sc-editor-framework-icon" data-framework={EPageFramework.Angular} aria-hidden="true" />
-                    Angular
-                </option>
+                <option value={EPageFramework.Vanilla}>JavaScript</option>
+                <option value={EPageFramework.React}>React</option>
+                <option value={EPageFramework.Angular}>Angular</option>
                 <option value="vue" disabled>
-                    <span className="sc-editor-framework-icon" data-framework="vue" aria-hidden="true" />
                     Vue (soon)
                 </option>
                 <option value="svelte" disabled>
-                    <span className="sc-editor-framework-icon" data-framework="svelte" aria-hidden="true" />
                     Svelte (soon)
                 </option>
             </select>

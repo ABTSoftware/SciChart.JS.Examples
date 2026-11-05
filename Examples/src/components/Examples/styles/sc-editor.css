@@ -164,11 +164,6 @@
         display: none;
     }
 }
-.sc-editor-explorer > .sc-select .sc-editor-framework-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    flex: 0 0 auto;
-}
 [data-theme="light"] .sc-editor-explorer {
     --sc-editor-tree-text: #616161;
     --sc-editor-tree-hover: #e8e8e8;
@@ -278,27 +273,29 @@
 .sc-editor-file-icon[data-kind="csv"] {
     background-image: url("../../CodePreview/icons/material-table.svg");
 }
-.sc-editor-framework-icon {
+.sc-editor-explorer > .sc-select option::before {
+    content: "";
     display: block;
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
-.sc-editor-framework-icon[data-framework="react"] {
+.sc-editor-explorer > .sc-select option[value="react"]::before {
     background-image: url("../../CodePreview/icons/material-react.svg");
 }
-.sc-editor-framework-icon[data-framework="angular"] {
+.sc-editor-explorer > .sc-select option[value="angular"]::before {
     background-image: url("../../CodePreview/icons/material-angular.svg");
 }
-.sc-editor-framework-icon[data-framework="javascript"] {
+.sc-editor-explorer > .sc-select option[value="javascript"]::before {
     background-image: url("../../CodePreview/icons/material-javascript.svg");
 }
-.sc-editor-framework-icon[data-framework="vue"] {
+.sc-editor-explorer > .sc-select option[value="vue"]::before {
     background-image: url("../../CodePreview/icons/material-vue.svg");
 }
-.sc-editor-framework-icon[data-framework="svelte"] {
+.sc-editor-explorer > .sc-select option[value="svelte"]::before {
     background-image: url("../../CodePreview/icons/material-svelte.svg");
 }
 .sc-editor-modified {

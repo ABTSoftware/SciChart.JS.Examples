@@ -96,10 +96,11 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             stroke: "#FFAA00",
             strokeThickness: 2,
         }),
-        paletteProvider: new DataPointSelectionPaletteProvider({
-            fill: "#FFFFFF",
-            stroke: "#00AA00",
-        }),
+    });
+    // Attach after construction, when the derived series has its polar type.
+    polarColumn.paletteProvider = new DataPointSelectionPaletteProvider({
+        fill: "#FFFFFF",
+        stroke: "#00AA00",
     });
     sciChartSurface.renderableSeries.add(polarColumn);
 

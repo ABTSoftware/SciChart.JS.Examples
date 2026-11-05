@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Partial Arc** using SciChart.js, which can bend from a full Polar Circle, all the way to a cartesian-like arc.",
                 title: "React Polar Partial Arc",
-                pageTitle: "React Polar Partial Arc",
+                pageTitle: "React Polar Partial Arc Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Create a React Polar Partial Arc that bends from a full Polar Circle to a Cartesian-like arc. Try the demo to display an arc segment with Polar coordinates.",
+                    "Bend a React Polar Chart from a full circle to a Cartesian-like arc in SciChart.js, displaying just the arc segment you need in polar space.",
                 markdownContent:
                     "## Polar Partial Arc Chart - React\n\n### Overview\nThis React example demonstrates a **partial polar chart** using SciChart.js, configured through the [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) component. The chart displays a small arc segment of polar coordinates, visually resembling Cartesian axes.\n\n### Technical Implementation\nThe chart is initialized via an `initChart` function passed to `SciChartReact`, creating a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartpolarsurface.html) with customized [PolarNumericAxis](https://www.scichart.com/documentation/js/v6/typedoc/classes/polarnumericaxis.html) instances. The example includes interactive modifiers and animations that update component state through callbacks.\n\n### Features and Capabilities\nThe implementation features dynamic control over polar chart parameters, smooth animated transitions between view states, and real-time updates to React state. The [PolarLineRenderableSeries](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/polar-line-renderable-series/) demonstrates efficient rendering of polar data.\n\n### Integration and Best Practices\nThis example follows React best practices by managing chart lifecycle through the `SciChartReact` component and demonstrating proper cleanup. For more complex implementations, refer to the [React integration guide](https://www.scichart.com/blog/react-charts-with-scichart-js/).",
             },

@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates how to create a **Polar Map Example** using our **PolarTriangleRenderableSeries** class, along with a triangulation alorithm.",
                 title: "React Polar Map Example",
-                pageTitle: "React Polar Map Example",
+                pageTitle: "React Polar Map Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "View the React Polar Map Example using the SciChartReact component. Display geographic data as color-coded triangles on a polar coordinate system. Try demo.",
+                    "Display geographic data as color-coded triangles on a polar coordinate system in React, using PolarTriangleRenderableSeries in SciChart.js.",
                 markdownContent:
                     "## Polar Map Example - React\n\n### Overview\nThis React implementation showcases a **polar map visualization** using SciChart's [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) component. The example displays geographic data as color-coded triangles on a polar coordinate system with view switching capabilities.\n\n### Technical Implementation\nThe chart surface is initialized via the `initChart` prop, which creates a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartpolarsurface.html) with angular and radial axes. React hooks manage state for the pole view preference (North/South) and geographic data loading.\n\n### Features and Capabilities\nThe component includes view toggle buttons that update the chart's `flippedCoordinates` property. Data is fetched asynchronously and processed using the same triangulation algorithm as the JavaScript version. The implementation leverages React's lifecycle management for clean resource disposal.\n\n### Integration and Best Practices\nThe example demonstrates proper integration of SciChart with React's state management and effect hooks. The [SciChartReact](https://www.scichart.com/blog/react-charts-with-scichart-js/) component handles WASM context and surface lifecycle automatically.",
             },
