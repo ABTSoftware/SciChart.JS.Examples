@@ -1,5 +1,7 @@
 # .Net Server Side Licensing for SciChart.JS
 
+**Where to put your keys:** set the **Server Key** in `Startup.cs`, in `services.AddLicenseServer("server key here", 300);`, and the **Client Key** in `src/index.ts`, in `SciChartSurface.setRuntimeLicenseKey("client key here");`. Both keys come from the same OEM/Embedded key pair (My Account > Licenses > Show Runtime Keys) for the app name `DotnetServerLicensing`. Paste each key as a single copy with no line breaks or duplicated text, then run `npm run build` and `dotnet run`. Licence keys that carry the Simple Server Validation (`SV`) feature must use the [dotnet-mvc-simple-server-licensing](../dotnet-mvc-simple-server-licensing) example instead. Do not commit real keys.
+
 This project demonstrates how to use the SciChart Server Licensing package to license an application that will be deployed into an environment where the hostname will be localhost, or will not be known by the application developer. In these cases, normal SciChart host-restricted licensing will not work. Server based licenses validate against the name of the application instead. If you think you may need this form of licensing, please contact support@scichart.com.
 
 Server side licensing requires a BUNDLE license and an agreement to maintain an active license for the lifetime of the product. See [SciChart Advanced Licensing](https://support.scichart.com/support/solutions/articles/101000516558-scichart-standard-advanced-licensing)
