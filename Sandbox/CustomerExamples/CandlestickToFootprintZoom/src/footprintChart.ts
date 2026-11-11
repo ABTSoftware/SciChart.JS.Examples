@@ -37,6 +37,8 @@ import {
   ECursorStyle,
   EXyDirection,
   Thickness,
+  EHorizontalTextPosition,
+  EVerticalTextPosition,
 } from "scichart";
 import { OrderFlowData, Candles, FootprintCell } from "./data";
 import { argb, decimalsFor, formatCursorTime, lowerBound, niceStep } from "./utils";
@@ -179,7 +181,13 @@ export async function createFootprintChart(
   const fpText = new FastTextRenderableSeries(wasmContext, {
     dataSeries: textData,
     isVisible: false,
-    dataLabels: { style: { fontSize: 9, fontFamily: "Arial" }, color: "#f2f5fa", calculateTextBounds: false },
+    dataLabels: {
+      style: { fontSize: 9, fontFamily: "Arial" },
+      color: "#f2f5fa",
+      // centre each number on its point (the default is above-right of it)
+      horizontalTextPosition: EHorizontalTextPosition.Center,
+      verticalTextPosition: EVerticalTextPosition.Center,
+    },
   });
   // Footprint bars first, the thin candle over them, numbers on top
   sciChartSurface.renderableSeries.add(fpSeries, pocSeries, candleSeries, fpText);
