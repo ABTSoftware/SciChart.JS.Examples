@@ -1,5 +1,9 @@
 # Candlestick to Footprint Zoom
 
+![Candles](img/img1.png)
+
+![Footprint](img/img2.png)
+
 A SciChart.js candlestick chart (React + Vite) that turns into a footprint chart as you zoom in.
 
 Once candles are big enough on screen, each one shows its sell volume on the left, buy volume on the right and a yellow
