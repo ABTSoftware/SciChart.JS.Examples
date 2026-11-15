@@ -1,26 +1,20 @@
-import { Component } from "@angular/core";
-import { ScichartAngularComponent } from "scichart-angular";
-import { drawExample } from "./drawExample";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [ScichartAngularComponent],
-    selector: "app-realTimeMountain-chart",
-    template: `<scichart-angular
-        [initChart]="drawExample"
-        (onInit)="onInitHandler($event)"
-        (onDelete)="onDeleteHandler($event)"
-    ></scichart-angular>`,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    public title = "scichart-angular-app";
-    public drawExample = drawExample;
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
 
-    onInitHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
-        initResult.controls.startUpdate();
-    };
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
+    }
 
-    onDeleteHandler = (initResult: Awaited<ReturnType<typeof drawExample>>) => {
-        initResult.controls.stopUpdate();
-    };
+    ngOnDestroy() {
+        this.demo?.dispose();
+    }
 }

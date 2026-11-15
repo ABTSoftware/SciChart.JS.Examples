@@ -18,47 +18,21 @@ const generateNav = () => {
 
 const nav = generateNav();
 
-export const htmlTemplate = (options?: { body?: string; styles?: string; renderNav?: boolean }) =>
-    `<html lang="en-us">
-        <head>
+export const htmlTemplate = (options: { imports: Record<string, string>; renderNav?: boolean }) =>
+    `<!DOCTYPE html>
+<html lang="en">
+    <head>
         <meta charset="utf-8" />
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <base href="vanillaDemo" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>SciChart Example</title>
-        <script type="importmap">
-            {
-                "imports": {
-                    "../../../theme": "./theme.js",
-                    "./drawExample": "./drawExample.js",
-                    "./data": "./data.js",
-                    "./DepthCursorModifier": "./DepthCursorModifier.js",
-                    "scichart": "./scichart.browser.mjs"
-                }
-            }
-        </script>
-        <script type="module" src="scichart.browser.mjs"></script>
-        <script type="module" src="common.js"></script>
-        <script type="module" src="index.js"></script>
-        <script type="module" src="drawExample.js"></script>
-            <style>
-                body {
-                    font-family: "Inter";
-                }
-                ${options?.styles ?? ""}
-            </style>
-        </head>
-        <body>
-            <div style="display: flex">
-                ${
-                    options.renderNav
-                        ? `<div style="flex-basis: 400px; border: 1; height: 100vh; overflow-x:auto; overflow-y:auto">
-                    ${nav}
-                </div>`
-                        : ""
-                }
-                <div style="flex: auto;">
-                    ${options?.body ?? `<div id="chart"></div>`}
-                </div>
-            </div>
-        </body>
-    </html>`;
+        <script type="importmap">${JSON.stringify({ imports: options.imports })}</script>
+        <link rel="stylesheet" href="./styles.css" />
+        <script type="module" src="./index.js"></script>
+    </head>
+    <body style="margin: 0; height: 100vh;">
+        <div style="display: flex; height: 100%;">
+            ${options.renderNav ? `<nav style="flex: 0 0 25rem; height: 100%; overflow: auto;">${nav}</nav>` : ""}
+            <div id="chart" style="flex: 1; min-width: 0; height: 100%;"></div>
+        </div>
+    </body>
+</html>`;

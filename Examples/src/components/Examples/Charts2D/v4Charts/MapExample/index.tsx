@@ -71,7 +71,7 @@ export default function ChartComponent() {
 
                 <div
                     className="absolute flex flex-col top-2 left-2 pointer-events-none"
-                    style={{ fontSize: "var(--sc-font-size-xs)" }}
+                    style={{ fontSize: "0.75rem" }}
                 >
                     {australiaData.map((d) => {
                         const [minValue, maxValue] = getMinMax(key, australiaData);

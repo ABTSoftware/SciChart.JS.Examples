@@ -255,8 +255,8 @@ bootstrapApplication(AppWrapperComponent).catch((err) => console.error(err));`,
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body>
-    <app-root style="display: block; width: 100%; height: 100vh;"></app-root>
+  <body style="margin: 0; height: 100vh;">
+    <app-root style="display: block; width: 100%; height: 100%;"></app-root>
     ${SCICHART_ANCHOR}
   </body>
 </html>`,

@@ -12,12 +12,17 @@ export interface IFiles {
 const folderPath = path.join(__dirname, "Examples");
 
 export let csStyles: IFiles;
+let csStylesModified = 0;
 export const loadStyles = async (stylesPath = path.join(folderPath, "styles")) => {
-    if (!csStyles) {
-        const ui = await fs.promises.readFile(path.join(stylesPath, "sc-ui.css"), "utf8");
+    const file = path.join(stylesPath, "sc-ui.css");
+    // Re-read when the stylesheet changes, so edits reach exports without restarting the server.
+    const modified = (await fs.promises.stat(file)).mtimeMs;
+    if (!csStyles || modified !== csStylesModified) {
+        const ui = await fs.promises.readFile(file, "utf8");
         csStyles = {
             "src/index.css": { content: ui, isBinary: false },
         };
+        csStylesModified = modified;
     }
 };
 
@@ -69,7 +74,15 @@ export const moduleReferences = (source: string, filename: string) => {
             references.push(node.expression);
         ts.forEachChild(node, visit);
     };
-    visit(ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX));
+    visit(
+        ts.createSourceFile(
+            filename,
+            source,
+            ts.ScriptTarget.Latest,
+            true,
+            /\.[jt]sx$/.test(filename) ? ts.ScriptKind.TSX : ts.ScriptKind.TS
+        )
+    );
     return references;
 };
 
@@ -86,12 +99,21 @@ export const includeExternalModules = async (
     sourceFilename?: string
 ) => {
     const targets = new Map<string, string>();
+    const iconModules = new Set<string>();
     const occupied = new Set([...Object.keys(files), entryPath, "src/main.tsx", "src/main.ts", "src/styles.css"]);
     if (sourceFilename) targets.set(path.resolve(folderPath, sourceFilename), entryPath);
     const outputPath = (filepath: string) => {
         if (targets.has(filepath)) return targets.get(filepath)!;
         const basename = path.basename(filepath);
-        const name = basename === "theme.ts" && path.dirname(filepath) !== exampleFolderPath ? "appTheme.ts" : basename;
+        const isIcons = path.basename(path.dirname(filepath)) === "icons";
+        const name =
+            isIcons && basename === "index.tsx"
+                ? "icons.tsx"
+                : isIcons && basename === "native.ts"
+                ? "nativeIcons.ts"
+                : basename === "theme.ts" && path.dirname(filepath) !== exampleFolderPath
+                ? "appTheme.ts"
+                : basename;
         let target = "src/" + name;
         let suffix = 2;
         while (occupied.has(target)) {
@@ -99,6 +121,7 @@ export const includeExternalModules = async (
             target = `src/${path.basename(name, extension)}${suffix++}${extension}`;
         }
         targets.set(filepath, target);
+        if (isIcons) iconModules.add(target);
         occupied.add(target);
         return target;
     };
@@ -154,7 +177,79 @@ export const includeExternalModules = async (
         return source;
     };
 
-    return visit(content, folderPath, entryPath);
+    let rewritten = await visit(content, folderPath, entryPath);
+    for (const target of iconModules) {
+        const names = new Set<string>();
+        let keepAll = false;
+        for (const [name, file] of [...Object.entries(files), [entryPath, { content: rewritten }] as const]) {
+            if (name === target || !/\.[jt]sx?$/.test(name)) continue;
+            const source = ts.createSourceFile(
+                name,
+                file.content,
+                ts.ScriptTarget.Latest,
+                true,
+                name.endsWith(".tsx") ? ts.ScriptKind.TSX : ts.ScriptKind.TS
+            );
+            const used = new Set<string>();
+            const collect = (node: ts.Node) => {
+                if (ts.isImportDeclaration(node)) return;
+                if (ts.isIdentifier(node)) used.add(node.text);
+                ts.forEachChild(node, collect);
+            };
+            collect(source);
+            const edits: { start: number; end: number; text: string }[] = [];
+            for (const statement of source.statements) {
+                if (!ts.isImportDeclaration(statement) || !ts.isStringLiteral(statement.moduleSpecifier)) continue;
+                const resolved = path.posix.normalize(
+                    path.posix.join(path.posix.dirname(name), statement.moduleSpecifier.text)
+                );
+                if (resolved !== target && resolved !== target.replace(/\.[jt]sx?$/, "")) continue;
+                const bindings = statement.importClause?.namedBindings;
+                if (bindings && ts.isNamedImports(bindings)) {
+                    const retained = bindings.elements.filter((element) => used.has(element.name.text));
+                    retained.forEach((element) => names.add((element.propertyName ?? element.name).text));
+                    if (retained.length !== bindings.elements.length) {
+                        edits.push(
+                            retained.length
+                                ? {
+                                      start: bindings.getStart(),
+                                      end: bindings.getEnd(),
+                                      text: `{ ${retained.map((element) => element.getText()).join(", ")} }`,
+                                  }
+                                : { start: statement.getStart(), end: statement.getEnd(), text: "" }
+                        );
+                    }
+                } else keepAll = true;
+            }
+            let updated = file.content;
+            for (const edit of edits.sort((a, b) => b.start - a.start))
+                updated = updated.slice(0, edit.start) + edit.text + updated.slice(edit.end);
+            if (name === entryPath) rewritten = updated;
+            else files[name].content = updated;
+        }
+        if (keepAll) continue;
+        const source = ts.createSourceFile(
+            target,
+            files[target].content,
+            ts.ScriptTarget.Latest,
+            true,
+            ts.ScriptKind.TSX
+        );
+        for (const statement of [...source.statements].reverse()) {
+            if (
+                ts.isVariableStatement(statement) &&
+                statement.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) &&
+                statement.declarationList.declarations.every(
+                    (declaration) => ts.isIdentifier(declaration.name) && !names.has(declaration.name.text)
+                )
+            ) {
+                files[target].content =
+                    files[target].content.slice(0, statement.getFullStart()) +
+                    files[target].content.slice(statement.getEnd());
+            }
+        }
+    }
+    return rewritten;
 };
 
 export const getSourceFilesForPath = async (

@@ -14,7 +14,7 @@ import {
     HeatmapLegend,
     Thickness,
 } from "scichart";
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 import { generateKineticTomographyData } from "./generateHeatmapData";
 
 const HEATMAP_WIDTH = 72;
@@ -116,11 +116,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
 export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
     const { heatmapLegend } = await HeatmapLegend.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             sciChartBackground: appTheme.DarkIndigo + "BB",
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
-        },
+        }),
         yAxisOptions: {
             isInnerAxis: true,
             labelStyle: {

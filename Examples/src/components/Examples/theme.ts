@@ -118,7 +118,7 @@ export class CustomSciChartAppTheme implements AppThemeBase {
         return getCssColor("--text", "#F5F5F5");
     }
     get Background() {
-        return getCssColor("--bg-chart", this.SciChartJsTheme.sciChartBackground);
+        return getCssColor("--bg-chart", getCssColor("--sc-background", this.DarkIndigo));
     }
 
     // Series colors
@@ -151,3 +151,7 @@ export class CustomSciChartAppTheme implements AppThemeBase {
 }
 
 export const appTheme = new CustomSciChartAppTheme();
+
+/** Constructor APIs require a theme instance; spreading it loses its prototype. */
+export const createChartTheme = (overrides: Partial<IThemeProvider>): IThemeProvider =>
+    Object.assign(new SciChartJsNavyTheme(), appTheme.SciChartJsTheme, overrides);

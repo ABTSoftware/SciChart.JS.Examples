@@ -1,23 +1,5 @@
-import { drawExample, drawHeatmapLegend } from "./drawExample";
+import { createExample } from "./createExample";
 
-/**
- * Creates charts on the provided root elements
- * @returns cleanup function
- */
-const create = async () => {
-    const [{ sciChartSurface }, { sciChartSurface: legendSurface }] = await Promise.all([
-        drawExample("chart"),
-        drawHeatmapLegend("legend"),
-    ]);
-
-    const destructor = () => {
-        legendSurface.delete();
-        sciChartSurface.delete();
-    };
-
-    return destructor;
-};
-
-create();
-
-// call the `destructor` returned by the `create` promise to dispose the charts when necessary
+const root = document.getElementById("chart") as HTMLDivElement;
+const demo = createExample(root);
+window.addEventListener("pagehide", demo.dispose, { once: true });

@@ -109,10 +109,7 @@ export const createFinancialChart = async (
     rootElement: string | HTMLDivElement,
     options?: { startPrice?: number; volatility?: number; title?: string; startDate?: Date; dataSeed?: number }
 ): Promise<TFinancialChartContext> => {
-    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: new SciTraderDarkTheme(),
-        padding: new Thickness(10, 10, 10, 10),
-    });
+    const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement);
 
     const xAxis = new DiscontinuousDateAxis(wasmContext, {
         axisAlignment: EAxisAlignment.Bottom,

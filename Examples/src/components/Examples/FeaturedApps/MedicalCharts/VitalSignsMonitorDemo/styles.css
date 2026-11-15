@@ -6,14 +6,14 @@
     border-bottom: 1px solid var(--border-color);
 }
 .sc-vitals-title {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     font-weight: 600;
 }
 .sc-vitals-value {
-    font-size: var(--sc-font-size-xl);
+    font-size: 1.75rem;
     font-variant-numeric: tabular-nums;
 }
 .sc-vitals-details,
 .sc-vitals-meta {
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
 }

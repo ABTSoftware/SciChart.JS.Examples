@@ -4,6 +4,7 @@ import * as path from "path";
 import { EPageFramework } from "../../../helpers/shared/Helpers/frameworkTypes";
 import { moduleReferences } from "./sandboxDependencyUtils";
 import * as ts from "typescript";
+import { createExampleStylesheet } from "./exampleCss";
 
 export const generatedStylesPath = (folderPath: string, framework: EPageFramework) =>
     path.join(
@@ -23,29 +24,40 @@ export const readLocalStyles = async (folderPath: string) => {
     );
 };
 
-/** Production reads build artifacts. Development can preview unpruned CSS without writing generated files. */
+/**
+ * Production reads build artifacts. A source checkout always compiles from the current sources: artifacts
+ * left in build/ by an earlier `npm run build` are stale as soon as an example or sc-ui.css is edited.
+ */
 export const loadExampleStylesheet = async (
     folderPath: string,
     framework: EPageFramework,
     uiCss: string,
     files: IFiles
 ) => {
-    try {
-        return await fs.promises.readFile(generatedStylesPath(folderPath, framework), "utf8");
-    } catch (error) {
-        if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-        if (
-            process.env.NODE_ENV === "production" &&
-            !folderPath.includes(`${path.sep}src${path.sep}components${path.sep}Examples${path.sep}`)
-        ) {
-            throw new Error(`Example styles are missing for ${folderPath} (${framework}). Run npm run build.`);
+    const isSourceCheckout = folderPath.includes(`${path.sep}src${path.sep}components${path.sep}Examples${path.sep}`);
+    if (!isSourceCheckout) {
+        try {
+            return await fs.promises.readFile(generatedStylesPath(folderPath, framework), "utf8");
+        } catch (error) {
+            if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+            if (process.env.NODE_ENV === "production") {
+                throw new Error(`Example styles are missing for ${folderPath} (${framework}). Run npm run build.`);
+            }
         }
-        const localStyles = await readLocalStyles(folderPath);
-        const importedCss = Object.entries(files)
-            .filter(([name]) => name.endsWith(".css"))
-            .map(([, file]) => file.content);
-        return [uiCss, ...new Set([...localStyles.map((file) => file.content), ...importedCss])].join("\n");
     }
+    const localStyles = await readLocalStyles(folderPath);
+    const importedCss = Object.entries(files)
+        .filter(([name]) => name.endsWith(".css"))
+        .map(([, file]) => file.content);
+    const source = Object.entries(files)
+        .filter(([name, file]) => !file.isBinary && /\.(?:tsx?|jsx?|html)$/.test(name))
+        .map(([, file]) => file.content)
+        .join("\n");
+    return createExampleStylesheet(
+        source,
+        uiCss,
+        [...new Set([...localStyles.map((file) => file.content), ...importedCss])].join("\n")
+    );
 };
 
 /** Replace all example CSS imports with one readable stylesheet in the exported project. */

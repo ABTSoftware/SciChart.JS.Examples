@@ -10,7 +10,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 
 const MAX_SERIES = 100;
 const WIDTH = 300;
@@ -113,11 +113,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 // Draws a Heatmap legend over the <div id={divHeatmapLegend}></div>
 export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             sciChartBackground: appTheme.DarkIndigo + "BB",
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
-        },
+        }),
         yAxisOptions: {
             isInnerAxis: true,
             labelStyle: {

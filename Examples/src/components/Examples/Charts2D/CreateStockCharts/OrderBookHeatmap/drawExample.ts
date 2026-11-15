@@ -28,7 +28,7 @@ import {
     EXyDirection,
 } from "scichart";
 
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 
 // Data file paths (files are copied via webpack.config.js)
 const ohlcFilePath = "LTCUSDT_OHLC.csv";
@@ -394,11 +394,10 @@ export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) =>
     const { minValue, maxValue } = await getHeatmapData();
 
     const { heatmapLegend } = await HeatmapLegend.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             sciChartBackground: (appTheme.isDark ? appTheme.DarkIndigo : appTheme.PaleSkyBlue) + "BB",
             loadingAnimationBackground: (appTheme.isDark ? appTheme.DarkIndigo : appTheme.PaleSkyBlue) + "BB",
-        },
+        }),
         yAxisOptions: {
             isInnerAxis: true,
             labelProvider: new NumericLabelProvider({

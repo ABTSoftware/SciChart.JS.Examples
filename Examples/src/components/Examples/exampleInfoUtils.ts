@@ -35,6 +35,7 @@ const createFrameworkPropertyGetter = <T extends string = TFrameworkName, R = st
 
 export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => ({
     exampleTitle: metadata.exampleTitle,
+    description: metadata.description,
     id: metadata.id,
     onWebsite: metadata.onWebsite,
     title: createFrameworkPropertyGetter(EExampleProperty.Title)(metadata),

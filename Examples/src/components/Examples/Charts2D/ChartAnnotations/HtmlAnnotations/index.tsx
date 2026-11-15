@@ -21,7 +21,7 @@ export default function ChartComponent() {
                 createPortal(
                     <div
                         style={{
-                            fontSize: "var(--sc-font-size-sm)",
+                            fontSize: "0.875rem",
                             background: "linear-gradient(135deg, #ff6a00, #ee0979)",
                             textWrap: "nowrap",
                         }}

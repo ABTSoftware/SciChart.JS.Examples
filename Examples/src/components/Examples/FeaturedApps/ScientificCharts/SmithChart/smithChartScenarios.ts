@@ -1,4 +1,4 @@
-import { SmithAction, GammaPoint, ComponentType } from "./useSmithChart";
+import { SmithAction, GammaPoint, ComponentType } from "./smithState";
 
 export type ScenarioStep = {
     description: string;

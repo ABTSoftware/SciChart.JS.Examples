@@ -26,7 +26,7 @@
     padding: 0.3125rem 0.3125rem 0;
     background-color: inherit;
     color: var(--sc-text);
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
 }
 
 .variable-selection-content {
@@ -76,7 +76,7 @@
     color: var(--sc-text);
     padding-left: 0.625rem;
     margin: 0;
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
     font-weight: normal;
 }
 
@@ -116,7 +116,7 @@
 
 /* Legend styling */
 .scichart__legend-item {
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
 }
 
 .scichart__legend-item label:nth-child(1) {

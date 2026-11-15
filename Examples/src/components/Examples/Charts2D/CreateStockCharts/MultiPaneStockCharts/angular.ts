@@ -1,87 +1,20 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { SciChartSurface } from "scichart";
-import { ScichartAngularComponent } from "scichart-angular";
-import { getChartsInitializationAPI } from "./drawExample";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [CommonModule, ScichartAngularComponent],
-    selector: "app-multi-pane-stock-charts",
-    template: `
-        <div style="display: flex; flex-direction: column; height: 100%;">
-            <scichart-angular
-                [initChart]="chartsInitializationAPI.drawPriceChart"
-                (onInit)="onChartInit($event, 'price')"
-                style="flex: 1; flex-basis: 50%;"
-            >
-            </scichart-angular>
-            <scichart-angular
-                [initChart]="chartsInitializationAPI.drawMacdChart"
-                (onInit)="onChartInit($event, 'macd')"
-                style="flex: 1; flex-basis: 50%;"
-            >
-            </scichart-angular>
-            <scichart-angular
-                [initChart]="chartsInitializationAPI.drawRsiChart"
-                (onInit)="onChartInit($event, 'rsi')"
-                style="flex: 1; flex-basis: 50%;"
-            >
-            </scichart-angular>
-            <scichart-angular
-                *ngIf="showOverviewChart"
-                [initChart]="getOverviewChartInit()"
-                (onInit)="onChartInit($event, 'overview')"
-                style="flex: 1; flex-basis: 50%;"
-            >
-            </scichart-angular>
-        </div>
-    `,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    chartsInitializationAPI = getChartsInitializationAPI();
-    mainChart?: SciChartSurface;
-    macdChart?: SciChartSurface;
-    rsiChart?: SciChartSurface;
-    overviewChart?: SciChartSurface;
-    showOverviewChart = false;
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
 
-    async onChartInit(
-        initResult: Awaited<ReturnType<typeof this.chartsInitializationAPI.drawPriceChart>>,
-        chartType: "price" | "macd" | "rsi" | "overview"
-    ) {
-        if (initResult?.sciChartSurface) {
-            switch (chartType) {
-                case "price":
-                    this.mainChart = initResult.sciChartSurface;
-                    break;
-                case "macd":
-                    this.macdChart = initResult.sciChartSurface;
-                    break;
-                case "rsi":
-                    this.rsiChart = initResult.sciChartSurface;
-                    break;
-                case "overview":
-                    this.overviewChart = initResult.sciChartSurface;
-                    break;
-            }
-
-            if (this.mainChart && this.macdChart && this.rsiChart) {
-                this.showOverviewChart = true;
-                this.configureCharts();
-            }
-        } else {
-            console.error("Chart not initialized!");
-        }
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
     }
 
-    getOverviewChartInit() {
-        return this.chartsInitializationAPI.drawOverview(this.mainChart as SciChartSurface);
-    }
-
-    private configureCharts() {
-        if (this.mainChart && this.macdChart && this.rsiChart) {
-            this.chartsInitializationAPI.configureAfterInit();
-        }
+    ngOnDestroy() {
+        this.demo?.dispose();
     }
 }

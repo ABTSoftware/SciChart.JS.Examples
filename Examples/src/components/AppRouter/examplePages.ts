@@ -7,6 +7,7 @@ import EXAMPLE_PAGES_DATA from "./examplePaths";
 
 export type TExampleInfo = {
     exampleTitle: string;
+    description?: string;
     id: string;
     /**
      * Example title

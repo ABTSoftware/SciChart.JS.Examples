@@ -1,10 +1,5 @@
-import { drawExample } from "./drawExample";
+import { createExample } from "./createExample";
 
-const getElement = (id: string) => document.getElementById(id) as HTMLElement;
-
-drawExample("chart").then((chartApi) => {
-    getElement("source").onclick = () => chartApi.setFilterMode("source");
-    getElement("heikinAshi").onclick = () => chartApi.setFilterMode("heikinAshi");
-    getElement("renko").onclick = () => chartApi.setFilterMode("renko");
-    getElement("pointAndFigure").onclick = () => chartApi.setFilterMode("pointAndFigure");
-});
+const root = document.getElementById("chart") as HTMLDivElement;
+const demo = createExample(root);
+window.addEventListener("pagehide", demo.dispose, { once: true });

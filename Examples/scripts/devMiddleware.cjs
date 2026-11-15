@@ -50,7 +50,8 @@ module.exports = function setupMiddleware(app, { withApi = true } = {}) {
     const images = new Map();
     const examplesRoot = path.join(root, "src/components/Examples");
     for (const entry of fs.readdirSync(examplesRoot, { recursive: true })) {
-        if (/\.jpg$/i.test(entry)) images.set(path.basename(entry), path.join(examplesRoot, entry));
+        if (/\.(?:png|jpe?g|gif|svg|webp|ico)$/i.test(entry))
+            images.set(path.basename(entry), path.join(examplesRoot, entry));
     }
     if (withApi) {
         let sourceExamples;
@@ -85,9 +86,9 @@ module.exports = function setupMiddleware(app, { withApi = true } = {}) {
             }
         });
     }
-    app.get("/images/:name", (req, res, next) => {
+    app.get(["/images/:name", "/demo/images/:name"], (req, res, next) => {
         const image = images.get(req.params.name);
-        if (image) res.sendFile(image);
+        if (image) res.set("Access-Control-Allow-Origin", "*").sendFile(image);
         else next();
     });
 };

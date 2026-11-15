@@ -13,7 +13,7 @@ import {
     Thickness,
     ZoomExtentsModifier,
 } from "scichart";
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 import { ExampleDataProvider } from "../../../ExampleData/ExampleDataProvider";
 
 const Y_AXIS_LINEAR_ID = "Y_AXIS_LINEAR_ID";
@@ -22,11 +22,10 @@ const X_AXIS_LINEAR_ID = "X_AXIS_LINEAR_ID";
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     // Create a SciChartSurface
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
             minorGridLineBrush: appTheme.MutedSkyBlue + "22",
-        },
+        }),
         title: "Logarithmic X & Y Axis",
         titleStyle: {
             fontSize: 20,

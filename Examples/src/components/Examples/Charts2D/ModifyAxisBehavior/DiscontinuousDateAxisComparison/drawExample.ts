@@ -18,7 +18,7 @@ import {
     ZoomExtentsModifier,
     ZoomPanModifier,
 } from "scichart";
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 
 // Custom label provider for days of the week
 class DayOfWeekLabelProvider extends NumericLabelProvider {
@@ -126,11 +126,10 @@ const addSeriesToChart = (sciChartSurface: SciChartSurface, wasmContext: any, da
 export const createDiscontinuousDateChart =
     (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
         const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-            theme: {
-                ...appTheme.SciChartJsTheme,
+            theme: createChartTheme({
                 majorGridLineBrush: appTheme.MutedSkyBlue + "55",
                 minorGridLineBrush: appTheme.MutedSkyBlue + "22",
-            },
+            }),
         });
 
         const xAxisDiscontinuous = new DiscontinuousDateAxis(wasmContext, {
@@ -178,11 +177,10 @@ export const createDiscontinuousDateChart =
 // Create Numeric Axis Chart
 export const createNumericChart = (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
             minorGridLineBrush: appTheme.MutedSkyBlue + "22",
-        },
+        }),
     });
 
     const xAxisNumeric = new NumericAxis(wasmContext, {
@@ -225,11 +223,10 @@ export const createNumericChart = (customSettings: boolean) => async (rootElemen
 // Create Category Axis Chart
 export const createCategoryChart = (customSettings: boolean) => async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             majorGridLineBrush: appTheme.MutedSkyBlue + "55",
             minorGridLineBrush: appTheme.MutedSkyBlue + "22",
-        },
+        }),
     });
 
     const xAxisCategory = new CategoryAxis(wasmContext, {

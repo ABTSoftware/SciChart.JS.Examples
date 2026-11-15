@@ -1,5 +1,6 @@
 import { SciChartSurface, SciChart3DSurface, SciChartDefaults } from "./scichart.browser.mjs";
 
+SciChartSurface.UseCommunityLicense();
 SciChartSurface.configure({ wasmUrl: "/scichart.wasm" });
 SciChartDefaults.performanceWarnings = false;
 // if (window.location.hostname.includes("scichart")) {

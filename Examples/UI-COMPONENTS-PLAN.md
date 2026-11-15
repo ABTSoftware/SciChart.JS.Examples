@@ -28,6 +28,16 @@ The 181 demos use native HTML controls and a small shared stylesheet. Controls f
 
 Buttons have a 40px minimum height; icon buttons are 40×40px. Text inputs and selects use a 36px height. All configurable corner radii derive from `--radius`; circular thumbs retain their circular shape. Keep labels, native validation, values, keyboard behavior and disabled states in markup. Use inline styles for dynamic chart colors and chart-specific geometry only. Native sliders need only `sc-range`; keep their styling in CSS, without per-input styling helpers.
 
+## Framework parity
+
+`index.tsx` is the source of truth for an example's UI. `createExample.ts` (shared by `vanilla.ts` and `angular.ts`) must produce the same DOM: the same elements in the same order, with the same classes, inline styles, attributes and text, and the same behaviour. Write it with `h(tag, props, ...children)` from `demoHelpers.ts`, which mirrors JSX, and mount charts into an existing host with `demo.mount(drawExample, host)`. Controls that React renders before the chart is ready are created before `await demo.mount(...)`. The older helpers (`select`, `range`, `checkbox`, `input`, `dialog`, `choices`) emit fixed markup; use them only where it equals the React markup.
+
+Examples must not rely on gallery-only CSS. The document defaults that `sc-main.css` gives the gallery (zeroed margins and padding, border-box sizing, line height, heading, button and list defaults) are repeated in `sc-ui.css`, scoped to `.sc-chart-wrapper` at zero specificity, so a standalone export resolves the same styles as the gallery. When a global default in `sc-main.css` changes, change its scoped twin.
+
+With `npm run dev` running, `npm run checkExampleParity` (optionally followed by `-- <example-path> ...`) exports each example as the download button does, loads it in headless Chrome beside the React version and reports any difference in structure, computed styles or geometry. Run it after changing an example's JSX, `createExample.ts`, `sc-ui.css` or the exporter. It needs Google Chrome installed and compares the initial render only; interactive states still need a manual look.
+
+The exported stylesheet is pruned to the classes found in the source: spell every class name out as a literal in `class:`/`className:` properties, `element(...)` class arguments, `.className =` assignments or `classList.add/toggle(...)` calls.
+
 ## Styles and export
 
 Application chrome uses `sc-main.css`, `sc-app.css`, `sc-gallery.css`, `sc-content.css` and `sc-editor.css`, imported once by `App.tsx`. Keep its `sc-app-*`, `sc-gallery-*`, `sc-content-*` and `sc-editor-*` classes separate from demo utilities. See [the CSS ownership and migration record](SCSS-AUDIT.md).

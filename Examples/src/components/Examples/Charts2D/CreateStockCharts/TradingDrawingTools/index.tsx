@@ -69,7 +69,7 @@ export default function TradingDrawingTools() {
                 </button>
                 {selectedTool && (
                     <>
-                        <span className="flex items-center gap-2" style={{ fontSize: "var(--sc-font-size-sm)" }} role="status">
+                        <span className="flex items-center gap-2" style={{ fontSize: "0.875rem" }} role="status">
                             <ToolIcon name={selectedTool.icon} />
                             <span>
                                 {selectedTool.label} ·{" "}
@@ -169,7 +169,7 @@ export default function TradingDrawingTools() {
                     </p>
                     {groups.map((group) => (
                         <section key={group.label}>
-                            <h3 style={{ margin: "0.3125rem 0.1875rem", fontSize: "var(--sc-font-size-sm)", fontWeight: 600 }}>{group.label}</h3>
+                            <h3 style={{ margin: "0.3125rem 0.1875rem", fontSize: "0.875rem", fontWeight: 600 }}>{group.label}</h3>
                             <div
                                 className="gap-2"
                                 style={{
