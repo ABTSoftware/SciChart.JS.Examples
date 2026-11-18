@@ -1,42 +1,20 @@
-import { Component } from "@angular/core";
-import { ScichartAngularComponent } from "scichart-angular";
-import { drawExample, drawHeatmapLegend } from "./drawExample";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [ScichartAngularComponent],
-    selector: "app-li-dar3d-point-cloud",
-    template: `
-        <style>
-            .chart-area {
-                position: relative;
-                width: 100%;
-                height: 100%;
-            }
-            .chart-example {
-                position: absolute;
-                height: 100%;
-                width: calc(100% - 1px);
-                top: 0;
-                left: 0;
-            }
-            .chart-legend {
-                position: absolute;
-                height: 95%;
-                width: 100px;
-                right: 15px;
-                margin: 20px;
-            }
-        </style>
-        <div class="chart-area">
-            <scichart-angular [initChart]="initSciChartSurface" class="chart-example"> </scichart-angular>
-            <div class="HeatmapLegend">
-                <scichart-angular [initChart]="initHeatmapLegend" class="chart-legend"> </scichart-angular>
-            </div>
-        </div>
-    `,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    initSciChartSurface = drawExample;
-    initHeatmapLegend = drawHeatmapLegend;
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
+
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
+    }
+
+    ngOnDestroy() {
+        this.demo?.dispose();
+    }
 }

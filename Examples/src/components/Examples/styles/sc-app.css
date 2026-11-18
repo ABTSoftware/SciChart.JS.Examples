@@ -3,7 +3,7 @@
 #masthead {
     --height: var(--sc-app-header-height);
     --nav-bg: #1f1f1f;
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
 }
 #masthead.sc-app-nav-site-header {
     position: sticky;
@@ -498,13 +498,13 @@
     text-decoration: none;
     margin-bottom: 1.125rem;
     font-weight: 500;
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     line-height: 1.5rem;
     cursor: pointer;
 }
 @media (max-width: 959.98px) {
     .sc-app-footer .sc-app-footer-related-links a {
-        font-size: var(--sc-font-size-sm);
+        font-size: 0.875rem;
         line-height: 1.375rem;
     }
 }
@@ -543,22 +543,22 @@
     font-weight: 600;
 }
 .sc-app-footer h5 {
-    font-size: var(--sc-font-size-lg);
+    font-size: 1.25rem;
     line-height: 1.6875rem;
 }
 .sc-app-footer h6 {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     line-height: 1.375rem;
     margin-bottom: 1.625rem;
     margin-top: 2.5rem;
 }
 @media (max-width: 959.98px) {
     .sc-app-footer h5 {
-        font-size: var(--sc-font-size-lg);
+        font-size: 1.25rem;
         line-height: 1.5rem;
     }
     .sc-app-footer h6 {
-        font-size: var(--sc-font-size-base);
+        font-size: 1rem;
         line-height: 1.25rem;
     }
 }
@@ -700,7 +700,7 @@
 .sc-app-navigation .sc-app-navigation-homepage-list-item,
 .sc-app-navigation .sc-app-navigation-selected-homepage-list-item {
     color: var(--text);
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
     font-weight: 600;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -743,7 +743,7 @@
     margin-left: 1.25rem;
 }
 .sc-app-menu-list-item-block .sc-app-menu-example-link {
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
     line-height: 1.0625rem;
     margin-left: 2.5rem;
     color: var(--text);
@@ -905,12 +905,12 @@
     border-top: 1px solid var(--border-color);
 }
 .sc-app-title {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.35em;
 }
 .sc-app-subtitle {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     font-weight: 400;
     color: dimgray;
 }
@@ -959,10 +959,13 @@
 }
 .sc-app-search-options li {
     padding: 0.5rem 0.75rem;
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
 }
 .sc-app-search-options [role="option"] {
     cursor: pointer;
+}
+.sc-app-search-match {
+    color: var(--light-blue);
 }
 .sc-app-search-options [aria-selected="true"] {
     background: var(--bg-darker);

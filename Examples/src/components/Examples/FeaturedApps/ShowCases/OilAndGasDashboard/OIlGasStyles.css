@@ -34,7 +34,7 @@
 .sidebar-charts-2d-line {
     display: flex;
     justify-content: space-between;
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
 }
 
 .sidebar-charts-2d-line > div {
@@ -79,12 +79,12 @@
 }
 
 .main-area .icon span {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
 }
 
 .main-area .title {
     text-align: center;
-    font-size: var(--sc-font-size-lg);
+    font-size: 1.25rem;
     margin-bottom: 0.625rem;
 }
 
@@ -149,7 +149,7 @@
 .scichart__legend-item-justify {
     display: flex;
     justify-content: space-between;
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
     margin-top: 0.125rem;
     margin-bottom: 0.125rem;
 }
@@ -200,7 +200,7 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
     font-weight: 700;
     align-items: center;
 }

@@ -1,0 +1,8 @@
+{
+    "extends": "./tsconfig.browser.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "./.cache/variants.tsbuildinfo"
+    },
+    "include": ["src/**/angular.ts", "src/**/vanilla.ts", "src/**/*.d.ts"],
+    "exclude": ["node_modules", "src/static/*", "src/scichart-react/**"]
+}

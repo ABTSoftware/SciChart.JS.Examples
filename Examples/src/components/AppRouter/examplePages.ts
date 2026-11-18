@@ -7,6 +7,7 @@ import EXAMPLE_PAGES_DATA from "./examplePaths";
 
 export type TExampleInfo = {
     exampleTitle: string;
+    description?: string;
     id: string;
     /**
      * Example title
@@ -17,6 +18,11 @@ export type TExampleInfo = {
      */
     pageTitle: TFrameworkTemplate;
     path: string;
+
+    /**
+     * Set to false to make this a read-only example: its source cannot be edited in the in-page sandbox.
+     */
+    liveEdit?: false;
 
     /**
      * Content shown below title on example page

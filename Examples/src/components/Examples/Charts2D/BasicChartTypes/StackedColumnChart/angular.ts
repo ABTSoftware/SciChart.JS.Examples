@@ -1,50 +1,20 @@
-import { Component } from "@angular/core";
-import { ScichartAngularComponent } from "scichart-angular";
-import { drawExample } from "./drawExample";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [ScichartAngularComponent],
-    selector: "app-stack-chart",
-    template: `
-        <div class="sc-chart-wrapper">
-            <div class="sc-toolbar-row">
-                <label class="sc-switch">
-                    <input
-                        type="checkbox"
-                        [checked]="use100PercentStackedMode"
-                        (change)="togglePercentageMode($any($event.target).checked)"
-                    />100% mode
-                </label>
-                <label class="sc-switch">
-                    <input type="checkbox" [checked]="areDataLabelsVisible" (change)="toggleDataLabels()" />Show data
-                    labels
-                </label>
-            </div>
-            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
-        </div>
-    `,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    title = "StackedColumnChart";
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
 
-    use100PercentStackedMode = false;
-    areDataLabelsVisible = false;
-    controls?: Awaited<ReturnType<typeof drawExample>>["controls"];
-
-    drawExample = drawExample;
-
-    async onInit(initResult: Awaited<ReturnType<typeof drawExample>>) {
-        this.controls = initResult.controls;
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
     }
 
-    togglePercentageMode(value: boolean) {
-        this.use100PercentStackedMode = value;
-        this.controls?.toggleHundredPercentMode?.(value);
-    }
-
-    toggleDataLabels() {
-        this.areDataLabelsVisible = !this.areDataLabelsVisible;
-        this.controls?.toggleDataLabels?.(this.areDataLabelsVisible);
+    ngOnDestroy() {
+        this.demo?.dispose();
     }
 }

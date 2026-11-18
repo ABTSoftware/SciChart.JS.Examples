@@ -24,8 +24,8 @@ import {
 } from "scichart";
 import { appTheme } from "../../../theme";
 
-import { WaferData } from "./store";
-import { Dispatch } from "react";
+import { WaferData } from "./dataStore";
+type Dispatch<T> = (value: T) => void;
 import { DefectCode } from "./waferData";
 
 const defectColorMap: Record<DefectCode, { name: string; htmlColor: string; paletteColor: number }> = {

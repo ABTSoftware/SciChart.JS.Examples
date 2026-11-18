@@ -25,7 +25,24 @@ const checkProject = (files: IFiles, expectedTitle: string) => {
     readmeSteps = steps;
     assert.equal(Object.keys(files).filter((name) => name.endsWith(".css")).length, 1);
     assert.ok(files["src/styles.css"]);
-    postcss.parse(files["src/styles.css"].content).walkRules(":root", (rule) => {
+    for (const [name, file] of Object.entries(files)) {
+        if (!file.isBinary) assert.ok(!file.content.includes("--sc-font-size-"), `${name}: Inline font sizes directly`);
+    }
+    assert.ok(
+        !/prefers-color-scheme|data-theme/.test(files["src/styles.css"].content),
+        "Standalone styles are fixed to navy"
+    );
+    const stylesheet = postcss.parse(files["src/styles.css"].content);
+    assert.equal(
+        stylesheet.nodes.filter((node) => node.type === "rule" && node.selector === ":root").length,
+        1,
+        "Standalone CSS has one root rule"
+    );
+    assert.ok(
+        stylesheet.nodes.filter((node) => node.type === "rule" && node.selector === ".sc-chart-wrapper").length <= 1,
+        "Standalone CSS has at most one chart wrapper rule"
+    );
+    stylesheet.walkRules(":root", (rule) => {
         const parent = rule.parent;
         if (parent?.type === "atrule" && parent.name === "media" && /^\(min-width:\s*\d+px\)$/.test(parent.params)) {
             assert.ok(
@@ -64,6 +81,40 @@ const checkProject = (files: IFiles, expectedTitle: string) => {
 };
 
 const checkFixtures = async () => {
+    const buttonCss = createExampleStylesheet(
+        '<button className="sc-button" />',
+        await fs.promises.readFile(path.join(root, "styles/sc-ui.css"), "utf8")
+    );
+    assert.ok(!buttonCss.includes("--sc-font-size-"), "Downloads do not need typography tokens");
+    assert.match(buttonCss, /font: 500 0\.875rem\s*\/\s*1\b/, "Keep the original button font size");
+    const standaloneCss = createExampleStylesheet(
+        '<div className="sc-chart-wrapper flex gap-2"><button className="sc-button sc-button-outline"><svg /></button></div>',
+        `:root { --sc-text: white; --sc-background: black; --sc-theme-bg: navy; color-scheme: dark; }
+        [data-theme="navy"] { --sc-theme-bg: navy; color-scheme: dark; }
+        [data-theme="navy"] .sc-chart-wrapper, .sc-chart-wrapper[data-theme="navy"] { --sc-background: #0b162a; }
+        .sc-chart-wrapper { background: var(--sc-theme-bg); color: var(--sc-background); }
+        .sc-button { color: var(--sc-text); &:hover { opacity: .8; }
+            &.sc-button-outline, &.sc-button-icon { border: 1px solid; }
+            &.sc-button-danger { color: red; } svg { width: 1rem; } img { width: 2rem; }
+            @media (max-width: 600px) { .sc-unused-child { display: none; } }
+        }
+        .flex { display: flex !important; } .gap-2 { gap: .5rem !important; } .unused { display: none; }`
+    );
+    const standaloneRules = postcss.parse(standaloneCss).nodes.filter((node) => node.type === "rule");
+    assert.equal(standaloneRules.filter((rule) => rule.selector === ":root").length, 1, "One navy root rule");
+    assert.equal(
+        standaloneRules.filter((rule) => rule.selector === ".sc-chart-wrapper").length,
+        1,
+        "Navy overrides belong in the component rule"
+    );
+    assert.deepEqual(
+        standaloneRules.slice(0, 3).map((rule) => rule.selector),
+        [":root", ".flex", ".gap-2"]
+    );
+    assert.ok(standaloneCss.includes("--sc-background: #0b162a"));
+    assert.ok(standaloneCss.includes("&:hover") && standaloneCss.includes("&.sc-button-outline"));
+    assert.ok(standaloneCss.includes("svg"));
+    assert.ok(!/sc-button-icon|sc-button-danger|sc-unused-child|\.unused|img|max-width/.test(standaloneCss));
     const css = createExampleStylesheet(
         '<div className="sc-chart-wrapper flex"><button className="sc-button" /></div>; // className="sc-select"',
         ":root{--used:red;--unused:blue}.sc-chart-wrapper{display:block}.flex{display:flex}.sc-button{color:var(--used);&:focus-visible{outline:1px solid}}.sc-select{display:none}",
@@ -75,6 +126,27 @@ const checkFixtures = async () => {
     assert.ok(!css.includes("sc-select"));
     assert.ok(css.includes("@keyframes pulse"));
     assert.ok(css.includes("/* Local demo */"));
+    const nativeCss = createExampleStylesheet(
+        'const generic = <T>(value: T) => value; element("button", root, "flex"); root.classList.add("gap-2"); root.className = "relative"; function chart(className = "h-full") {}',
+        ".flex{display:flex}.gap-2{gap:0.5rem}.relative{position:relative}.h-full{height:100%}button{font:inherit}.unused{display:none}"
+    );
+    for (const selector of [".flex", ".gap-2", ".relative", ".h-full", "button"])
+        assert.ok(nativeCss.includes(selector));
+    assert.ok(!nativeCss.includes(".unused"));
+    const navyCss = createExampleStylesheet(
+        '<button className="sc-button" />',
+        `:root { --tone: black; } .sc-button { color: var(--tone); }
+        @media (prefers-color-scheme: light) { :root { --tone: white; } }
+        [data-theme="light"] { --tone: yellow; }
+        [data-theme="dark"] { --tone: gray; }
+        [data-theme="navy"] { --tone: navy; }
+        [data-theme="navy"] .sc-button, .sc-button[data-theme="navy"] { background: blue; }
+        @media (max-width: 600px) { .sc-button { width: 100%; } }`
+    );
+    assert.ok(navyCss.includes("--tone: navy"));
+    assert.ok(navyCss.includes("background: blue"));
+    assert.ok(!/prefers-color-scheme|data-theme|black|white|yellow|gray/.test(navyCss));
+    assert.ok(navyCss.includes("max-width: 600px"), "Responsive layout media queries remain");
     const resources = createExampleStylesheet(
         '<button className="sc-button" />',
         '@font-face { font-family: UnusedFont; src: url("unused.woff2"); } @keyframes unused { to { opacity: 0; } } .sc-button { color: red; }'
@@ -150,6 +222,21 @@ const checkFixtures = async () => {
         assert.ok(
             imageFiles["src/image.ts"].content.includes('const logo = "https://www.scichart.com/demo/images/logo.png"')
         );
+        await fs.promises.mkdir(path.join(temp, "icons"));
+        await fs.promises.writeFile(
+            path.join(temp, "icons/index.tsx"),
+            "export const PlayIcon = () => <svg />;\nexport const StopIcon = () => <svg />;\nexport const UnusedIcon = () => <svg />;"
+        );
+        await fs.promises.writeFile(
+            path.join(temp, "index.tsx"),
+            'import { PlayIcon, StopIcon as Pause, UnusedIcon } from "./icons";\nexport default () => <><PlayIcon /><Pause /></>;'
+        );
+        const iconFiles = await getSourceFilesForPath(temp, "index.tsx", "", "App.tsx");
+        assert.ok(iconFiles["src/icons.tsx"], "The icon module has a descriptive filename");
+        assert.ok(iconFiles["src/icons.tsx"].content.includes("PlayIcon"));
+        assert.ok(iconFiles["src/icons.tsx"].content.includes("StopIcon"));
+        assert.ok(!iconFiles["src/icons.tsx"].content.includes("UnusedIcon"));
+        assert.ok(!iconFiles["src/App.tsx"].content.includes("UnusedIcon"));
     } finally {
         await fs.promises.rm(temp, { recursive: true, force: true });
     }
@@ -168,7 +255,10 @@ const main = async () => {
         }
         examples++;
         for (const framework of Object.values(EPageFramework)) {
-            if (!entries.some((entry) => entry.name === entryFiles[framework])) continue;
+            assert.ok(
+                entries.some((entry) => entry.name === entryFiles[framework]),
+                `${folder}: Missing ${entryFiles[framework]}`
+            );
             try {
                 const config = await getSandboxConfig(
                     folder,

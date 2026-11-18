@@ -1,69 +1,20 @@
-import { Component } from "@angular/core";
-import { ScichartAngularComponent } from "scichart-angular";
-import { SciChartSurface } from "scichart";
-
-import { drawExample, TFilterMode } from "./drawExample";
-
-type TChartApi = Awaited<ReturnType<typeof drawExample>>;
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [ScichartAngularComponent],
-    selector: "app-financial-data-filters",
-    template: `
-        <div class="sc-chart-wrapper">
-            <div class="sc-toolbar-row">
-                <div class="sc-button-group" role="group" aria-label="Data filter">
-                    <button
-                        type="button"
-                        (click)="setFilterMode('source')"
-                        [attr.aria-pressed]="filterMode === 'source'"
-                        class="sc-button"
-                    >
-                        No filter
-                    </button>
-                    <button
-                        type="button"
-                        (click)="setFilterMode('heikinAshi')"
-                        [attr.aria-pressed]="filterMode === 'heikinAshi'"
-                        class="sc-button"
-                    >
-                        Heikin-Ashi
-                    </button>
-                    <button
-                        type="button"
-                        (click)="setFilterMode('renko')"
-                        [attr.aria-pressed]="filterMode === 'renko'"
-                        class="sc-button"
-                    >
-                        Renko
-                    </button>
-                    <button
-                        type="button"
-                        (click)="setFilterMode('pointAndFigure')"
-                        [attr.aria-pressed]="filterMode === 'pointAndFigure'"
-                        class="sc-button"
-                    >
-                        Point &amp; figure
-                    </button>
-                </div>
-            </div>
-            <scichart-angular [initChart]="drawExample" (onInit)="onInit($event)"></scichart-angular>
-        </div>
-    `,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    drawExample = drawExample;
-    chartApi?: TChartApi;
-    filterMode: TFilterMode = "source";
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
 
-    onInit(initResult: { sciChartSurface: SciChartSurface } & Partial<TChartApi>) {
-        this.chartApi = initResult as TChartApi;
-        this.chartApi.setFilterMode(this.filterMode);
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
     }
 
-    setFilterMode(filterMode: TFilterMode) {
-        this.filterMode = filterMode;
-        this.chartApi?.setFilterMode(filterMode);
+    ngOnDestroy() {
+        this.demo?.dispose();
     }
 }

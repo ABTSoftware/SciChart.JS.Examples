@@ -17,6 +17,7 @@ guide does not cover.
 | `exampleInfo.tsx`           | metadata: titles, SEO text, docs links, thumbnail                         |
 | `<name>.jpg`                | thumbnail, 750x500, 20-50 KB                                              |
 | `vanilla.ts` / `angular.ts` | optional standalone framework sources; newer examples omit them           |
+| `createExample.ts`          | DOM port of `index.tsx` shared by `vanilla.ts` and `angular.ts`           |
 
 Register it in two places, or it will not appear:
 
@@ -72,6 +73,12 @@ because `--bg-chart` and friends are only defined by the website shell, not by t
     anything you did not mean to change.
 -   **Keep prettier globs narrow.** A wide glob rewrites line endings on untouched files and they
     all show up as modified.
+-   **`createExample.ts` must render the same DOM as `index.tsx`.** It is a hand-written port, so any
+    change to an example's JSX (order, classes, inline styles, attributes, text) has to be repeated
+    there, or the Angular/JavaScript downloads drift from the React one. See "Framework parity" in
+    [UI-COMPONENTS-PLAN.md](UI-COMPONENTS-PLAN.md).
+-   **Downloads are standalone**: they only get `styles/sc-ui.css` (pruned), never `sc-main.css`. Do
+    not rely on gallery-only global CSS inside an example.
 -   **`sitemap.xml` is not regenerated per example**; it is produced at deploy time, so a new
     example missing from it is expected.
 

@@ -29,7 +29,7 @@
 
 .sc-model-progress-label {
     margin-top: 0.625rem;
-    font-size: var(--sc-font-size-sm);
+    font-size: 0.875rem;
 }
 
 .sc-model-progress-fill {

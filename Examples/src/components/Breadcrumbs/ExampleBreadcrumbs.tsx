@@ -4,14 +4,14 @@ import { getExampleCategoryPath, MENU_ITEMS_HIERARCHY } from "../AppRouter/examp
 import { BreadcrumbsWithMenu, TBreadcrumbItem, TBreadcrumbPath } from "./GenericBreadcrumbs";
 import { TExamplePage } from "../AppRouter/examplePages";
 import { useExampleRouteParams, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { useNavigate } from "react-router";
+import { useGuardedNavigate } from "../LivePreview/DraftGuardContext";
 
 // TODO TMenuItem is not consistent with tree-like format and doesn't really fit this structure, thus special handling of the leaf nodes is required
 
 const onBreadcrumbPathChange = (value: TBreadcrumbPath) => {};
 
 export const ExampleBreadcrumbs = () => {
-    const navigate = useNavigate();
+    const navigate = useGuardedNavigate();
     const { currentExample, framework: selectedFramework } = useExampleRouteParams();
     const memoizedMenuPath = useMemo(() => getExampleCategoryPath(currentExample), [currentExample]);
 

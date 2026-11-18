@@ -1,5 +1,9 @@
 import {
+    Component,
     FC,
+    lazy,
+    ReactNode,
+    Suspense,
     useCallback,
     useEffect,
     useMemo,
@@ -22,6 +26,25 @@ import { _useContext } from "../../helpers/shared/Helpers/Context";
 import "react-syntax-highlighter/dist/esm/styles/hljs/dark";
 import { FileExplorer, FileIcon } from "./FileExplorer";
 import { createProjectZip, getDefaultSourceFile } from "./projectFiles";
+import { ConsoleDrawer } from "../LivePreview/ConsoleDrawer";
+import { countErrors, type ConsoleEntry } from "../LivePreview/consoleLog";
+import { ConfirmDialog } from "../CodeSandbox/components/ConfirmDialog";
+import { hasDraft, isEditableFile, LIVE_EDIT_MESSAGES, type LiveEditAvailability } from "./liveEditing";
+
+const noop = (): void => undefined;
+const loadCodeMirrorEditor = (): Promise<typeof import("./CodeMirrorEditor")> => import("./CodeMirrorEditor");
+const CodeMirrorEditor = lazy(loadCodeMirrorEditor);
+
+/** Shows the fallback when the editor chunk fails to load, so editing still works with a plain textarea. */
+class EditorBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
+    state = { failed: false };
+    static getDerivedStateFromError() {
+        return { failed: true };
+    }
+    render() {
+        return this.state.failed ? this.props.fallback : this.props.children;
+    }
+}
 
 const EditorLanguageMap: Record<string, string> = {
     ts: "typescript",
@@ -272,11 +295,25 @@ const LightStyles: Record<string, CSSProperties> = {
     },
 };
 
+export type LiveEditControls = {
+    availability: LiveEditAvailability["status"];
+    autoRun: boolean;
+    onAutoRunChange: (autoRun: boolean) => void;
+    onRun: () => void;
+    /** The pointer entered the editor: a good moment to start downloading the runtime. */
+    onPrepare: () => void;
+    /** With auto-run off: the draft has changed since the last run, so the play button shows. */
+    runPending: boolean;
+};
+
 export type CodeEditorProps = {
     files: ExampleSourceFile[];
     framework: EPageFramework;
     examplePath: string;
     onFilesChange?: (files: ExampleSourceFile[]) => void;
+    live?: LiveEditControls;
+    /** Output of the live preview's current run, or null while no preview is running. */
+    consoleEntries?: ConsoleEntry[] | null;
 };
 
 export const CodePreview: FC<CodeEditorProps> = ({
@@ -284,15 +321,28 @@ export const CodePreview: FC<CodeEditorProps> = ({
     framework,
     examplePath,
     onFilesChange,
+    live,
+    consoleEntries = null,
 }) => {
     const { state } = _useContext();
     const [draftFiles, setDraftFiles] = useState(files);
     const [selectedName, setSelectedName] = useState(() => getDefaultSourceFile(files)?.name);
     const [isEditing, setIsEditing] = useState(false);
     const [showExplorer, setShowExplorer] = useState(true);
+    const [notice, setNotice] = useState<string | null>(null);
+    const [confirmReset, setConfirmReset] = useState(false);
+    const prepared = useRef(false);
+    const [consoleOpen, setConsoleOpen] = useState(false);
+    const errorCount = consoleEntries ? countErrors(consoleEntries) : 0;
+    const previousErrorCount = useRef(0);
+    useEffect(() => {
+        // The drawer opens on the first error and stays as the visitor leaves it.
+        if (previousErrorCount.current === 0 && errorCount > 0) setConsoleOpen(true);
+        previousErrorCount.current = errorCount;
+    }, [errorCount]);
     const editorRef = useRef<HTMLElement>(null);
     const gutterRef = useRef<HTMLPreElement>(null);
-    const readButtonRef = useRef<HTMLButtonElement>(null);
+    const editToggleRef = useRef<HTMLInputElement>(null);
     const codeScrollRef = useRef<HTMLDivElement>(null);
     const verticalTrackRef = useRef<HTMLDivElement>(null);
     const verticalThumbRef = useRef<HTMLDivElement>(null);
@@ -309,6 +359,9 @@ export const CodePreview: FC<CodeEditorProps> = ({
             ),
         [draftFiles, files]
     );
+    const draftExists = hasDraft(draftFiles, files);
+    const liveAvailable = live?.availability === "available";
+    const showEditor = isEditing && !!activeFile && isEditableFile(activeFile.name);
     const lineCount = activeFile?.content.split("\n").length ?? 1;
     const lineNumbers = Array.from({ length: lineCount }, (_, index) => index + 1).join("\n");
     const frameworkName = FRAMEWORK_NAME[framework];
@@ -402,7 +455,13 @@ export const CodePreview: FC<CodeEditorProps> = ({
         if (scrollbarDrag.current?.pointerId === event.pointerId) scrollbarDrag.current = null;
     };
 
+    // A refetch of the same project hands over a new array with the same content: that must not discard
+    // an edit that has already started.
+    const baseline = useRef({ files, examplePath });
     useEffect(() => {
+        const previous = baseline.current;
+        baseline.current = { files, examplePath };
+        if (previous.examplePath === examplePath && !hasDraft(files, previous.files)) return;
         setDraftFiles(files);
         setSelectedName(getDefaultSourceFile(files)?.name);
         setIsEditing(false);
@@ -427,13 +486,32 @@ export const CodePreview: FC<CodeEditorProps> = ({
         setDraftFiles(next);
         onFilesChange?.(next);
     };
+    const startEditing = () => {
+        if (!live) return;
+        if (live.availability !== "available") {
+            setNotice(LIVE_EDIT_MESSAGES[live.availability]);
+            return;
+        }
+        setNotice(null);
+        setIsEditing(true);
+    };
+    const prepare = () => {
+        if (!live || live.availability !== "available" || prepared.current) return;
+        prepared.current = true;
+        void loadCodeMirrorEditor();
+        live.onPrepare();
+    };
+    const resetDraft = () => {
+        setConfirmReset(false);
+        updateFiles(files);
+    };
     const updateContent = (content: string) =>
         updateFiles(draftFiles.map((file) => (file.name === activeFile.name ? { ...file, content } : file)));
     const handleEditorKeys = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === "Escape") {
             event.stopPropagation();
             setIsEditing(false);
-            readButtonRef.current?.focus();
+            editToggleRef.current?.focus();
             return;
         }
         if (event.key !== "Tab") return;
@@ -505,6 +583,31 @@ export const CodePreview: FC<CodeEditorProps> = ({
 
     if (!activeFile) return <p role="status">Loading example source…</p>;
 
+    const textareaEditor = (
+                        <div className="sc-editor-edit-surface">
+                            <div className="sc-editor-edit-gutter" aria-hidden="true">
+                                <pre ref={gutterRef}>{lineNumbers}</pre>
+                            </div>
+                            <textarea
+                                key={activeFile.name}
+                                aria-label={`Edit ${activeFile.name}`}
+                                aria-description="Tab indents · Shift+Tab unindents · Escape exits editing"
+                                value={activeFile.content}
+                                spellCheck={false}
+                                autoCapitalize="off"
+                                autoCorrect="off"
+                                wrap="off"
+                                onChange={(event) => updateContent(event.target.value)}
+                                onKeyDown={handleEditorKeys}
+                                onScroll={(event) => {
+                                    if (gutterRef.current)
+                                        gutterRef.current.style.transform = `translateY(${-event.currentTarget
+                                            .scrollTop}px)`;
+                                }}
+                            />
+                        </div>
+    );
+
     return (
         <section
             ref={editorRef}
@@ -512,6 +615,8 @@ export const CodePreview: FC<CodeEditorProps> = ({
             aria-label={`${frameworkName} example source editor`}
             tabIndex={-1}
             onKeyDown={handleWorkspaceKeys}
+            onPointerEnter={prepare}
+            onFocus={prepare}
         >
             <div className="sc-editor-workspace">
                 {showExplorer && (
@@ -548,21 +653,76 @@ export const CodePreview: FC<CodeEditorProps> = ({
                         <div className="sc-editor-active-file">
                             <FileIcon name={activeFile.name} />
                             <span>{activeFile.name}</span>
+                            {live && live.availability !== "narrow" && !isEditableFile(activeFile.name) && (
+                                <span className="sc-editor-readonly-marker" title="This file cannot be edited">
+                                    read-only
+                                </span>
+                            )}
                             {modifiedNames.has(activeFile.name) && (
                                 <span className="sc-editor-modified" aria-label="Modified">
                                     ●
                                 </span>
                             )}
                         </div>
-                        {/* <div className="sc-editor-mode-switch" aria-label="Source mode">
-                            <button ref={readButtonRef} type="button" aria-pressed={!isEditing} onClick={() => setIsEditing(false)}>
-                                Read
-                            </button>
-                            <button type="button" aria-pressed={isEditing} onClick={() => setIsEditing(true)}>
-                                Edit
-                            </button>
-                        </div> */}
+                        {live && live.availability !== "narrow" && (
+                            <div className="sc-editor-live-actions">
+                                {isEditing && (
+                                    <label className="sc-editor-autorun" title="Auto-run: run one second after you stop typing">
+                                        <span className="sc-editor-autorun-text">Auto-run</span>
+                                        <input
+                                            type="checkbox"
+                                            role="switch"
+                                            aria-label="Auto-run"
+                                            className="sc-editor-switch"
+                                            checked={live.autoRun}
+                                            onChange={(event) => live.onAutoRunChange(event.target.checked)}
+                                        />
+                                    </label>
+                                )}
+                                {isEditing && !live.autoRun && live.runPending && (
+                                    <button
+                                        type="button"
+                                        className="sc-editor-icon-button sc-editor-run"
+                                        aria-label="Run"
+                                        title="Run (Ctrl/Cmd+Enter)"
+                                        onClick={live.onRun}
+                                    >
+                                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                            <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
+                                        </svg>
+                                    </button>
+                                )}
+                                <label
+                                    className="sc-editor-edit-toggle"
+                                    title={liveAvailable ? "Edit the code and see the chart change" : undefined}
+                                >
+                                    <span>Edit</span>
+                                    <input
+                                        ref={editToggleRef}
+                                        type="checkbox"
+                                        role="switch"
+                                        className="sc-editor-switch"
+                                        checked={isEditing}
+                                        aria-disabled={!liveAvailable || undefined}
+                                        onChange={() => (isEditing ? setIsEditing(false) : startEditing())}
+                                    />
+                                </label>
+                            </div>
+                        )}
                         <div className="sc-editor-project-actions">
+                            {draftExists && (
+                                <button
+                                    type="button"
+                                    aria-label="Reset to the original example"
+                                    title="Reset to the original example"
+                                    onClick={() => setConfirmReset(true)}
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                                        <path d="M3 3v5h5" />
+                                    </svg>
+                                </button>
+                            )}
                             <button
                                 type="button"
                                 aria-label={`Copy ${activeFile.name}`}
@@ -584,29 +744,36 @@ export const CodePreview: FC<CodeEditorProps> = ({
                             </button>
                         </div>
                     </div>
-                    {isEditing ? (
-                        <div className="sc-editor-edit-surface">
-                            <div className="sc-editor-edit-gutter" aria-hidden="true">
-                                <pre ref={gutterRef}>{lineNumbers}</pre>
-                            </div>
-                            <textarea
-                                key={activeFile.name}
-                                aria-label={`Edit ${activeFile.name}`}
-                                aria-description="Tab indents · Shift+Tab unindents · Escape exits editing"
-                                value={activeFile.content}
-                                spellCheck={false}
-                                autoCapitalize="off"
-                                autoCorrect="off"
-                                wrap="off"
-                                onChange={(event) => updateContent(event.target.value)}
-                                onKeyDown={handleEditorKeys}
-                                onScroll={(event) => {
-                                    if (gutterRef.current)
-                                        gutterRef.current.style.transform = `translateY(${-event.currentTarget
-                                            .scrollTop}px)`;
-                                }}
-                            />
-                        </div>
+                    {notice && (
+                        <p className="sc-editor-notice" role="status">
+                            {notice}
+                        </p>
+                    )}
+                    <ConfirmDialog
+                        isOpen={confirmReset}
+                        title="Discard your changes?"
+                        message="Reset removes all your edits and shows the original example again."
+                        onCancel={() => setConfirmReset(false)}
+                        onConfirm={resetDraft}
+                    />
+                    {showEditor ? (
+                        <EditorBoundary fallback={textareaEditor}>
+                            <Suspense fallback={textareaEditor}>
+                                <div className="sc-editor-cm-surface">
+                                    <CodeMirrorEditor
+                                        name={activeFile.name}
+                                        value={activeFile.content}
+                                        isLight={isLight}
+                                        onChange={updateContent}
+                                        onEscape={() => {
+                                            setIsEditing(false);
+                                            editToggleRef.current?.focus();
+                                        }}
+                                        onRun={live?.onRun ?? noop}
+                                    />
+                                </div>
+                            </Suspense>
+                        </EditorBoundary>
                     ) : (
                         <>
                             <div
@@ -670,6 +837,13 @@ export const CodePreview: FC<CodeEditorProps> = ({
                                 <div ref={horizontalThumbRef} className="sc-editor-scrollbar-thumb" />
                             </div>
                         </>
+                    )}
+                    {consoleEntries && (
+                        <ConsoleDrawer
+                            entries={consoleEntries}
+                            open={consoleOpen}
+                            onToggle={() => setConsoleOpen(!consoleOpen)}
+                        />
                     )}
                 </div>
             </div>

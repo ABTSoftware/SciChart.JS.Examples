@@ -1,31 +1,20 @@
-import { Component } from "@angular/core";
-import { ScichartAngularComponent } from "scichart-angular";
-import { drawExample } from "./drawExample";
-
-const emojiUrls = [
-    "/assets/images/apple.png",
-    "/assets/images/samsung.png",
-    "/assets/images/xiaomi.png",
-    "/assets/images/huawei.png",
-    "/assets/images/oppo.png",
-    "/assets/images/vivo.png",
-    "/assets/images/realme.png",
-    "/assets/images/motorola.png",
-    "/assets/images/question.png",
-    "/assets/images/lg.png",
-    "/assets/images/oneplus.png",
-    "/assets/images/tecno.png",
-    "/assets/images/infinix.png",
-    "/assets/images/google.png",
-    "/assets/images/nokia.png",
-];
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [ScichartAngularComponent],
     selector: "app-root",
-    template: `<scichart-angular [initChart]="drawExample"> </scichart-angular>`,
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    drawExample = drawExample(emojiUrls);
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
+
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
+    }
+
+    ngOnDestroy() {
+        this.demo?.dispose();
+    }
 }

@@ -21,7 +21,7 @@ import {
     zeroArray2D,
 } from "scichart";
 import { AscData, AscReader } from "./AscReader";
-import { appTheme } from "../../../theme";
+import { appTheme, createChartTheme } from "../../../theme";
 import { fetchLidarData } from "../../../ExampleData/ExampleDataProvider";
 
 type TMetadata = {
@@ -105,11 +105,10 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
 export const drawHeatmapLegend = async (rootElement: string | HTMLDivElement) => {
     const { heatmapLegend, wasmContext } = await HeatmapLegend.create(rootElement, {
-        theme: {
-            ...appTheme.SciChartJsTheme,
+        theme: createChartTheme({
             sciChartBackground: appTheme.DarkIndigo + "BB",
             loadingAnimationBackground: appTheme.DarkIndigo + "BB",
-        },
+        }),
         yAxisOptions: {
             isInnerAxis: true,
             labelStyle: {

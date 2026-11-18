@@ -1,5 +1,5 @@
 import { SciChartSurface, TSciChart, XyDataSeries, FastLineRenderableSeries } from "scichart";
-import { GammaPoint, ChainStep, ComponentType, SmithState, SmithAction } from "./useSmithChart";
+import { GammaPoint, ChainStep, ComponentType, SmithState, SmithAction } from "./smithState";
 
 const ARC_STEPS = 100;
 

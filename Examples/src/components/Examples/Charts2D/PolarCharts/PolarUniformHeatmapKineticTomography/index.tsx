@@ -6,7 +6,7 @@ export default function ChartComponent() {
         <div
             className="relative w-full h-full"
         >
-            <SciChartReact initChart={drawExample} className="sc-chart-wrapper" />;
+            <SciChartReact initChart={drawExample} className="sc-chart-wrapper" />
             <SciChartReact
                 initChart={drawHeatmapLegend}
                 className="sc-color-legend"

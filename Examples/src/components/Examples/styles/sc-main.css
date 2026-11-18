@@ -71,7 +71,7 @@ html {
 }
 
 body {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 400;
@@ -146,18 +146,18 @@ button {
     font-size: inherit;
 }
 h1 {
-    font-size: var(--sc-font-size-xl);
+    font-size: 1.75rem;
     line-height: 1.25;
 }
 h2,
 h3 {
-    font-size: var(--sc-font-size-lg);
+    font-size: 1.25rem;
     line-height: 1.4;
 }
 h4,
 h5,
 h6 {
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     line-height: 1.5;
 }
 pre,

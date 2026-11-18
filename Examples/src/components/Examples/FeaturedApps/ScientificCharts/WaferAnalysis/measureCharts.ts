@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+type Dispatch<T> = (value: T) => void;
 import {
     buildSeries,
     easing,

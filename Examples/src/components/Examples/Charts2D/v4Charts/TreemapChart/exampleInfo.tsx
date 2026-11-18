@@ -50,6 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "treemap-chart",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "treemap, rectangle, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/v4Charts/TreemapChart",

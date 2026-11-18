@@ -1,91 +1,20 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { ScichartAngularComponent } from "scichart-angular";
-import { getChartsInitializationApi } from "./drawExample";
-import { appTheme } from "../../../theme";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { createExample } from "./createExample";
 
 @Component({
     standalone: true,
-    imports: [CommonModule, ScichartAngularComponent],
-    selector: "app-audio-analyzer",
-    template: `
-        <style>
-            .chart-wrapper {
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-            }
-            .chart-container {
-                display: flex;
-                flex-direction: column;
-                height: 100%;
-            }
-
-            .fft-spectrogram-container {
-                display: flex;
-                flex: 1;
-            }
-        </style>
-        <div [ngStyle]="{ background: appTheme.Background }" class="chart-wrapper">
-            <div class="chart-container">
-                <scichart-angular
-                    [initChart]="chartsInitializationAPI.initAudioChart"
-                    (onInit)="onChartInit($event, 'audio')"
-                    style="flex: 1;"
-                >
-                </scichart-angular>
-                <div class="fft-spectrogram-container">
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.initFftChart"
-                        (onInit)="onChartInit($event, 'fft')"
-                        style="flex: 1;"
-                    >
-                    </scichart-angular>
-                    <scichart-angular
-                        [initChart]="chartsInitializationAPI.initSpectogramChart"
-                        (onInit)="onChartInit($event, 'spectrogram')"
-                        style="flex: 1;"
-                    >
-                    </scichart-angular>
-                </div>
-            </div>
-        </div>
-    `,
+    selector: "app-root",
+    template: `<div #chart style="width: 100%; height: 100%;"></div>`,
 })
-export class AppComponent {
-    chartsInitializationAPI = getChartsInitializationApi();
-    audioChart: any;
-    fftChart: any;
-    spectrogramChart: any;
-    controlsRef: any;
-    appTheme = appTheme;
+export class AppComponent implements AfterViewInit, OnDestroy {
+    @ViewChild("chart", { static: true }) chart!: ElementRef<HTMLDivElement>;
+    private demo?: ReturnType<typeof createExample>;
 
-    async onChartInit(event: any, chartType: "audio" | "fft" | "spectrogram") {
-        if (event?.sciChartSurface) {
-            switch (chartType) {
-                case "audio":
-                    this.audioChart = event.sciChartSurface;
-                    break;
-                case "fft":
-                    this.fftChart = event.sciChartSurface;
-                    break;
-                case "spectrogram":
-                    this.spectrogramChart = event.sciChartSurface;
-                    break;
-            }
-
-            if (this.audioChart && this.fftChart && this.spectrogramChart) {
-                this.configureCharts();
-            }
-        } else {
-            console.log("Chart not initialized!");
-        }
+    ngAfterViewInit() {
+        this.demo = createExample(this.chart.nativeElement);
     }
 
-    private configureCharts() {
-        if (this.audioChart && this.fftChart && this.spectrogramChart) {
-            this.controlsRef = this.chartsInitializationAPI.onAllChartsInit();
-            this.controlsRef.startUpdate();
-        }
+    ngOnDestroy() {
+        this.demo?.dispose();
     }
 }

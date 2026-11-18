@@ -97,7 +97,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
             strokeThickness: 2,
         }),
     });
-    // Attach after construction, when the derived series has its polar type.
+    // Attach after construction so the provider sees the final polar series type.
     polarColumn.paletteProvider = new DataPointSelectionPaletteProvider({
         fill: "#FFFFFF",
         stroke: "#00AA00",

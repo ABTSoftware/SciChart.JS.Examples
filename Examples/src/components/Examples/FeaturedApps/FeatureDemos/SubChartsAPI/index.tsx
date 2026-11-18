@@ -98,7 +98,7 @@ export default function SubchartsGrid() {
                             className="flex-none text-end p-1"
                             style={{
                                 width: "16%",
-                                fontSize: "var(--sc-font-size-sm)",
+                                fontSize: "0.875rem",
                                 textWrap: "nowrap",
                             }}
                         >

@@ -10,6 +10,7 @@ import "./Examples/styles/sc-editor.css";
 import DrawerContent from "./DrawerContent/DrawerContent";
 import AppFooter from "./AppFooter/AppFooter";
 import { SciChartSurface } from "scichart/Charting/Visuals/SciChartSurface";
+import { RUNTIME_LICENSE_KEY } from "../liveRuntime/runtimeLicense";
 import { SciChartDefaults } from "scichart/Charting/Visuals/SciChartDefaults";
 import { generateExamplesGallery } from "../helpers/SciChartExamples";
 import { StateProvider, _useContext } from "../helpers/shared/Helpers/Context";
@@ -126,9 +127,7 @@ function AppContent() {
 
     React.useEffect(() => {
         if (window.location.hostname.includes("scichart.com")) {
-            SciChartSurface.setRuntimeLicenseKey(
-                "H+Bf3l0m3O9Gx8d4X/vCChsFHOhjiTQ0T2lzaif9nz2klHiSfReMWWMGw2Cq4EuOyFgJRqRnlUrbnMIuRnnSu16d96IYP0XhtTJj0V7/ysnEdR7prle0i83/Ozaogy7X2wbeXM0iNBAjwbxJhkJfMtVVNCLh+jJN0122J1PImaqnohEeSO0E5BCGzya0a7tRMVzWOijgaO6CVPNyjfkccY07DgqjDgDKPQGhbgxCgPyvgHVwnLgbCG4p348eTEOGAmwQANZAVEAS5q3kul3OscYLLD+My0ArsWxushDi1xU1egn/pmfr7Mp3nMSpcMd2wv2QA9+XTJJIFGiYqtn95oDSeo5mrBF+mLekv8vMIvVsmvdAtclaTQMSSwXlAn4BpGTpzrMC9FZNTIyKGGBHR9Yhhp7rt1DhfTum1RPXo5j6ELYzqxL2/IuKnrjW3Oe8cOdiN5x9srgWCtFsEpxJBz07CSRutCzgEdwSrNMK6JJsHaWU6xgxlsPUHnWE1dDYmVbvgkKe+5lTsdGQ2wFIqp4/7nmKpm/pXEBPQyOk98PJ3rUKwCkDM7lz9HlheHD1I20BhUkJnVB4eVHrY/xCWvI+O/NutTIH+OAgD8FrwNnjTdCiqnq9pWsqEUjBIfg/noUuIciSUP6nCLiHxdn1fFr7d5xrJBvmsQF4p+5/NvAaCUgTY1NyV/rJhmQI8aLBnSlfCd0+hkKKiif9rhnbPJa2EG7+06e5897mUr5KvZeGXcQHcgSngSxxu9J+WEBtfszDhf4IAnq1LBoNc/Q="
-            );
+            SciChartSurface.setRuntimeLicenseKey(RUNTIME_LICENSE_KEY);
         }
     }, []);
 

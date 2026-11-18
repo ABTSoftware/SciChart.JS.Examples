@@ -13,7 +13,7 @@ import {
 } from "scichart";
 
 import { appTheme } from "../../../theme";
-import { WaferData } from "./store";
+import { WaferData } from "./dataStore";
 
 // Create init function that works with SciChartReact
 export const createInitScatterPlot = () => async (rootElement: string | HTMLDivElement) => {

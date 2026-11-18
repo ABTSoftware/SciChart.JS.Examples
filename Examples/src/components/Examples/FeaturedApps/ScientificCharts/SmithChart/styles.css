@@ -42,7 +42,7 @@
     padding: 0.125rem 0.5rem;
     border-radius: var(--radius);
     color: #fff;
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
     white-space: nowrap;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .sc-smith-placement-hint {
-    color: color-mix(in srgb, var(--text) 55%, transparent);
+    color: color-mix(in srgb, var(--sc-text) 55%, transparent);
 }
 
 .sc-smith-grid-slider {
@@ -125,12 +125,12 @@
 }
 
 .sc-smith-readout-table {
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
     border-collapse: collapse;
 }
 
 .sc-smith-readout-label {
-    color: color-mix(in srgb, var(--text) 55%, transparent);
+    color: color-mix(in srgb, var(--sc-text) 55%, transparent);
     padding-right: 0.5rem;
     white-space: nowrap;
 }

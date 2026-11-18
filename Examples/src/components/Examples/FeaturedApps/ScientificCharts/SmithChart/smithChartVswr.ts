@@ -3,7 +3,7 @@ import { WebGlRenderContext2D } from "scichart/Charting/Drawing/WebGlRenderConte
 import { CoordinateCalculatorBase } from "scichart/Charting/Numerics/CoordinateCalculators/CoordinateCalculatorBase";
 import { ESurfaceType } from "scichart/types/SurfaceType";
 import { getWebGlPenFromCache } from "scichart/Charting/Drawing/Pen2DCache";
-import { SmithState, SmithAction } from "./useSmithChart";
+import { SmithState, SmithAction } from "./smithState";
 import { Rect } from "scichart/Core/Rect";
 import { getArcParams, getArcVertex, getVectorArcVertex } from "scichart/Charting/Visuals/Helpers/NativeObject";
 import { ChartModifierBase2D } from "scichart/Charting/ChartModifiers/ChartModifierBase2D";
@@ -68,11 +68,7 @@ class SmithVswrFillAnnotation extends ArcAnnotationBase {
         if (!strokePen) return;
 
         const wasmContext = renderContext.webAssemblyContext;
-        const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
-            xCalc,
-            yCalc,
-            this._radius
-        );
+        const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(xCalc, yCalc, this._radius);
 
         const vecArcs = getVectorArcVertex(wasmContext);
         const arc = getArcVertex(wasmContext);
@@ -137,11 +133,7 @@ class SmithVswrStrokeAnnotation extends ArcAnnotationBase {
         if (!strokePen) return;
 
         const wasmContext = renderContext.webAssemblyContext;
-        const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(
-            xCalc,
-            yCalc,
-            this._radius
-        );
+        const { cx, cy, radius_px, aspectRatio } = getVswrCirclePixels(xCalc, yCalc, this._radius);
 
         const vecArcs = getVectorArcVertex(wasmContext);
         const arc = getArcVertex(wasmContext);

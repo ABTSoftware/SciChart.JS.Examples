@@ -50,6 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "3d-lidar-visualization",
+        // Loads a multi-million point dataset: running it again in the shared frame can freeze the tab.
+        liveEdit: false,
         metaKeywords: "lidar, 3d, point, cloud, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/LiDAR3DPointCloudDemo",

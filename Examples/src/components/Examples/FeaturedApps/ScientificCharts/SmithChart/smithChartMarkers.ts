@@ -13,7 +13,7 @@ import {
     ModifierMouseArgs,
     EExecuteOn,
 } from "scichart";
-import { GammaPoint, SmithState, SmithAction, Marker, DragMode } from "./useSmithChart";
+import { GammaPoint, SmithState, SmithAction, Marker, DragMode } from "./smithState";
 import { SmithChartResistanceAxis } from "./smithChartAxes";
 
 export type MarkerReadout = {

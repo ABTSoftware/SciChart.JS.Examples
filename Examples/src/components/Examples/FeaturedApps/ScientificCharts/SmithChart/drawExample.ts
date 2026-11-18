@@ -14,7 +14,7 @@ import { SmithChartAdmittanceResistanceAxis, SmithChartAdmittanceReactanceAxis }
 import { SmithMarkersAdapter } from "./smithChartMarkers";
 import { SmithVswrAdapter } from "./smithChartVswr";
 import { SmithChainAdapter } from "./smithChartChain";
-import { SmithState, SmithAction } from "./useSmithChart";
+import { SmithState, SmithAction } from "./smithState";
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const { sciChartSurface, wasmContext } = await SciChartSurface.create(rootElement, {

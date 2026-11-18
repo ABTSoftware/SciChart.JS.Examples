@@ -21,7 +21,9 @@ for (const name of [...names, "ui"]) {
     ast.walkDecls((decl) => {
         if (decl.prop.startsWith("--")) definitions.add(decl.prop);
         if (/\dpx\b/.test(decl.value)) {
-            const isStroke = /^(?:border(?:-(?:top|right|bottom|left))?(?:-width)?|outline(?:-width)?)$/.test(decl.prop);
+            const isStroke = /^(?:border(?:-(?:top|right|bottom|left))?(?:-width)?|outline(?:-width)?)$/.test(
+                decl.prop
+            );
             const alignsBorder =
                 ["margin-left", "margin-top", "top", "left"].includes(decl.prop) && /^-?1px$/.test(decl.value);
             const isTouchMinimum =
@@ -34,10 +36,11 @@ for (const name of [...names, "ui"]) {
         }
         if (decl.prop === "font-size") {
             assert(
-                /^var\(--sc-font-size-(xs|sm|base|lg|xl)\)(?: !important)?$/.test(decl.value) ||
-                    ["inherit", "0", "max(1rem, 16px)"].includes(decl.value) ||
+                ["0.75rem", "0.875rem", "1rem", "1.25rem", "1.75rem", "inherit", "0", "max(1rem, 16px)"].includes(
+                    decl.value
+                ) ||
                     (decl.parent.selector === ":root" && ["87.5%", "93.75%", "96.875%", "100%"].includes(decl.value)),
-                `Use the shared typography scale in sc-${name}.css: ${decl.value}`
+                `Use the standard rem font sizes in sc-${name}.css: ${decl.value}`
             );
         }
         if (decl.prop === "font-family") {

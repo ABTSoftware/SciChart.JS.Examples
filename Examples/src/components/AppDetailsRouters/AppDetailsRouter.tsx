@@ -1,5 +1,7 @@
 import { baseAppPath } from "../../constants";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router";
+import { DraftGuardContext } from "../LivePreview/DraftGuardContext";
 import { EPageFramework, getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { EPageLayout, ExampleSourceFile } from "../../helpers/types/types";
 import DrawerContent from "../DrawerContent/DrawerContent";
@@ -11,6 +13,12 @@ import { StackblitzEditor } from "../CodeSandbox/StackblitzEditor";
 import { SandboxPlatform } from "../CodeSandbox/SandboxPlatform";
 import { CodeActionButtons } from "./CodeActionButtons";
 import { CodePreview } from "../CodePreview/CodePreview";
+import { LivePreview } from "../LivePreview/LivePreview";
+import type { ConsoleEntry } from "../LivePreview/consoleLog";
+import { warmLiveRuntime } from "../LivePreview/warmLiveRuntime";
+import { useDraftGuard } from "../LivePreview/useDraftGuard";
+import { editableFiles, getLiveEditAvailability, hasDraft, toRouterPath } from "../CodePreview/liveEditing";
+import { ConfirmDialog } from "../CodeSandbox/components/ConfirmDialog";
 import { ExamplesSubtitle } from "./ExamplesSubtitle";
 import { SourceFilesContext } from "./SourceFilesLoading/SourceFilesContext";
 import type { StackBlitzResponse } from "../../helpers/types/types";
@@ -21,6 +29,15 @@ import { ExampleBreadcrumbs } from "../Breadcrumbs/ExampleBreadcrumbs";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const EXAMPLE_LAYOUT_STORAGE_KEY = "scichart-demo-example-layout";
+const AUTO_RUN_STORAGE_KEY = "scichart-demo-live-auto-run";
+
+const getSavedAutoRun = () => {
+    try {
+        return window.localStorage.getItem(AUTO_RUN_STORAGE_KEY) !== "false";
+    } catch {
+        return true;
+    }
+};
 
 const getSavedPageLayout = (fallback: EPageLayout): EPageLayout => {
     if (typeof window === "undefined") return fallback;
@@ -57,9 +74,19 @@ const AppDetailsRouter: FC<{
     const [sandboxPlatform, setSandboxPlatform] = useState<SandboxPlatform>(SandboxPlatform.CodeSandbox);
     const [sandboxId, setSandboxId] = useState<string>("");
     const [projectFiles, setProjectFiles] = useState<StackBlitzResponse>(null);
+    const navigate = useNavigate();
+    const [draft, setDraft] = useState<ExampleSourceFile[] | null>(null);
+    const [autoRun, setAutoRun] = useState(getSavedAutoRun);
+    const [runRequest, setRunRequest] = useState(0);
+    const [consoleEntries, setConsoleEntries] = useState<ConsoleEntry[]>([]);
+    const [ranFiles, setRanFiles] = useState<ExampleSourceFile[] | null>(null);
+    // A navigation waiting for the visitor to confirm that the draft may be discarded.
+    const [pendingNavigation, setPendingNavigation] = useState<(() => void) | null>(null);
     const [sourceFramework, setSourceFramework] = useState<EPageFramework | null>(initialSourceFilesVariant.framework);
 
     useEffect(() => {
+        setDraft(null);
+        setRanFiles(null);
         setPageLayout(getSavedPageLayout(currentExample.pageLayout ?? EPageLayout.Default));
         window.scrollTo({
             top: 0,
@@ -124,6 +151,46 @@ const AppDetailsRouter: FC<{
         setEmbedCode(true);
     };
 
+    const liveFramework =
+        sourceFramework === EPageFramework.React || sourceFramework === EPageFramework.Vanilla
+            ? sourceFramework
+            : null;
+    const liveAvailability = getLiveEditAvailability({
+        framework: sourceFramework || selectedFramework,
+        liveEdit: currentExample.liveEdit,
+        narrow: isNarrowViewport,
+    }).status;
+    const draftActive = !!draft && hasDraft(draft, sourceFiles);
+    const showLivePreview = draftActive && liveFramework !== null && liveAvailability === "available";
+    const askBeforeLeaving = useCallback((proceed: () => void) => setPendingNavigation(() => proceed), []);
+    // Links are caught here; code that calls `navigate` goes through useGuardedNavigate.
+    const handleBlockedLink = useCallback(
+        (href: string) => askBeforeLeaving(() => navigate(toRouterPath(href, baseAppPath))),
+        [askBeforeLeaving, navigate]
+    );
+    useDraftGuard(draftActive, handleBlockedLink);
+    const draftGuard = useMemo(() => ({ active: draftActive, ask: askBeforeLeaving }), [draftActive, askBeforeLeaving]);
+    // With auto-run off, the play button appears once the draft has changed since the last run.
+    const runPending = !autoRun && showLivePreview && draft !== ranFiles;
+    const liveControls = useMemo(
+        () => ({
+            availability: liveAvailability,
+            autoRun,
+            onAutoRunChange: (value: boolean) => {
+                setAutoRun(value);
+                try {
+                    window.localStorage.setItem(AUTO_RUN_STORAGE_KEY, String(value));
+                } catch {
+                    // The switch still works for this visit.
+                }
+            },
+            onRun: () => setRunRequest((count) => count + 1),
+            onPrepare: warmLiveRuntime,
+            runPending,
+        }),
+        [liveAvailability, autoRun, runPending]
+    );
+
     const renderEditor = () => {
         return sandboxPlatform === SandboxPlatform.CodeSandbox ? (
             <CodeSandbox
@@ -138,6 +205,7 @@ const AppDetailsRouter: FC<{
     };
 
     return (
+        <DraftGuardContext.Provider value={draftGuard}>
         <div className={`sc-app-details-layout ${isExampleNavigationOpen ? "sc-app-details-nav-open" : ""}`}>
             <div
                 id="EXAMPLE_NAVIGATION"
@@ -235,25 +303,57 @@ const AppDetailsRouter: FC<{
                     </div>
 
                     {/* Main example section */}
-                    {embedCode ? (
-                        renderEditor()
-                    ) : (
-                        <div className="sc-app-chart-code">
-                            <ExamplesRoot />
-                            <CodeActionButtons onSandboxOpen={handleSandboxOpen} className="sc-editor-actions" />
+                    {embedCode && renderEditor()}
+                    {/* While a hosted sandbox is open the source editor stays mounted (hidden) if there is a draft,
+                        so coming back does not show the original code over the edited chart. */}
+                    {(!embedCode || draftActive) && (
+                        <div className="sc-app-chart-code" style={embedCode ? { display: "none" } : undefined}>
+                            <ExamplesRoot
+                                preview={
+                                    showLivePreview ? (
+                                        <LivePreview
+                                            files={draft!}
+                                            framework={liveFramework === EPageFramework.React ? "react" : "javascript"}
+                                            autoRun={autoRun}
+                                            runRequest={runRequest}
+                                            onConsole={setConsoleEntries}
+                                            onRan={setRanFiles}
+                                        />
+                                    ) : undefined
+                                }
+                            />
+                            <CodeActionButtons
+                                draftFiles={draftActive && draft ? editableFiles(draft) : null}
+                                onSandboxOpen={handleSandboxOpen} className="sc-editor-actions" />
                             <CodePreview
                                 key={`${currentExample.path}:${sourceFramework}`}
                                 files={sourceFiles}
                                 framework={sourceFramework || selectedFramework}
                                 examplePath={currentExample.path}
+                                onFilesChange={setDraft}
+                                live={liveControls}
+                                consoleEntries={showLivePreview ? consoleEntries : null}
                             />
                         </div>
                     )}
+                    <ConfirmDialog
+                        isOpen={pendingNavigation !== null}
+                        title="Discard your changes?"
+                        message="You have edited this example. Leaving this page will discard your changes."
+                        onCancel={() => setPendingNavigation(null)}
+                        onConfirm={() => {
+                            const proceed = pendingNavigation!;
+                            setPendingNavigation(null);
+                            setDraft(null);
+                            proceed();
+                        }}
+                    />
                     <MarkdownContent />
                 </div>
                 <GalleryItems examples={seeAlso} needsH1={false} />
             </div>
         </div>
+        </DraftGuardContext.Provider>
     );
 };
 

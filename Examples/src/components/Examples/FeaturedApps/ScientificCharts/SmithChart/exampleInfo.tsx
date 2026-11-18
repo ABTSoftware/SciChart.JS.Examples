@@ -151,6 +151,8 @@ Three adapters add interactivity on top of the chart surface:
         },
         documentationLinks: [],
         path: "smith-chart",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "React smith chart",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/SmithChart",

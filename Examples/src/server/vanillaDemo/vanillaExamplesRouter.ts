@@ -1,97 +1,71 @@
 import * as path from "path";
-import * as fs from "fs";
 import express from "express";
+import * as ts from "typescript";
 import { htmlTemplate } from "./vanillaExampleHtmlTemplate";
-import { EXAMPLES_PAGES, TExamplePage } from "../../components/AppRouter/examplePages";
+import { EXAMPLES_PAGES } from "../../components/AppRouter/examplePages";
+import { getSandboxConfig } from "../services/sandbox";
+import { EPageFramework } from "../../helpers/shared/Helpers/frameworkTypes";
+import { moduleReferences } from "../services/sandbox/sandboxDependencyUtils";
 
 export const vanillaExamplesRouter = express.Router();
-
-const availableFiles = [
-    "index.html",
-    "index.js",
-    "drawExample.js",
-    "common.js",
-    "theme.js",
-    "scichart.browser.mjs",
-    "DepthCursorModifier.js",
-    "data.js",
-] as const;
-
 const basePath = path.join(__dirname, "Examples");
+const projects = new Map<string, ReturnType<typeof getSandboxConfig>>();
 
-const isValidFilePath = (requestedPath: string) => {
-    const absoluteRootFolderPath = path.resolve(basePath);
-    const absoluteRequestedFilePath = path.resolve(path.join(basePath, requestedPath));
-
-    return absoluteRequestedFilePath.startsWith(absoluteRootFolderPath);
-};
-
-vanillaExamplesRouter.get("/:example/:file", async (req, res) => {
-    const examplePath = req.params.example;
-    const filename = req.params.file as (typeof availableFiles)[number];
-
-    if (!isValidFilePath(filename)) {
-        res.sendStatus(400);
-        return;
-    }
-
-    const currentExampleKey = Object.keys(EXAMPLES_PAGES).find((key) => EXAMPLES_PAGES[key].path === examplePath);
-    const currentExample = EXAMPLES_PAGES[currentExampleKey];
-
-    if (currentExample) {
-        const vanillaJsSetupPath = path.join(basePath, currentExample.filepath, "vanilla.js");
-
-        // check if vanilla example exists
-        try {
-            const vanillaJsSetup = await fs.promises.readFile(vanillaJsSetupPath, "utf8");
-        } catch {
+vanillaExamplesRouter.get("/:example/:file", async (req, res, next) => {
+    try {
+        const currentExample = Object.values(EXAMPLES_PAGES).find((page) => page.path === req.params.example);
+        if (!currentExample) return res.sendStatus(404);
+        const filename = req.params.file;
+        if (
+            !["index.html", "index.js", "common.js", "scichart.browser.mjs", "styles.css"].includes(filename) &&
+            !/^[\w.-]+\.js$/.test(filename)
+        )
             return res.sendStatus(404);
+        if (filename === "common.js" || filename === "scichart.browser.mjs")
+            return res.sendFile(path.join(__dirname, filename));
+        if (!projects.has(currentExample.path)) {
+            const pending = getSandboxConfig(
+                path.join(basePath, currentExample.filepath),
+                currentExample,
+                EPageFramework.Vanilla,
+                ""
+            );
+            projects.set(currentExample.path, pending);
+            void pending.catch(() => projects.delete(currentExample.path));
         }
-
+        const { files } = await projects.get(currentExample.path);
         if (filename === "index.html") {
-            const htmlPath = path.join(basePath, currentExample.filepath, filename);
-            const cssPath = path.join(basePath, currentExample.filepath, "vanilla.css");
-            let body = "";
-            let styles = "";
-            try {
-                const [htmlSetup, cssSetup] = await Promise.all([
-                    fs.promises.readFile(htmlPath, "utf8").catch((): string => ""),
-                    fs.promises.readFile(cssPath, "utf8").catch((): string => ""),
-                ]);
-
-                body = htmlSetup;
-                styles = cssSetup;
-            } catch {
-                return res.sendStatus(500);
+            const dependencies = JSON.parse(files["package.json"].content).dependencies as Record<string, string>;
+            const imports: Record<string, string> = { scichart: "./scichart.browser.mjs" };
+            for (const [name, version] of Object.entries(dependencies)) {
+                if (name === "scichart") continue;
+                imports[name] = `https://esm.sh/${name}@${version}`;
+                imports[name + "/"] = `https://esm.sh/${name}@${version}/`;
             }
-
-            const renderNav = !!req.query["nav"];
-            const generatedHtml = htmlTemplate({ body, styles, renderNav });
-
-            return res.send(generatedHtml);
-        } else {
-            const file = getExampleSourceFile(filename, currentExample);
-
-            return res.sendFile(file);
+            return res.send(htmlTemplate({ imports, renderNav: !!req.query["nav"] }));
         }
-    } else {
-        return res.sendStatus(404);
+        if (filename === "styles.css") return res.type("css").send(files["src/styles.css"].content);
+        if (filename === "index.js") return res.type("js").send('import "./common.js";\nimport "./app.js";');
+        const stem = filename.slice(0, -3);
+        const file = files[`src/${stem}.ts`] ?? files[`src/${stem}.tsx`] ?? files[`src/${filename}`];
+        if (!file || file.isBinary) return res.sendStatus(404);
+        let code = ts.transpileModule(file.content, {
+            compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+            fileName: stem + ".ts",
+        }).outputText;
+        // Exported dependencies are flattened; give native browser imports explicit extensions.
+        for (const reference of moduleReferences(code, filename).reverse()) {
+            if (!reference.text.startsWith(".")) continue;
+            if (reference.text.endsWith(".css")) {
+                if (ts.isImportDeclaration(reference.parent))
+                    code = code.slice(0, reference.parent.getStart()) + code.slice(reference.parent.getEnd());
+            } else if (!path.posix.extname(reference.text)) {
+                const end = reference.getEnd() - 1;
+                code = code.slice(0, end) + ".js" + code.slice(end);
+            }
+        }
+        return res.type("js").send(code);
+    } catch (error) {
+        return next(error);
     }
 });
-
-const getExampleSourceFile = (filename: (typeof availableFiles)[number], currentExample: TExamplePage) => {
-    switch (filename) {
-        case "common.js":
-            return path.join(__dirname, "common.js");
-        case "theme.js":
-            return path.join(__dirname, "Examples/theme.js");
-        case "scichart.browser.mjs":
-            return path.join(__dirname, "scichart.browser.mjs");
-        case "index.js":
-            return path.join(basePath, currentExample.filepath, "vanilla.js");
-        case "drawExample.js":
-            return path.join(basePath, currentExample.filepath, "drawExample.js");
-        default:
-            return path.join(basePath, currentExample.filepath, filename);
-    }
-};

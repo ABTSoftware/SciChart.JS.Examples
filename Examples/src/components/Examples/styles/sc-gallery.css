@@ -71,7 +71,7 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    font-size: var(--sc-font-size-base);
+    font-size: 1rem;
     line-height: 1.5;
 }
 .sc-gallery-new {
@@ -83,7 +83,7 @@
     border-radius: 0.25rem;
     background: var(--new-badge-color);
     color: white;
-    font-size: var(--sc-font-size-xs);
+    font-size: 0.75rem;
     font-weight: 600;
 }
 
@@ -98,7 +98,7 @@
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
     .sc-gallery-dense-grid h3 {
-        font-size: var(--sc-font-size-sm);
+        font-size: 0.875rem;
     }
 }
 @media (min-width: 1200px) {

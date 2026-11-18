@@ -1,21 +1,5 @@
-import { drawExample } from "./drawExample";
+import { createExample } from "./createExample";
 
-/**
- * Creates charts on the provided root elements
- * @returns cleanup function
- */
-const create = async () => {
-    const { sciChartSurface, controls } = await drawExample("chart");
-    controls.startAnimation();
-
-    const destructor = () => {
-        controls.stopAnimation();
-        sciChartSurface.delete();
-    };
-
-    return destructor;
-};
-
-create();
-
-// call the `destructor` returned by the `create` promise to dispose the charts when necessary
+const root = document.getElementById("chart") as HTMLDivElement;
+const demo = createExample(root);
+window.addEventListener("pagehide", demo.dispose, { once: true });

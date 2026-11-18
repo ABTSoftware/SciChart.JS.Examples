@@ -55,6 +55,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "high-precision-date-axis",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "date, formatting, nanoseconds, date-fns, precision, axis, custom, javascript, webgl",
         onWebsite: true,
         filepath: "Charts2D/AxisLabelCustomization/DateAxisPrecisionLabelFormatting",

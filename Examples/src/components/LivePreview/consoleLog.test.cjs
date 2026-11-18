@@ -1,0 +1,11 @@
+const assert = require("node:assert/strict");
+const path = require("node:path");
+require("ts-node").register({ project: path.resolve(__dirname, "../../../tsconfig.node.json"), transpileOnly: true, compilerOptions: { module: "commonjs", moduleResolution: "node" } });
+const { appendEntry, countErrors, MAX_CONSOLE_LINES } = require("./consoleLog.ts");
+let entries = [];
+for (let i = 0; i < MAX_CONSOLE_LINES + 25; i++) entries = appendEntry(entries, { id: i, kind: "log", text: String(i) });
+assert.equal(entries.length, 300);
+assert.equal(entries[0].id, 25);
+assert.equal(entries.at(-1).id, 324);
+assert.equal(countErrors([{ id: 1, kind: "log", text: "" }, { id: 2, kind: "warn", text: "" }, { id: 3, kind: "error", text: "" }, { id: 4, kind: "compile", text: "" }, { id: 5, kind: "runtime", text: "" }]), 3);
+console.log("consoleLog tests passed");

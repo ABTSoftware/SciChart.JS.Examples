@@ -4,7 +4,17 @@
 
 The initial server render contains highlighted `<pre><code>` for the selected file. No client editor library or interaction is needed to receive that source HTML. The complete project also arrives in the serialized source state; the explorer switches the displayed file. Ctrl+A or Cmd+A inside the editor selects only the open file’s code, in both Read and Edit modes, so native copying excludes the line numbers and surrounding page. Line numbers are excluded from the accessibility tree. The file explorer supports arrow keys and Home/End; editing uses a labelled textarea, Tab/Shift+Tab indentation, and Escape to return to Read mode. Fullscreen traps focus and restores page scrolling on exit.
 
-Edits live in memory until the example/framework changes or the page reloads. Selection and project downloads use the draft. The existing hosted sandbox actions open the canonical example, not this local draft. There is no execution of edited code on the examples page.
+## Live editing
+
+Design: [LIVE-EDIT-PLAN.md](../../../LIVE-EDIT-PLAN.md) and [ADR 0001](../../../docs/adr/0001-live-preview-runs-in-a-same-origin-frame.md). Terms: [CONTEXT.md](../../../CONTEXT.md).
+
+Pressing **Edit** swaps the highlighted read view for CodeMirror 6 (`CodeMirrorEditor.tsx`, a lazy chunk; the textarea is the fallback if it fails to load). Only `src/*.ts|tsx|js|jsx|css` files are editable (`isEditableFile`); the rest stay in read mode with a "read-only" marker. The server-rendered `<pre><code>` is unchanged and the editor is never part of the initial HTML (`CodePreview.serverRender.test.cjs`).
+
+`CodePreview` keeps the draft and reports it through `onFilesChange`. `AppDetailsRouter` owns what happens next: once the draft differs from the example project (`hasDraft`), `LivePreview` replaces the built-in chart. Auto-run fires one second after the last edit (the switch is remembered in `localStorage`); Run and Ctrl/Cmd+Enter run now. Reset, switching example or framework, and closing the tab ask before discarding a draft (the browser Back button cannot be intercepted by the router in use).
+
+`LivePreview` talks to the frame at `/live-frame` only through `postMessage` (`src/liveRuntime/protocol.ts`), checking `event.source` and `event.origin`. The runtime inside the frame is `src/liveRuntime/runtime.ts`, built by `scripts/buildLiveRuntime.cjs`. Examples that import a package outside the runtime's set, or that cannot run in the frame, opt out with `liveEdit: false` in `exampleInfo.tsx`; the Edit button then explains that the example is too complex for the in-page sandbox. Angular stays read-only.
+
+The draft lives in memory for the page visit. "Download project" and CodeSandbox (`POST /api/sandboxurl/:example`) use it.
 
 ## Moving app components
 
@@ -12,16 +22,6 @@ Edits live in memory until the example/framework changes or the page reloads. Se
 
 `DrawerContent` supplies `NavigationProvider`. Navigation blocks read collapse state and gallery tracking through `useNavigationContext()`; parents no longer forward navigation callbacks. Editor file selection and drafts belong to `CodePreview`. Its direct props describe the loaded source project, including the actual framework when the requested variant is unavailable.
 
-## Future harness adapter
-
-Connect `onFilesChange` to a separate preview controller when a compilation service and harness deployment exist. The controller, not `CodePreview`, owns compilation, iframe creation/disposal, readiness, and replaying the latest compiled content. Keep semantic source rendering for the selected file if an editor such as Monaco later replaces the textarea.
-
-The [SciClawd harness contract](https://github.com/SciChartOrg/SciClawd/blob/main/use/suds/sciclawd/scichart-harness.md) runs edited JavaScript on a **separate origin**. Use the intended parent origin in the harness `?from=` parameter. Both sides must check `event.origin` and `event.source`; use an exact target origin for `postMessage`. Do not evaluate edited code, import it, or inject it into the parent document.
-
-After `sciclawd-harness-ready`, the controller sends `sciclawd-chart-content` with `definitionJson`, `js`, and/or `chartData`. A later `sciclawd-chart-data` message updates `data`. Receive `sciclawd-chart-error` and `sciclawd-chart-event` through that same checked boundary. Full replacement must tear down the previous chart and user handlers. Function-style JS receives `(surface, SciChart, data, emit)` and can return update/teardown; module-style `js.code` exports `setup(div, SciChart, data, emit)`, `update(SciChart, data, emit)`, and optional `teardown`.
-
-This editor supplies editable project files and a controller callback. It deliberately does not invent a compiler, runner URL, or pretend Run button before that infrastructure exists.
-
 ## Checks
 
-From `Examples`, run `node src/helpers/shared/Helpers/Context.test.cjs`, `node src/components/CodePreview/projectFiles.test.cjs`, `npm run typecheck`, and `npm run checkAppStyles`. The ZIP check uses the system `unzip` reader to validate checksums, paths, and exact UTF-8 file content independently of the writer.
+From `Examples`, run `npm run testLive` (loader, protocol, live-editing helpers, server render, console log, draft endpoint), `npm run checkLiveExamples` (every example in the live frame; needs `npm run dev`), and `node src/helpers/shared/Helpers/Context.test.cjs`, `node src/components/CodePreview/projectFiles.test.cjs`, `npm run typecheck`, and `npm run checkAppStyles`. The ZIP check uses the system `unzip` reader to validate checksums, paths, and exact UTF-8 file content independently of the writer.
