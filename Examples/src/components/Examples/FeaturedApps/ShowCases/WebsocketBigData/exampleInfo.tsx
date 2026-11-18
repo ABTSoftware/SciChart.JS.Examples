@@ -50,6 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "chart-websocket-bigdata-demo",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "realtime, performance, demo, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/ShowCases/WebsocketBigData",

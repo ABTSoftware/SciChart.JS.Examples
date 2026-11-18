@@ -1,4 +1,6 @@
 export interface IExampleMetadata {
+    /** Set to false to make this a read-only example: it cannot be edited in the in-page sandbox. */
+    liveEdit?: false;
     /** Not used anywhere. Use the `frameworks.<frameworkName>.title` instead */
     exampleTitle?: string;
     id: string; // another different unique id!!

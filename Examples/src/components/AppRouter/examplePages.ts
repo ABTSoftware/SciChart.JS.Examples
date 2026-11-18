@@ -20,6 +20,11 @@ export type TExampleInfo = {
     path: string;
 
     /**
+     * Set to false to make this a read-only example: its source cannot be edited in the in-page sandbox.
+     */
+    liveEdit?: false;
+
+    /**
      * Content shown below title on example page
      */
     subtitle: (frameworkName: string) => React.ReactElement | string;

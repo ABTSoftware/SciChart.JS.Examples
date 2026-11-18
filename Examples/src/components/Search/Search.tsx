@@ -1,11 +1,11 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router";
+import { useGuardedNavigate } from "../LivePreview/DraftGuardContext";
 import { filterSearchItems, generateSearchItems, getTitleSearchParts, type TSearchItem } from "./searchItems";
 import { ALL_MENU_ITEMS } from "../AppRouter/examples";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export default function Search() {
-    const navigate = useNavigate();
+    const navigate = useGuardedNavigate();
     const { state } = _useContext();
     const items = useMemo(() => generateSearchItems(ALL_MENU_ITEMS, state.framework), [state.framework]);
     const [query, setQuery] = useState("");

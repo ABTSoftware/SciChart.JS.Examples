@@ -105,6 +105,11 @@ router.get("/sandboxurl/:example", (req, res) => {
     return getSandboxUrlEndpoint(req, res);
 });
 
+// The same, with the visitor's edited files in the body
+router.post("/sandboxurl/:example", express.json({ limit: "3mb" }), (req, res) => {
+    return getSandboxUrlEndpoint(req, res);
+});
+
 // Get files for StackBlitz
 router.get("/stackblitz/files/:example", getStackblitzFiles);
 

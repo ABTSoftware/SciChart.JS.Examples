@@ -111,6 +111,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "wafer-analysis",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "React wafer analysis chart",
         onWebsite: true,
         filepath: "FeaturedApps/ScientificCharts/WaferAnalysis",

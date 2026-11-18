@@ -35,10 +35,19 @@ const GET_SANDBOX_URL = "api/sandboxurl/";
 export async function getSandboxUrl(
     examplePath: string,
     framework: EPageFramework = EPageFramework.React,
-    platform = "codeSandbox"
+    platform = "codeSandbox",
+    /** The visitor's edited files; without them the example opens as shipped. */
+    draftFiles?: { name: string; content: string }[]
 ): Promise<{ id: string }> {
     try {
-        const response = await fetch(`${GET_SANDBOX_URL}${examplePath}?framework=${framework}&platform=${platform}`);
+        const url = `${GET_SANDBOX_URL}${examplePath}?framework=${framework}&platform=${platform}`;
+        const response = draftFiles
+            ? await fetch(url, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ files: draftFiles }),
+              })
+            : await fetch(url);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

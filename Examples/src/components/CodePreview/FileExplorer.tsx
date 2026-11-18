@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react"
 import type { ExampleSourceFile } from "../../helpers/types/types";
 import { buildFileTree, type FileTreeNode } from "./projectFiles";
 import { EPageFramework } from "../../helpers/shared/Helpers/frameworkParametrization";
-import { useNavigate } from "react-router";
+import { useGuardedNavigate } from "../LivePreview/DraftGuardContext";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
 export const FileIcon = ({ name }: { name: string }) => {
@@ -20,7 +20,7 @@ type Props = {
 export function FileExplorer({ files, selectedName, modifiedNames, onSelect }: Props) {
     const { state } = _useContext();
     const { framework, currentExample } = state;
-    const navigate = useNavigate();
+    const navigate = useGuardedNavigate();
 
     const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
     const [focusedPath, setFocusedPath] = useState(selectedName);

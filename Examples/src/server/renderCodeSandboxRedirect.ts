@@ -6,6 +6,7 @@ import { EPageFramework, EPlatform } from "../helpers/shared/Helpers/frameworkPa
 import { getParameters } from "./codeSandboxLib";
 import { getSandboxConfig } from "./services/sandbox";
 import { SandboxConfig, getSourceFilesForPath, loadStyles } from "./services/sandbox/sandboxDependencyUtils";
+import { applyDraft, DraftError } from "./services/sandbox/applyDraft";
 import { readSourceFiles } from "./services/sandbox/readSourceFiles";
 import { getPackageJson } from "./services/sandbox/sandboxPackages";
 import { SANDBOX_TEMPLATE } from "./services/sandbox/constants";
@@ -231,6 +232,10 @@ const getId = async (response: globalThis.Response) => {
     return sandboxId;
 };
 
+/**
+ * Creates a CodeSandbox. `GET` defines the example as shipped; `POST` takes the visitor's draft in the body
+ * (`{ files: [{ name, content }] }`) and applies it to the example project first.
+ */
 export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
     try {
         await loadStyles();
@@ -255,7 +260,17 @@ export const getSandboxUrlEndpoint = async (req: Request, res: Response) => {
             }
             let baseUrl = req.protocol + "://" + req.get("host");
             const folderPath = path.join(basePath, currentExample.filepath);
-            const { files, actualFramework } = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            const config = await getSandboxConfig(folderPath, currentExample, framework, baseUrl);
+            const { actualFramework } = config;
+            let files = config.files;
+            if (req.method === "POST") {
+                try {
+                    files = applyDraft(files, req.body?.files);
+                } catch (error) {
+                    if (error instanceof DraftError) return res.status(error.status).json({ error: error.message });
+                    throw error;
+                }
+            }
 
             if (platform === EPlatform.CodeSandbox) {
                 const template = SANDBOX_TEMPLATE;

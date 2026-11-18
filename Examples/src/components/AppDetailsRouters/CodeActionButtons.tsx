@@ -8,6 +8,8 @@ import type { StackBlitzResponse } from "../../helpers/types/types";
 
 type CodeActionButtonsProps = {
     className?: string;
+    /** Files of the visitor's draft, when there is one; CodeSandbox opens them instead of the shipped example. */
+    draftFiles?: { name: string; content: string }[] | null;
     onSandboxOpen: (
         platform: SandboxPlatform,
         sandboxId: string,
@@ -15,7 +17,7 @@ type CodeActionButtonsProps = {
     ) => void;
 };
 
-export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSandboxOpen }): ReactNode => {
+export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, draftFiles, onSandboxOpen }): ReactNode => {
     const {
         state: { currentExample, framework: selectedFramework },
     } = _useContext();
@@ -30,7 +32,12 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
         e.preventDefault();
         try {
             if (platform === SandboxPlatform.CodeSandbox) {
-                const { id } = await getSandboxUrl(currentExample.path, selectedFramework, platform);
+                const { id } = await getSandboxUrl(
+                    currentExample.path,
+                    selectedFramework,
+                    platform,
+                    draftFiles ?? undefined
+                );
                 if (id) {
                     onSandboxOpen(platform, id);
                 } else {
@@ -57,6 +64,7 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
                 rel="nofollow"
                 title={`View ${getFrameworkContent(currentExample.title, selectedFramework)} in fullscreen`}
             />
+            {/* StackBlitz is not offered while live editing is the way to edit an example here.
             <CodeActionButton
                 iconName="exampleStackblitz"
                 label="Edit"
@@ -64,12 +72,13 @@ export const CodeActionButtons: FC<CodeActionButtonsProps> = ({ className, onSan
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.StackBlitz)}
                 title={`Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in StackBlitz`}
             />
+            */}
             <CodeActionButton
                 iconName="codesandbox"
                 label="&nbsp;Edit"
                 className={`sc-editor-action sc-editor-action-dark`}
                 onClick={(e) => handleSandboxClick(e, SandboxPlatform.CodeSandbox)}
-                title={`Edit ${getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`}
+                title={`Open ${draftFiles ? "your edits" : getFrameworkContent(currentExample.title, selectedFramework)} in CodeSandbox`}
             />
             <CodeActionButton
                 iconName="docs"

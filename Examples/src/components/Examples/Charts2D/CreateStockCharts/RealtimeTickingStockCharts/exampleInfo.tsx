@@ -50,6 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "realtime-ticking-stock-charts",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "real-time, ticking, updating, stock, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "Charts2D/CreateStockCharts/RealtimeTickingStockCharts",

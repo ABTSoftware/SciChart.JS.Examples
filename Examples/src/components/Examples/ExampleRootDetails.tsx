@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import SeoTags from "../SeoTags/SeoTags";
 import { updateGoogleTagManagerPage } from "../../utils/googleTagManager";
 import { getExampleComponent } from "../AppRouter/getExampleComponent";
@@ -6,7 +6,8 @@ import { ExampleStrings } from "./ExampleStrings";
 import { getFrameworkContent } from "../../helpers/shared/Helpers/frameworkParametrization";
 import { _useContext } from "../../helpers/shared/Helpers/Context";
 
-const ExamplesRootDetails: FC = () => {
+/** `preview` replaces the built-in chart (the live preview of an edited draft); the SEO tags stay mounted. */
+const ExamplesRootDetails: FC<{ preview?: ReactNode }> = ({ preview }) => {
     const {
         state: { currentExample: examplePage, framework },
     } = _useContext();
@@ -37,7 +38,7 @@ const ExamplesRootDetails: FC = () => {
                 framework={framework}
             />
             <div className="sc-app-example">
-                <ExampleComponent />
+                {preview ?? <ExampleComponent />}
             </div>
         </div>
     );

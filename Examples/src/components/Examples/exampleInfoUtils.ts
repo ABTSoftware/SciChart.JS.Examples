@@ -57,6 +57,7 @@ export const createExampleInfo = (metadata: IExampleMetadata): TExampleInfo => (
     reactComponent: metadata.reactComponent,
     isNew: metadata?.isNew,
     alsoKnownAs: metadata?.alsoKnownAs,
+    liveEdit: metadata.liveEdit,
 });
 
 function normalizeValue(value: unknown): unknown {

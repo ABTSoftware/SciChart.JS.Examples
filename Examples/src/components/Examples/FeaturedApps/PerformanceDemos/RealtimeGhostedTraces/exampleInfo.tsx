@@ -50,6 +50,8 @@ const metaData: IExampleMetadata =
             },
         ],
         path: "realtime-ghosted-traces-chart",
+        // Imports a package the in-page sandbox does not provide.
+        liveEdit: false,
         metaKeywords: "realtime, ghosted, traces, chart, javascript, webgl, canvas",
         onWebsite: true,
         filepath: "FeaturedApps/PerformanceDemos/RealtimeGhostedTraces",

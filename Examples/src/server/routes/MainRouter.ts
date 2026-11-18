@@ -1,3 +1,4 @@
+import * as path from "path";
 import { Router, static as makeStaticRouter, Request, Response, NextFunction } from "express";
 import * as defaultConfig from "../../../config/default";
 import { api } from "../api";
@@ -27,6 +28,13 @@ mainRouter.use("/api", api);
 mainRouter.use("/services/oembed", oembed);
 mainRouter.use("/services/variants", getAvailableVariants);
 mainRouter.use("/services/export", exportExampleInfo);
+// The live frame page and its hashed runtime are written to the build folder by scripts/buildLiveRuntime.cjs.
+mainRouter.get(["/live-frame", "/demo/live-frame"], (req: Request, res: Response) => {
+    res.sendFile("live-frame.html", { root: path.resolve(targetDir) });
+});
+mainRouter.get(/^\/demo\/(live-runtime\.[0-9a-f]+\.js)$/, (req: Request, res: Response) => {
+    res.sendFile(req.params[0], { root: path.resolve(targetDir) });
+});
 mainRouter.use("/vanillaDemo", vanillaExamplesRouter);
 
 const isValidFramework = (framework: EPageFramework) => Object.values(EPageFramework).includes(framework);

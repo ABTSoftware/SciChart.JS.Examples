@@ -46,6 +46,29 @@ module.exports = function setupMiddleware(app, { withApi = true } = {}) {
             app.get(url, (req, res) => res.sendFile(filename));
         }
     }
+    // The live frame: a same-origin page that compiles and runs an example project (see LIVE-EDIT-PLAN.md).
+    const frameHeaders = {
+        "Cache-Control": "no-store",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "credentialless",
+    };
+    const buildLiveRuntime = require("./buildLiveRuntime.cjs").createLiveRuntimeBuilder();
+    app.get(["/live-frame", "/demo/live-frame"], async (req, res, next) => {
+        try {
+            res.type("html").set(frameHeaders).send((await buildLiveRuntime()).html);
+        } catch (error) {
+            next(error);
+        }
+    });
+    app.get(/^(?:\/demo)?\/live-runtime\.[0-9a-f]+\.js$/, async (req, res, next) => {
+        try {
+            const { code, scriptName } = await buildLiveRuntime();
+            if (!req.path.endsWith(scriptName)) return res.sendStatus(404);
+            res.type("js").set(frameHeaders).send(code);
+        } catch (error) {
+            next(error);
+        }
+    });
     app.use("/assets", express.static(path.join(root, "src/assets"), { index: false }));
     const images = new Map();
     const examplesRoot = path.join(root, "src/components/Examples");
