@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Column Category Chart** using SciChart.js, with a custom positive/negative threshold fill & stroke for each column.",
                 title: "React Polar Column Category Chart",
-                pageTitle: "React Polar Column Category Chart",
+                pageTitle: "React Polar Column Category Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Create a React Polar Colum Category chart visualizing UK consumer price changes. Try the demo with a custom positive/negative threshold fill and stroke.",
+                    "Build a React Polar Column Category Chart in SciChart.js with custom positive and negative threshold fills, shown here on UK price change data.",
                 markdownContent:
                     "## Polar Column Category Chart - React\n\n### Overview\nThis React example showcases a polar column chart visualizing UK consumer price changes. The component leverages SciChart's React integration for seamless chart lifecycle management.\n\n### Technical Implementation\nThe chart is initialized via the `<SciChartReact>` component's `initChart` prop, which creates a [SciChartPolarSurface](https://www.scichart.com/documentation/js/v6/typedoc/classes/scichartpolarsurface.html). The implementation uses React hooks pattern while maintaining SciChart's optimal WebAssembly rendering performance.\n\n### Features and Capabilities\nNotable features include:\n- Category-based angular axis with food labels\n- Value-based radial axis with percentage formatting\n- Custom palette provider for threshold-based coloring\n- Built-in [chart modifiers](https://www.scichart.com/documentation/js/v6/get-started/tutorials-js-npm-webpack/tutorial-03-adding-zooming-panning-behavior/#chartmodifiers) for interactivity\n- Responsive design through CSS classes\n\n### Integration and Best Practices\nThe example demonstrates React best practices by:\n- Using SciChart's dedicated [React wrapper](https://www.scichart.com/documentation/js/v6/get-started/tutorials-react/tutorial-01-setting-up-project-with-scichart-react/)\n- Properly handling async initialization\n- Applying theme consistency through shared styles\n- Maintaining clean component separation",
             },

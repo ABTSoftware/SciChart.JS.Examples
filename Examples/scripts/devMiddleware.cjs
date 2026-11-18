@@ -20,7 +20,6 @@ function loadMock(modulePath, name) {
 module.exports = function setupMiddleware(app, { withApi = true } = {}) {
     if (withApi) {
         const mocks = {
-            lidarData: ["src/server/Data/tq3080_DSM_2M.js", "tq3080_DSM_2M"],
             tweetData: ["src/server/Data/tweetData.js", "TweetData"],
             multiPaneData: ["src/server/Data/multiPaneData.ts", "multiPaneData"],
             populationData: ["src/server/Data/populationData.ts", "mappedPopulationData"],
@@ -28,6 +27,9 @@ module.exports = function setupMiddleware(app, { withApi = true } = {}) {
         for (const [route, args] of Object.entries(mocks)) {
             app.get("/api/" + route, (req, res) => res.json(loadMock(...args)));
         }
+        app.get("/api/lidarData", (req, res) =>
+            res.type("text/plain").send(loadMock("src/server/Data/tq3080_DSM_2M.js", "tq3080_DSM_2M"))
+        );
         app.get("/api/get-binance-candles", (req, res) => {
             const symbol = req.query.symbol;
             if (!["ADAUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "XRPUSDT"].includes(symbol)) {

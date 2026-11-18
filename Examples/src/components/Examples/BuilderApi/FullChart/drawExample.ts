@@ -30,9 +30,13 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         // Add XAxis
         xAxes: [
             {
-                type: EAxisType.CategoryAxis,
+                type: EAxisType.NumericAxis,
                 options: {
                     axisTitle: "X Axis Title",
+                    growBy: new NumberRange(0.1, 0.1),
+                    autoTicks: false,
+                    majorDelta: 1,
+                    minorDelta: 0.2,
                     labelProvider: {
                         type: ELabelProviderType.Text,
                         options: {
@@ -108,14 +112,22 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         annotations: [
             {
                 type: EAnnotationType.SVGTextAnnotation,
-                options: { text: "Labels", yAxisId: "y1", x1: 0, y1: 10, yCoordinateMode: ECoordinateMode.DataValue },
+                options: {
+                    text: "Labels",
+                    textColor: appTheme.ForegroundColor,
+                    yAxisId: "y1",
+                    x1: 1,
+                    y1: 10,
+                    yCoordinateMode: ECoordinateMode.DataValue,
+                },
             },
             {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {
                     text: "can be placed",
+                    textColor: appTheme.ForegroundColor,
                     yAxisId: "y1",
-                    x1: 1,
+                    x1: 2,
                     y1: 8,
                     yCoordinateMode: ECoordinateMode.DataValue,
                 },
@@ -124,8 +136,9 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {
                     text: "on the chart",
+                    textColor: appTheme.ForegroundColor,
                     yAxisId: "y1",
-                    x1: 2,
+                    x1: 3,
                     y1: 9,
                     yCoordinateMode: ECoordinateMode.DataValue,
                 },
@@ -134,6 +147,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {
                     text: "Builder API Demo",
+                    textColor: appTheme.ForegroundColor,
                     x1: 0.5,
                     y1: 0.5,
                     opacity: 0.33,
@@ -150,6 +164,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 type: EAnnotationType.SVGTextAnnotation,
                 options: {
                     text: "Create SciChart charts with JSON Objects",
+                    textColor: appTheme.ForegroundColor,
                     x1: 0.5,
                     y1: 0.5,
                     yCoordShift: 0,

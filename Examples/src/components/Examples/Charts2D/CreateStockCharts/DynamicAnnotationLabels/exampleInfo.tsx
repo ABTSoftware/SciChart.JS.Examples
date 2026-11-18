@@ -21,9 +21,9 @@ const metaData: IExampleMetadata = {
         react: {
             subtitle: "Dynamic label text and styling for React multipoint trading annotations.",
             title: "React Dynamic Trading Annotation Labels",
-            pageTitle: "React Dynamic Trading Annotation Labels",
+            pageTitle: "React Trading Annotation Labels | View Demo | SciChart.js",
             metaDescription:
-                "Create dynamic labels for React trading annotations including channels and Fibonacci retracements.",
+                "Create dynamic labels and styling for React multipoint trading annotations in SciChart.js, including price channels and Fibonacci retracements.",
             markdownContent:
                 "## React Dynamic Trading Annotation Labels\n\nThis example shows hardcoded financial annotations with dynamic multipoint labels. `formatLabel` produces context-aware text and `formatLabelStyle` changes label color, size and weight based on channel width and Fibonacci impulse size.",
         },

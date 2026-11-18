@@ -23,8 +23,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Signals Intelligence Dashboard** using SciChart.js, with the following features: DataLabels, Rounded corners, Gradient-palette fill, startup animations.",
                 title: "React Polar Signals Intelligence Dashboard",
-                pageTitle: "React Polar Signals Intelligence Dashboard",
-                metaDescription: null,
+                pageTitle: "React Polar Signals Intelligence Dashboard | SciChart",
+                metaDescription:
+                    "Build a React Signals Intelligence Dashboard in SciChart.js with Polar Charts, data labels, rounded corners, and gradient palette fills.",
                 markdownContent: null,
             },
             angular: {

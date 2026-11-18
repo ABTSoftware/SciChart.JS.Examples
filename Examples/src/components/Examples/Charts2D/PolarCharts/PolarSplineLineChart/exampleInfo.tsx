@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Spline Line Chart** using SciChart.js, using either a Cubic spline, or polar interpolation",
                 title: "React Polar Spline Line Chart",
-                pageTitle: "React Polar Spline Line Chart",
+                pageTitle: "React Polar Spline Line Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Try the React Polar Spline Line Chart example to see SciChart's GPU-accelerated rendering in action. Choose a cubic spline or polar interpolation. View demo.",
+                    "Create a React Polar Spline Line Chart in SciChart.js with GPU-accelerated rendering and a choice of cubic spline or polar interpolation.",
                 markdownContent:
                     "## Polar Spline Line Chart – React\n\n### Overview\nThis React example compares the original data with cubic-spline and polar-interpolated lines, showing how each method changes the path between the same points.\n\n### How it works\n`SciChartReact` mounts the chart through its `initChart` prop and the shared `drawExample` function. The chart uses `SciChartPolarSurface`; `SplineRenderDataTransform` smooths one series, while `interpolateLine: true` draws another as arcs. See the [spline transform API](https://www.scichart.com/documentation/js/v6/typedoc/classes/splinerenderdatatransform.html) and [polar line series guide](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/polar-line-renderable-series/).\n\n### Interactions\nStaggered `WaveAnimation` effects reveal the lines in sequence. Pan and zoom the chart, and use the legend checkboxes to toggle series visibility.\n\n### Lifecycle\n`SciChartReact` manages the returned chart surface through the component lifecycle. See the [SciChart React guide](https://www.scichart.com/blog/react-charts-with-scichart-js/) for integration details.",
             },

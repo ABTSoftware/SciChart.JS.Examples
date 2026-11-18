@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Range Column Chart** using SciChart.js, with y/y1 values for each column, using the **XyyDataSeries**",
                 title: "React Polar Range Column Chart",
-                pageTitle: "React Polar Range Column Chart",
+                pageTitle: "React Polar Range Column Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Create a React Polar Range Column Chart with SciChart. This example displays monthly minimum and maximum temperatures within a Polar layout. Try the demo.",
+                    "Plot a React Polar Range Column Chart in SciChart.js with y and y1 values per column, shown here as monthly minimum and maximum temperatures.",
                 markdownContent:
                     "## Polar Range Column Chart - React\n\n### Overview\nThis React example showcases a **Polar Range Column Chart** using SciChart.js and the `SciChartReact` component. It displays monthly minimum and maximum temperatures within a circular polar layout.\n\n### Technical Implementation\nThe `` wrapper invokes `drawExample`, which calls `SciChartPolarSurface.create()` to configure a radial `PolarNumericAxis` ([API reference](https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-types/polar-numeric-axis/)) and an angular `PolarCategoryAxis`. Data is bound to a `PolarColumnRenderableSeries` via `XyyDataSeries`, animated with `SweepAnimation`. Interactive modifiers (`Pan`, `ZoomExtents`, `MouseWheelZoom`) are added to enhance UX.\n\n### Features and Capabilities\nSupports dynamic data updates by manipulating the `XyyDataSeries` at runtime. Custom styling of columns is achieved through fill and stroke properties, and innerRadius creates a donut effect.\n\n### Integration and Best Practices\nLeverage React’s component lifecycle to manage chart creation and disposal—initialize in `useEffect` and call `sciChartSurface.delete()` on unmount. Batch data updates to reduce re-renders and ensure WebAssembly contexts are reused.",
             },

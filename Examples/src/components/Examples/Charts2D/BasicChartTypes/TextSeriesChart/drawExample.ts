@@ -1,4 +1,5 @@
 import { appTheme } from "../../../theme";
+import { baseUrl } from "../../../ExampleData/ExampleDataProvider";
 import {
     SciChartSurface,
     NumericAxis,
@@ -37,7 +38,7 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
 
     // data is { xValues: number[], yValues: number[], textValues: string[] }
     const data: { xValues: number[]; yValues: number[]; textValues: string[] } = await fetch(
-        "https://www.scichart.com/demo/api/tweetData"
+        baseUrl + "api/tweetData"
     ).then((r) => r.json());
     const series = new FastTextRenderableSeries(wasmContext, {
         dataLabels: { style: { fontFamily: "Arial", fontSize: 10 }, calculateTextBounds: false },

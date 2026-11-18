@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates **LogarithmicAxis3D** on X and Y axes in a React 3D Scatter Chart using SciChart.js.",
                 title: "React 3D Log-Log Scatter Chart",
-                pageTitle: "React 3D Log-Log Scatter Chart | 3D JavaScript Charts | View Now",
+                pageTitle: "React 3D Log-Log Scatter Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Create a React 3D Log-Log Scatter Chart using SciChart's high-performance WebGL chart library. Features LogarithmicAxis3D on X and Y axes. Get your free demo now.",
+                    "Use LogarithmicAxis3D on the X and Y axes of a React 3D Scatter Chart in SciChart.js, for data spanning many orders of magnitude.",
                 markdownContent:
                     "## React 3D Log-Log Scatter Chart\n\n### Overview\nThis example demonstrates how to use **LogarithmicAxis3D** in a React 3D scatter chart powered by SciChart.js. The `<SciChartReact/>` component handles the chart lifecycle, while the `drawExample` function configures logarithmic scaling on both X and Y axes to visualize power spectral density data across 8 sensors.\n\n### Technical Implementation\nThe `SciChartReact` component from `scichart-react` accepts the `drawExample` function as the `initChart` prop, managing WebAssembly initialization and cleanup automatically. `LogarithmicAxis3D` with `logBase: 10` is applied to the frequency (X) and PSD (Y) axes. Each sensor series uses `XyzDataSeries3D` populated with log-uniformly distributed frequency points and corresponding power-law PSD values.\n\n### Features and Capabilities\nFull 3D navigation is enabled via `MouseWheelZoomModifier3D`, `OrbitModifier3D`, and `ResetCamera3DModifier`. Eight `ScatterRenderableSeries3D` instances with colored `SpherePointMarker3D` markers represent distinct sensor channels with steepening power-law slopes.\n\n### Integration and Best Practices\nThe `SciChartReact` component handles resource disposal automatically. See [React Charts with SciChart.js](https://www.scichart.com/blog/react-charts-with-scichart-js/) for details on lifecycle management. The logarithmic visible range must contain only positive values — avoid ranges that include zero or negative numbers.",
             },

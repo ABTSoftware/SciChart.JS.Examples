@@ -26,9 +26,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Box Plot Chart** using SciChart.js, using our new **FastBoxPlotRenderableSeries** chart type.",
                 title: "React Box Plot Chart",
-                pageTitle: "React Box Plot Chart",
+                pageTitle: "React Box Plot Chart | View Demo | SciChart.js",
                 metaDescription:
-                    "Try the React Box Plot Chart example for React-friendly chart lifecycle management, dynamic sub-surface positioning, and custom styling. Try the demo now.",
+                    "Create a React Box Plot Chart with SciChart.js using FastBoxPlotRenderableSeries, with React lifecycle handling and dynamic sub-surfaces.",
                 markdownContent:
                     "## Box Plot Chart - React\n\n### Overview\nThis React example illustrates how to integrate a **Box Plot Chart** using SciChart.js, rendering four statistical visualizations in a grid layout. The example leverages the `<SciChartReact/>` component for seamless React integration.\n\n### Technical Implementation\nThe chart is initialized via the `initChart` prop, which references the `drawExample` function. This function creates a `SciChartSurface` with four sub-surfaces, each containing a [FastBoxPlotRenderableSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/fastboxplotrenderableseries.html). Data is configured using [BoxPlotDataSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/boxplotdataseries.html), with axes tailored for categorical and numeric data.\n\n### Features and Capabilities\nThe example showcases React-friendly chart lifecycle management and dynamic sub-surface positioning. Each box plot is styled independently, with options to customize [whiskers, caps, and median lines](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/fast-box-plot-renderable-series/).\n\n### Integration and Best Practices\nThe implementation adheres to React best practices, using the `SciChartReact` component for efficient rendering. Developers can explore further customization via [SciChart React documentation](https://www.scichart.com/documentation/js/v6/get-started/tutorials-react/tutorial-01-setting-up-project-with-scichart-react/).",
             },

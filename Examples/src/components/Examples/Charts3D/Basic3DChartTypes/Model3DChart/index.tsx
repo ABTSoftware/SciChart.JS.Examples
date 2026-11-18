@@ -10,7 +10,7 @@ import carImage from "./javascript-3d-model-chart.jpg";
 const PROGRESS_TICK_MS = 100;
 
 /** Roughly the transfer size of the asset package, so the wait is explicable. */
-const PACKAGE_SIZE_LABEL = "~27 MB";
+const PACKAGE_SIZE_LABEL = "~19 MB";
 
 export default function Model3DChart() {
     // The model is downloaded after the chart itself is created, so the chart's own loading fallback has

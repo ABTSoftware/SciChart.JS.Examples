@@ -23,8 +23,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Radar Chart with Multiple Radial Axes**, also known as a **Spider Chart** using SciChart.js, which expresses the complexity, memory usage, stability, adaptability, scalability, and cache efficiency of two popular sorting algorithms",
                 title: "React Polar Radar Chart with Multiple Radial Axes",
-                pageTitle: "React Polar Radar Chart with Multiple Radial Axes",
-                metaDescription: null,
+                pageTitle: "React Radar Chart, Multiple Radial Axes | SciChart",
+                metaDescription:
+                    "Build a React Radar or Spider Chart with multiple radial axes in SciChart.js, so each spoke can carry its own independent scale and units.",
                 markdownContent: null,
             },
             angular: {

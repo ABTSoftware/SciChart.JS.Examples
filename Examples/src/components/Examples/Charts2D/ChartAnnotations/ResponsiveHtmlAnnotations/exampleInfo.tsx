@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Demonstrates how to use the **HtmlCustomAnnotation** to create responsive text content using SciChart.js, High Performance JavaScript Charts",
                 title: "React Responsive HTML Annotations Example",
-                pageTitle: "Responsive HTML Annotations",
+                pageTitle: "React Responsive HTML Annotations | Try Demo | SciChart.js",
                 metaDescription:
-                    "Build Responsive React HTML Annotations with SciChart. Use the advanced CSS container queries for responsive text layout and custom design. View demo now.",
+                    "Build responsive React chart annotations with HtmlCustomAnnotation and CSS container queries in SciChart.js, so labels adapt as the chart resizes.",
                 markdownContent:
                     "## Responsive HTML Annotations Example - React\n\n### Overview\nThis React example demonstrates **responsive schedule visualization** using SciChart's HTML annotations. It combines SciChart's high-performance rendering with React's component model to create an interactive employee schedule with time-bound annotations.\n\n### Technical Implementation\nThe chart is initialized via [SciChartReact](https://www.scichart.com/blog/react-charts-with-scichart-js/) component. Annotations use [HtmlCustomAnnotation](https://www.scichart.com/documentation/js/v6/typedoc/classes/htmlcustomannotation.html) with advanced CSS container queries for responsive text layout. The implementation includes custom hover behavior using [AnnotationHoverModifier](https://www.scichart.com/documentation/js/v6/typedoc/classes/annotationhovermodifier.html) with smooth animations.\n\n### Features and Capabilities\nNotable features include: responsive text orientation changes, interactive time range tooltips, multi-employee schedule lanes, and CSS-powered adaptive layouts. The example showcases how to combine SciChart's annotation system with modern CSS features.\n\n### Integration and Best Practices\nThe solution demonstrates proper React-SciChart integration patterns, including async chart initialization and responsive design techniques. Performance considerations for DOM-based annotations are addressed through efficient event handling and CSS optimizations.",
             },

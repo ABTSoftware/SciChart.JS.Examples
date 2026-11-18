@@ -25,8 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Ultrasound Heatmap** in SciChart.js, by taking a 2D array of data points as hex values between **00** and **FF**, and displaying them in a polar heatmap.",
                 title: "React Polar Heatmap | B-Mode Image Ultrasound | Medical Heatmap",
-                pageTitle: "React Polar Heatmap | B-Mode Image Ultrasound | Medical Heatmap",
-                metaDescription: null,
+                pageTitle: "React Ultrasound B-Mode Heatmap Chart | View Demo | SciChart",
+                metaDescription:
+                    "Build a React ultrasound B-mode image view in SciChart.js by mapping a 2D array of hex values onto a Polar Heatmap for medical imaging apps.",
                 markdownContent:
                     "## Polar Uniform Heatmap Ultrasound Chart - React\n\n### Overview\nThis React implementation showcases a polar heatmap for ultrasound visualization using SciChart.js. The example demonstrates seamless integration of medical imaging data within a React component through the [SciChart React](https://www.scichart.com/blog/react-charts-with-scichart-js/) wrapper.\n\n### Technical Implementation\nThe chart is initialized via the `drawExample` function passed to `SciChartReact`'s `initChart` prop. The polar surface is configured with specialized axes and a [UniformHeatmapDataSeries](https://www.scichart.com/documentation/js/v6/2d-charts/chart-types/polar-uniform-heatmap-renderable-series/) containing ultrasound intensity values. The React component handles the chart lifecycle automatically, including cleanup when unmounted.\n\n### Features and Capabilities\nThe example highlights medical-specific features including anatomical measurement annotations and a sector-limited polar view. The implementation leverages SciChart's [WebGL rendering](https://www.scichart.com/documentation/js/v6/2d-charts/surface/webgpu-and-webgl-renderers/) for high-performance visualization of large ultrasound datasets, with interactive navigation tools for detailed examination.",
             },

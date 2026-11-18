@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Vector Field** using our **FastLineSegmentRenderableSeries** paired with a custom **PaletteProvider** and optional arrow heads made with **FastTriangleRenderableSeries**",
                 title: "React Vector Field Plot",
-                pageTitle: "React Vector Field Plot",
+                pageTitle: "React Vector Field Plot | Quiver Chart | Try Demo | SciChart",
                 metaDescription:
-                    "View the React Vector Field Plot example from SciChart, including dynamic vector generation, gradient-colored segments, and interactive zoom/pan. Try demo.",
+                    "Plot a React Vector Field or Quiver Chart in SciChart.js with FastLineSegmentRenderableSeries, gradient-colored segments, and arrowheads.",
                 markdownContent:
                     "## Vector Field Chart - React\n\n### Overview\nThis React implementation of a **Vector Field Chart** wraps the core SciChart.js visualization in a reusable [SciChartReact](https://www.scichart.com/blog/react-charts-with-scichart-js/) component. It demonstrates efficient integration of mathematical vector field visualization in a React application.\n\n### Technical Implementation\nThe chart configuration from drawExample.ts is passed via the initChart prop. React manages the component lifecycle while SciChart handles WebGL rendering. The solution uses [XyDataSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/xydataseries.html) for vector data and implements a custom tooltip template through [CursorModifier](https://www.scichart.com/documentation/js/v6/typedoc/classes/cursormodifier.html).\n\n### Features and Capabilities\nThe component maintains all JavaScript version features including dynamic vector generation, gradient-colored segments, and interactive zoom/pan. The React wrapper adds responsive resizing and clean unmounting through `SciChartReact`'s built-in lifecycle management.\n\n### Integration and Best Practices\nThis pattern follows React best practices by separating visualization logic (drawExample) from presentation (`ChartComponent`). For advanced use cases, consider using React context for theme propagation or memoizing calculation-heavy operations.",
             },

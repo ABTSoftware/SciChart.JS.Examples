@@ -14,7 +14,7 @@ const ExamplesRootDetails: FC<{ preview?: ReactNode }> = ({ preview }) => {
     const ExampleComponent = getExampleComponent(examplePage.id);
 
     const seoPrefixTitle = getFrameworkContent(examplePage.pageTitle, framework);
-    const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle.length);
+    const seoTitleText = seoPrefixTitle + ExampleStrings.exampleGenericTitleSuffix(framework, seoPrefixTitle);
 
     const seoDescription = examplePage ? getFrameworkContent(examplePage.metaDescription, framework) : "";
     const seoKeywords = examplePage

@@ -21,9 +21,9 @@ const metaData: IExampleMetadata = {
         react: {
             subtitle: "Extend PolyLineAnnotation with custom paired dash-line rendering in React.",
             title: "React Custom Paired Dashed Polyline Annotation",
-            pageTitle: "React Custom Paired Dashed Polyline Annotation",
+            pageTitle: "React Paired Dashed Polyline Annotation | SciChart",
             metaDescription:
-                "Create a custom React stock chart annotation by extending SciChart.js PolyLineAnnotation with paired dashed connectors.",
+                "Extend PolyLineAnnotation in SciChart.js to build a custom React Stock Chart annotation with paired dashed connector lines between points.",
             markdownContent:
                 "## React Custom Paired Dashed Polyline Annotation\n\nThis example registers a custom annotation type and uses `MultiPointAnnotationPlacementModifier` to place it interactively. The custom class inherits from `PolyLineAnnotation` and draws additional dashed peak connectors during `drawWithContext`, with center labels attached to the custom connector segments.",
         },

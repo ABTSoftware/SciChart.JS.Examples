@@ -45,9 +45,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "This examples combines a **React Map Chart with a Heatmap** to show the distribution of earthquakes around the world.",
                 title: "React Map Chart with Heatmap overlay",
-                pageTitle: "React Map Chart with Heatmap overlay",
+                pageTitle: "React Map Chart with Heatmap Overlay | View Demo | SciChart",
                 metaDescription:
-                    "Design a highly dynamic React Map Chart with Heatmap overlay with SciChart's feature-rich JavaScript Chart Library. Get your free demo today.",
+                    "Combine a React Map Chart with a Heatmap overlay in SciChart.js, shown here mapping the global distribution of earthquakes.",
                 markdownContent,
             },
             angular: {

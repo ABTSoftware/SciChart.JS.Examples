@@ -24,6 +24,10 @@ import SciChartNavbar from "./SciChartNavbar/SciChartNavbar";
 import { useMediaQuery } from "../helpers/useMediaQuery";
 import { MobileDrawer } from "./DrawerContent/MobileDrawer";
 import { baseAppPath } from "../constants";
+// scichart-react applies its own defaults (wasmUrl: "/scichart.wasm") at import time.
+// Example components are pulled in lazily via require.context, so without this eager import
+// those defaults would run *after* the SciChartSurface.configure call below and clobber it.
+import "scichart-react/configureDefaults";
 
 SciChartSurfaceBase.DEFAULT_THEME = appTheme.SciChartJsTheme;
 SciChartDefaults.useSharedCache = true;

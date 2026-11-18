@@ -24,8 +24,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Pie Chart** usinginhart.js, using the **PolarColumnRenderableSeries** with a **XyxDataSeries**.",
                 title: "React Polar Pie Chart",
-                pageTitle: "React Polar Pie Chart",
-                metaDescription: null,
+                pageTitle: "React Polar Pie Chart | View Demo | SciChart.js",
+                metaDescription:
+                    "Create a React Polar Pie Chart in SciChart.js using PolarColumnRenderableSeries with an XyxDataSeries for full control over each segment.",
                 markdownContent:
                     "## Polar Pie Chart - React\n\n### Overview\nThis example illustrates a polar pie chart implementation in React using the **SciChartReact** component. It visualizes framework popularity data as segmented pie slices in a polar coordinate system.\n\n### Technical Implementation\nThe chart is initialized via the `initChart` prop, which calls `drawExample` to create a **SciChartPolarSurface**. Segment data is calculated cumulatively, with **PolarColumnRenderableSeries** configured to use **EColumnMode.StartEnd** for pie-like segments. Labels and colors are managed through metadata and **MetadataPaletteProvider**.\n\n### Features and Capabilities\nThe chart features dynamic labeling with **EPolarLabelMode.Perpendicular** and interactive controls including zoom/pan modifiers. The React integration ensures seamless lifecycle management through the **SciChartReact** wrapper component.\n\n### Integration and Best Practices\nThe example demonstrates optimal React integration patterns, with async initialization and automatic cleanup. Developers can extend this by adding state management for dynamic data updates or customizing the theme via React context.",
             },

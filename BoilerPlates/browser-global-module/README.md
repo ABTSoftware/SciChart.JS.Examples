@@ -14,11 +14,11 @@ To run the project, use:
 ## How to add SciChart.js as a browser global to your project
 
 1. Add a script pointing to a specific version into the **head** section of your html file. This is
-   what [src/client/index.html](src/client/index.html) does — for version `6.0.0-alpha.196`:
+   what [src/client/index.html](src/client/index.html) does — for version `6.0.6`:
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/scichart@6.0.0-alpha.196/index.min.js"
+  src="https://cdn.jsdelivr.net/npm/scichart@6.0.6/index.min.js"
   crossorigin="anonymous"
 ></script>
 ```

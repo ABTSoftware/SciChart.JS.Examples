@@ -20,6 +20,6 @@
     "vite": "^8.0.16"
   },
   "dependencies": {
-    "scichart": "6.0.0-alpha.196"
+    "scichart": "6.0.6"
   }
 }

@@ -25,9 +25,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **React Polar Label Modes Chart** using SciChart.js, which demonstrates the different label modes we support for Polar Axes.",
                 title: "React Polar Axis Label Modes",
-                pageTitle: "React Polar Axis Label Modes",
+                pageTitle: "React Polar Axis Label Modes | View Demo | SciChart.js",
                 metaDescription:
-                    "Create a React Polar Axis Label with SciChart. This demo shows the various label modes for Polar Axes – all optimised for pan, zoom, and mouse wheel.",
+                    "See every polar axis label mode in SciChart.js on a React chart, all optimized for panning, zooming, and mouse wheel interaction.",
                 markdownContent:
                     "## Polar Axis Label Modes in React\n\n### Overview\nThis React example shows how `EPolarLabelMode` changes the angular labels on a polar chart. Switch between horizontal, perpendicular, and parallel labels, then move the axes inside or outside the plot.\n\n### How it works\n`SciChartReact` renders a chart created with `SciChartPolarSurface` and radial and angular `PolarNumericAxis` instances. The angular axis sets `polarLabelMode`, while a `PolarLineRenderableSeries` provides a visual reference. See the [polar axis styling documentation](https://www.scichart.com/documentation/js/v6/2d-charts/axis-api/axis-styling/polar-axis-styling/#polar-labels) for the available label modes.\n\n### Try it\nThe label-mode control calls `changePolarLabelMode` to update the angular axis. Toggle the inner-axis setting to change `isInnerAxis` on both axes. The chart supports dragging to pan and scrolling to zoom with `PolarPanModifier`, `PolarZoomExtentsModifier`, and `PolarMouseWheelZoomModifier`.",
             },

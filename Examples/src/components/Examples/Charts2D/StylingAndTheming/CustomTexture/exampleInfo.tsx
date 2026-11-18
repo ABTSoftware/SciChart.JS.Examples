@@ -24,8 +24,9 @@ const metaData: IExampleMetadata =
                 subtitle:
                     "Creates a **Custom Texture** example with multiple renderableSeries, all allowing for **customTextureOptions** images.",
                 title: "React Custom Texture",
-                pageTitle: "React Custom Texture",
-                metaDescription: null,
+                pageTitle: "React Chart Custom Textures | View Demo | SciChart.js",
+                metaDescription:
+                    "Apply custom image textures to React chart series with customTextureOptions in SciChart.js, across multiple renderable series types.",
                 markdownContent:
                     "## Custom Texture Example - React\n\n### Overview\nThis React example demonstrates texture mapping in SciChart.js using the **SciChartReact** component. It applies custom image textures to multiple series types while maintaining React's component lifecycle.\n\n### Technical Implementation\nThe implementation uses React's component pattern with an **initChart** prop that initializes the chart surface. Custom textures are defined through [ImageTextureOptions](https://www.scichart.com/documentation/js/v6/typedoc/interfaces/icustomtextureoptions.html) and applied to series like [FastTriangleRenderableSeries](https://www.scichart.com/documentation/js/v6/typedoc/classes/fasttrianglerenderableseries.html).\n\n### Features and Capabilities\nThe example showcases texture mapping with different coordinate systems (XY and XYXY) and demonstrates texture control properties like **textureWidth** and **textureHeight**. It combines multiple textured series with interactive modifiers for a rich visualization experience.\n\n### Integration and Best Practices\nThe **SciChartReact** component handles WASM context lifecycle automatically. Developers can extend this pattern by adding React state management for dynamic texture updates while following [React integration guidelines](https://www.scichart.com/documentation/js/v6/get-started/tutorials-react/tutorial-01-setting-up-project-with-scichart-react/).",
             },
