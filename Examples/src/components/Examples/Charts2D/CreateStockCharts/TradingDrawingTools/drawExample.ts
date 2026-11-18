@@ -43,14 +43,52 @@ export type TStartToolOptions = {
     basicPitchfork?: boolean;
 };
 
+type TLineToolType =
+    | ETradingAnnotationType.PolyLineAnnotation
+    | ETradingAnnotationType.ExtendedLineAnnotation
+    | ETradingAnnotationType.HorizontalTrendLineAnnotation
+    | ETradingAnnotationType.VerticalTrendLineAnnotation
+    | ETradingAnnotationType.CrossLineAnnotation
+    | ETradingAnnotationType.AngleLineAnnotation;
+
+type TChannelToolType =
+    | ETradingAnnotationType.ChannelAnnotation
+    | ETradingAnnotationType.FlatBottomChannelAnnotation
+    | ETradingAnnotationType.DisjointChannelAnnotation;
+
+type TPitchforkToolType =
+    | ETradingAnnotationType.PitchforkAnnotation
+    | ETradingAnnotationType.PitchfanAnnotation
+    | ETradingAnnotationType.InsidePitchforkAnnotation
+    | ETradingAnnotationType.SchiffPitchforkAnnotation
+    | ETradingAnnotationType.ModifiedSchiffPitchforkAnnotation;
+
+type TFibonacciToolType =
+    | ETradingAnnotationType.FibonacciRetracementAnnotation
+    | ETradingAnnotationType.FibonacciExtensionAnnotation
+    | ETradingAnnotationType.FibonacciCirclesAnnotation
+    | ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation
+    | ETradingAnnotationType.FibonacciWedgeAnnotation
+    | ETradingAnnotationType.FibonacciTimeZoneAnnotation;
+
+type TMeasurementToolType =
+    | ETradingAnnotationType.MeasureAnnotation
+    | ETradingAnnotationType.StopLossTakeProfitAnnotation
+    | ETradingAnnotationType.CyclicLineAnnotation
+    | ETradingAnnotationType.CyclicArcAnnotation
+    | ETradingAnnotationType.SectorAnnotation;
+
+// Each tool type maps to the starter for its family, typed so a starter only accepts its own family.
+type TToolStarters = {
+    [K in ETradingAnnotationType]?: (tool: K, options: TStartToolOptions) => void;
+};
+
 const CHANNEL_LABEL_PAIRS = [
     [0, 1],
     [2, 3],
 ] as const;
 
-const PITCH_LABEL_PAIRS = [
-    [1, 2]
-] as const;
+const PITCH_LABEL_PAIRS = [[1, 2]] as const;
 
 export const drawExample = async (rootElement: string | HTMLDivElement) => {
     const ctx = await createFinancialChart(rootElement, {
@@ -132,9 +170,8 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
         });
     };
 
-    const startTool = (tool: ETradingAnnotationType, options: TStartToolOptions = {}) => {
-        stopActiveTools();
-
+    // Polylines, rays, trend lines, cross lines and angle lines.
+    const startLineTool = (tool: TLineToolType, options: TStartToolOptions) => {
         switch (tool) {
             case ETradingAnnotationType.PolyLineAnnotation: {
                 const color = options.snapToCandle
@@ -190,6 +227,39 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                 });
                 return;
             }
+            case ETradingAnnotationType.HorizontalTrendLineAnnotation:
+            case ETradingAnnotationType.VerticalTrendLineAnnotation:
+            case ETradingAnnotationType.CrossLineAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#FBA55A",
+                        strokeThickness: 2,
+                        axisLabelStroke: labelTextColor,
+                    },
+                });
+                return;
+            case ETradingAnnotationType.AngleLineAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#F472B6",
+                        strokeThickness: 2,
+                        guideDashArray: [2, 4],
+                        angleGuideLength: 100,
+                        labelColor: labelTextColor,
+                        formatAngleLabel: ({ angle }) => `${angle.toFixed(1)}°`,
+                    },
+                });
+                return;
+        }
+    };
+
+    // Parallel, flat-bottom and disjoint channels.
+    const startChannelTool = (tool: TChannelToolType, options: TStartToolOptions) => {
+        switch (tool) {
             case ETradingAnnotationType.ChannelAnnotation:
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.ChannelAnnotation,
@@ -233,6 +303,12 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     } as any),
                 });
                 return;
+        }
+    };
+
+    // Andrews pitchfork and its variants, plus the pitchfan.
+    const startPitchforkTool = (tool: TPitchforkToolType, options: TStartToolOptions) => {
+        switch (tool) {
             case ETradingAnnotationType.PitchforkAnnotation:
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.PitchforkAnnotation,
@@ -271,6 +347,29 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     } as any),
                 });
                 return;
+            case ETradingAnnotationType.InsidePitchforkAnnotation:
+            case ETradingAnnotationType.SchiffPitchforkAnnotation:
+            case ETradingAnnotationType.ModifiedSchiffPitchforkAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        ...createTradingAnnotationOptions("", 3, undefined, { includeSegmentLabels: false }),
+                        isEditable: true,
+                        stroke: TRADING_ANNOTATION_COLORS.pitchfork,
+                        strokeThickness: 2,
+                        showFullWidthZone: true,
+                        fullWidthZoneFill: "#3B82F633",
+                        showHalfWidthZone: true,
+                        halfWidthZoneFill: "#22C55E33",
+                    },
+                });
+                return;
+        }
+    };
+
+    // Fibonacci retracement, extension, circles, speed/resistance arcs, wedge and time zones.
+    const startFibonacciTool = (tool: TFibonacciToolType, options: TStartToolOptions) => {
+        switch (tool) {
             case ETradingAnnotationType.FibonacciRetracementAnnotation:
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.FibonacciRetracementAnnotation,
@@ -389,6 +488,24 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     } as any),
                 });
                 return;
+            case ETradingAnnotationType.FibonacciTimeZoneAnnotation:
+                placementModifier.startPlacement({
+                    type: tool,
+                    options: {
+                        isEditable: true,
+                        stroke: "#60A5FA",
+                        strokeThickness: 2,
+                        labelColor: labelTextColor,
+                        axisLabelStroke: labelTextColor,
+                    },
+                });
+                return;
+        }
+    };
+
+    // Price/time measurement, stop-loss/take-profit, cyclic lines and arcs, and sectors.
+    const startMeasurementTool = (tool: TMeasurementToolType, options: TStartToolOptions) => {
+        switch (tool) {
             case ETradingAnnotationType.MeasureAnnotation:
                 placementModifier.startPlacement({
                     type: ETradingAnnotationType.MeasureAnnotation,
@@ -428,62 +545,6 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     } as any),
                 });
                 return;
-            case ETradingAnnotationType.HorizontalTrendLineAnnotation:
-            case ETradingAnnotationType.VerticalTrendLineAnnotation:
-            case ETradingAnnotationType.CrossLineAnnotation:
-                placementModifier.startPlacement({
-                    type: tool,
-                    options: {
-                        isEditable: true,
-                        stroke: "#FBA55A",
-                        strokeThickness: 2,
-                        axisLabelStroke: labelTextColor,
-                    },
-                });
-                return;
-            case ETradingAnnotationType.AngleLineAnnotation:
-                placementModifier.startPlacement({
-                    type: tool,
-                    options: {
-                        isEditable: true,
-                        stroke: "#F472B6",
-                        strokeThickness: 2,
-                        guideDashArray: [2, 4],
-                        angleGuideLength: 100,
-                        labelColor: labelTextColor,
-                        formatAngleLabel: ({ angle }) => `${angle.toFixed(1)}°`,
-                    },
-                });
-                return;
-            case ETradingAnnotationType.InsidePitchforkAnnotation:
-            case ETradingAnnotationType.SchiffPitchforkAnnotation:
-            case ETradingAnnotationType.ModifiedSchiffPitchforkAnnotation:
-                placementModifier.startPlacement({
-                    type: tool,
-                    options: {
-                        ...createTradingAnnotationOptions("", 3, undefined, { includeSegmentLabels: false }),
-                        isEditable: true,
-                        stroke: TRADING_ANNOTATION_COLORS.pitchfork,
-                        strokeThickness: 2,
-                        showFullWidthZone: true,
-                        fullWidthZoneFill: "#3B82F633",
-                        showHalfWidthZone: true,
-                        halfWidthZoneFill: "#22C55E33",
-                    },
-                });
-                return;
-            case ETradingAnnotationType.FibonacciTimeZoneAnnotation:
-                placementModifier.startPlacement({
-                    type: tool,
-                    options: {
-                        isEditable: true,
-                        stroke: "#60A5FA",
-                        strokeThickness: 2,
-                        labelColor: labelTextColor,
-                        axisLabelStroke: labelTextColor,
-                    },
-                });
-                return;
             case ETradingAnnotationType.CyclicLineAnnotation:
                 placementModifier.startPlacement({
                     type: tool,
@@ -513,10 +574,44 @@ export const drawExample = async (rootElement: string | HTMLDivElement) => {
                     },
                 });
                 return;
-            case ETradingAnnotationType.FreehandDrawingAnnotation:
-                startFreehand(options);
-                return;
         }
+    };
+
+    const toolStarters: TToolStarters = {
+        [ETradingAnnotationType.PolyLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.ExtendedLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.HorizontalTrendLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.VerticalTrendLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.CrossLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.AngleLineAnnotation]: startLineTool,
+        [ETradingAnnotationType.ChannelAnnotation]: startChannelTool,
+        [ETradingAnnotationType.FlatBottomChannelAnnotation]: startChannelTool,
+        [ETradingAnnotationType.DisjointChannelAnnotation]: startChannelTool,
+        [ETradingAnnotationType.PitchforkAnnotation]: startPitchforkTool,
+        [ETradingAnnotationType.PitchfanAnnotation]: startPitchforkTool,
+        [ETradingAnnotationType.InsidePitchforkAnnotation]: startPitchforkTool,
+        [ETradingAnnotationType.SchiffPitchforkAnnotation]: startPitchforkTool,
+        [ETradingAnnotationType.ModifiedSchiffPitchforkAnnotation]: startPitchforkTool,
+        [ETradingAnnotationType.FibonacciRetracementAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.FibonacciExtensionAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.FibonacciCirclesAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.FibonacciSpeedResistanceArcsAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.FibonacciWedgeAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.FibonacciTimeZoneAnnotation]: startFibonacciTool,
+        [ETradingAnnotationType.MeasureAnnotation]: startMeasurementTool,
+        [ETradingAnnotationType.StopLossTakeProfitAnnotation]: startMeasurementTool,
+        [ETradingAnnotationType.CyclicLineAnnotation]: startMeasurementTool,
+        [ETradingAnnotationType.CyclicArcAnnotation]: startMeasurementTool,
+        [ETradingAnnotationType.SectorAnnotation]: startMeasurementTool,
+        [ETradingAnnotationType.FreehandDrawingAnnotation]: (_tool, options) => startFreehand(options),
+    };
+
+    const startTool = (tool: ETradingAnnotationType, options: TStartToolOptions = {}) => {
+        stopActiveTools();
+        const starter = toolStarters[tool] as
+            | ((tool: ETradingAnnotationType, options: TStartToolOptions) => void)
+            | undefined;
+        starter?.(tool, options);
     };
 
     const addSeedAnnotations = () => {

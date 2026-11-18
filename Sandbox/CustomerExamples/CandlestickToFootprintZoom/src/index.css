@@ -1,0 +1,131 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Neutral dark greys, to sit next to the SciChart Dark theme (#1C1C1E background) */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background: #1c1c1e;
+  color: #e0e0e0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 8px 12px 12px;
+  gap: 6px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.toolbar .group {
+  display: inline-flex;
+}
+.toolbar button {
+  background: #242426;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3d;
+  padding: 3px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+.toolbar button:hover {
+  background: #2e2e31;
+}
+.toolbar .group button + button {
+  border-left: none;
+}
+.toolbar button.on {
+  background: #e0e0e0;
+  border-color: #e0e0e0;
+  color: #1c1c1e;
+}
+
+/* Toggle switch */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch .track {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  border-radius: 8px;
+  background: #3a3a3d;
+  transition: background 0.15s;
+}
+.switch .track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #8e8e93;
+  transition: transform 0.15s, background 0.15s;
+}
+.switch input:checked + .track {
+  background: #e0e0e0;
+}
+.switch input:checked + .track::after {
+  transform: translateX(14px);
+  background: #1c1c1e;
+}
+.switch input:focus-visible + .track {
+  outline: 2px solid #e0e0e0;
+  outline-offset: 2px;
+}
+
+.status {
+  margin-left: auto;
+  color: #a0a0a4;
+}
+
+/* Vertical bars between items */
+.status > span + span::before,
+.hint > span + span::before {
+  content: "|";
+  margin: 0 8px;
+  color: #55555a;
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+.chart {
+  flex: 1;
+  min-height: 300px;
+}
